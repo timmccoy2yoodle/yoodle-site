@@ -10,6 +10,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PREVIEW = "--preview" in sys.argv
 OUT = os.path.join(ROOT, "preview" if PREVIEW else "site")
 TEST_BUILD = True
+# Yoodle review widget: tap-to-comment on *.netlify.app and localhost only. Not in artifact previews.
+REVIEW_TAG = "" if PREVIEW else '<script src="/yoodle-review.js" data-project="Yoodle" defer></script>'
 DOMAIN = "https://yoodle.com"
 EMAIL = "hello@yoodle.com"
 TODAY = date.today().isoformat()
@@ -392,6 +394,7 @@ def page(path, title, desc, body, schema=None, h_nopop=False, index=True):
 
 <script type="application/ld+json">{json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)}</script>
 <script src="/js/site.js" defer></script>
+{REVIEW_TAG}
 </body>
 </html>
 '''
@@ -709,6 +712,7 @@ def assets():
     shutil.copy(f"{nm}/inter-tight/files/inter-tight-latin-wght-normal.woff2", os.path.join(OUT, "fonts/inter-tight.woff2"))
     if os.path.isdir(os.path.join(ROOT, "assets/img")): shutil.copytree(os.path.join(ROOT, "assets/img"), os.path.join(OUT, "img"), dirs_exist_ok=True)
     if PREVIEW: return
+    for f in ("yoodle-review.js", "yoodle-review-form.html", "yoodle-resolved.json"): shutil.copy(os.path.join(ROOT, "tools/review", f), os.path.join(OUT, f))
     urls = "".join(f"<url><loc>{DOMAIN}{p}</loc><lastmod>{TODAY}</lastmod></url>" for p in PAGES)
     open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     open(os.path.join(OUT, "robots.txt"), "w").write(("User-agent: *\nDisallow: /\n" if TEST_BUILD else "User-agent: *\nAllow: /\n") + f"Sitemap: {DOMAIN}/sitemap.xml\n")

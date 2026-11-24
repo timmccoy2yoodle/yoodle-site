@@ -13,7 +13,7 @@ const walk = d => fs.readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDi
 (async () => {
   await new Promise(r => server.listen(0, '127.0.0.1', r));
   const base = `http://127.0.0.1:${server.address().port}/`;
-  const pages = walk(root).map(f => path.relative(root, f).split(path.sep).join('/'));
+  const pages = walk(root).map(f => path.relative(root, f).split(path.sep).join('/')).filter(p => p !== 'yoodle-review-form.html');
   const browser = await chromium.launch(), problems = [], seo = {};
   const add = (page, width, issue) => problems.push({ page, width, issue });
   const shots = (process.env.SHOTS || '').split(',');
