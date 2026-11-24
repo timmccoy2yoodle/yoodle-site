@@ -5,7 +5,7 @@ import os, re, sys, json, shutil, html
 from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import *
-from logos import LOGOS, WALL
+from logos import LOGOS, WALL, CLEAR
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PREVIEW = "--preview" in sys.argv
@@ -120,10 +120,13 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .track li{font-family:"Inter Tight",sans-serif;font-weight:600;font-size:clamp(1.3rem,2.4vw,2rem);letter-spacing:-.02em;padding:0 28px;white-space:nowrap}
 .track li::after{content:"\00B7";margin-left:56px;color:var(--acc)}
 .mq.paused .track{animation-play-state:paused}
-.mq.lg{padding:18px 0}.mq.lg .track{animation-duration:110s}
-.mq.lg .track li{padding:0;margin:0 9px;width:200px;height:96px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:6px;flex:none}
+.mq.lg{padding:26px 0}.mq.lg .track{animation-duration:90s}
+.mq.lg .track+.track{margin-top:30px}
+.mq.lg .track.rev{animation-direction:reverse}
+.mq.lg .track li{padding:0;margin:0 clamp(22px,3vw,44px);height:60px;display:flex;align-items:center;flex:none}
 .mq.lg .track li::after{content:none}
-.mq.lg .track img{max-width:74%;max-height:62%;width:auto;height:auto;object-fit:contain}
+.mq.lg .track img{height:auto;width:auto;max-height:100%;max-width:190px;object-fit:contain}
+@media (max-width:620px){.mq.lg .track li{height:46px}.mq.lg .track img{max-width:160px}}
 .kw{font-size:1rem;opacity:.82;margin-top:10px!important}
 .rows>li>div>p+p{margin-top:10px}
 .posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px) clamp(16px,2.4vw,32px);list-style:none;padding:0;margin:clamp(28px,4vw,48px) 0 0}
@@ -468,10 +471,13 @@ def closer(a=("Start a project.", "Tell us what needs to get done. We reply with
 <div><h2>{b[0]}</h2><p class="lede" style="margin:20px 0">{b[1]}</p><a class="go" href="{b[2]}">{b[3]}</a></div></div></section>'''
 
 def marquee():
-    allw = [x for g in ("he", "gov", "np", "biz") for x in WALL[g]]
-    lis = "".join(f'<li style="background:{bg}"><img src="/img/logos/{fn}" alt="{e(n)}" width="{s[0]}" height="{s[1]}" loading="lazy"></li>' for fn, n, s, bg in allw)
+    half = (len(CLEAR) + 1) // 2
+    def row(items, rev):
+        lis = "".join(f'<li><img src="/img/logos/{fn}" alt="{e(n)}" width="{s[0]}" height="{s[1]}" loading="lazy"></li>' for fn, n, s in items)
+        dup = re.sub(r'alt="[^"]*"', 'alt=""', lis)
+        return f'<div class="track{" rev" if rev else ""}"><ul>{lis}</ul><ul aria-hidden="true">{dup}</ul></div>'
     return f'''<div class="wrap"><p class="small" style="margin-bottom:10px">Brand, web and marketing work since 2007 for</p></div>
-<div class="mq lg" id="mq"><div class="track"><ul>{lis}</ul><ul aria-hidden="true">{lis.replace('alt="', 'data-a="').replace('<img ', '<img alt="" ')}</ul></div></div>
+<div class="mq lg" id="mq">{row(CLEAR[:half], False)}{row(CLEAR[half:], True)}</div>
 <div class="wrap"><button class="mqbtn" id="mqbtn" type="button" aria-pressed="false">Pause scrolling logos</button></div>'''
 
 # ------------------------------------------------------------------ pages
