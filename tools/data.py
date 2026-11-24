@@ -118,20 +118,10 @@ SHOWS = [
      "Encourage to Talk is a podcast from the Fore the Kids Foundation: adult conversations around youth mental health. Host Haley Prophet talks with parents, advocates and professionals about their experiences and the resources that help.",
      ["Five episodes", "Hosted by Haley Prophet", "Created by the Fore the Kids Foundation"],
      [("Listen to the show", "https://pod.co/encourage-to-talk")]),
-    ("the-yoodle-podcast", "The Yoodle Podcast", "Podcast", "", "", [], []),
-    ("the-yes-podcast", "The YES Podcast", "Podcast", "", "", [], []),
-    ("the-soul-of-santa-podcast", "The Soul of Santa Podcast", "Podcast", "", "", [], []),
 ]
 for slug, name, kind, place, about, feats, links in SHOWS:
     add(slug, name, "content", "", place, "", about, feats, kind)
     P[-1]["links"] = links
-add("rio-hondo-college-video", "Río Hondo College video and content", "higher-ed", "", "Whittier, California", "",
-    "For Río Hondo College, Yoodle produced video, created content and built pages.", ["Video production", "Content creation", "Page building"], "Video and content")
-P[-1]["links"] = [("Watch the Río Hondo College reel", "https://vimeo.com/1230352325")]
-
-_v = P.pop()
-P.insert([p["slug"] for p in P].index("rio-hondo-college") + 1, _v)
-
 # Earlier work from the previous yoodle.com (assets come from the site backup)
 ARCHIVE = ["KC Rising", "Together KC", "KC Global Design", "KC Parks", "THPRD", "Kansas City International Airport",
            "Fort Hays State University", "Lamar State College Port Arthur", "Hostos Community College", "KU Endowment",
@@ -191,3 +181,25 @@ SERVICES = {
    faq=[("Does Yoodle produce podcasts for clients?", "Yes. We handle format development, recording, editing, artwork and distribution, and can train your team to run the show."),
         ("Do you use AI to create content?", "We use AI for speed in research, drafts and editing. A person checks and approves everything before it is published under your name.")]),
 }
+
+# ---- Río Hondo College case study (source: "Rio Hondo - Yoodle Deliverable Links" and the two page lists, 2024)
+RH_NEW = ["Accounting, Tax & Payroll", "Administration", "Administration of Justice, Policing & Corrections", "Alternative Energy Technology", "American Sign Language & Deaf Studies", "Animation, Games & Entertainment Art", "Anthropology", "Architectural Design, Drawing & Theory", "Areas of Study", "Art History", "Automotive Technology", "Business", "Carpentry", "Chemistry", "Child Development", "Communication Studies", "Computer Science", "Construction Engineering Management", "Creative Writing", "Dance", "Economics", "Education", "English", "English as a Second Language", "Environmental Science & Technology", "Fire Technology & Emergency Response", "General Studies", "Graphic Art & Design", "Health Science & Career Preparation", "History", "Home", "Hospitality Management", "Kinesiology, Fitness & Sports", "Mass Communications, Media & Journalism", "Mathematics", "Music", "Nursing", "Nutrition & Dietetics", "Pathway to Law School", "Philosophy", "Photography", "Physics", "Police Department", "Political Science", "Psychology", "Social Work & Services", "Sociology", "Spanish", "Studio Arts", "Welding Technology"]
+RH_OPT = ["About", "Academic Calendar", "Academics", "Admissions & Records Office", "Admissions FAQ", "Adult Re-Entry Program", "Career & Technical Education", "Class Registration", "Continuing Education & Noncredit Division", "Counseling Center", "Disabled Students Program & Services", "Dreamers' Resource Center", "EMT Program", "Financial Aid", "Fire Technology Academy Programs", "International Students", "Library", "Police Academy", "Rio Promise", "Steps for First-Time College Students", "Steps for Transfer Students From Another College", "Student Life & Leadership", "Transfer Center", "Tutoring", "Veterans Service Center", "Virtual Welcome Center"]
+RH_VIDEO = ["Brand video", "Campus tour", "Tutoring", "Tesla program", "Pathway to Law", "Music program", "Fire and EMT", "Child Development", "Ceramics", "Automotive program"]
+RH = dict(
+  lede="Río Hondo College brought Yoodle in for one engagement with nine goals: measure the website, test it with real users, set the rules for running it, then write, build and film the content that fills it.",
+  stats=[("77", "existing pages rewritten and optimized"), ("50", "new pages written and built"), ("33", "area-of-study pages revised in a second round"), ("10", "video series, plus photography")],
+  goals=[("Analytics and goals", "Goal setting and Google Analytics, so the college agreed on what the website is for before changing it."),
+         ("Looker dashboards", "Dashboards the web team reads without an analyst, with a user guide and a plain-language glossary."),
+         ("Usability testing", "Card sorting, tree testing and a first-reaction survey, turned into navigation and content recommendations."),
+         ("Governance", "A web content governance guide and RACI chart, delivered with a recorded consultation."),
+         ("Content journeys", "Model content journeys for the pages that matter most to students choosing a program."),
+         ("Writing for the web workshop", "A recorded workshop and guide, so college staff can keep writing pages to the same standard."),
+         ("Page writing, accessibility and migration", "Pages written and optimized, ADA compliance testing, and content migrated from the client's final list. Pages completed May 13, 2024. Migration completed July 26, 2024."),
+         ("Media for the web", "Video series, a campus tour, a brand video and photography, shot for use on the pages we built."),
+         ("Support programs finder", "A filter and sort tool for student support programs, built and deployed into the college's WordPress codebase.")])
+for _p in P:
+    if _p["slug"] == "rio-hondo-college":
+        _p["case"] = RH
+        _p["links"] = [("Watch the Río Hondo College reel", "https://vimeo.com/1230352325"), ("Visit riohondo.edu", "https://www.riohondo.edu/")]
+        _p["about"] = "Río Hondo College in Whittier, California: 77 pages optimized, 50 new pages built, analytics, usability testing, governance and 10 video series by Yoodle."

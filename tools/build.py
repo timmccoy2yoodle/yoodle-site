@@ -485,6 +485,15 @@ def work():
          f"See {len(P)} projects by Yoodle: live websites for colleges, government agencies, nonprofits and small businesses, plus podcasts and video.", body,
          [crumb_schema(items), {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f'{DOMAIN}/work/{p["slug"]}/', "name": p["name"]} for i, p in enumerate(P)]}])
 
+def case_html(p):
+    c = p["case"]
+    names = lambda L: "".join(f"<li>{e(x)}</li>" for x in L)
+    return f'''<section class="dark"><div class="wrap"><h2>By the numbers.</h2><div class="cols c4">{"".join(f'<div class="col"><p class="big" style="font-size:clamp(3.2rem,7vw,6rem);margin:8px 0 14px">{n}</p><p>{e(t)}</p></div>' for n, t in c["stats"])}</div></div></section>
+<section><div class="wrap"><h2>Nine goals.<span class="r">Done.</span></h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(a)}.</h3><p>{e(t)}</p></li>' for i, (a, t) in enumerate(c["goals"]))}</ol></div></section>
+<section class="tight"><div class="wrap"><h2>Pages we built.</h2><p class="lede" style="margin-top:24px">Fifty new pages, written and built by Yoodle, including the homepage and a page for every area of study.</p><ul class="names">{names(RH_NEW)}</ul></div></section>
+<section class="tight"><div class="wrap two"><h2>Pages we rewrote.</h2><div><p class="lede">Seventy-seven existing pages rewritten and optimized. A sample:</p><ul class="sect">{names(RH_OPT)}</ul></div></div></section>
+<section class="dark"><div class="wrap two"><h2>On camera.</h2><div><p class="lede">Ten video series and a photo library, shot on campus for the new pages, with vertical cuts for social.</p><ul class="sect">{names(RH_VIDEO)}</ul><p style="margin-top:24px"><a class="go" href="https://vimeo.com/1230352325">Watch the reel.</a></p><p>{confirm("video embeds, stills and page screenshots go here once the files are in")}</p></div></div></section>'''
+
 VERDICT = {"Website": "Launched.", "Podcast": "Produced.", "Video and content": "Produced.", "Project": "Delivered."}
 def project(i, p):
     lab = SECTORS[p["sector"]][0]
@@ -495,7 +504,7 @@ def project(i, p):
     elif p["kind"] == "Website": facts.append(("Platform", confirm("platform")))
     if p["place"]: facts.append(("Location", e(p["place"])))
     if p["url"]: facts.append(("Live site", f'<a href="{p["url"]}">{host}</a>'))
-    about = f'<p class="lede">{e(p["about"])}</p>' if p["about"] else f'<p class="lede">{e(p["name"])} is a {p["kind"].lower()} produced by Yoodle.</p>'
+    about = f'<p class="lede">{e(p["case"]["lede"])}</p>' if p.get("case") else f'<p class="lede">{e(p["about"])}</p>' if p["about"] else f'<p class="lede">{e(p["name"])} is a {p["kind"].lower()} produced by Yoodle.</p>'
     need = {"Website": "Yoodle's scope (strategy, design, build, migration, support), launch year, results and a client quote",
             "Podcast": "exact show name, link, host and cover art",
             "Video and content": "project details from the client folder: what was produced, how many videos and pages, and when",
@@ -513,6 +522,7 @@ def project(i, p):
         feats = feats.replace("On the site.", "What we made.")
     visit = f'<p><a class="btn" href="{p["url"]}">Visit {host}</a></p>' if p["url"] else ""
     lk = p.get("links") or []
+    if lk and p.get('case'): facts[:] = [f for f in facts if f[0] != 'Live site'] + [('Year', '2024')]
     if lk: visit = '<p style="display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center">' + f'<a class="btn" href="{lk[0][1]}">{e(lk[0][0])}</a>' + "".join(f'<a class="go" href="{u}">{e(t)}</a>' for t, u in lk[1:]) + "</p>"
     body = f'''<section class="hero"><div class="wrap">{crumbs([("/", "Home"), ("/work/", "Work"), ("", e(p["name"]))])}
 <h1 class="md">{e(p["name"])}.<span class="r">{VERDICT[p["kind"]]}</span></h1>
@@ -520,8 +530,8 @@ def project(i, p):
 {"" if cover_img(p) else '<p class="small" style="margin-top:10px">' + confirm("real screenshots of the live site replace this cover" if p["url"] else "images replace this cover once the rest of the backup is brought over") + "</p>"}
 </div></section>
 <section class="tight"><div class="wrap"><dl class="facts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts)}</dl></div></section>
-<section class="tight"><div class="wrap two"><h2>The project.</h2><div>{about}{'' if (p['kind'] == 'Podcast' and p['about']) else '<p>' + confirm(need) + '</p>'}{visit}</div></div></section>
-{feats}
+<section class="tight"><div class="wrap two"><h2>The project.</h2><div>{about}{'' if ((p['kind'] == 'Podcast' and p['about']) or p.get('case')) else '<p>' + confirm(need) + '</p>'}{visit}</div></div></section>
+{case_html(p) if p.get("case") else feats}
 {story}
 {gal}
 <section class="tight"><div class="wrap"><nav class="pn" aria-label="More work"><a href="/work/{prev["slug"]}/"><span class="small">Previous</span><br><strong>{e(prev["name"])}</strong></a><a class="nx" href="/work/{nxt["slug"]}/"><span class="small">Next</span><br><strong>{e(nxt["name"])}</strong></a></nav></div></section>
@@ -673,7 +683,7 @@ def assets():
     old = ["about", "work/work-by-services", "blog", "careers", "careers/*", "vpat", "dir", "shop", "cart", "checkout", "my-account", "skill-up", "skill-up/*", "workforce-training", "workforce-training/*", "contentum", "contentum/*", "project/*"]
     dest = {"about": "/services/", "blog": "/content/", "vpat": "/accessibility/", "work/work-by-services": "/work/", "project/*": "/work/"}
     code = 302 if TEST_BUILD else 301
-    spec = "".join(f"/project/{o['old']}/  /work/{o['slug']}/  {code}\n" for o in OLDSITE["projects"]) + "".join(f"/{x['old']}/  /content/{x['slug']}/  {code}\n" for x in POSTS)
+    spec = f"/work/rio-hondo-college-video/  /work/rio-hondo-college/  {code}\n" + "".join(f"/project/{o['old']}/  /work/{o['slug']}/  {code}\n" for o in OLDSITE["projects"]) + "".join(f"/{x['old']}/  /content/{x['slug']}/  {code}\n" for x in POSTS)
     open(os.path.join(OUT, "_redirects"), "w").write(spec + "".join(f"/{o}  {dest.get(o, '/')}  {code}\n" for o in old))
     open(os.path.join(OUT, "netlify.toml"), "w").write('[build]\n  publish = "."\n  command = ""\n')
 

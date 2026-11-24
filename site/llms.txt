@@ -15,7 +15,6 @@
 - [San Bernardino Community College District](https://yoodle.com/work/san-bernardino-community-college-district/): Higher education website, live at https://sbccd.edu/
 - [Compton College](https://yoodle.com/work/compton-college/): Higher education website, live at https://compton.edu/
 - [Río Hondo College](https://yoodle.com/work/rio-hondo-college/): Higher education website, live at https://www.riohondo.edu/
-- [Río Hondo College video and content](https://yoodle.com/work/rio-hondo-college-video/): Higher education video and content
 - [UT Austin Extended Campus](https://yoodle.com/work/ut-austin-extended-campus/): Higher education website, live at https://extendedcampus.utexas.edu/
 - [The EARTh Center](https://yoodle.com/work/earth-center/): Higher education website, live at https://earthcntr.org/
 - [Florida State University Career Center](https://yoodle.com/work/fsu-career-center/): Higher education website, live at https://career.fsu.edu/
@@ -42,9 +41,6 @@
 - [Black in the Middle](https://yoodle.com/work/black-in-the-middle/): Podcasts podcast
 - [The Big Break](https://yoodle.com/work/the-big-break/): Podcasts podcast
 - [Encourage to Talk](https://yoodle.com/work/encourage-to-talk/): Podcasts podcast
-- [The Yoodle Podcast](https://yoodle.com/work/the-yoodle-podcast/): Podcasts podcast
-- [The YES Podcast](https://yoodle.com/work/the-yes-podcast/): Podcasts podcast
-- [The Soul of Santa Podcast](https://yoodle.com/work/the-soul-of-santa-podcast/): Podcasts podcast
 - [KU Endowment](https://yoodle.com/work/ku-endowment/): Higher education project
 - [Hostos Community College](https://yoodle.com/work/hostos-community-college/): Higher education project
 - [Unified Government of Wyandotte County](https://yoodle.com/work/unified-government/): Government project
