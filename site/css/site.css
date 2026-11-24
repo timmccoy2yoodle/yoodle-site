@@ -73,6 +73,29 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .track li{font-family:"Inter Tight",sans-serif;font-weight:600;font-size:clamp(1.3rem,2.4vw,2rem);letter-spacing:-.02em;padding:0 28px;white-space:nowrap}
 .track li::after{content:"\00B7";margin-left:56px;color:var(--acc)}
 .mq.paused .track{animation-play-state:paused}
+.mq.lg{padding:18px 0}.mq.lg .track{animation-duration:110s}
+.mq.lg .track li{padding:0;margin:0 9px;width:200px;height:96px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:6px;flex:none}
+.mq.lg .track li::after{content:none}
+.mq.lg .track img{max-width:74%;max-height:62%;width:auto;height:auto;object-fit:contain}
+.kw{font-size:1rem;opacity:.82;margin-top:10px!important}
+.rows>li>div>p+p{margin-top:10px}
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px) clamp(16px,2.4vw,32px);list-style:none;padding:0;margin:clamp(28px,4vw,48px) 0 0}
+.posts li{min-width:0}
+.posts a{display:block;text-decoration:none;color:inherit}
+.posts .th{aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:var(--acc);display:flex;align-items:flex-end;padding:18px;color:#fff;font-family:"Inter Tight",sans-serif;font-weight:600;font-size:1.3rem;letter-spacing:-.02em}
+.posts .th.im{padding:0;background:#e9e5dc}
+.posts .th img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.posts a:hover .th img{transform:scale(1.03)}
+.posts h3{font-size:clamp(1.15rem,1.7vw,1.4rem);line-height:1.12;margin-top:8px}
+.posts a:hover h3{text-decoration:underline}
+.posts .small{display:block;margin-top:14px}
+@media (max-width:900px){.posts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.posts{grid-template-columns:1fr}}
+.timcta{display:flex;gap:22px;align-items:center}
+.timcta img{width:132px;height:132px;border-radius:50%;object-fit:cover;flex:none}
+.xlogo{height:64px;display:flex;align-items:center;margin-bottom:18px}
+.xlogo img{max-height:100%;max-width:220px;width:auto;height:auto;object-fit:contain}
+.xlogo.dk{background:#141414;border-radius:6px;padding:10px 16px;width:max-content;height:84px;margin-bottom:-2px}
 @keyframes mq{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.track{animation:none;width:auto;flex-wrap:wrap}.track ul{flex-wrap:wrap}.track ul[aria-hidden]{display:none}.track li{white-space:normal}.mqbtn{display:none}}
 .mqbtn,.linkbtn{margin-top:12px;background:none;border:0;font:inherit;font-size:.95rem;text-decoration:underline;min-height:44px;cursor:pointer;color:inherit;padding:0}

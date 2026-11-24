@@ -120,6 +120,29 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .track li{font-family:"Inter Tight",sans-serif;font-weight:600;font-size:clamp(1.3rem,2.4vw,2rem);letter-spacing:-.02em;padding:0 28px;white-space:nowrap}
 .track li::after{content:"\00B7";margin-left:56px;color:var(--acc)}
 .mq.paused .track{animation-play-state:paused}
+.mq.lg{padding:18px 0}.mq.lg .track{animation-duration:110s}
+.mq.lg .track li{padding:0;margin:0 9px;width:200px;height:96px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:6px;flex:none}
+.mq.lg .track li::after{content:none}
+.mq.lg .track img{max-width:74%;max-height:62%;width:auto;height:auto;object-fit:contain}
+.kw{font-size:1rem;opacity:.82;margin-top:10px!important}
+.rows>li>div>p+p{margin-top:10px}
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px) clamp(16px,2.4vw,32px);list-style:none;padding:0;margin:clamp(28px,4vw,48px) 0 0}
+.posts li{min-width:0}
+.posts a{display:block;text-decoration:none;color:inherit}
+.posts .th{aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:var(--acc);display:flex;align-items:flex-end;padding:18px;color:#fff;font-family:"Inter Tight",sans-serif;font-weight:600;font-size:1.3rem;letter-spacing:-.02em}
+.posts .th.im{padding:0;background:#e9e5dc}
+.posts .th img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.posts a:hover .th img{transform:scale(1.03)}
+.posts h3{font-size:clamp(1.15rem,1.7vw,1.4rem);line-height:1.12;margin-top:8px}
+.posts a:hover h3{text-decoration:underline}
+.posts .small{display:block;margin-top:14px}
+@media (max-width:900px){.posts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.posts{grid-template-columns:1fr}}
+.timcta{display:flex;gap:22px;align-items:center}
+.timcta img{width:132px;height:132px;border-radius:50%;object-fit:cover;flex:none}
+.xlogo{height:64px;display:flex;align-items:center;margin-bottom:18px}
+.xlogo img{max-height:100%;max-width:220px;width:auto;height:auto;object-fit:contain}
+.xlogo.dk{background:#141414;border-radius:6px;padding:10px 16px;width:max-content;height:84px;margin-bottom:-2px}
 @keyframes mq{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.track{animation:none;width:auto;flex-wrap:wrap}.track ul{flex-wrap:wrap}.track ul[aria-hidden]{display:none}.track li{white-space:normal}.mqbtn{display:none}}
 .mqbtn,.linkbtn{margin-top:12px;background:none;border:0;font:inherit;font-size:.95rem;text-decoration:underline;min-height:44px;cursor:pointer;color:inherit;padding:0}
@@ -258,7 +281,7 @@ var mb=d.getElementById('menu'),nv=d.getElementById('nav');
 if(mb){mb.addEventListener('click',function(){var o=nv.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
  d.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&nv.classList.contains('open')){nv.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.focus()}})}
 var mq=d.getElementById('mq'),mqb=d.getElementById('mqbtn');
-if(mqb)mqb.addEventListener('click',function(){var p=mq.classList.toggle('paused');mqb.setAttribute('aria-pressed',p);mqb.textContent=p?'Resume scrolling names':'Pause scrolling names'});
+if(mqb)mqb.addEventListener('click',function(){var p=mq.classList.toggle('paused');mqb.setAttribute('aria-pressed',p);mqb.textContent=p?'Resume scrolling logos':'Pause scrolling logos'});
 var fb=d.querySelectorAll('[data-f]'),cards=d.querySelectorAll('[data-s]'),cnt=d.getElementById('count');
 function setF(k){var n=0;cards.forEach(function(c){var on=k==='all'||c.getAttribute('data-s')===k;c.hidden=!on;if(on)n++});fb.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-f')===k)});if(cnt)cnt.textContent=n+' projects shown';}
 fb.forEach(function(b){b.addEventListener('click',function(){setF(b.getAttribute('data-f'));if(history.replaceState)try{history.replaceState(null,'','#'+b.getAttribute('data-f'))}catch(_){}})});
@@ -445,11 +468,11 @@ def closer(a=("Start a project.", "Tell us what needs to get done. We reply with
 <div><h2>{b[0]}</h2><p class="lede" style="margin:20px 0">{b[1]}</p><a class="go" href="{b[2]}">{b[3]}</a></div></div></section>'''
 
 def marquee():
-    lis = "".join(f"<li>{e(c)}</li>" for c in CLIENTS)
+    allw = [x for g in ("he", "gov", "np", "biz") for x in WALL[g]]
+    lis = "".join(f'<li style="background:{bg}"><img src="/img/logos/{fn}" alt="{e(n)}" width="{s[0]}" height="{s[1]}" loading="lazy"></li>' for fn, n, s, bg in allw)
     return f'''<div class="wrap"><p class="small" style="margin-bottom:10px">Brand, web and marketing work since 2007 for</p></div>
-<div class="mq" id="mq"><div class="track"><ul>{lis}</ul><ul aria-hidden="true">{lis}</ul></div></div>
-<div class="wrap"><button class="mqbtn" id="mqbtn" type="button" aria-pressed="false">Pause scrolling names</button></div>
-{"".join(f'<div class="wrap" style="margin-top:clamp(28px,4vw,56px)"><p class="small" style="margin-bottom:14px">{lab}</p><ul class="logos">' + "".join(f'<li style="background:{bg}"><img src="/img/logos/{fn}" alt="{e(n)} logo" width="{s[0]}" height="{s[1]}" loading="lazy"></li>' for fn, n, s, bg in WALL[g]) + "</ul></div>" for g, lab in (("he", "Higher education"), ("gov", "Government and public agencies"), ("np", "Nonprofits"), ("biz", "Businesses")))}'''
+<div class="mq lg" id="mq"><div class="track"><ul>{lis}</ul><ul aria-hidden="true">{lis.replace('alt="', 'data-a="').replace('<img ', '<img alt="" ')}</ul></div></div>
+<div class="wrap"><button class="mqbtn" id="mqbtn" type="button" aria-pressed="false">Pause scrolling logos</button></div>'''
 
 # ------------------------------------------------------------------ pages
 def home():
@@ -563,7 +586,7 @@ def project(i, p):
     page(f'/work/{p["slug"]}/', t, d, body, [crumb_schema([("/", "Home"), ("/work/", "Work"), ("", p["name"])]), cw])
 
 def services():
-    rows = "".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3><a href="/services/{k}/">{v["name"]}. {v["verdict"]}</a></h3><p>{e(v["lede"])} <a href="/services/{k}/">More on {v["name"].lower()}.</a></p></li>' for i, (k, v) in enumerate(SERVICES.items()))
+    rows = "".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3><a href="/services/{k}/">{v["name"]}. {v["verdict"]}</a></h3><div><p>{e(v["lede"])}</p><p class="kw">{e(v["kw"])}</p><p><a href="/services/{k}/">More on {v["name"].lower()}.</a></p></div></li>' for i, (k, v) in enumerate(SERVICES.items()))
     faq = [("What does Yoodle do?", "Yoodle is a brand, web and marketing agency. We scope, build and launch brands, websites, growth campaigns and content for higher education, government, nonprofits and small businesses."),
            ("Who does Yoodle work with?", "Public colleges and universities, government agencies and commissions, nonprofits and owner-run businesses. We also work as a teaming partner or subcontractor to prime contractors."),
            ("How does a project start?", "With a scope. You tell us the outcome, we write down what will be delivered, when and for how much, and work starts once you approve it.")]
@@ -601,22 +624,22 @@ def experience():
              ("Create", "We build the missing pieces: positioning, website fixes, campaigns, content, dashboards."),
              ("Optimize", "Weekly numbers, monthly decisions. Spend moves to what works."),
              ("Amplify", "Scale the winners, and train your team or your first marketing hire to take over.")]
-    faq = [("What is fractional marketing leadership?", "A senior marketing leader works inside your organization part time on a fixed contract. You get the strategy, the plan and the management of the work without a full-time executive salary."),
+    faq = [("What is a fractional CMO?", "A fractional CMO is a senior marketing leader who works inside your organization part time on a fixed contract. You get the strategy, the plan and the management of the work without a full-time executive salary."),
            ("How long is an engagement?", "Six months. The first 90 days are a sprint to diagnose, plan and launch. The following months run and improve the system."),
-           ("Who is it for?", "Organizations with real revenue or a real mandate and no senior marketing lead: growing companies, multi-location businesses, nonprofits and public-sector teams between hires.")]
-    body = f'''<section class="hero"><div class="wrap"><p class="tag">Experience</p><h1>Marketing leadership.<span class="r">Led.</span></h1>
-<div class="herogrid"><p class="lede" style="margin:0">A senior marketing leader and the team behind him, inside your organization for six months. For teams that need a head of marketing before they can hire one.</p>
-<p style="margin:0"><a class="btn" href="/contact/">Talk to Tim</a></p></div></div></section>
-<section class="tight"><div class="wrap two"><h2>Run by an operator.</h2><div><p class="lede">Tim McCoy has led Yoodle since 2007 and is chief marketing officer of a five-store bridal retail group. The systems we bring to clients are ones we run on our own businesses first.</p>
-<p>You get the leader and the hands. Strategy comes with a team that can build the brand, the website, the campaigns and the reporting, so the plan does not wait on hiring.</p></div></div></section>
+           ("Who hires a fractional CMO?", "Organizations with real revenue or a real mandate and no senior marketing lead: growing companies, multi-location businesses, nonprofits and public-sector teams between hires.")]
+    body = f'''<section class="hero"><div class="wrap"><p class="tag">Experience</p><h1>Your fractional CMO.<span class="r">With a team.</span></h1>
+<div class="herogrid"><p class="lede" style="margin:0">A fractional CMO and the agency behind him, inside your organization for six months. For teams that need a chief marketing officer or marketing director before they can hire one.</p>
+<div class="timcta"><img src="/img/tim-mccoy.webp" alt="Tim McCoy, fractional CMO and president of Yoodle" width="900" height="900"><div><p style="margin:0 0 12px"><strong>Tim McCoy</strong><br><span class="small">Fractional CMO, president of Yoodle</span></p><a class="btn" href="/contact/">Talk to Tim</a></div></div></div></div></section>
+<section class="tight"><div class="wrap two"><h2>A fractional CMO who operates.</h2><div><p class="lede">Tim McCoy has led Yoodle since 2007 and is chief marketing officer of a five-store bridal retail group. The systems we bring to clients are ones we run on our own businesses first.</p>
+<p>Most fractional CMOs bring a plan and leave the work to you. Here you get the leader and the hands. Strategy comes with a team that can build the brand, the website, the campaigns and the reporting, so the plan does not wait on hiring.</p></div></div></section>
 <section class="dark"><div class="wrap"><h2>Six months.</h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3>{a}.</h3><p>{b}</p></li>' for i, (a, b) in enumerate(steps))}</ol></div></section>
-<section><div class="wrap"><h2>Where we have done it.</h2><div class="cols">
-<div class="col"><h3>Savvy Bridal and Vow Ready.</h3><p>Five bridal stores in three states. Tim sits as chief marketing officer, an in-house team runs the day to day, and Yoodle builds what the team needs: websites, dashboards, campaigns.</p><a class="go" href="/bridal/">The bridal story.</a></div>
-<div class="col"><h3>American Jazz Museum.</h3><p>A marketing framework, audience survey reporting, print, and The Big Break podcast, led in 2024 as the museum's fractional marketing lead, with Yoodle producing the work. {confirm("your title there and one result")}</p><a class="go" href="/work/the-big-break/">The Big Break.</a></div>
-<div class="col"><h3>The Soul of Santa.</h3><p>Brand, website, photo and video for a Kansas City nonprofit, with Tim leading marketing from 2025 to today, and Yoodle and the foundation's own people doing the work. {confirm("your title there and one result")}</p><a class="go" href="/work/the-soul-of-santa/">The Soul of Santa.</a></div>
+<section><div class="wrap"><h2>Fractional CMO work.<span class="r">Done.</span></h2><div class="cols">
+<div class="col"><div class="xlogo"><img src="/img/logos/w20.webp" alt="Savvy Bridal logo" width="480" height="170" loading="lazy"></div><h3>Savvy Bridal and Vow Ready.</h3><p>Five bridal stores in three states. Tim sits as chief marketing officer, an in-house team runs the day to day, and Yoodle builds what the team needs: websites, dashboards, campaigns.</p><a class="go" href="/bridal/">The bridal story.</a></div>
+<div class="col"><div class="xlogo"><img src="/img/logos/ajm.webp" alt="American Jazz Museum logo" width="311" height="220" loading="lazy" style="background:#141414;padding:6px 12px;border-radius:6px;box-sizing:content-box;max-height:52px"></div><h3>American Jazz Museum.</h3><p>A marketing framework, audience survey reporting, print, and The Big Break podcast, led in 2024 as the museum's fractional CMO, with Yoodle producing the work. {confirm("your title there and one result")}</p><a class="go" href="/work/the-big-break/">The Big Break.</a></div>
+<div class="col"><div class="xlogo"><img src="/img/logos/sos.webp" alt="The Soul of Santa logo" width="261" height="260" loading="lazy"></div><h3>The Soul of Santa.</h3><p>Brand, website, photo and video for a Kansas City nonprofit, with Tim as fractional CMO from 2025 to today, and Yoodle and the foundation's own people doing the work. {confirm("your title there and one result")}</p><a class="go" href="/work/the-soul-of-santa/">The Soul of Santa.</a></div>
 </div></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
-{closer(a=("Need a leader?", "Tell us where marketing is stuck.", "/contact/", "Start the conversation."))}'''
+{closer(a=("Need a leader?", "Tell us where marketing is stuck.", "/contact/", "Talk to a fractional CMO."))}'''
     its = [("/", "Home"), ("", "Experience")]
     page("/experience/", "Fractional CMO and Marketing Leadership | Yoodle",
          "Fractional CMO and marketing director services from Yoodle. A senior leader and a full team inside your organization on a six-month contract.", body, [crumb_schema(its), faq_schema(faq)])
@@ -654,9 +677,9 @@ def content():
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Content</p><h1>Shows and writing.<span class="r">Published.</span></h1>
 <p class="lede" style="margin-top:32px">The podcasts we produce and publish, and Soapbox, the Yoodle blog.</p></div></section>
 <section class="tight"><div class="wrap"><h2>Our shows.</h2><ul class="grid">{"".join(card(p) for p in shows)}</ul></div></section>
-<section class="dark"><div class="wrap two"><h2>Soapbox.</h2><div><p class="lede">Notes on brand, web, accessibility and AI search for people who answer to the public.</p>
+<section><div class="wrap two"><h2>Soapbox.</h2><div><p class="lede">Notes on brand, web, accessibility and AI search for people who answer to the public.</p>
 </div></div>
-<div class="wrap"><ul class="plist">{"".join(f'<li><span class="small">{x["date"][:7]}</span><a href="/content/{x["slug"]}/">{e(x["title"])}</a></li>' for x in POSTS)}</ul></div></section>
+<div class="wrap"><ul class="posts">{"".join(f'<li><a href="/content/{x["slug"]}/">' + (f'<div class="th im"><img src="{x["img"]["src"]}" alt="" width="{x["img"]["w"]}" height="{x["img"]["h"]}" loading="lazy"></div>' if x.get("img") else '<div class="th" aria-hidden="true">Soapbox</div>') + f'<span class="small">{x["date"][:7]}</span><h3>{e(x["title"])}</h3></a></li>' for x in POSTS)}</ul></div></section>
 {closer(a=("Have a show in mind?", "We plan it, produce it and publish it.", "/services/content/", "See content services."))}'''
     its = [("/", "Home"), ("", "Content")]
     page("/content/", "Content: Podcasts and the Soapbox Blog | Yoodle", "Podcasts produced by Yoodle, plus Soapbox, the Yoodle blog on brand, web, accessibility and AI search.", body, [crumb_schema(its)])

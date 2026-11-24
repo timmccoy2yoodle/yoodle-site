@@ -222,3 +222,11 @@ for _slug, _stats in {
 }.items():
     for _p in P:
         if _p["slug"] == _slug: _p["stats"] = _stats
+
+# ---- What each service covers, in the words buyers and search engines use
+for _k, _kw in {
+    "brand": "Brand strategy, market research, positioning and messaging, naming, logo development, graphic design, visual identity, brand standards, rebrands and storytelling.",
+    "interactive": "Website design and development, UX and wireframes, WordPress, Drupal and Modern Campus, ADA and WCAG 2.1 AA compliance, accessibility audits, content migration, web apps, dashboards, hosting and support.",
+    "growth": "SEO, AI search optimization (AEO and GEO), local SEO, Google Ads and paid social, enrollment and lead generation campaigns, email marketing, analytics and reporting, conversion optimization and fractional CMO leadership.",
+    "content": "Content strategy, copywriting, podcast production, video production, photography, social media content, blogs and email newsletters.",
+}.items(): SERVICES[_k]["kw"] = _kw
