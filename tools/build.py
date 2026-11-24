@@ -286,7 +286,7 @@ if(mb){mb.addEventListener('click',function(){var o=nv.classList.toggle('open');
 var mq=d.getElementById('mq'),mqb=d.getElementById('mqbtn');
 if(mqb)mqb.addEventListener('click',function(){var p=mq.classList.toggle('paused');mqb.setAttribute('aria-pressed',p);mqb.textContent=p?'Resume scrolling logos':'Pause scrolling logos'});
 var fb=d.querySelectorAll('[data-f]'),cards=d.querySelectorAll('[data-s]'),cnt=d.getElementById('count');
-function setF(k){var n=0;cards.forEach(function(c){var on=k==='all'||c.getAttribute('data-s')===k;c.hidden=!on;if(on)n++});fb.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-f')===k)});if(cnt){var ab=d.querySelector('[data-f="'+k+'"]');cnt.textContent=k==='all'?'Showing all sectors':'Showing '+ab.textContent.toLowerCase()}}
+function setF(k){var n=0;cards.forEach(function(c){var on=k==='all'||c.getAttribute('data-s')===k;c.hidden=!on;if(on)n++});fb.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-f')===k)});if(cnt)cnt.textContent=n+' projects shown';}
 fb.forEach(function(b){b.addEventListener('click',function(){setF(b.getAttribute('data-f'));if(history.replaceState)try{history.replaceState(null,'','#'+b.getAttribute('data-f'))}catch(_){}})});
 if(fb.length&&location.hash){var k=location.hash.slice(1);if(d.querySelector('[data-f="'+k+'"]'))setF(k)}
 var live=/(^|\.)yoodle\.com$|\.netlify\.app$/.test(location.hostname);
@@ -354,7 +354,7 @@ def header(cur):
 
 def footer():
     return f'''<footer><div class="wrap"><div class="fg">
-<div><p><strong style="color:#fff;font-size:1.3rem">yoodle.</strong></p><p>The content experience agency. Brand, web, growth and content for organizations that answer to the public. Nearly 20 years, hundreds of brands, and always on the leading edge of what helps them grow.</p><p>Kansas City, Missouri<br><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
+<div><p><strong style="color:#fff;font-size:1.3rem">yoodle.</strong></p><p>The content experience agency. Brand, web, growth and content for organizations that answer to the public. Since 2007.</p><p>Kansas City, Missouri<br><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
 <div><h2>Work</h2><ul><li><a href="/work/#higher-ed">Higher education</a></li><li><a href="/work/#government">Government</a></li><li><a href="/work/#nonprofit">Nonprofit</a></li><li><a href="/work/#business">Small business</a></li><li><a href="/work/#content">Podcasts</a></li></ul></div>
 <div><h2>Services</h2><ul>{"".join(f'<li><a href="/services/{k}/">{v["name"]}</a></li>' for k, v in SERVICES.items())}<li><a href="/accessibility/">ADA compliance</a></li><li><a href="/experience/">Fractional leadership</a></li><li><a href="/bridal/">Bridal</a></li></ul></div>
 <div><h2>Yoodle</h2><ul><li><a href="/content/">Content</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="https://www.linkedin.com/company/yoodle">LinkedIn</a></li></ul></div>
@@ -476,7 +476,7 @@ def marquee():
         lis = "".join(f'<li><img src="/img/logos/{fn}" alt="{e(n)}" width="{s[0]}" height="{s[1]}" loading="lazy"></li>' for fn, n, s in items)
         dup = re.sub(r'alt="[^"]*"', 'alt=""', lis)
         return f'<div class="track{" rev" if rev else ""}"><ul>{lis}</ul><ul aria-hidden="true">{dup}</ul></div>'
-    return f'''<div class="wrap"><p class="small" style="margin-bottom:10px">Trusted by hundreds of brands since 2007, including</p></div>
+    return f'''<div class="wrap"><p class="small" style="margin-bottom:10px">A few of the organizations that trust us with their name</p></div>
 <div class="mq lg" id="mq">{row(CLEAR[:half], False)}{row(CLEAR[half:], True)}</div>
 <div class="wrap"><button class="mqbtn" id="mqbtn" type="button" aria-pressed="false">Pause scrolling logos</button></div>'''
 
@@ -492,13 +492,13 @@ def home():
 </div></section>
 {marquee()}
 <section><div class="wrap two"><h2>We get it done.</h2><div>
-<p class="lede">Most organizations do not lack ideas. They lack the hands to finish them. For nearly 20 years, hundreds of brands have handed that work to Yoodle.</p>
-<p>We are a senior, distributed team with nearly every skill a marketing department needs, and we have stayed on the leading edge of technology the whole time: content management, mobile, accessibility, and now AI search and AI-built software. The tools keep changing. The job has not. We help businesses and organizations grow.</p>
+<p class="lede">Most organizations do not lack ideas. They lack the hands to finish them. Yoodle is a senior team that has been finishing them since 2007.</p>
+<p>Experience is knowing which playbook fits, and when to put it down. We keep what is proven, reach for the best tool for the job, and change course the day the facts change.</p>
 <p>Give us the outcome. We write the scope, do the work and hand you something that runs: a brand your staff can use, a website that passes an accessibility audit, a campaign you can measure, a show that publishes on time. If you want to run it yourselves afterward, we train your team to do it.</p>
 <p><a class="go" href="/services/">See what we do.</a></p></div></div></section>
 <section class="dark"><div class="wrap"><h2>Services.</h2><ol class="rows">{svc}
 <li><span class="idx" aria-hidden="true">05</span><h3><a href="/experience/">Experience. Led.</a></h3><p>Senior marketing leadership on a six-month contract, for teams that need a head of marketing before they can hire one.</p></li></ol></div></section>
-<section><div class="wrap"><div class="two" style="align-items:end"><h2>Work.<span class="r">Launched.</span></h2><p class="lede">Hundreds of brands have trusted us with their work since 2007. Here is a selection: live websites, brands and campaigns for higher education, government, nonprofits and business, plus the podcasts we produce.</p></div>
+<section><div class="wrap"><div class="two" style="align-items:end"><h2>Work.<span class="r">Launched.</span></h2><p class="lede">{len(P)} projects you can open and inspect, picked from a much longer list: live websites, brands and campaigns for higher education, government, nonprofits and business, plus the podcasts we produce.</p></div>
 <ul class="grid">{"".join(card(p) for p in feat)}</ul><p style="margin-top:28px"><a class="go" href="/work/">See all the work.</a></p></div></section>
 <section class="dark"><div class="wrap"><h2>Who we work for.</h2><div class="cols">
 <div class="col"><h3>Higher education.</h3><p>Colleges, universities and the centers inside them. Enrollment sites, program finders, accessibility and content.</p><a class="go" href="/work/#higher-ed">Higher ed work.</a></div>
@@ -516,13 +516,13 @@ def home():
 def work():
     fl = '<button class="chipb" type="button" data-f="all" aria-pressed="true">All</button>' + "".join(f'<button class="chipb" type="button" data-f="{k}" aria-pressed="false">{v[0]}</button>' for k, v in SECTORS.items())
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Work</p><h1>The work.<span class="r">Launched.</span></h1>
-<p class="lede" style="margin-top:32px">A selection from nearly 20 years of work with hundreds of brands. Many of the websites are live, so you can open them and judge for yourself.</p>
-<div class="filters" role="group" aria-label="Filter work by sector">{fl}</div><p class="small" id="count" role="status" style="margin:14px 0 0">Showing all sectors</p>
+<p class="lede" style="margin-top:32px">{len(P)} projects, picked from a much longer client list. Many of the websites are live, so do not take our word for it. Open them.</p>
+<div class="filters" role="group" aria-label="Filter work by sector">{fl}</div><p class="small" id="count" role="status" style="margin:14px 0 0">{len(P)} projects shown</p>
 <ul class="grid" id="grid">{"".join(card(p) for p in P)}</ul></div></section>
 {closer()}'''
     items = [("/", "Home"), ("", "Work")]
     page("/work/", "Our Work: Higher Education, Government and Nonprofit Websites | Yoodle",
-         f"Nearly 20 years of Yoodle work for hundreds of brands: live websites for colleges, agencies, nonprofits and businesses, plus podcasts and video.", body,
+         f"{len(P)} selected projects by Yoodle: live websites for colleges, government agencies, nonprofits and small businesses, plus podcasts and video.", body,
          [crumb_schema(items), {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f'{DOMAIN}/work/{p["slug"]}/', "name": p["name"]} for i, p in enumerate(P)]}])
 
 def case_html(p):
@@ -594,15 +594,15 @@ def project(i, p):
 
 def services():
     rows = "".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3><a href="/services/{k}/">{v["name"]}. {v["verdict"]}</a></h3><div><p>{e(v["lede"])}</p><p class="kw">{e(v["kw"])}</p><p><a href="/services/{k}/">More on {v["name"].lower()}.</a></p></div></li>' for i, (k, v) in enumerate(SERVICES.items()))
-    faq = [("What does Yoodle do?", "Yoodle is a brand, web and marketing agency that has worked with hundreds of brands since 2007. We scope, build and launch brands, websites, growth campaigns and content for higher education, government, nonprofits and small businesses."),
+    faq = [("What does Yoodle do?", "Yoodle is a brand, web and marketing agency. We scope, build and launch brands, websites, growth campaigns and content for higher education, government, nonprofits and small businesses."),
            ("Who does Yoodle work with?", "Public colleges and universities, government agencies and commissions, nonprofits and owner-run businesses. We also work as a teaming partner or subcontractor to prime contractors."),
            ("How does a project start?", "With a scope. You tell us the outcome, we write down what will be delivered, when and for how much, and work starts once you approve it.")]
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Services</p><h1>Four services.<span class="r">One team.</span></h1>
-<p class="lede" style="margin-top:32px">Brand, interactive, growth and content. Buy one, or let us run all four as your marketing department. Nearly 20 years of practice sits behind each one.</p></div></section>
+<p class="lede" style="margin-top:32px">Brand, interactive, growth and content. Buy one, or let us run all four as your marketing department. Each runs on methods we have tested against real budgets and real deadlines.</p></div></section>
 <section class="dark"><div class="wrap"><h2>What we do.</h2><ol class="rows">{rows}</ol></div></section>
 <section><div class="wrap"><h2>How we work.</h2><ol class="rows">
 <li><span class="idx" aria-hidden="true">01</span><h3>Scope it.</h3><p>One page: the outcome, what we deliver, the date and the price.</p></li>
-<li><span class="idx" aria-hidden="true">02</span><h3>Build it.</h3><p>A senior team does the work, fast. We have adopted each new wave of technology early for nearly 20 years, and today that means AI for speed, with a person accountable for everything that ships.</p></li>
+<li><span class="idx" aria-hidden="true">02</span><h3>Build it.</h3><p>A senior team does the work, fast. When the plan meets a problem, we solve it with whatever tool does it best. Today that is often AI, with a person accountable for everything that ships.</p></li>
 <li><span class="idx" aria-hidden="true">03</span><h3>Launch it.</h3><p>Tested for accessibility, speed and accuracy before it goes out under your name.</p></li>
 <li><span class="idx" aria-hidden="true">04</span><h3>Hand it over, or run it.</h3><p>We train your team to own it, or we keep running it. Your choice.</p></li></ol></div></section>
 <section class="tight"><div class="wrap two"><h2>Partner with us.</h2><div><p class="lede">Prime contractors and agencies bring Yoodle in for the brand, web, accessibility and content parts of larger public-sector contracts.</p>
@@ -637,7 +637,7 @@ def experience():
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Experience</p><h1>Your fractional CMO.<span class="r">With a team.</span></h1>
 <div class="herogrid"><p class="lede" style="margin:0">A fractional CMO and the agency behind him, inside your organization for six months. For teams that need a chief marketing officer or marketing director before they can hire one.</p>
 <div class="timcta"><img src="/img/tim-mccoy.webp" alt="Tim McCoy, fractional CMO and president of Yoodle" width="900" height="900"><div><p style="margin:0 0 12px"><strong>Tim McCoy</strong><br><span class="small">Fractional CMO, president of Yoodle</span></p><a class="btn" href="/contact/">Talk to Tim</a></div></div></div></div></section>
-<section class="tight"><div class="wrap two"><h2>A fractional CMO who operates.</h2><div><p class="lede">Tim McCoy has led Yoodle for nearly 20 years and is chief marketing officer of a five-store bridal retail group. The systems we bring to clients are ones we run on our own businesses first.</p>
+<section class="tight"><div class="wrap two"><h2>A fractional CMO who operates.</h2><div><p class="lede">Tim McCoy has led Yoodle since 2007 and is chief marketing officer of a five-store bridal retail group. The systems we bring to clients are ones we run on our own businesses first.</p>
 <p>Most fractional CMOs bring a plan and leave the work to you. Here you get the leader and the hands. Strategy comes with a team that can build the brand, the website, the campaigns and the reporting, so the plan does not wait on hiring.</p></div></div></section>
 <section class="dark"><div class="wrap"><h2>Six months.</h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3>{a}.</h3><p>{b}</p></li>' for i, (a, b) in enumerate(steps))}</ol></div></section>
 <section><div class="wrap"><h2>Fractional CMO work.<span class="r">Done.</span></h2><div class="cols">
