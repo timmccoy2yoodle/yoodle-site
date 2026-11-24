@@ -509,7 +509,7 @@ def project(i, p):
             "Podcast": "exact show name, link, host and cover art",
             "Video and content": "project details from the client folder: what was produced, how many videos and pages, and when",
             "Project": "year, and whether to keep this project on the new site",
-            "Brand and marketing": "how to credit JLSA, results to cite, and the final brand deliverables (not found yet; see chat)"}[p["kind"]]
+            "Brand and marketing": "results to cite and the final brand strategy deliverable"}[p["kind"]]
     o = OLD.get(p["slug"])
     story = gal = ""
     if o:
@@ -597,8 +597,8 @@ def experience():
 <section class="dark"><div class="wrap"><h2>Six months.</h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3>{a}.</h3><p>{b}</p></li>' for i, (a, b) in enumerate(steps))}</ol></div></section>
 <section><div class="wrap"><h2>Where we have done it.</h2><div class="cols">
 <div class="col"><h3>Savvy Bridal and Vow Ready.</h3><p>Five bridal stores in three states. Tim sits as chief marketing officer, an in-house team runs the day to day, and Yoodle builds what the team needs: websites, dashboards, campaigns.</p><a class="go" href="/bridal/">The bridal story.</a></div>
-<div class="col"><h3>American Jazz Museum.</h3><p>A marketing framework, audience survey reporting, print, and The Big Break podcast, led as the museum's fractional marketing lead with Yoodle producing the work. {confirm("dates, your title there, and one result")}</p><a class="go" href="/work/the-big-break/">The Big Break.</a></div>
-<div class="col"><h3>The Soul of Santa.</h3><p>Brand, website, photo and video for a Kansas City nonprofit, with Tim leading marketing and Yoodle and the foundation's own people doing the work. {confirm("dates, your title there, and one result")}</p><a class="go" href="/work/the-soul-of-santa/">The Soul of Santa.</a></div>
+<div class="col"><h3>American Jazz Museum.</h3><p>A marketing framework, audience survey reporting, print, and The Big Break podcast, led in 2024 as the museum's fractional marketing lead, with Yoodle producing the work. {confirm("your title there and one result")}</p><a class="go" href="/work/the-big-break/">The Big Break.</a></div>
+<div class="col"><h3>The Soul of Santa.</h3><p>Brand, website, photo and video for a Kansas City nonprofit, with Tim leading marketing from 2025 to today, and Yoodle and the foundation's own people doing the work. {confirm("your title there and one result")}</p><a class="go" href="/work/the-soul-of-santa/">The Soul of Santa.</a></div>
 </div></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
 {closer(a=("Need a leader?", "Tell us where marketing is stuck.", "/contact/", "Start the conversation."))}'''
@@ -609,8 +609,10 @@ def experience():
 def bridal():
     built = [("savvybridalboutique.com", "Savvy Bridal's website: booking for three cities, designer directory and a tool that works out a bride's say-yes date. Rebuilt as a fast static site in fall 2026.", "/work/savvy-bridal/"),
              ("vowready.com", "The site for Vow Ready, the off-the-rack sister brand with two locations.", ""),
-             ("Marketing dashboard", "One screen for spend, leads, appointments and sales across every store, so the team decides from numbers.", ""),
-             ("Review and QA tools", "Tap-to-comment review on every test site and automated checks at three screen sizes before anything ships.", "")]
+             ("Competitor and ad dashboard", "Savvy's marketing dashboard: our ads and spend next to what competing shops are running.", ""),
+             ("Executive growth dashboard", "One oversight view for ownership: growth across every store and site.", ""),
+             ("Timeline", "", ""), ("The Q", "", ""), ("Stylist Edit", "", ""),
+             ("Training platform", "Where new stylists and staff learn the Savvy way of selling.", "")]
     faq = [("Do you work with bridal shops you do not own?", "Yes. The system was built inside our own stores so it could be installed in others."),
            ("What does a fractional CMO do for a bridal shop?", "Sets the marketing plan, manages the budget and the agency work, and builds and trains your in-house team so the shop is not dependent on outside help."),
            ("How long is an engagement?", "Six months. The first 90 days install the system. The rest trains your team to run it.")]
@@ -624,8 +626,8 @@ def bridal():
 <li><span class="idx" aria-hidden="true">02</span><h3>An agency behind them.</h3><p>Yoodle builds what the plan calls for: brand, websites, ads, content and reporting. No hiring wait.</p></li>
 <li><span class="idx" aria-hidden="true">03</span><h3>An in-house team.</h3><p>Your own people run the day to day: social, events, follow-up, the stores. We hire with you, train them and hand over the playbook.</p></li></ol></div></section>
 <section><div class="wrap"><h2>Built with AI.<span class="r">Deployed.</span></h2><p class="lede" style="margin-top:24px">We build AI-first, with a person accountable for everything that ships. These are live.</p>
-<ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{f"<a href={chr(34)}{u}{chr(34)}>{e(n)}</a>" if u else e(n)}.</h3><p>{e(t)}</p></li>' for i, (n, t, u) in enumerate(built))}</ol>
-<p style="margin-top:20px">{confirm("add or remove AI-built projects here, and results to cite (leads, bookings, conversion)")}</p></div></section>
+<ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{f"<a href={chr(34)}{u}{chr(34)}>{e(n)}</a>" if u else e(n)}.</h3><p>{e(t) if t else confirm("one line on what this does")}</p></li>' for i, (n, t, u) in enumerate(built))}</ol>
+<p style="margin-top:20px">{confirm("check my one-line descriptions, and add results to cite (leads, bookings, conversion)")}</p></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
 {closer(a=("Own a bridal shop?", "Tell us where marketing is stuck.", "/contact/", "Start the conversation."))}'''
     its = [("/", "Home"), ("", "Bridal")]
