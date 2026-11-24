@@ -504,7 +504,7 @@ def case_html(p):
 <section class="tight"><div class="wrap two"><h2>Pages we rewrote.</h2><div><p class="lede">Seventy-seven existing pages rewritten and optimized. A sample:</p><ul class="sect">{names(RH_OPT)}</ul></div></div></section>
 <section class="dark"><div class="wrap two"><h2>On camera.</h2><div><p class="lede">Ten video series and a photo library, shot on campus for the new pages, with vertical cuts for social.</p><ul class="sect">{names(RH_VIDEO)}</ul><p style="margin-top:24px"><a class="go" href="https://vimeo.com/1230352325">Watch the reel.</a></p><p>{confirm("video embeds, stills and page screenshots go here once the files are in")}</p></div></div></section>'''
 
-VERDICT = {"Brand and marketing": "Delivered.", "Website": "Launched.", "Podcast": "Produced.", "Video and content": "Produced.", "Project": "Delivered."}
+VERDICT = {"Workforce training": "Taught.", "Brand and marketing": "Delivered.", "Website": "Launched.", "Podcast": "Produced.", "Video and content": "Produced.", "Project": "Delivered."}
 def project(i, p):
     lab = SECTORS[p["sector"]][0]
     prev, nxt = P[i - 1], P[(i + 1) % len(P)]
@@ -519,7 +519,8 @@ def project(i, p):
             "Podcast": "exact show name, link, host and cover art",
             "Video and content": "project details from the client folder: what was produced, how many videos and pages, and when",
             "Project": "year, and whether to keep this project on the new site",
-            "Brand and marketing": "results to cite and the final brand strategy deliverable"}[p["kind"]]
+            "Brand and marketing": "results to cite and the final brand strategy deliverable",
+            "Workforce training": "the years the program ran, and how many cohorts and graduates"}[p["kind"]]
     o = OLD.get(p["slug"])
     story = gal = ""
     if o:
@@ -528,9 +529,9 @@ def project(i, p):
         if blk: story = f'<section class="tight"><div class="wrap two"><h2>{"The work." if p["kind"] == "Project" else "The story."}</h2><div>{rich(blk)}</div></div></section>'
         rest = o["imgs"][1:] if not (cover_img(p) or {"src": ""})["src"].startswith("/img/shots/") else o["imgs"]
         if rest: gal = '<section class="tight"><div class="wrap"><ul class="gal">' + "".join(f'<li><img src="{g["src"]}" alt="{e(p["name"])}: work by Yoodle, image {k + 1}" width="{g["w"]}" height="{g["h"]}" loading="lazy"></li>' for k, g in enumerate(rest)) + '</ul></div></section>'
-    quote = f'<section class="dark band"><div class="wrap"><figure style="margin:0;max-width:22ch;font-size:clamp(32px,5.2vw,72px)"><blockquote style="margin:0;font-family:var(--hd,inherit);font-weight:600;letter-spacing:-.03em;line-height:1.02">\u201c{e(p["quote"][0])}\u201d</blockquote></figure><p style="margin-top:28px;max-width:52ch;opacity:.8">{e(p["quote"][1])}</p></div></section>' if p.get("quote") else ""
+    quote = f'<section class="dark band"><div class="wrap"><figure style="margin:0;max-width:22ch;font-size:{"clamp(32px,5.2vw,72px)" if len(p["quote"][0]) < 90 else "clamp(22px,2.6vw,36px)"};max-width:{"22ch" if len(p["quote"][0]) < 90 else "36ch"}"><blockquote style="margin:0;font-family:var(--hd,inherit);font-weight:600;letter-spacing:-.03em;line-height:1.02">\u201c{e(p["quote"][0])}\u201d</blockquote></figure><p style="margin-top:28px;max-width:52ch;opacity:.8">{e(p["quote"][1])}</p></div></section>' if p.get("quote") else ""
     nums = f'<section class="dark"><div class="wrap"><h2>The site today.</h2><div class="cols c4">{"".join(f'<div class="col"><p class="big" style="font-size:clamp(3.2rem,7vw,6rem);margin:8px 0 14px">{n}</p><p>{e(x)}</p></div>' for n, x in p["stats"])}</div><p style="margin-top:28px;opacity:.7;font-size:.9rem">Source: {GA_RANGE}.</p></div></section>' if p.get("stats") else ""
-    if p.get("gallery"): gal = '<section class="tight"><div class="wrap"><ul class="gal">' + "".join(f'<li style="aspect-ratio:1448/807;background:#fff"><img src="/img/work/{p["slug"]}/{k}.webp" alt="{e(p["name"])}: {e(g[0])}" width="{g[1]}" height="{g[2]}" loading="lazy"></li>' for k, g in enumerate(p["gallery"])) + '</ul></div></section>'
+    if p.get("gallery"): gal = '<section class="tight"><div class="wrap"><ul class="gal">' + "".join(f'<li style="aspect-ratio:{g[1]}/{g[2]};background:#fff"><img src="/img/work/{p["slug"]}/{k}.webp" alt="{e(p["name"])}: {e(g[0])}" width="{g[1]}" height="{g[2]}" loading="lazy"></li>' for k, g in enumerate(p["gallery"])) + '</ul></div></section>'
     if os.path.exists(os.path.join(ROOT, "assets/img/process", p["slug"], "0.webp")): gal += f'<section class="tight"><div class="wrap two"><h2>Before the build.</h2><div><p>Every Yoodle site is worked out as wireframes first: the navigation, the page types and what each page has to do, agreed with the client before design starts.</p></div></div><div class="wrap" style="margin-top:clamp(20px,3vw,40px)"><div style="border-radius:8px;overflow:hidden;border:1px solid #d9d4c8"><img src="/img/process/{p["slug"]}/0.webp" alt="{e(p["name"])}: wireframes by Yoodle for the homepage and two inner pages" width="1600" height="1200" loading="lazy" style="display:block;width:100%;height:auto"></div></div></section>'
     feats = f'<section class="tight"><div class="wrap two"><h2>On the site.</h2><ul class="sect">{"".join(f"<li>{e(f)}</li>" for f in p["features"])}</ul></div></section>' if p["features"] else ""
     if p["kind"] == "Brand and marketing": visit = ""
@@ -552,7 +553,7 @@ def project(i, p):
 {nums}{gal}{quote}
 <section class="tight"><div class="wrap"><nav class="pn" aria-label="More work"><a href="/work/{prev["slug"]}/"><span class="small">Previous</span><br><strong>{e(prev["name"])}</strong></a><a class="nx" href="/work/{nxt["slug"]}/"><span class="small">Next</span><br><strong>{e(nxt["name"])}</strong></a></nav></div></section>
 {closer(a=("Need one like it?", "Tell us what has to get done.", "/contact/", "Start a project."))}'''
-    t = {"Website": f'{p["name"]} Website | {lab} Web Design by Yoodle', "Podcast": f'{p["name"]} | Podcast Production by Yoodle', "Video and content": f'{p["name"]} | Video Production by Yoodle', "Project": f'{p["name"]} | {lab} Brand and Web Work by Yoodle', "Brand and marketing": f'{p["name"]} | Brand Research and Strategy by Yoodle'}[p["kind"]]
+    t = {"Website": f'{p["name"]} Website | {lab} Web Design by Yoodle', "Podcast": f'{p["name"]} | Podcast Production by Yoodle', "Video and content": f'{p["name"]} | Video Production by Yoodle', "Project": f'{p["name"]} | {lab} Brand and Web Work by Yoodle', "Brand and marketing": f'{p["name"]} | Rebrand and Marketing by Yoodle', "Workforce training": f'{p["name"]} | Workforce Training'}[p["kind"]]
     if len(t) > 68: t = f'{p["name"]} | {"Web Design" if p["kind"] == "Website" else "Work"} by Yoodle'
     d = (p["about"] or f'{p["name"]}, a {p["kind"].lower()} produced by Yoodle, the content experience agency.')
     d = (f'{p["name"]}: ' if p["name"] not in d[:60] else "") + d
