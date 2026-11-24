@@ -22,6 +22,7 @@
 - [Crowder College](https://yoodle.com/work/crowder-college/): Higher education website, live at https://www.crowder.edu/
 - [Palm Beach State College](https://yoodle.com/work/palm-beach-state-college/): Higher education website, live at https://pbsc.edu/
 - [MiraCosta College](https://yoodle.com/work/miracosta-college/): Higher education website, live at https://miracosta.edu/
+- [Missouri Western State University](https://yoodle.com/work/missouri-western-state-university/): Higher education brand and marketing, live at https://www.missouriwestern.edu/
 - [Ci3T](https://yoodle.com/work/ci3t/): Higher education website, live at https://www.ci3t.org/
 - [SWIFT Education Center](https://yoodle.com/work/swift-education-center/): Higher education website, live at https://swiftschools.org
 - [Missouri Kinship Navigator](https://yoodle.com/work/missouri-kinship-navigator/): Higher education website, live at https://www.mokin4kid.org/

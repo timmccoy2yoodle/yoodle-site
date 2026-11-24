@@ -131,7 +131,7 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .rows h3 a{text-decoration:none}.rows h3 a:hover{text-decoration:underline}
 @media (max-width:760px){.rows>li{grid-template-columns:48px minmax(0,1fr)}.rows>li p{grid-column:2}}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin:32px 0 0}
-.chipb{min-height:44px;padding:0 18px;border:1.5px solid var(--ink);border-radius:999px;background:none;font:inherit;font-weight:600;color:var(--ink);cursor:pointer}
+.chipb{min-height:46px;padding:0 18px;border:1.5px solid var(--ink);border-radius:999px;background:none;font:inherit;font-weight:600;color:var(--ink);cursor:pointer}
 .chipb[aria-pressed=true]{background:var(--ink);color:var(--bg)}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.4vw,36px);margin-top:36px;list-style:none;padding:0}
 @media (max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -322,7 +322,7 @@ def footer():
     return f'''<footer><div class="wrap"><div class="fg">
 <div><p><strong style="color:#fff;font-size:1.3rem">yoodle.</strong></p><p>The content experience agency. Brand, web, growth and content for organizations that answer to the public. Since 2007.</p><p>Kansas City, Missouri<br><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
 <div><h2>Work</h2><ul><li><a href="/work/#higher-ed">Higher education</a></li><li><a href="/work/#government">Government</a></li><li><a href="/work/#nonprofit">Nonprofit</a></li><li><a href="/work/#business">Small business</a></li><li><a href="/work/#content">Podcasts</a></li></ul></div>
-<div><h2>Services</h2><ul>{"".join(f'<li><a href="/services/{k}/">{v["name"]}</a></li>' for k, v in SERVICES.items())}<li><a href="/accessibility/">ADA compliance</a></li><li><a href="/experience/">Fractional leadership</a></li></ul></div>
+<div><h2>Services</h2><ul>{"".join(f'<li><a href="/services/{k}/">{v["name"]}</a></li>' for k, v in SERVICES.items())}<li><a href="/accessibility/">ADA compliance</a></li><li><a href="/experience/">Fractional leadership</a></li><li><a href="/bridal/">Bridal</a></li></ul></div>
 <div><h2>Yoodle</h2><ul><li><a href="/content/">Content</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="https://www.linkedin.com/company/yoodle">LinkedIn</a></li></ul></div>
 </div><p style="margin-top:32px">&copy; {date.today().year} Yoodle LLC. Yoodle&reg; is a registered trademark.</p></div></footer>'''
 
@@ -494,7 +494,7 @@ def case_html(p):
 <section class="tight"><div class="wrap two"><h2>Pages we rewrote.</h2><div><p class="lede">Seventy-seven existing pages rewritten and optimized. A sample:</p><ul class="sect">{names(RH_OPT)}</ul></div></div></section>
 <section class="dark"><div class="wrap two"><h2>On camera.</h2><div><p class="lede">Ten video series and a photo library, shot on campus for the new pages, with vertical cuts for social.</p><ul class="sect">{names(RH_VIDEO)}</ul><p style="margin-top:24px"><a class="go" href="https://vimeo.com/1230352325">Watch the reel.</a></p><p>{confirm("video embeds, stills and page screenshots go here once the files are in")}</p></div></div></section>'''
 
-VERDICT = {"Website": "Launched.", "Podcast": "Produced.", "Video and content": "Produced.", "Project": "Delivered."}
+VERDICT = {"Brand and marketing": "Delivered.", "Website": "Launched.", "Podcast": "Produced.", "Video and content": "Produced.", "Project": "Delivered."}
 def project(i, p):
     lab = SECTORS[p["sector"]][0]
     prev, nxt = P[i - 1], P[(i + 1) % len(P)]
@@ -508,7 +508,8 @@ def project(i, p):
     need = {"Website": "Yoodle's scope (strategy, design, build, migration, support), launch year, results and a client quote",
             "Podcast": "exact show name, link, host and cover art",
             "Video and content": "project details from the client folder: what was produced, how many videos and pages, and when",
-            "Project": "year, and whether to keep this project on the new site"}[p["kind"]]
+            "Project": "year, and whether to keep this project on the new site",
+            "Brand and marketing": "how to credit JLSA, results to cite, and the final brand deliverables (not found yet; see chat)"}[p["kind"]]
     o = OLD.get(p["slug"])
     story = gal = ""
     if o:
@@ -518,6 +519,7 @@ def project(i, p):
         rest = o["imgs"][1:]
         if rest: gal = '<section class="tight"><div class="wrap"><ul class="gal">' + "".join(f'<li><img src="{g["src"]}" alt="{e(p["name"])}: work by Yoodle, image {k + 1}" width="{g["w"]}" height="{g["h"]}" loading="lazy"></li>' for k, g in enumerate(rest)) + '</ul></div></section>'
     feats = f'<section class="tight"><div class="wrap two"><h2>On the site.</h2><ul class="sect">{"".join(f"<li>{e(f)}</li>" for f in p["features"])}</ul></div></section>' if p["features"] else ""
+    if p["kind"] == "Brand and marketing": visit = ""
     if p["kind"] != "Website" and p["features"]:
         feats = feats.replace("On the site.", "What we made.")
     visit = f'<p><a class="btn" href="{p["url"]}">Visit {host}</a></p>' if p["url"] else ""
@@ -536,7 +538,7 @@ def project(i, p):
 {gal}
 <section class="tight"><div class="wrap"><nav class="pn" aria-label="More work"><a href="/work/{prev["slug"]}/"><span class="small">Previous</span><br><strong>{e(prev["name"])}</strong></a><a class="nx" href="/work/{nxt["slug"]}/"><span class="small">Next</span><br><strong>{e(nxt["name"])}</strong></a></nav></div></section>
 {closer(a=("Need one like it?", "Tell us what has to get done.", "/contact/", "Start a project."))}'''
-    t = {"Website": f'{p["name"]} Website | {lab} Web Design by Yoodle', "Podcast": f'{p["name"]} | Podcast Production by Yoodle', "Video and content": f'{p["name"]} | Video Production by Yoodle', "Project": f'{p["name"]} | {lab} Brand and Web Work by Yoodle'}[p["kind"]]
+    t = {"Website": f'{p["name"]} Website | {lab} Web Design by Yoodle', "Podcast": f'{p["name"]} | Podcast Production by Yoodle', "Video and content": f'{p["name"]} | Video Production by Yoodle', "Project": f'{p["name"]} | {lab} Brand and Web Work by Yoodle', "Brand and marketing": f'{p["name"]} | Brand Research and Strategy by Yoodle'}[p["kind"]]
     if len(t) > 68: t = f'{p["name"]} | {"Web Design" if p["kind"] == "Website" else "Work"} by Yoodle'
     d = (p["about"] or f'{p["name"]}, a {p["kind"].lower()} produced by Yoodle, the content experience agency.')
     d = (f'{p["name"]}: ' if p["name"] not in d[:60] else "") + d
@@ -593,11 +595,42 @@ def experience():
 <section class="tight"><div class="wrap two"><h2>Run by an operator.</h2><div><p class="lede">Tim McCoy has led Yoodle since 2007 and is chief marketing officer of a five-store bridal retail group. The systems we bring to clients are ones we run on our own businesses first.</p>
 <p>You get the leader and the hands. Strategy comes with a team that can build the brand, the website, the campaigns and the reporting, so the plan does not wait on hiring.</p></div></div></section>
 <section class="dark"><div class="wrap"><h2>Six months.</h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3>{a}.</h3><p>{b}</p></li>' for i, (a, b) in enumerate(steps))}</ol></div></section>
-<section><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
+<section><div class="wrap"><h2>Where we have done it.</h2><div class="cols">
+<div class="col"><h3>Savvy Bridal and Vow Ready.</h3><p>Five bridal stores in three states. Tim sits as chief marketing officer, an in-house team runs the day to day, and Yoodle builds what the team needs: websites, dashboards, campaigns.</p><a class="go" href="/bridal/">The bridal story.</a></div>
+<div class="col"><h3>American Jazz Museum.</h3><p>A marketing framework, audience survey reporting, print, and The Big Break podcast, led as the museum's fractional marketing lead with Yoodle producing the work. {confirm("dates, your title there, and one result")}</p><a class="go" href="/work/the-big-break/">The Big Break.</a></div>
+<div class="col"><h3>The Soul of Santa.</h3><p>Brand, website, photo and video for a Kansas City nonprofit, with Tim leading marketing and Yoodle and the foundation's own people doing the work. {confirm("dates, your title there, and one result")}</p><a class="go" href="/work/the-soul-of-santa/">The Soul of Santa.</a></div>
+</div></div></section>
+<section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
 {closer(a=("Need a leader?", "Tell us where marketing is stuck.", "/contact/", "Start the conversation."))}'''
     its = [("/", "Home"), ("", "Experience")]
     page("/experience/", "Fractional CMO and Marketing Leadership | Yoodle",
          "Fractional CMO and marketing director services from Yoodle. A senior leader and a full team inside your organization on a six-month contract.", body, [crumb_schema(its), faq_schema(faq)])
+
+def bridal():
+    built = [("savvybridalboutique.com", "Savvy Bridal's website: booking for three cities, designer directory and a tool that works out a bride's say-yes date. Rebuilt as a fast static site in fall 2026.", "/work/savvy-bridal/"),
+             ("vowready.com", "The site for Vow Ready, the off-the-rack sister brand with two locations.", ""),
+             ("Marketing dashboard", "One screen for spend, leads, appointments and sales across every store, so the team decides from numbers.", ""),
+             ("Review and QA tools", "Tap-to-comment review on every test site and automated checks at three screen sizes before anything ships.", "")]
+    faq = [("Do you work with bridal shops you do not own?", "Yes. The system was built inside our own stores so it could be installed in others."),
+           ("What does a fractional CMO do for a bridal shop?", "Sets the marketing plan, manages the budget and the agency work, and builds and trains your in-house team so the shop is not dependent on outside help."),
+           ("How long is an engagement?", "Six months. The first 90 days install the system. The rest trains your team to run it.")]
+    body = f'''<section class="hero"><div class="wrap"><p class="tag">Bridal</p><h1>Bridal marketing.<span class="r">Proven in our own stores.</span></h1>
+<div class="herogrid"><p class="lede" style="margin:0">Yoodle's founder is chief marketing officer of Savvy Bridal and Vow Ready: five stores in Kansas City, St. Louis and Fort Lauderdale. Everything we sell to bridal shops, we run there first.</p>
+<p style="margin:0"><a class="btn" href="/contact/">Talk about your shop</a></p></div></div></section>
+<section class="tight"><div class="wrap two"><h2>A true story.</h2><div><p class="lede">Savvy Bridal opened in 2013. It grew to three cities, then added Vow Ready, an off-the-rack brand, in 2026.</p>
+<p>It did not grow on an agency retainer alone, and it did not grow on an in-house team alone. It took three parts working together, and that is the model we bring to other shops.</p></div></div></section>
+<section class="dark"><div class="wrap"><h2>Three parts.</h2><ol class="rows">
+<li><span class="idx" aria-hidden="true">01</span><h3>A marketing leader.</h3><p>A fractional chief marketing officer who owns the plan, the budget and the numbers, and answers to the owner.</p></li>
+<li><span class="idx" aria-hidden="true">02</span><h3>An agency behind them.</h3><p>Yoodle builds what the plan calls for: brand, websites, ads, content and reporting. No hiring wait.</p></li>
+<li><span class="idx" aria-hidden="true">03</span><h3>An in-house team.</h3><p>Your own people run the day to day: social, events, follow-up, the stores. We hire with you, train them and hand over the playbook.</p></li></ol></div></section>
+<section><div class="wrap"><h2>Built with AI.<span class="r">Deployed.</span></h2><p class="lede" style="margin-top:24px">We build AI-first, with a person accountable for everything that ships. These are live.</p>
+<ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{f"<a href={chr(34)}{u}{chr(34)}>{e(n)}</a>" if u else e(n)}.</h3><p>{e(t)}</p></li>' for i, (n, t, u) in enumerate(built))}</ol>
+<p style="margin-top:20px">{confirm("add or remove AI-built projects here, and results to cite (leads, bookings, conversion)")}</p></div></section>
+<section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
+{closer(a=("Own a bridal shop?", "Tell us where marketing is stuck.", "/contact/", "Start the conversation."))}'''
+    its = [("/", "Home"), ("", "Bridal")]
+    page("/bridal/", "Bridal Shop Marketing and Fractional CMO | Yoodle", "Bridal marketing from the team behind Savvy Bridal and Vow Ready: a fractional CMO, agency support and an in-house team, proven in five stores.", body,
+         [crumb_schema(its), faq_schema(faq), {"@type": "Service", "name": "Bridal shop marketing and fractional CMO", "provider": {"@id": DOMAIN + "/#org"}, "areaServed": "US"}])
 
 def content():
     shows = [p for p in P if p["sector"] == "content"]
@@ -691,5 +724,5 @@ if os.path.exists(OUT): shutil.rmtree(OUT)
 os.makedirs(OUT)
 home(); work()
 for i, p in enumerate(P): project(i, p)
-services(); experience(); content(); posts(); accessibility(); contact(); assets()
+services(); experience(); bridal(); content(); posts(); accessibility(); contact(); assets()
 print(f"{len(PAGES)} indexable pages -> {OUT}")

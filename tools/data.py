@@ -49,6 +49,9 @@ add("palm-beach-state-college", "Palm Beach State College", "higher-ed", "https:
 add("miracosta-college", "MiraCosta College", "higher-ed", "https://miracosta.edu/", "Oceanside, California", "Modern Campus CMS (OmniUpdate)",
     "MiraCosta College serves coastal North San Diego County from campuses in Oceanside and Cardiff, and a technology career institute in Carlsbad.",
     ["Paths for new, returning, international, high school and noncredit students", "Program finder and Career Coach", "Site search", "Virtual campus tours", "News and events"])
+add("missouri-western-state-university", "Missouri Western State University", "higher-ed", "https://www.missouriwestern.edu/", "St. Joseph, Missouri", "",
+    "Missouri Western State University chose Yoodle through a public RFP for market research and brand development. The work ran from research, to brand strategy, to enrollment marketing.",
+    ["Internal brand perception study: surveys for current students, faculty and staff, and alumni and donors", "Discovery interviews and focus groups with campus and community stakeholders", "Phase two brand strategy", "Enrollment communications: email headers and footers, social graphics and a primary-market mailer", "Ongoing marketing support on retainer, 2024 to 2025"], "Brand and marketing")
 add("ci3t", "Ci3T", "higher-ed", "https://www.ci3t.org/", "", "WordPress",
     "Ci3T (Comprehensive, Integrated, Three-Tiered Model of Prevention) is a research-based framework that helps school leaders bring academics, behavior and social-emotional well-being into one system.",
     ["40+ professional learning modules", "Design, Implement, and Measures and Tools sections", "Presentations archive and research", "Events", "My Ci3T account area"])
