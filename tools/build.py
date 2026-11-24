@@ -26,6 +26,7 @@ for o in OLDSITE["projects"]:
     P.append(dict(slug=o["slug"], name=o["name"], sector=_sec(o["cats"]), url="", place="", platform="", about=first, features=[], kind="Project"))
 POSTS = OLDSITE["posts"]
 def cover_img(p):
+    if os.path.exists(os.path.join(ROOT, "assets/img/shots", p["slug"] + ".webp")): return dict(src=f'/img/shots/{p["slug"]}.webp', w=1600, h=1200)
     o = OLD.get(p["slug"])
     return o["imgs"][0] if o and o["imgs"] else None
 def rich(blocks):
@@ -418,7 +419,7 @@ def faq_schema(faq):
 
 def cover(p, lg=False, n=None):
     ci = cover_img(p)
-    if ci: return f'<div class="cover ph{" lg" if lg else ""}"><img src="{ci["src"]}" alt="{e(p["name"])} project by Yoodle" width="{ci["w"]}" height="{ci["h"]}"{"" if lg else " loading=\"lazy\""}></div>'
+    if ci: return f'<div class="cover ph{" lg" if lg else ""}"><img src="{ci["src"]}" alt="{e(p["name"])} {"website homepage" if p["url"] else "project"} by Yoodle" width="{ci["w"]}" height="{ci["h"]}"{"" if lg else " loading=\"lazy\""}></div>'
     lab, col = SECTORS[p["sector"]]
     host = re.sub(r"^https?://(www\.)?|/$", "", p["url"]) if p["url"] else p["kind"]
     return f'<div class="cover{" lg" if lg else ""}" style="background:{col}"><div class="k"><span>{lab}</span><span>{e(host)}</span></div><div class="n">{e(p["name"])}</div></div>'
@@ -516,7 +517,7 @@ def project(i, p):
         facts.insert(3, ("Services", e(", ".join(o["tags"]) or "Brand and web")))
         blk = o["blocks"] if p["kind"] != "Project" else [x for x in o["blocks"] if x[1] != p["about"]]
         if blk: story = f'<section class="tight"><div class="wrap two"><h2>{"The work." if p["kind"] == "Project" else "The story."}</h2><div>{rich(blk)}</div></div></section>'
-        rest = o["imgs"][1:]
+        rest = o["imgs"][1:] if not (cover_img(p) or {"src": ""})["src"].startswith("/img/shots/") else o["imgs"]
         if rest: gal = '<section class="tight"><div class="wrap"><ul class="gal">' + "".join(f'<li><img src="{g["src"]}" alt="{e(p["name"])}: work by Yoodle, image {k + 1}" width="{g["w"]}" height="{g["h"]}" loading="lazy"></li>' for k, g in enumerate(rest)) + '</ul></div></section>'
     feats = f'<section class="tight"><div class="wrap two"><h2>On the site.</h2><ul class="sect">{"".join(f"<li>{e(f)}</li>" for f in p["features"])}</ul></div></section>' if p["features"] else ""
     if p["kind"] == "Brand and marketing": visit = ""
