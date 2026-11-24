@@ -5,7 +5,7 @@ import os, re, sys, json, shutil, html
 from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import *
-from logos import LOGOS
+from logos import LOGOS, WALL
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PREVIEW = "--preview" in sys.argv
@@ -110,8 +110,8 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .crumbs li+li::before{content:"/";margin-right:8px;color:var(--mute)}
 .crumbs a{display:inline-flex;min-height:46px;align-items:center}
 .crumbs li{display:inline-flex;align-items:center;min-height:44px}
-.logos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;list-style:none;padding:0;margin:0;background:var(--line);border:1px solid var(--line)}
-.logos li{background:#fff;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;padding:14%;min-width:0}
+.logos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;list-style:none;padding:1px;margin:0}
+.logos li{background:#fff;box-shadow:0 0 0 1px var(--line);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;padding:14%;min-width:0}
 .logos img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
 @media (max-width:720px){.logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .mq{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0}
@@ -449,7 +449,7 @@ def marquee():
     return f'''<div class="wrap"><p class="small" style="margin-bottom:10px">Brand, web and marketing work since 2007 for</p></div>
 <div class="mq" id="mq"><div class="track"><ul>{lis}</ul><ul aria-hidden="true">{lis}</ul></div></div>
 <div class="wrap"><button class="mqbtn" id="mqbtn" type="button" aria-pressed="false">Pause scrolling names</button></div>
-<div class="wrap" style="margin-top:clamp(28px,4vw,56px)"><p class="small" style="margin-bottom:14px">Colleges and universities we have worked with</p><ul class="logos">{"".join(f'<li><img src="/img/logos/{k}.webp" alt="{e(n)} logo" width="{s[0]}" height="{s[1]}" loading="lazy"></li>' for k, n, s in LOGOS)}</ul></div>'''
+{"".join(f'<div class="wrap" style="margin-top:clamp(28px,4vw,56px)"><p class="small" style="margin-bottom:14px">{lab}</p><ul class="logos">' + "".join(f'<li style="background:{bg}"><img src="/img/logos/{fn}" alt="{e(n)} logo" width="{s[0]}" height="{s[1]}" loading="lazy"></li>' for fn, n, s, bg in WALL[g]) + "</ul></div>" for g, lab in (("he", "Higher education"), ("gov", "Government and public agencies"), ("np", "Nonprofits"), ("biz", "Businesses")))}'''
 
 # ------------------------------------------------------------------ pages
 def home():
