@@ -5,6 +5,7 @@ import os, re, sys, json, shutil, html
 from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import *
+from logos import LOGOS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PREVIEW = "--preview" in sys.argv
@@ -109,6 +110,10 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .crumbs li+li::before{content:"/";margin-right:8px;color:var(--mute)}
 .crumbs a{display:inline-flex;min-height:46px;align-items:center}
 .crumbs li{display:inline-flex;align-items:center;min-height:44px}
+.logos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;list-style:none;padding:0;margin:0;background:var(--line);border:1px solid var(--line)}
+.logos li{background:#fff;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;padding:14%;min-width:0}
+.logos img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+@media (max-width:720px){.logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .mq{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0}
 .track{display:flex;width:max-content;animation:mq 70s linear infinite}
 .track ul{display:flex;list-style:none;margin:0;padding:0}
@@ -443,7 +448,8 @@ def marquee():
     lis = "".join(f"<li>{e(c)}</li>" for c in CLIENTS)
     return f'''<div class="wrap"><p class="small" style="margin-bottom:10px">Brand, web and marketing work since 2007 for</p></div>
 <div class="mq" id="mq"><div class="track"><ul>{lis}</ul><ul aria-hidden="true">{lis}</ul></div></div>
-<div class="wrap"><button class="mqbtn" id="mqbtn" type="button" aria-pressed="false">Pause scrolling names</button> {confirm("client logos replace these names once the logo files are collected")}</div>'''
+<div class="wrap"><button class="mqbtn" id="mqbtn" type="button" aria-pressed="false">Pause scrolling names</button></div>
+<div class="wrap" style="margin-top:clamp(28px,4vw,56px)"><p class="small" style="margin-bottom:14px">Colleges and universities we have worked with</p><ul class="logos">{"".join(f'<li><img src="/img/logos/{k}.webp" alt="{e(n)} logo" width="{s[0]}" height="{s[1]}" loading="lazy"></li>' for k, n, s in LOGOS)}</ul></div>'''
 
 # ------------------------------------------------------------------ pages
 def home():
@@ -522,6 +528,8 @@ def project(i, p):
         if blk: story = f'<section class="tight"><div class="wrap two"><h2>{"The work." if p["kind"] == "Project" else "The story."}</h2><div>{rich(blk)}</div></div></section>'
         rest = o["imgs"][1:] if not (cover_img(p) or {"src": ""})["src"].startswith("/img/shots/") else o["imgs"]
         if rest: gal = '<section class="tight"><div class="wrap"><ul class="gal">' + "".join(f'<li><img src="{g["src"]}" alt="{e(p["name"])}: work by Yoodle, image {k + 1}" width="{g["w"]}" height="{g["h"]}" loading="lazy"></li>' for k, g in enumerate(rest)) + '</ul></div></section>'
+    quote = f'<section class="dark band"><div class="wrap"><figure style="margin:0;max-width:22ch;font-size:clamp(32px,5.2vw,72px)"><blockquote style="margin:0;font-family:var(--hd,inherit);font-weight:600;letter-spacing:-.03em;line-height:1.02">\u201c{e(p["quote"][0])}\u201d</blockquote></figure><p style="margin-top:28px;max-width:52ch;opacity:.8">{e(p["quote"][1])}</p></div></section>' if p.get("quote") else ""
+    nums = f'<section class="dark"><div class="wrap"><h2>The site today.</h2><div class="cols c4">{"".join(f'<div class="col"><p class="big" style="font-size:clamp(3.2rem,7vw,6rem);margin:8px 0 14px">{n}</p><p>{e(x)}</p></div>' for n, x in p["stats"])}</div><p style="margin-top:28px;opacity:.7;font-size:.9rem">Source: {GA_RANGE}.</p></div></section>' if p.get("stats") else ""
     if p.get("gallery"): gal = '<section class="tight"><div class="wrap"><ul class="gal">' + "".join(f'<li style="aspect-ratio:1448/807;background:#fff"><img src="/img/work/{p["slug"]}/{k}.webp" alt="{e(p["name"])}: {e(g[0])}" width="{g[1]}" height="{g[2]}" loading="lazy"></li>' for k, g in enumerate(p["gallery"])) + '</ul></div></section>'
     if os.path.exists(os.path.join(ROOT, "assets/img/process", p["slug"], "0.webp")): gal += f'<section class="tight"><div class="wrap two"><h2>Before the build.</h2><div><p>Every Yoodle site is worked out as wireframes first: the navigation, the page types and what each page has to do, agreed with the client before design starts.</p></div></div><div class="wrap" style="margin-top:clamp(20px,3vw,40px)"><div style="border-radius:8px;overflow:hidden;border:1px solid #d9d4c8"><img src="/img/process/{p["slug"]}/0.webp" alt="{e(p["name"])}: wireframes by Yoodle for the homepage and two inner pages" width="1600" height="1200" loading="lazy" style="display:block;width:100%;height:auto"></div></div></section>'
     feats = f'<section class="tight"><div class="wrap two"><h2>On the site.</h2><ul class="sect">{"".join(f"<li>{e(f)}</li>" for f in p["features"])}</ul></div></section>' if p["features"] else ""
@@ -541,7 +549,7 @@ def project(i, p):
 <section class="tight"><div class="wrap two"><h2>The project.</h2><div>{about}{'' if ((p['kind'] == 'Podcast' and p['about']) or p.get('case')) else '<p>' + confirm(need) + '</p>'}{visit}</div></div></section>
 {case_html(p) if p.get("case") else feats}
 {story}
-{gal}
+{nums}{gal}{quote}
 <section class="tight"><div class="wrap"><nav class="pn" aria-label="More work"><a href="/work/{prev["slug"]}/"><span class="small">Previous</span><br><strong>{e(prev["name"])}</strong></a><a class="nx" href="/work/{nxt["slug"]}/"><span class="small">Next</span><br><strong>{e(nxt["name"])}</strong></a></nav></div></section>
 {closer(a=("Need one like it?", "Tell us what has to get done.", "/contact/", "Start a project."))}'''
     t = {"Website": f'{p["name"]} Website | {lab} Web Design by Yoodle', "Podcast": f'{p["name"]} | Podcast Production by Yoodle', "Video and content": f'{p["name"]} | Video Production by Yoodle', "Project": f'{p["name"]} | {lab} Brand and Web Work by Yoodle', "Brand and marketing": f'{p["name"]} | Brand Research and Strategy by Yoodle'}[p["kind"]]

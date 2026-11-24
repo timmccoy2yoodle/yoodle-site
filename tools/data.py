@@ -52,6 +52,7 @@ add("miracosta-college", "MiraCosta College", "higher-ed", "https://miracosta.ed
 add("missouri-western-state-university", "Missouri Western State University", "higher-ed", "https://www.missouriwestern.edu/", "St. Joseph, Missouri", "",
     "Missouri Western State University chose Yoodle through a public RFP for market research and brand development. The work grew into a rebrand, a marketing campaign and advertising. Yoodle designed the new MO West logo.",
     ["Brand perception research: internal, community and prospective-student studies", "Brand strategy", "Communication audit and creative concept", "The MO West logo: a primary mark, a stacked mark and secondary MW and MO West marks, approved by the university in November 2024", "\"More at MO West\" campaign creative for outdoor and social", "Campaign and marketing plan", "Brand launch video, 2025", "Ongoing marketing support on retainer, 2024 to 2025"], "Brand and marketing")
+P[-1]["quote"] = ("We\u2019re good to go. President Kennedy loved everything!", "Tama Wagner, Chief Assistant for Strategic Initiatives, Office of the President, Missouri Western State University")
 P[-1]["gallery"] = [("The primary MO West logo, in black and in white", 1448, 807), ("The stacked MO West logo", 1448, 807), ("Secondary marks: MW with the griffon, W MO West and MO West", 1448, 807), ("More at MO West campaign banners", 1448, 807), ("More at MO West social posts", 1448, 807)]
 add("ci3t", "Ci3T", "higher-ed", "https://www.ci3t.org/", "", "WordPress",
     "Ci3T (Comprehensive, Integrated, Three-Tiered Model of Prevention) is a research-based framework that helps school leaders bring academics, behavior and social-emotional well-being into one system.",
@@ -207,3 +208,12 @@ for _p in P:
         _p["case"] = RH
         _p["links"] = [("Watch the Río Hondo College reel", "https://vimeo.com/1230352325"), ("Visit riohondo.edu", "https://www.riohondo.edu/")]
         _p["about"] = "Río Hondo College in Whittier, California: 77 pages optimized, 50 new pages built, analytics, usability testing, governance and 10 video series by Yoodle."
+
+# ---- Live-site numbers, read from each client's Google Analytics (GA4) property
+GA_RANGE = "Google Analytics, November 24, 2025 to November 23, 2026"
+for _slug, _stats in {
+    "palm-beach-state-college": [("910K", "active users in twelve months"), ("3.3M", "page views"), ("2M", "visits"), ("797K", "visits from organic search")],
+    "nevada-state-university": [("921K", "active users in twelve months"), ("2.5M", "page views"), ("1.5M", "visits"), ("2.5K", "leads from request-info forms")],
+}.items():
+    for _p in P:
+        if _p["slug"] == _slug: _p["stats"] = _stats
