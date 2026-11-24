@@ -8,7 +8,7 @@ if(mb){mb.addEventListener('click',function(){var o=nv.classList.toggle('open');
 var mq=d.getElementById('mq'),mqb=d.getElementById('mqbtn');
 if(mqb)mqb.addEventListener('click',function(){var p=mq.classList.toggle('paused');mqb.setAttribute('aria-pressed',p);mqb.textContent=p?'Resume scrolling logos':'Pause scrolling logos'});
 var fb=d.querySelectorAll('[data-f]'),cards=d.querySelectorAll('[data-s]'),cnt=d.getElementById('count');
-function setF(k){var n=0;cards.forEach(function(c){var on=k==='all'||c.getAttribute('data-s')===k;c.hidden=!on;if(on)n++});fb.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-f')===k)});if(cnt)cnt.textContent=n+' projects shown';}
+function setF(k){var n=0;cards.forEach(function(c){var on=k==='all'||c.getAttribute('data-s')===k;c.hidden=!on;if(on)n++});fb.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-f')===k)});if(cnt){var ab=d.querySelector('[data-f="'+k+'"]');cnt.textContent=k==='all'?'Showing all sectors':'Showing '+ab.textContent.toLowerCase()}}
 fb.forEach(function(b){b.addEventListener('click',function(){setF(b.getAttribute('data-f'));if(history.replaceState)try{history.replaceState(null,'','#'+b.getAttribute('data-f'))}catch(_){}})});
 if(fb.length&&location.hash){var k=location.hash.slice(1);if(d.querySelector('[data-f="'+k+'"]'))setF(k)}
 var live=/(^|\.)yoodle\.com$|\.netlify\.app$/.test(location.hostname);
