@@ -15,6 +15,29 @@ EMAIL = "hello@yoodle.com"
 TODAY = date.today().isoformat()
 e = lambda s: html.escape(str(s), quote=True)
 PAGES = []
+OLDSITE = json.load(open(os.path.join(ROOT, "tools/old_site.json")))
+OLD = {}
+_have = {p["slug"] for p in P}
+_sec = lambda c: "higher-ed" if "Education" in c and "Nonprofit" not in c else "government" if "Government" in c else "nonprofit" if "Nonprofit" in c else "business"
+for o in OLDSITE["projects"]:
+    OLD[o["slug"]] = o
+    if o["slug"] in _have: continue
+    first = next((t for k, t in o["blocks"] if k == "p"), "")
+    P.append(dict(slug=o["slug"], name=o["name"], sector=_sec(o["cats"]), url="", place="", platform="", about=first, features=[], kind="Project"))
+POSTS = OLDSITE["posts"]
+def cover_img(p):
+    o = OLD.get(p["slug"])
+    return o["imgs"][0] if o and o["imgs"] else None
+def rich(blocks):
+    out, li = [], []
+    def flush():
+        if li: out.append("<ul class='sect'>" + "".join(f"<li>{e(x)}</li>" for x in li) + "</ul>"); li.clear()
+    blocks = [x for i, x in enumerate(blocks) if not (x[0] == "h" and (i + 1 == len(blocks) or blocks[i + 1][0] == "h"))]
+    for k, t in blocks:
+        if k == "li": li.append(t); continue
+        flush()
+        out.append(f"<h3 style='margin:1.4em 0 .5em'>{e(t)}</h3>" if k == "h" else f"<p>{e(t)}</p>")
+    flush(); return "".join(out)
 
 def confirm(t): return f'<span class="confirm">CONFIRM: {e(t)}</span>'
 
@@ -173,6 +196,19 @@ footer h2{font-size:1rem;letter-spacing:0;color:#fff;margin-bottom:8px;font-fami
 .pick button[aria-pressed=true]{border-color:#111}
 .pick i{width:20px;height:20px;border-radius:50%;display:inline-block}
 body.test{padding-bottom:64px}
+.cover.ph{padding:0;background:#e9e5dc}
+.cover.ph img,.gal img{width:100%;height:100%;object-fit:cover;display:block}
+.cover.ph::after,.cover.ph::before{display:none}
+.gal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2vw,28px);list-style:none;padding:0;margin:0}
+.gal li{border-radius:8px;overflow:hidden;background:#e9e5dc;aspect-ratio:4/3;min-width:0}
+@media (max-width:620px){.gal{grid-template-columns:1fr}}
+.post{max-width:46em}
+.post p{font-size:1.1rem}
+.plist{list-style:none;padding:0;margin:32px 0 0}
+.plist li{border-top:1px solid #f7f4ee44;padding:18px 0;display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:baseline}
+.plist a{font-family:"Inter Tight",sans-serif;font-weight:600;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.02em;text-decoration:none;display:inline-flex;min-height:44px;align-items:center}
+.plist a:hover{text-decoration:underline}
+@media (max-width:620px){.plist li{grid-template-columns:1fr;gap:0}}
 
 /* ---- motion layer: only when JS is on and the visitor has not asked for reduced motion */
 header.site{transition:transform .45s cubic-bezier(.2,.7,.2,1),background-color .5s,color .5s,border-color .5s}
@@ -382,6 +418,8 @@ def faq_schema(faq):
     return {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
 
 def cover(p, lg=False, n=None):
+    ci = cover_img(p)
+    if ci: return f'<div class="cover ph{" lg" if lg else ""}"><img src="{ci["src"]}" alt="{e(p["name"])} project by Yoodle" width="{ci["w"]}" height="{ci["h"]}"{"" if lg else " loading=\"lazy\""}></div>'
     lab, col = SECTORS[p["sector"]]
     host = re.sub(r"^https?://(www\.)?|/$", "", p["url"]) if p["url"] else p["kind"]
     return f'<div class="cover{" lg" if lg else ""}" style="background:{col}"><div class="k"><span>{lab}</span><span>{e(host)}</span></div><div class="n">{e(p["name"])}</div></div>'
@@ -389,6 +427,7 @@ def cover(p, lg=False, n=None):
 def card(p):
     lab = SECTORS[p["sector"]][0]
     sub = p["place"] or p["kind"]
+    if p["kind"] == "Project": sub = ", ".join(OLD[p["slug"]]["tags"]) or "Brand and web"; return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(sub)}</p></a></li>'
     return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(p["kind"])}{" · " + e(sub) if sub != p["kind"] else ""}</p></a></li>'
 
 def closer(a=("Start a project.", "Tell us what needs to get done. We reply within one business day.", "/contact/", "Contact us."),
@@ -420,7 +459,7 @@ def home():
 <p><a class="go" href="/services/">See what we do.</a></p></div></div></section>
 <section class="dark"><div class="wrap"><h2>Services.</h2><ol class="rows">{svc}
 <li><span class="idx" aria-hidden="true">05</span><h3><a href="/experience/">Experience. Led.</a></h3><p>Senior marketing leadership on a six-month contract, for teams that need a head of marketing before they can hire one.</p></li></ol></div></section>
-<section><div class="wrap"><div class="two" style="align-items:end"><h2>Work.<span class="r">Launched.</span></h2><p class="lede">{len([p for p in P if p["kind"] == "Website"])} live websites for higher education, government, nonprofits and small business, plus video and the podcasts we produce.</p></div>
+<section><div class="wrap"><div class="two" style="align-items:end"><h2>Work.<span class="r">Launched.</span></h2><p class="lede">{len(P)} projects since 2007: live websites, brands and campaigns for higher education, government, nonprofits and business, plus the podcasts we produce.</p></div>
 <ul class="grid">{"".join(card(p) for p in feat)}</ul><p style="margin-top:28px"><a class="go" href="/work/">See all the work.</a></p></div></section>
 <section class="dark"><div class="wrap"><h2>Who we work for.</h2><div class="cols">
 <div class="col"><h3>Higher education.</h3><p>Colleges, universities and the centers inside them. Enrollment sites, program finders, accessibility and content.</p><a class="go" href="/work/#higher-ed">Higher ed work.</a></div>
@@ -438,18 +477,16 @@ def home():
 def work():
     fl = '<button class="chipb" type="button" data-f="all" aria-pressed="true">All</button>' + "".join(f'<button class="chipb" type="button" data-f="{k}" aria-pressed="false">{v[0]}</button>' for k, v in SECTORS.items())
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Work</p><h1>The work.<span class="r">Launched.</span></h1>
-<p class="lede" style="margin-top:32px">Websites, podcasts and video Yoodle has built and produced. Every website here is live, so you can open it and judge it yourself.</p>
+<p class="lede" style="margin-top:32px">Websites, brands, campaigns and shows Yoodle has built since 2007. Many of the websites are live, so you can open them and judge for yourself.</p>
 <div class="filters" role="group" aria-label="Filter work by sector">{fl}</div><p class="small" id="count" role="status" style="margin:14px 0 0">{len(P)} projects shown</p>
 <ul class="grid" id="grid">{"".join(card(p) for p in P)}</ul></div></section>
-<section class="dark"><div class="wrap"><h2>Earlier work.</h2><p class="lede" style="margin-top:24px">Brand, web and campaign projects from 2007 on.</p>
-<ul class="names">{"".join(f"<li>{e(a)}</li>" for a in ARCHIVE)}</ul><p style="margin-top:20px">{confirm("project pages for earlier work come back once the image files are recovered from the old site backup")}</p></div></section>
 {closer()}'''
     items = [("/", "Home"), ("", "Work")]
     page("/work/", "Our Work: Higher Education, Government and Nonprofit Websites | Yoodle",
          f"See {len(P)} projects by Yoodle: live websites for colleges, government agencies, nonprofits and small businesses, plus podcasts and video.", body,
          [crumb_schema(items), {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f'{DOMAIN}/work/{p["slug"]}/', "name": p["name"]} for i, p in enumerate(P)]}])
 
-VERDICT = {"Website": "Launched.", "Podcast": "Produced.", "Video and content": "Produced."}
+VERDICT = {"Website": "Launched.", "Podcast": "Produced.", "Video and content": "Produced.", "Project": "Delivered."}
 def project(i, p):
     lab = SECTORS[p["sector"]][0]
     prev, nxt = P[i - 1], P[(i + 1) % len(P)]
@@ -462,7 +499,16 @@ def project(i, p):
     about = f'<p class="lede">{e(p["about"])}</p>' if p["about"] else f'<p class="lede">{e(p["name"])} is a {p["kind"].lower()} produced by Yoodle.</p>'
     need = {"Website": "Yoodle's scope (strategy, design, build, migration, support), launch year, results and a client quote",
             "Podcast": "exact show name, client, host, episode count, where to listen, cover art and Yoodle's role",
-            "Video and content": "project details from the Drive client folder and the Vimeo links"}[p["kind"]]
+            "Video and content": "project details from the Drive client folder and the Vimeo links",
+            "Project": "year, and whether to keep this project on the new site"}[p["kind"]]
+    o = OLD.get(p["slug"])
+    story = gal = ""
+    if o:
+        facts.insert(3, ("Services", e(", ".join(o["tags"]) or "Brand and web")))
+        blk = o["blocks"] if p["kind"] != "Project" else [x for x in o["blocks"] if x[1] != p["about"]]
+        if blk: story = f'<section class="tight"><div class="wrap two"><h2>{"The work." if p["kind"] == "Project" else "The story."}</h2><div>{rich(blk)}</div></div></section>'
+        rest = o["imgs"][1:]
+        if rest: gal = '<section class="tight"><div class="wrap"><ul class="gal">' + "".join(f'<li><img src="{g["src"]}" alt="{e(p["name"])}: work by Yoodle, image {k + 1}" width="{g["w"]}" height="{g["h"]}" loading="lazy"></li>' for k, g in enumerate(rest)) + '</ul></div></section>'
     feats = f'<section class="tight"><div class="wrap two"><h2>On the site.</h2><ul class="sect">{"".join(f"<li>{e(f)}</li>" for f in p["features"])}</ul></div></section>' if p["features"] else ""
     if p["kind"] != "Website" and p["features"]:
         feats = feats.replace("On the site.", "What we made.")
@@ -470,15 +516,17 @@ def project(i, p):
     body = f'''<section class="hero"><div class="wrap">{crumbs([("/", "Home"), ("/work/", "Work"), ("", e(p["name"]))])}
 <h1 class="md">{e(p["name"])}.<span class="r">{VERDICT[p["kind"]]}</span></h1>
 <div style="margin-top:clamp(28px,5vw,56px)">{cover(p, lg=True)}</div>
-<p class="small" style="margin-top:10px">{confirm("real screenshots of the live site replace this cover" if p["url"] else "cover art and stills replace this cover")}</p>
+{"" if cover_img(p) else '<p class="small" style="margin-top:10px">' + confirm("real screenshots of the live site replace this cover" if p["url"] else "images replace this cover once the rest of the backup is brought over") + "</p>"}
 </div></section>
 <section class="tight"><div class="wrap"><dl class="facts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts)}</dl></div></section>
 <section class="tight"><div class="wrap two"><h2>The project.</h2><div>{about}<p>{confirm(need)}</p>{visit}</div></div></section>
 {feats}
+{story}
+{gal}
 <section class="tight"><div class="wrap"><nav class="pn" aria-label="More work"><a href="/work/{prev["slug"]}/"><span class="small">Previous</span><br><strong>{e(prev["name"])}</strong></a><a class="nx" href="/work/{nxt["slug"]}/"><span class="small">Next</span><br><strong>{e(nxt["name"])}</strong></a></nav></div></section>
 {closer(a=("Need one like it?", "Tell us what has to get done.", "/contact/", "Start a project."))}'''
-    t = {"Website": f'{p["name"]} Website | {lab} Web Design by Yoodle', "Podcast": f'{p["name"]} | Podcast Production by Yoodle', "Video and content": f'{p["name"]} | Video Production by Yoodle'}[p["kind"]]
-    if len(t) > 68: t = f'{p["name"]} | {"Web Design" if p["kind"] == "Website" else "Produced"} by Yoodle'
+    t = {"Website": f'{p["name"]} Website | {lab} Web Design by Yoodle', "Podcast": f'{p["name"]} | Podcast Production by Yoodle', "Video and content": f'{p["name"]} | Video Production by Yoodle', "Project": f'{p["name"]} | {lab} Brand and Web Work by Yoodle'}[p["kind"]]
+    if len(t) > 68: t = f'{p["name"]} | {"Web Design" if p["kind"] == "Website" else "Work"} by Yoodle'
     d = (p["about"] or f'{p["name"]}, a {p["kind"].lower()} produced by Yoodle, the content experience agency.')
     d = (f'{p["name"]}: ' if p["name"] not in d[:60] else "") + d
     d = d if len(d) <= 158 else d[:155].rsplit(" ", 1)[0] + "..."
@@ -546,10 +594,24 @@ def content():
 <p class="lede" style="margin-top:32px">The podcasts we produce and publish, and Soapbox, the Yoodle blog.</p></div></section>
 <section class="tight"><div class="wrap"><h2>Our shows.</h2><ul class="grid">{"".join(card(p) for p in shows)}</ul></div></section>
 <section class="dark"><div class="wrap two"><h2>Soapbox.</h2><div><p class="lede">Notes on brand, web, accessibility and AI search for people who answer to the public.</p>
-<p>{confirm("24 Soapbox posts from 2020 to 2023 come over from the old site backup; choose which to keep")}</p></div></div></section>
+<p>{confirm("these posts came over as written, 2019 to 2023; tell me which to retire")}</p></div></div>
+<div class="wrap"><ul class="plist">{"".join(f'<li><span class="small">{x["date"][:7]}</span><a href="/content/{x["slug"]}/">{e(x["title"])}</a></li>' for x in POSTS)}</ul></div></section>
 {closer(a=("Have a show in mind?", "We plan it, produce it and publish it.", "/services/content/", "See content services."))}'''
     its = [("/", "Home"), ("", "Content")]
     page("/content/", "Content: Podcasts and the Soapbox Blog | Yoodle", "Podcasts produced by Yoodle, plus Soapbox, the Yoodle blog on brand, web, accessibility and AI search.", body, [crumb_schema(its)])
+
+def posts():
+    for x in POSTS:
+        first = next((t for k, t in x["blocks"] if k == "p"), x["title"])
+        dsc = first if len(first) <= 158 else first[:155].rsplit(" ", 1)[0] + "..."
+        its = [("/", "Home"), ("/content/", "Content"), ("", x["title"])]
+        body = f'''<section class="hero"><div class="wrap">{crumbs([("/", "Home"), ("/content/", "Content"), ("", e(x["title"]))])}
+<p class="tag">Soapbox · {x["date"]}</p><h1 class="md">{e(x["title"])}</h1></div></section>
+<section class="tight"><div class="wrap"><article class="post">{rich(x["blocks"])}</article><p style="margin-top:32px"><a class="go" href="/content/">More from Soapbox.</a></p></div></section>
+{closer()}'''
+        t = x["title"] + " | Yoodle Soapbox"
+        if len(t) > 68: t = x["title"][:60].rsplit(" ", 1)[0] + " | Yoodle"
+        page(f'/content/{x["slug"]}/', t, dsc, body, [crumb_schema(its), {"@type": "BlogPosting", "headline": x["title"], "datePublished": x["date"], "author": {"@id": DOMAIN + "/#org"}, "publisher": {"@id": DOMAIN + "/#org"}, "mainEntityOfPage": DOMAIN + f'/content/{x["slug"]}/'}])
 
 def accessibility():
     faq = [("What is the ADA Title II website compliance deadline?", "April 26, 2027 for state and local governments serving 50,000 people or more, and April 26, 2028 for smaller governments and special districts. The Department of Justice extended both dates by one year in April 2026. The standard is WCAG 2.1 Level AA."),
@@ -598,6 +660,7 @@ def assets():
     nm = os.path.join(ROOT, "node_modules/@fontsource-variable")
     shutil.copy(f"{nm}/inter/files/inter-latin-wght-normal.woff2", os.path.join(OUT, "fonts/inter.woff2"))
     shutil.copy(f"{nm}/inter-tight/files/inter-tight-latin-wght-normal.woff2", os.path.join(OUT, "fonts/inter-tight.woff2"))
+    if os.path.isdir(os.path.join(ROOT, "assets/img")): shutil.copytree(os.path.join(ROOT, "assets/img"), os.path.join(OUT, "img"), dirs_exist_ok=True)
     if PREVIEW: return
     urls = "".join(f"<url><loc>{DOMAIN}{p}</loc><lastmod>{TODAY}</lastmod></url>" for p in PAGES)
     open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
@@ -609,12 +672,13 @@ def assets():
     old = ["about", "work/work-by-services", "blog", "careers", "careers/*", "vpat", "dir", "shop", "cart", "checkout", "my-account", "skill-up", "skill-up/*", "workforce-training", "workforce-training/*", "contentum", "contentum/*", "project/*"]
     dest = {"about": "/services/", "blog": "/content/", "vpat": "/accessibility/", "work/work-by-services": "/work/", "project/*": "/work/"}
     code = 302 if TEST_BUILD else 301
-    open(os.path.join(OUT, "_redirects"), "w").write("".join(f"/{o}  {dest.get(o, '/')}  {code}\n" for o in old))
+    spec = "".join(f"/project/{o['old']}/  /work/{o['slug']}/  {code}\n" for o in OLDSITE["projects"]) + "".join(f"/{x['old']}/  /content/{x['slug']}/  {code}\n" for x in POSTS)
+    open(os.path.join(OUT, "_redirects"), "w").write(spec + "".join(f"/{o}  {dest.get(o, '/')}  {code}\n" for o in old))
     open(os.path.join(OUT, "netlify.toml"), "w").write('[build]\n  publish = "."\n  command = ""\n')
 
 if os.path.exists(OUT): shutil.rmtree(OUT)
 os.makedirs(OUT)
 home(); work()
 for i, p in enumerate(P): project(i, p)
-services(); experience(); content(); accessibility(); contact(); assets()
+services(); experience(); content(); posts(); accessibility(); contact(); assets()
 print(f"{len(PAGES)} indexable pages -> {OUT}")

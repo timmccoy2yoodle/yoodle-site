@@ -153,6 +153,19 @@ footer h2{font-size:1rem;letter-spacing:0;color:#fff;margin-bottom:8px;font-fami
 .pick button[aria-pressed=true]{border-color:#111}
 .pick i{width:20px;height:20px;border-radius:50%;display:inline-block}
 body.test{padding-bottom:64px}
+.cover.ph{padding:0;background:#e9e5dc}
+.cover.ph img,.gal img{width:100%;height:100%;object-fit:cover;display:block}
+.cover.ph::after,.cover.ph::before{display:none}
+.gal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2vw,28px);list-style:none;padding:0;margin:0}
+.gal li{border-radius:8px;overflow:hidden;background:#e9e5dc;aspect-ratio:4/3;min-width:0}
+@media (max-width:620px){.gal{grid-template-columns:1fr}}
+.post{max-width:46em}
+.post p{font-size:1.1rem}
+.plist{list-style:none;padding:0;margin:32px 0 0}
+.plist li{border-top:1px solid #f7f4ee44;padding:18px 0;display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:baseline}
+.plist a{font-family:"Inter Tight",sans-serif;font-weight:600;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.02em;text-decoration:none;display:inline-flex;min-height:44px;align-items:center}
+.plist a:hover{text-decoration:underline}
+@media (max-width:620px){.plist li{grid-template-columns:1fr;gap:0}}
 
 /* ---- motion layer: only when JS is on and the visitor has not asked for reduced motion */
 header.site{transition:transform .45s cubic-bezier(.2,.7,.2,1),background-color .5s,color .5s,border-color .5s}

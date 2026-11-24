@@ -1,0 +1,3602 @@
+{
+ "projects": [
+  {
+   "old": "project",
+   "slug": "neighborworks-america",
+   "merged": true,
+   "name": "NeighborWorks America",
+   "cats": [
+    "Government"
+   ],
+   "tags": [
+    "Branding",
+    "Technology"
+   ],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Single sign-on using active directory."
+    ],
+    [
+     "p",
+     "Integrate with external video management system."
+    ],
+    [
+     "p",
+     "Integrate with external white paper publishing system."
+    ],
+    [
+     "p",
+     "Integrate with training and financial system."
+    ],
+    [
+     "p",
+     "A website that has made is extremely easy for the editors to author once and use it in multiple places."
+    ],
+    [
+     "p",
+     "A website that works on all mobile platforms seamlessly."
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "Active directory inegration"
+    ],
+    [
+     "p",
+     "Social media integration"
+    ],
+    [
+     "p",
+     "Vidoe management services"
+    ],
+    [
+     "p",
+     "Whitepaper management services"
+    ],
+    [
+     "p",
+     "Responsive website"
+    ],
+    [
+     "p",
+     "+100% Awesomeness"
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/neighborworks-america/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/neighborworks-america/1.webp",
+     "w": 505,
+     "h": 516,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "ku-endowment",
+   "slug": "ku-endowment",
+   "merged": false,
+   "name": "KU Endowment",
+   "cats": [
+    "Education"
+   ],
+   "tags": [
+    "Technology",
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Create use case and identify key demographics."
+    ],
+    [
+     "p",
+     "identify new branding requirements."
+    ],
+    [
+     "p",
+     "Integrate with different social outreach mediums."
+    ],
+    [
+     "p",
+     "Site needs to be responsive without losing context."
+    ],
+    [
+     "p",
+     "Identify major analytics for donation program."
+    ],
+    [
+     "p",
+     "Identify and create content categorization."
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "Responsive website"
+    ],
+    [
+     "p",
+     "Social integration"
+    ],
+    [
+     "p",
+     "Enerprise level CMS"
+    ],
+    [
+     "p",
+     "+25.47% pageviews"
+    ],
+    [
+     "p",
+     "On page donation analytics"
+    ],
+    [
+     "p",
+     "Dynamic graphs"
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/ku-endowment/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/ku-endowment/1.webp",
+     "w": 505,
+     "h": 516,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "hostos-community-college",
+   "slug": "hostos-community-college",
+   "merged": false,
+   "name": "Hostos Community College",
+   "cats": [
+    "Education"
+   ],
+   "tags": [
+    "Branding",
+    "Technology"
+   ],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Integration with Active Directory for user management."
+    ],
+    [
+     "p",
+     "Create new design and branding for the main website as well as all 60 microsites."
+    ],
+    [
+     "p",
+     "Allow distributed contnet editing for different departments."
+    ],
+    [
+     "p",
+     "Integrate college department directory."
+    ],
+    [
+     "p",
+     "Convert PDF forms to online forms."
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "New brand creation"
+    ],
+    [
+     "p",
+     "+60 site under one branding"
+    ],
+    [
+     "p",
+     "Active directory integration"
+    ],
+    [
+     "p",
+     "70% converstion to online forms"
+    ],
+    [
+     "p",
+     "Searchable department directory"
+    ],
+    [
+     "p",
+     "+100% Awesomeness"
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/hostos-community-college/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/hostos-community-college/1.webp",
+     "w": 505,
+     "h": 516,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "unified-government",
+   "slug": "unified-government",
+   "merged": false,
+   "name": "Unified Government of Wyandotte County",
+   "cats": [
+    "Government"
+   ],
+   "tags": [],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Being a government entity, this site needs to be ADA compliant."
+    ],
+    [
+     "p",
+     "It needs to be geared more toward mobile compare to desktop."
+    ],
+    [
+     "p",
+     "Allow distributed content editing for different departments."
+    ],
+    [
+     "p",
+     "Integrate with internal network."
+    ],
+    [
+     "p",
+     "Upgrade outdated CMS to new enterprise CMS."
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "New technology stack selection"
+    ],
+    [
+     "p",
+     "Robust ADA complaint"
+    ],
+    [
+     "p",
+     "Active directory integration"
+    ],
+    [
+     "p",
+     "Distributed content authoring"
+    ],
+    [
+     "p",
+     "Responsive website"
+    ],
+    [
+     "p",
+     "+100% Awesomeness"
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/unified-government/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/unified-government/1.webp",
+     "w": 505,
+     "h": 516,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "lamar-state-college",
+   "slug": "lamar-state-college",
+   "merged": false,
+   "name": "Lamar State College",
+   "cats": [
+    "Education"
+   ],
+   "tags": [],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Create a website that has cohesive branding with unique look and feel that is easy to navigate."
+    ],
+    [
+     "p",
+     "Integrate with college on premises active directory."
+    ],
+    [
+     "p",
+     "Allow distributed content editing for different departments."
+    ],
+    [
+     "p",
+     "Integrate college directory."
+    ],
+    [
+     "p",
+     "Convert PDF forms to online forms."
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "New brand creation"
+    ],
+    [
+     "p",
+     "+60 site under one branding"
+    ],
+    [
+     "p",
+     "Active directory integration"
+    ],
+    [
+     "p",
+     "70% converstion to online forms"
+    ],
+    [
+     "p",
+     "Searchable department directory"
+    ],
+    [
+     "p",
+     "+100% Awesomeness"
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/lamar-state-college/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/lamar-state-college/1.webp",
+     "w": 505,
+     "h": 516,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "fort-hays-state-university",
+   "slug": "fort-hays-state-university",
+   "merged": false,
+   "name": "Fort Hays State University",
+   "cats": [
+    "Education"
+   ],
+   "tags": [],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Upgrade underlying CMS platform."
+    ],
+    [
+     "p",
+     "Refresh the existing site with HTML5."
+    ],
+    [
+     "p",
+     "Reorganize site information architecture."
+    ],
+    [
+     "p",
+     "Make site responsive."
+    ],
+    [
+     "p",
+     "Introduce megamenu to complement new site architecture."
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "Responsive site"
+    ],
+    [
+     "p",
+     "Mega menu with images"
+    ],
+    [
+     "p",
+     "Upgraded CMS technology"
+    ],
+    [
+     "p",
+     "Easy to find information"
+    ],
+    [
+     "p",
+     "Calendar integration"
+    ],
+    [
+     "p",
+     "+100% Awesomeness"
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/fort-hays-state-university/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/fort-hays-state-university/1.webp",
+     "w": 615,
+     "h": 579,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "kansas-city-international",
+   "slug": "kansas-city-international-airport",
+   "merged": false,
+   "name": "Kansas City International Airport",
+   "cats": [
+    "Government"
+   ],
+   "tags": [],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Reduce site response time."
+    ],
+    [
+     "p",
+     "Achieve ADA compliance."
+    ],
+    [
+     "p",
+     "Streamline out unimportant scripts and libraries that were not being used."
+    ],
+    [
+     "p",
+     "Do content restructuring and implement site-wide search."
+    ],
+    [
+     "p",
+     "Improve airline searches."
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "4 second response time"
+    ],
+    [
+     "p",
+     "Error free airline searches"
+    ],
+    [
+     "p",
+     "80% ADA compliance"
+    ],
+    [
+     "p",
+     "Single click parking page"
+    ],
+    [
+     "p",
+     "Reduce bounce rate"
+    ],
+    [
+     "p",
+     "+100% Awesomeness"
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/kansas-city-international-airport/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/kansas-city-international-airport/1.webp",
+     "w": 505,
+     "h": 516,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "epiq-systems",
+   "slug": "epiq-systems",
+   "merged": false,
+   "name": "Epiq Systems",
+   "cats": [
+    "B2B"
+   ],
+   "tags": [
+    "Strategy"
+   ],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Create a multi-lingual site that is culture tailored to any of the available cultures."
+    ],
+    [
+     "p",
+     "A website that doesn't require sub-domains for each culture."
+    ],
+    [
+     "p",
+     "Create a mechanism for content sharing between different categories."
+    ],
+    [
+     "p",
+     "Allow different re-usable media to mix with content."
+    ],
+    [
+     "p",
+     "Create online experts directory."
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "Custom search mechanism"
+    ],
+    [
+     "p",
+     "Content linearization"
+    ],
+    [
+     "p",
+     "Lazy loading"
+    ],
+    [
+     "p",
+     "Domain free multi-lingual site"
+    ],
+    [
+     "p",
+     "Responsive website"
+    ],
+    [
+     "p",
+     "+100% Awesomeness"
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/epiq-systems/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/epiq-systems/1.webp",
+     "w": 505,
+     "h": 516,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "the-netherland",
+   "slug": "the-netherland",
+   "merged": false,
+   "name": "The Netherland",
+   "cats": [
+    "Hospitality",
+    "Real Estate"
+   ],
+   "tags": [
+    "Branding"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "Create a brand the attracts both the crowd of the upscale Country Club Plaza and the down-to-earth mid-towner. Very much like a flawed pearl with grandeur courtyards and spectacular rooftop views, it strives to be accessible and desirable to all."
+    ],
+    [
+     "h",
+     "Logo process"
+    ],
+    [
+     "p",
+     "The primary Netherland logo features a custom typeface to create an elegant, detailed mark that is still modern and strong. The logomark is paired with a 'mosaic-tile' grid logo that is inspired by the famed tulip farms and windmills foundall over the Netherlands. This addition brings a sense of romance and history to the brand and is found in the rich pattern used frequently through out the brand."
+    ],
+    [
+     "h",
+     "The canary"
+    ],
+    [
+     "p",
+     "The Canary Bar + Bistro flies high in design aesthetics. It will overlook the gorgeous Kansas City skyline upon its completion. The color palette fits seamlessly with the brand elements of the hotel while having a striking identity of its own. Our team further developed all of the restaurant brand elements from business cards to menus and social media avatars."
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/the-netherland/0.webp",
+     "w": 1600,
+     "h": 1177,
+     "cover": true
+    },
+    {
+     "src": "/img/work/the-netherland/1.webp",
+     "w": 1600,
+     "h": 1067,
+     "cover": false
+    },
+    {
+     "src": "/img/work/the-netherland/2.webp",
+     "w": 1600,
+     "h": 1177,
+     "cover": false
+    },
+    {
+     "src": "/img/work/the-netherland/3.webp",
+     "w": 459,
+     "h": 226,
+     "cover": false
+    },
+    {
+     "src": "/img/work/the-netherland/5.webp",
+     "w": 1600,
+     "h": 266,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "the-raphael-hotel",
+   "slug": "the-raphael-hotel",
+   "merged": false,
+   "name": "The Raphael Hotel",
+   "cats": [
+    "Hospitality",
+    "Real Estate"
+   ],
+   "tags": [
+    "Branding",
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "p",
+     "the challenge"
+    ],
+    [
+     "p",
+     "blurb if needed"
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/the-raphael-hotel/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/the-raphael-hotel/1.webp",
+     "w": 1600,
+     "h": 1177,
+     "cover": false
+    },
+    {
+     "src": "/img/work/the-raphael-hotel/3.webp",
+     "w": 459,
+     "h": 226,
+     "cover": false
+    },
+    {
+     "src": "/img/work/the-raphael-hotel/5.webp",
+     "w": 629,
+     "h": 449,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "jaudon",
+   "slug": "jaudon",
+   "merged": false,
+   "name": "Jaudon",
+   "cats": [
+    "Hospitality"
+   ],
+   "tags": [
+    "Branding"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "The history of the Jaudon is a colorful one. One that the brand was built to burry in the past. This new fresh brand is just that - a fresh start for new ownership, vision, food, experience and care for the customer and neighborhood."
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/jaudon/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/jaudon/1.webp",
+     "w": 792,
+     "h": 612,
+     "cover": false
+    },
+    {
+     "src": "/img/work/jaudon/2.webp",
+     "w": 792,
+     "h": 612,
+     "cover": false
+    },
+    {
+     "src": "/img/work/jaudon/5.webp",
+     "w": 1100,
+     "h": 613,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "barrio",
+   "slug": "barrio",
+   "merged": false,
+   "name": "Barrio",
+   "cats": [
+    "Hospitality"
+   ],
+   "tags": [
+    "Branding",
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "Update the brand of a fan favorite Mexican restaurant so not to alienate current customers but to also set the foundation to develop new locations across the city."
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/barrio/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/barrio/1.webp",
+     "w": 1600,
+     "h": 1066,
+     "cover": false
+    },
+    {
+     "src": "/img/work/barrio/2.webp",
+     "w": 1224,
+     "h": 792,
+     "cover": false
+    },
+    {
+     "src": "/img/work/barrio/5.webp",
+     "w": 1224,
+     "h": 792,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "argyle",
+   "slug": "argyle",
+   "merged": false,
+   "name": "Argyle",
+   "cats": [
+    "Real Estate"
+   ],
+   "tags": [
+    "Branding",
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "Build a brand, way finding system, website, social presence and advertising campaign for a commercial develpment project that isn't finished yet. Our team pushed the limits of marketing and imagination to create the Argyle on 12 brand, renderings and kinetic system to build a luxury complex on."
+    ],
+    [
+     "h",
+     "More than a logo"
+    ],
+    [
+     "p",
+     "We want to avoid any physical distortions and deviations from the true design and character of your brand. We ensure our brand standard aid in dealing with inappropriate uses of the logo and its tag line such as incorrect colors, different characters and improper positioning of the logo and tagline on promotional materials."
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/argyle/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/argyle/1.webp",
+     "w": 1600,
+     "h": 900,
+     "cover": false
+    },
+    {
+     "src": "/img/work/argyle/2.webp",
+     "w": 1600,
+     "h": 900,
+     "cover": false
+    },
+    {
+     "src": "/img/work/argyle/5.webp",
+     "w": 1400,
+     "h": 1481,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "nick-jakes",
+   "slug": "nick-and-jakes",
+   "merged": true,
+   "name": "Nick and Jake's",
+   "cats": [
+    "Hospitality"
+   ],
+   "tags": [
+    "Branding",
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "We rebranded Nick and Jakes more than 12 years ago and continue to elevate the brand while keeping messaging, look and feel consistent. With an emphasis on quality food and unique experiences, this brand has withstood the test of time that small businesses get put through every day."
+    ],
+    [
+     "p",
+     "marketing needs"
+    ],
+    [
+     "p",
+     "blurb about nj marketing"
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/nick-and-jakes/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/nick-and-jakes/1.webp",
+     "w": 1200,
+     "h": 800,
+     "cover": false
+    },
+    {
+     "src": "/img/work/nick-and-jakes/2.webp",
+     "w": 1600,
+     "h": 778,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "parisi",
+   "slug": "parisi-coffee",
+   "merged": false,
+   "name": "Parisi Coffee",
+   "cats": [
+    "Hospitality"
+   ],
+   "tags": [
+    "Strategy",
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "Build credibility, communicate strength and stature with the Kansas City coffee industry, Drive foot traffic to current and future cafe locations and establish a strong online presence to increase findability, awareness and traffic to website and social profiles"
+    ],
+    [
+     "h",
+     "Content marketing strategy"
+    ],
+    [
+     "p",
+     "Over time, we've successfully repositioned the Parisi Coffee brand as an approachable premium alternative to competive coffees and cafes with new visuals, brand messaging and high quality content production."
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/parisi-coffee/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/parisi-coffee/2.webp",
+     "w": 1500,
+     "h": 670,
+     "cover": false
+    },
+    {
+     "src": "/img/work/parisi-coffee/4.webp",
+     "w": 1438,
+     "h": 738,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "san-bernardino-community-college-district",
+   "slug": "san-bernardino-community-college-district",
+   "merged": false,
+   "name": "San Bernardino Community College District ",
+   "cats": [
+    "Education"
+   ],
+   "tags": [
+    "Technology"
+   ],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Being a higher education institution, this site is required to be ADA compliant."
+    ],
+    [
+     "p",
+     "This design followed a successful rebrand of the community college district"
+    ],
+    [
+     "p",
+     "Built on OU Campus®, the #1 web CMS of choice for higher ed web professionals around the globe"
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "Responsive site"
+    ],
+    [
+     "p",
+     "Dynamic custom post types"
+    ],
+    [
+     "p",
+     "Upgraded CMS technology"
+    ],
+    [
+     "p",
+     "Optimized department landing pages"
+    ],
+    [
+     "p",
+     "Staff directory integration"
+    ],
+    [
+     "p",
+     "Redesigned calendar"
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/san-bernardino-community-college-district/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/san-bernardino-community-college-district/1.webp",
+     "w": 615,
+     "h": 579,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "cape-cod-community-college",
+   "slug": "cape-cod-community-college",
+   "merged": false,
+   "name": "Cape Cod Community College ",
+   "cats": [
+    "Education"
+   ],
+   "tags": [
+    "Technology"
+   ],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Being a government entity, this site needs to be ADA compliant."
+    ],
+    [
+     "p",
+     "It needs to be geared more toward mobile compare to desktop."
+    ],
+    [
+     "p",
+     "Allow distributed content editing for different departments."
+    ],
+    [
+     "p",
+     "Integrate with internal network."
+    ],
+    [
+     "p",
+     "Upgrade outdated CMS to new enterprise CMS."
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "Responsive site"
+    ],
+    [
+     "p",
+     "Mega menu with images"
+    ],
+    [
+     "p",
+     "Upgraded CMS technology"
+    ],
+    [
+     "p",
+     "Easy to find information"
+    ],
+    [
+     "p",
+     "Calendar integration"
+    ],
+    [
+     "p",
+     "+100% Awesomeness"
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/cape-cod-community-college/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/cape-cod-community-college/1.webp",
+     "w": 615,
+     "h": 579,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "gordon-parks",
+   "slug": "gordon-parks-elementary",
+   "merged": false,
+   "name": "Gordon Parks Elementary",
+   "cats": [
+    "Nonprofit",
+    "Education"
+   ],
+   "tags": [
+    "Strategy",
+    "Branding",
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "Build a new brand that captures the spirit of Gordon Parks the man as well as the future possiblies of a charter school on the cutting edge of education and care."
+    ],
+    [
+     "p",
+     "a new brand archetype"
+    ],
+    [
+     "p",
+     "“Sometimes, all they need is someone to give them unconditional love.”"
+    ],
+    [
+     "p",
+     "- The Caregiver"
+    ],
+    [
+     "h",
+     "Golf tournament"
+    ],
+    [
+     "p",
+     "Introducing new fundrasing opportunities for a school changing the lives of kids and parents across the metro."
+    ]
+   ],
+   "imgs": [
+    {
+     "src": "/img/work/gordon-parks-elementary/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/gordon-parks-elementary/2.webp",
+     "w": 1600,
+     "h": 1200,
+     "cover": false
+    },
+    {
+     "src": "/img/work/gordon-parks-elementary/5.webp",
+     "w": 1600,
+     "h": 1230,
+     "cover": false
+    }
+   ]
+  },
+  {
+   "old": "ks-courts",
+   "slug": "kansas-judicial-branch",
+   "merged": true,
+   "name": "KS Courts",
+   "cats": [
+    "Government"
+   ],
+   "tags": [
+    "Branding",
+    "Technology"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "The Kansas Supreme Court has a new judicial branch website that sports a bold new look, is mobile friendly, and reflects the modernization underway throughout the state court system."
+    ],
+    [
+     "p",
+     "The courts have been working to modernize for several years, but the old website didn't fully reflect those efforts. It was built in 1997, and refreshed only once after that."
+    ],
+    [
+     "h",
+     "A judicial brand"
+    ],
+    [
+     "p",
+     "More than a website, the Yoodle design team tackled building a brand for the Supreme Court of Kansas. This system involved a classic typeface with multiple seals to help identify the various courts and entities within the judicial system"
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "wentworth",
+   "slug": "wentworth-financial-communications",
+   "merged": true,
+   "name": "Wentworth",
+   "cats": [
+    "B2B"
+   ],
+   "tags": [
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "It's always a great experience when you get the opportunity to work with your industry peers. In this case, our client partner leads the content marketing space for companies in the financial services industry. Great content makes our design shine."
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "scopifi",
+   "slug": "scopifi",
+   "merged": false,
+   "name": "Scopifi",
+   "cats": [
+    "B2B"
+   ],
+   "tags": [
+    "Branding"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "Build a brand that marks the refocusing of the business, a fresh approach to the name of an 8 year-old business and rebirth that truly fits the brand."
+    ],
+    [
+     "h",
+     "A trusted process"
+    ],
+    [
+     "p",
+     "We are proud to reintroduce VeriProcess as Scopifi. This brand has taken the same values of customer service, cost savings, and transparency and applied them to a new vision for a company driven by technology and customer experience."
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "comp-con",
+   "slug": "national-comp",
+   "merged": false,
+   "name": "National Comp",
+   "cats": [
+    "B2B"
+   ],
+   "tags": [
+    "Branding"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "Create a brand that pursueds attendees to notice the difference - the improvement - at the conference through design, interaction, programming and messaging."
+    ],
+    [
+     "h",
+     "Logo process"
+    ],
+    [
+     "p",
+     "Competitive and benchmark research tunred up a big fat goose egg, as there were no other brands to lead the charge for the new direction...except one...Comic Con. Thus the internal project name was created - Comp Con - which led to something greater...National Comp."
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "iiao",
+   "slug": "iaao",
+   "merged": false,
+   "name": "IAAO",
+   "cats": [
+    "B2B"
+   ],
+   "tags": [
+    "Branding",
+    "Technology"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "The International Association of Assessing Officers is known for the quality and dedication of the work that their members do across the world. We wanted to build a user experience that highlighted that passion as well as reward them with effortless navigation and inteteraction as members used the 1000+ page website to better themselves in their profession."
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "independence-square",
+   "slug": "independence-square",
+   "merged": false,
+   "name": "The Independence Square",
+   "cats": [
+    "Real Estate"
+   ],
+   "tags": [
+    "Branding"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "Home of President Harry S. Truman, Independence, Missouri has a downtown square with history and culture that matches the best of them. Our team built a place brand to withstand the test of time and establish Independence, Mo as a top place to visit in Eastern Jackson County Missouri."
+    ],
+    [
+     "h",
+     "Logo process"
+    ],
+    [
+     "p",
+     "Talk to the locals. Become a local. Shop, dine and unwind local. That was the creative team's approach to get deeply involved with the brand and build a place brand that would be there for the next generation of local residents."
+    ],
+    [
+     "h",
+     "A fully fleshed out brand"
+    ],
+    [
+     "p",
+     "our team executed a kinetic sytem that stems from the physical structure to the inate culture, creating a brand that represents and will grow with the historic downtown area"
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "kc-parks",
+   "slug": "kc-parks",
+   "merged": false,
+   "name": "KC Parks",
+   "cats": [
+    "Government"
+   ],
+   "tags": [
+    "Branding",
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "Build a brand that looks like its been established for years yet come out with excitement and vigor as a new opportunity fo residents to engage with Kansas City Parks & Recreation."
+    ],
+    [
+     "h",
+     "Logo process"
+    ],
+    [
+     "p",
+     "Throughout the years, our agency built upong the established brand equity of Parks & Recreation. As the brand of the city Kansas City grew, so did Parks."
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "thprd",
+   "slug": "thprd",
+   "merged": false,
+   "name": "Tualatin Hills Park & Recreation District",
+   "cats": [
+    "Nonprofit"
+   ],
+   "tags": [
+    "Branding",
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The objective"
+    ],
+    [
+     "p",
+     "Promote and build the brand that exhaults the idea that parks provide intrinsic environmental, aesthetic and recreation benefits to our cites."
+    ],
+    [
+     "h",
+     "Offline execution"
+    ],
+    [
+     "p",
+     "Digital may feel like everything these days, but a symbiotic approach to offline marketing and promotion is almost always required when building a parks and recreation department or district brand."
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "chaz",
+   "slug": "chaz-on-the-plaza",
+   "merged": false,
+   "name": "Chaz on the Plaza",
+   "cats": [
+    "Hospitality"
+   ],
+   "tags": [
+    "Branding"
+   ],
+   "blocks": [
+    [
+     "p",
+     "chaz logo refresh"
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "variety-kc",
+   "slug": "variety-kc",
+   "merged": true,
+   "name": "Variety KC",
+   "cats": [
+    "Nonprofit",
+    "Education"
+   ],
+   "tags": [
+    "Branding",
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "h",
+     "Our mission"
+    ],
+    [
+     "p",
+     "Variety KC believes all kids should Be Active, Be Social and Belong. We remove mobility and communication barriers by providing the necessary equipment and devices, and provide inclusive opportunities for all children right here in our community."
+    ],
+    [
+     "p",
+     "At the heart of Variety’s achievements are the remarkable contributions of people in the community, and it is only through their time and effort that Variety is able to do so much for children and families right here at home. Service area includes all major counties in the KC Metro across both Missouri and Kansas."
+    ],
+    [
+     "p",
+     "We are proud to ensure Variety KC's success by supporting them with Website Development, Graphic Design, Email Marketing Support, Campaign Creation, and by providing design and marketing collateral for their largest annual fundraising event - The Variety Show. We have reestablished the brand standards to protect the Variety brand, and to make sure it is consistent in all applications."
+    ],
+    [
+     "h",
+     "Variety show"
+    ],
+    [
+     "p",
+     "Variety the Children’s Charity was founded in the entertainment industry. Each year we pay tribute to our heritage with The Variety Show. An evening featuring a variety of entertainment. Eat and drink fabulous food and drink, while Variety Kids and their stories will fill your hearts."
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "marc-headstart",
+   "slug": "marc-head-start",
+   "merged": true,
+   "name": "MARC Head Start",
+   "cats": [
+    "Nonprofit"
+   ],
+   "tags": [
+    "Branding",
+    "Technology"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "Reimagine a brand that has national reach but low equity locally. This was the challenge we took on working with an integrated program and operations team with MARC - Mid-America Regional Council."
+    ],
+    [
+     "h",
+     "The process"
+    ],
+    [
+     "p",
+     "\"One of the biggest responsibilities of management is to look after the organizations’ DNA.\""
+    ],
+    [
+     "p",
+     "We worked through our CX Finder™ methodology and developed a new brand system as well as user friendly web interface focused on creating the best experiences for parents and caregiver partners."
+    ],
+    [
+     "p",
+     "a flexible brand"
+    ],
+    [
+     "p",
+     "with a strong palette, new brands can achieve their goals"
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "together-kc",
+   "slug": "together-kc",
+   "merged": false,
+   "name": "Together KC",
+   "cats": [
+    "Government"
+   ],
+   "tags": [
+    "Technology"
+   ],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Creating a visually enticing website to promote the Kansas City Earnings Tax vote."
+    ],
+    [
+     "p",
+     "Designing website elements to match the existing logo."
+    ],
+    [
+     "p",
+     "Building a user-friendly website that the client could manage for their own changes."
+    ],
+    [
+     "p",
+     "Fast turnaround!"
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "Custom embedded forms"
+    ],
+    [
+     "p",
+     "Responsive site"
+    ],
+    [
+     "p",
+     "Dynamic custom design elements"
+    ],
+    [
+     "p",
+     "Upgraded CMS technology"
+    ],
+    [
+     "p",
+     "Optimized landing pages"
+    ],
+    [
+     "p",
+     "Endorsements"
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "kc-global-design",
+   "slug": "kc-global-design",
+   "merged": false,
+   "name": "KC Global Design",
+   "cats": [
+    "Real Estate",
+    "B2B"
+   ],
+   "tags": [
+    "Strategy",
+    "Technology"
+   ],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Bringing together multiple AEC industry perspectives in one website design."
+    ],
+    [
+     "p",
+     "Need for a website to display a diverse portfolio of industry projects."
+    ],
+    [
+     "p",
+     "Creating an intuitive website architecture and taxonomy system to capture an array of collaborative content."
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "Dynamic custom post types for projects"
+    ],
+    [
+     "p",
+     "Upgraded CMS technology"
+    ],
+    [
+     "p",
+     "Optimized landing pages"
+    ],
+    [
+     "p",
+     "Social media channel integrations"
+    ],
+    [
+     "p",
+     "Custom designed site elements and GIFs"
+    ],
+    [
+     "p",
+     "Filterable and categorized project system"
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "kc-rising",
+   "slug": "kc-rising",
+   "merged": false,
+   "name": "KC Rising",
+   "cats": [
+    "B2B"
+   ],
+   "tags": [
+    "Strategy",
+    "Technology"
+   ],
+   "blocks": [
+    [
+     "h",
+     "Challenges"
+    ],
+    [
+     "p",
+     "Integrated coding needed to track custom badges that display on business websites."
+    ],
+    [
+     "p",
+     "Tell the story of KC Rising's mission to amplify community efforts by aligning corporations."
+    ],
+    [
+     "p",
+     "Need for a fresh and innovative design to coexist with existing brand logo and elements."
+    ],
+    [
+     "p",
+     "Key Results"
+    ],
+    [
+     "p",
+     "Responsive site with custom coding for badge tracking"
+    ],
+    [
+     "p",
+     "Dynamic custom post types"
+    ],
+    [
+     "p",
+     "Upgraded CMS technology"
+    ],
+    [
+     "p",
+     "SE Optimized landing pages"
+    ],
+    [
+     "p",
+     "Committee Directory listing"
+    ],
+    [
+     "p",
+     "Social media integrations"
+    ],
+    [
+     "p",
+     "Custom embedded forms"
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "cliffs-taphouse",
+   "slug": "cliffs-taphouse",
+   "merged": false,
+   "name": "Cliff's Taphouse",
+   "cats": [
+    "Hospitality"
+   ],
+   "tags": [
+    "Branding",
+    "Technology"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "Opening up a new restaurant in the midst of the pandemic called for a low-budget, quick-turn around team to get the job done. Cliff's Taphouse is a breath of new life (into the once, Ollie's on Main) and offers seasonally inspired & colorful food with a focus on quality locally-sourced ingredients. A placed that is locally adored, embraces the nearby art scene, and loves beer: 12 alternating Local Kansas City Craft Breweries on Tap!"
+    ],
+    [
+     "h",
+     "Logo process"
+    ],
+    [
+     "p",
+     "The primary logo for Cliff's Taphouse brand was inspired by the hand-written signatures from old photos provided to us of our client's family. Grandpa Cliff was a Chicago police officer circa 1960s, and was a frequent at the neighborhood hang. A small, quaint bar serving local food and drinks. A place that brought the community together. The velvety color palette feels modern vintage, and the yellow archway logo and pattern was inspired by the architectural details in the facade of the building. It also represents the idea that this local spot radiates out to the community and welcomes all enter their doors with fresh food & a cheers!"
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "dr-amy-k-patel",
+   "slug": "dr-amy-k-patel",
+   "merged": true,
+   "name": "Dr. Amy K. Patel",
+   "cats": [
+    "B2B"
+   ],
+   "tags": [
+    "Branding",
+    "Technology",
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "We were tasked in creating a personal, professional brand for Dr. Amy K. Patel: trailblazing breast radiologist who is bridging the healthcare gap for rural women. Through Dr. Amy's commitment to advocating for patients and promoting diversity in the radiology profession, yoodle knew we had to get on board with her aim: to transform the face of value-based care."
+    ],
+    [
+     "h",
+     "Logo process"
+    ],
+    [
+     "p",
+     "Dr. Amy K. Patel came to us with a good idea of what she wanted in mind. Something that captured her fun, bright personality but was still professional and clean. A slightly rounded serif logotype was selected for it's legibility and warmth. The icon that we paired with the logomark is an abstract breast with a radial energy that represents the motion in which breast exams are done. With women as Dr. Amy's primary client, she liked the idea of an uber-feminine color palette that was still graphic and bold enough to be strong and confident — matching the messaging and tone of her brand: Take CHARGE of your breast health."
+    ],
+    [
+     "h",
+     "Photo shoot"
+    ],
+    [
+     "p",
+     "yoodle art directed and shot a full-day photoshoot for Dr. Amy so that she could have content for her social media page and new website. We visited multiple locations throughout the KC area including the Cancer Survivor's Park & the hospital that Dr. Amy was practicing at where she displayed her white coat and professionalism; Union Station and City Hall to hint to Dr. Amy's work in writing legislature, and some other outdoor / market areas for lifestyle type photos and casual outfits. All of these photos work together on the various platforms to tell the story of who Dr. Amy K. Patel is and all of the amazing work she is doing."
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "jwr-architecture",
+   "slug": "jwr-architecture",
+   "merged": false,
+   "name": "JWR Architecture",
+   "cats": [
+    "Real Estate",
+    "B2B"
+   ],
+   "tags": [
+    "Branding",
+    "Technology"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "Joe Rathermel is a Kansas City based architect who needed a top-to-bottom branding system developed for his practice, JWR Architecture. Joe’s work and design sense lives at the intersection of contemporary and historic; drawing inspiration from both modern design, and a diligent attention to detail."
+    ],
+    [
+     "h",
+     "The results"
+    ],
+    [
+     "p",
+     "The results find balance in the harmonious blend of form and function. The brand resides outside of any specific historic context, but still fits beautifully in a contemporary setting. These definitive characteristics were pulled from Joe’s personal taste in architecture and design. The brand communicates a sense of sophistication and professionalism; two important prerequisites for entrusting someone to design your living and/or working space."
+    ]
+   ],
+   "imgs": []
+  },
+  {
+   "old": "the-soul-of-santa-2",
+   "slug": "the-soul-of-santa",
+   "merged": false,
+   "name": "The Soul of Santa",
+   "cats": [
+    "Nonprofit"
+   ],
+   "tags": [
+    "Branding",
+    "Technology",
+    "Marketing"
+   ],
+   "blocks": [
+    [
+     "h",
+     "The challenge"
+    ],
+    [
+     "p",
+     "The Soul of Santa team came to yoodle with a little branding and a whole lot of mission: to support children and families in disenfranchised and disabled communities in the areas of education, entrepreneurship and personal development through arts and culture. They work to do good 365 days a year and deliver a unique and diverse holiday spirit during the Christmas season and beyond. yoodle was tasked to take their current brand to a new level and to elevate their existing brand pieces like The Soul of Santa illustration, Mrs. Soul of Santa, and the other existing characters. New messaging was needed and a brand system that felt Christmas but could work the entire year."
+    ],
+    [
+     "h",
+     "Brand refresh"
+    ],
+    [
+     "p",
+     "The Soul of Santa company was using various logo variations as their primary mark – all with different typefaces and colors. Our first goal was to establish consistency and brand standards. A primary logo was created that works with and without the SOS illustration."
+    ],
+    [
+     "p",
+     "A sleek, bold serif font was chosen for it's story-book feel as well as its reminisce towards jazz — a hint at the 18th & Vine district, an important location in the story of SOS. A 'S icon' was also created to expand on the illustrative style of the brand and create a simplified mark to represent SOS that could be used in smaller settings, and once again, throughout the year."
+    ],
+    [
+     "p",
+     "We applied the new branding to SOS merchandise & swag, social media, a new website, business collateral and most importantly to their main event: The 18th & Vine Christmas Tree Lighting."
+    ],
+    [
+     "h",
+     "Photo shoot"
+    ],
+    [
+     "p",
+     "yoodle provides photo/video production for the SOS team. We attend every event to keep their content fresh and the website updated with the happenings of The Soul of Santa, as well as display their products. yoodle also worked with Tucker Lott, founder of the Soul of Santa, to convert the origin story into a series of videos to be displayed on the website and social. Check them out at thesoulofsanta.org"
+    ],
+    [
+     "p",
+     "Social Media —"
+    ]
+   ],
+   "imgs": []
+  }
+ ],
+ "posts": [
+  {
+   "old": "test-fyp",
+   "slug": "find-your-place-in-digital-marketing",
+   "title": "Find Your Place In Digital Marketing",
+   "date": "2023-06-30",
+   "blocks": [
+    [
+     "h",
+     "Finding your Place in Digital Marketing"
+    ],
+    [
+     "p",
+     "If you are considering getting into the field of digital marketing or contemplating taking a digital marketing class, then you're probably wondering what your future career options will be. You are not alone."
+    ],
+    [
+     "p",
+     "The digital marketing industry is growing faster than the positions can be filled so the options seem virtually endless. Knowing your options is important and can often seem overwhelming. When deciding out of the hundreds of options there are a few things to keep in mind, such as the salary that comes with entry-level education and the number of open positions in your area."
+    ],
+    [
+     "h",
+     "So let us help by giving you a few suggestions"
+    ],
+    [
+     "p",
+     "A social media manager is someone who is responsible for overseeing one or more social media accounts for a brand or agency. Their duties include creating social media posts, managing editorial calendars, and working with others to promote a brand, among many other tasks. According to Indeed, the average salary for a Social Media Manager in the U.S. is $26 an hour. Indeed also shows there are around 190 job openings related to social media management in our home base of Kansas City, M.O. alone! Numbers like that indicate that this is a highly in-demand job."
+    ],
+    [
+     "p",
+     "Why should you pursue a career as a Social Media Manager?"
+    ],
+    [
+     "p",
+     "If you have good communication"
+    ],
+    [
+     "p",
+     "If you like writing"
+    ],
+    [
+     "p",
+     "If you’re creative"
+    ],
+    [
+     "p",
+     "If you’re organized"
+    ],
+    [
+     "h",
+     "If you pay attention to detail"
+    ],
+    [
+     "p",
+     "What about a digital marketer? A digital marketer is someone who works in digital advertising and online communications. They use tactics like social media, website, and landing page design, as well as content marketing. Essentially, the Digital Marketer wears many hats. That’s why they average about $21 an hour in the U.S. according to Indeed. There are also approximately 30,000 related open positions in the U.S. These positions include Facebook Meta which offers $36 per hour, and DISYS which offers $54 per hour for their digital marketers. One thing we know here at YES is that with a position as a digital marketing associate, there is a ample room for growth and promotional opportunities."
+    ],
+    [
+     "p",
+     "Why should you pursue a career as a Digital Marketer?"
+    ],
+    [
+     "p",
+     "If you’re adaptable and agile"
+    ],
+    [
+     "p",
+     "If you are good at problem-solving"
+    ],
+    [
+     "p",
+     "If you’re persistent"
+    ],
+    [
+     "p",
+     "If you have strong leadership skills"
+    ],
+    [
+     "p",
+     "If you have a curiosity and a love of learning"
+    ],
+    [
+     "p",
+     "So, maybe you don’t want to build a website on your own but you’re interested in helping companies to optimize their websites for search engines. You could pursue a path as an SEO Strategist. In this role, you will analyze content and recommend changes that will help websites to rank higher on search engine result pages such as Google and Bing. In the United States, you can do this professionally for about $25 an hour. Wayfair, CharterUp, ProNexis, and FortuneBuilders Inc. all use an SEO Strategist to optimize their content and are currently hiring for that position, according to Indeed."
+    ],
+    [
+     "p",
+     "Why should you pursue a career as an SEO Strategist?"
+    ],
+    [
+     "p",
+     "If you’re a critical thinker"
+    ],
+    [
+     "p",
+     "If you have technical and programming skills"
+    ],
+    [
+     "p",
+     "If you’re adaptable and flexible"
+    ],
+    [
+     "p",
+     "If you have a passion for research"
+    ],
+    [
+     "h",
+     "If you have social skills"
+    ],
+    [
+     "p",
+     "In the YES Digital Marketing and Analytics class, you will gain the knowledge and experience to become a Junior Data Analyst. In this professional position, you will collect and organize data, using it to draw meaningful insights. As a Junior Data Analyst, you would be responsible for digesting this data and creating a report to explain your findings. According to Indeed, the average salary in the U.S. is $25-$30 an hour. It also shows there are roughly 30,000 open Data Analyst positions and 130,000 open analyst-related positions just in the U.S."
+    ],
+    [
+     "p",
+     "Why should you pursue a career as a Junior Data Analyst?"
+    ],
+    [
+     "p",
+     "If you have strong communication skills"
+    ],
+    [
+     "p",
+     "If you catch on to new concepts quickly"
+    ],
+    [
+     "p",
+     "If you have a love for graphs and data visualization"
+    ],
+    [
+     "h",
+     "If you’re passionate about research"
+    ],
+    [
+     "p",
+     "Whether you want to be an SEO strategist, a digital marketing associate, a social media manager, or more, we want to help you find your place in the digital marketing industry. Whatever you decide, YES can help get you there! Sign up for our info session to learn more about what Digital marketing and Analytics can do for you. “If you're not measuring, you're not marketing!”"
+    ]
+   ]
+  },
+  {
+   "old": "how-to-navigate-through-the-deep-blue-sea-of-web-development",
+   "slug": "how-to-navigate-through-the-deep-blue-sea-of-web-development",
+   "title": "How to navigate through the deep blue sea of Web Development",
+   "date": "2023-06-30",
+   "blocks": [
+    [
+     "p",
+     "Now that you have decided to jump into Web Development through the course to the end of the back."
+    ],
+    [
+     "p",
+     "ment course with YES, have you looked into what job titles you can score with this certificate under your belt?"
+    ],
+    [
+     "p",
+     "The web development industry has always been here, and now these jobs are growing and expanding every year!"
+    ],
+    [
+     "h",
+     "According to the bureau of labor statistics"
+    ],
+    [
+     "p",
+     "“Overall employment of web developers and digital designers is projected to grow 23 percent from 2021 to 2031, much faster than the average for all occupations. About 21,800 openings for web developers and digital designers are projected each year, on average, over the decade.” (Sep 14, 2022 , Web Developers and Digital Designers - Bureau of Labor Statistics"
+    ],
+    [
+     "p",
+     "https://www.bls.gov › ooh › web-developers)"
+    ],
+    [
+     "p",
+     "So now that you have a feel for how fast this industry is actually growing. Let's look into the different job titles and salaries for this industry."
+    ],
+    [
+     "p",
+     "There are so many different streams of income in the web development sea. These are just three out of hundreds of positions in the Kansas City area that you can dive into."
+    ],
+    [
+     "p",
+     "The first stream you could swim down in web development is software development. Becoming a software engineer means designing, developing, and maintaining a company’s computer software. Using creativity and technical skills they apply the principles of software engineering to solve problems for a company. This stream can bring in roughly $50k-$80k per year."
+    ],
+    [
+     "p",
+     "The second stream in this industry that can be followed is being a developer for"
+    ],
+    [
+     "p",
+     "specific companies such as Shopify or Amazon. Shopify has positions to be a Shopify developer. In this role, the low end is $40k but the high end can be closer to $130k. In this stream, you will have a specific role to fill, but you still need the basic knowledge of HTML5, CSS3, and JavaScript.  That is covered in the web dev class."
+    ],
+    [
+     "p",
+     "The last stream we are going to cover in this field is being a Python Developer.  A python developer has to be knowledgeable in coding, deploying, designing, and debugging development projects. Usually on the server side, which is what is referred to as the back end. A basic understanding of both front-end technologies is best in this position. If you find yourself upstream here, you could make close to $100k or more a year."
+    ],
+    [
+     "p",
+     "Looking at these different possibilities upstream in this industry can help you decide where you could be after taking a web development course.  All of these streams are flowing  because someone has learned web development. It is something that can be obtained with hard work, and dedication. Keep Swimming!"
+    ]
+   ]
+  },
+  {
+   "old": "y-it-works-gail-anderson",
+   "slug": "y-it-works-gail-anderson",
+   "title": "Y It Works: Gail Anderson",
+   "date": "2023-02-24",
+   "blocks": [
+    [
+     "p",
+     "For the first installment of our new series, Y It Works, Yoodle designer, Jerry Ponzer, discussed the life, work, and accomplishments of pioneering designer, Gail Anderson."
+    ],
+    [
+     "p",
+     "Anderson rose to notoriety during the 90s, stepping into her role as Senior Art Director at Rolling Stone Magazine. Her work during this time was heavily influenced by the juxtaposition of text and bold imagery."
+    ],
+    [
+     "p",
+     "Check out a few of Jerry's favorite spreads below!"
+    ],
+    [
+     "p",
+     "Jerry describes Anderson as \"a designer's designer.\" Her work is bold, playful, and driven by the creative usage of typography. Her work imbues joy and curiosity, incorporating found objects and drawing inspiration from everywhere."
+    ],
+    [
+     "p",
+     "Anderson's passion for fonts can be seen throughout her career and in the many graphic design-focused books she's co-written with Steven Heller, such as American Typeplay, The Savage Mirror, Graphic Wit, and The Typographic Universe."
+    ],
+    [
+     "p",
+     "After her tenure at Rolling Stone, Anderson went on to design theatrical advertising for Broadway productions and film. Check out a few of our favorites here!"
+    ],
+    [
+     "p",
+     "In 2013, Anderson designed the Emancipation Proclamation US postage stamp. She's now a member of the Citizens' Stamp Advisory Committee for the USPS."
+    ],
+    [
+     "p",
+     "Anderson now teaches in the School of Visual Arts MFA, undergraduate, and high school design programs, as well as, working as a partner at Anderson Newton Design and serving on the board of the Type Directors Club."
+    ],
+    [
+     "p",
+     "Anderson has received countless awards and recognition in her storied career. Among her many awards and accolades, she was notably the first African American winner of the National Design Award for Lifetime Achievement in 2018. Read more about her recognition here."
+    ]
+   ]
+  },
+  {
+   "old": "nikkys-pick-poster-project",
+   "slug": "nikkys-pick-poster-project",
+   "title": "Nikky McCormick - Pick Progress Poster Designer",
+   "date": "2023-02-20",
+   "blocks": [
+    [
+     "p",
+     "Our very own Nikky McCormick was selected as one of 30 Black designers nationwide to participate in Pick Progress' 2023 Pick Posters project. Read on to learn more about the project and Nikky's incredible poster."
+    ],
+    [
+     "p",
+     "Pick Progress is a photo project started by Kansas City-based creative Chandler Johnson, focused on sharing black stories, black culture and black style. The project’s aim is to “connect Black artifacts and phrases with today’s urban community.” For 31 Days, the project spotlighted black perspectives and opinions with plastic afro-picks bearing black empowerment phrases. Check out the pilot photo project here."
+    ],
+    [
+     "p",
+     "“The afro-pick has been a haircare tool for over 6000 years… it is also a powerful symbol of black pride and empowerment. In the 1960’s, the afro-pick with a black fist-etched handle proved that style could have social and political influence.”"
+    ],
+    [
+     "p",
+     "After the success of the initial photo series, Pick Progress launched a sequel. In partnership with AIGA Kansas City and Babes Helping Babes, the \"Pick Posters\" project aims to highlight black designers, showing the design world that people of color are ‘out here.’ 30 Black creatives from across the globe were invited to design posters based on the black empowerment words and phrases highlighted in the original Pick Progress series."
+    ],
+    [
+     "p",
+     "We’re very proud of Nikky who was chosen to contribute to the Pick Posters project. Along with being a gifted graphic designer, Nikky is also a licensed cosmetologist, interior designer, and entrepreneur."
+    ],
+    [
+     "p",
+     "“Being a creative allows me to express my thoughts and feelings. Design is my muse. It is my five-star spa. Without it, my world would be black-and-white.”"
+    ],
+    [
+     "p",
+     "Nikky’s poster was inspired by the word EQUALITY."
+    ],
+    [
+     "p",
+     "“I wanted to show the challenges we face to be equal. Since I’ve been in the creative industry, I have struggled to find others like me. I’ve often wondered if I had to stay neutral for my work to be accepted. It can be messy and complicated, but we should always be a work of progress.”"
+    ],
+    [
+     "p",
+     "To see the rest of the Pick Posters in the project, visit the Pick Progress Project."
+    ]
+   ]
+  },
+  {
+   "old": "chatgpt-the-next-frontier-in-marketing",
+   "slug": "chatgpt-the-next-frontier-in-marketing",
+   "title": "ChatGPT: The Next Frontier in Marketing",
+   "date": "2023-02-20",
+   "blocks": [
+    [
+     "p",
+     "In November 2022, a revolutionary artificial intelligence called ChatGPT was launched. OpenAI, an AI research and development agency, created this text-based AI assistant – giving it the ability to interact and respond conversationally."
+    ],
+    [
+     "p",
+     "ChatGPT is able to answer “follow-up questions, admit its mistakes, challenge incorrect premises, and reject inappropriate requests,” according to the OpenAI site. The tool can create and review code, write content, research subjects, and so much more."
+    ],
+    [
+     "p",
+     "We wanted to put this tool to the test to see exactly how useful ChatGPT would be for digital marketers!"
+    ],
+    [
+     "p",
+     "Disclaimer: The next section of this blog was written using ChatGPT, with minimal editing for clarity."
+    ],
+    [
+     "h",
+     "ChatGPT: The Next Frontier in Marketing"
+    ],
+    [
+     "p",
+     "ChatGPT, a language generation model developed by OpenAI, has the potential to revolutionize the way businesses approach marketing. With its ability to understand and respond to natural language, ChatGPT can help companies engage with customers in more personalized and effective ways."
+    ],
+    [
+     "p",
+     "One way that ChatGPT can be used in marketing is through chatbot technology. By incorporating ChatGPT into chatbot software, businesses can create more human-like interactions with customers. This can lead to increased customer satisfaction and loyalty, as well as improved sales."
+    ],
+    [
+     "p",
+     "Another potential use of ChatGPT in marketing is through content generation. The model can be trained to generate high-quality, engaging content that aligns with a company's brand voice and messaging. This can save businesses time and resources, while also ensuring that all content is on-brand and consistent."
+    ],
+    [
+     "p",
+     "ChatGPT can also be used for customer research and analysis. By analyzing customer interactions with the model, businesses can gain valuable insights into their target audience's needs, wants, and pain points. This information can then be used to improve marketing strategies and create more targeted campaigns."
+    ],
+    [
+     "p",
+     "Overall, ChatGPT has the potential to revolutionize the way businesses approach marketing. By incorporating the model into chatbot technology, content generation, and customer research, businesses can create more personalized and effective interactions with customers, ultimately driving sales and growth."
+    ],
+    [
+     "p",
+     "Not too bad, right? The usage of ChatGPT in marketing is certainly not limited to the above examples, and it can be used in many other ways for other industries."
+    ],
+    [
+     "p",
+     "What we learned: After experimenting with the tool the accuracy of the content output is dependent on the amount of initial information you provide about your company's industry, target audience, and goals."
+    ],
+    [
+     "p",
+     "A little AI humor to brighten your day!"
+    ],
+    [
+     "p",
+     "ChatGPT is currently a free to use and preview. Eventually, it will become a paid subscription service but right now is undergoing beta testing and user review. OpenAI offers a few other useful tools we think are noteworthy, including Whisper and DALL·E 2."
+    ]
+   ]
+  },
+  {
+   "old": "ga4-migration-gains-and-losses",
+   "slug": "ga4-migration-gains-and-losses",
+   "title": "GA4 Migration: Exploring the Gains and Losses",
+   "date": "2022-12-05",
+   "blocks": [
+    [
+     "p",
+     "If you are a business owner, a data analytics specialist, or anything in between, you have been anticipating the new change-over in Google Analytics. This new change-over is called Google Analytics 4. The current Google analytics is known as Universal Analytics which was built for online measurement anchored in the desktop web."
+    ],
+    [
+     "p",
+     "July 2023 is coming up on us pretty fast and a lot of us are not ready for this change. Others don't know what this change entails. In this article, we are going to talk about what to expect, how your business will be affected, and what this means for your analytics. We can’t touch every detail but we will touch on the four major things that we think you should keep in mind!"
+    ],
+    [
+     "h",
+     "1. Your Old Data"
+    ],
+    [
+     "p",
+     "As of July this year, you will have six months to collect your data, in some way, from your UA account. However, with Google Analytics 4, we are not given the option to move data over from Universal. With that being said, setting up your GA4 account as soon as possible is the best choice for comparison data."
+    ],
+    [
+     "p",
+     "When setting up your GA4 account, make sure your GA account has Ga4 tracking turned on, because you will want it to read the same and pull the same data as your UA account after your GA4 migration. Be careful to record your current set-up to replicate in your new GA4 account."
+    ],
+    [
+     "p",
+     "Most metrics will appear the same in GA4, with the exception of the term Users. The definition for User metrics is different in UA v.s GA4…since UA calculates Total Users and GA4 reports Active Users. With these two data models being structurally different Google has recommended that you do not copy over existing logic for this but instead implement new logic that makes sense in this new context."
+    ],
+    [
+     "p",
+     "If losing your old data is of concern for your company or your clients, then BigQuery is an option with its limits."
+    ],
+    [
+     "p",
+     "2. Missing Metrics. What Will We Be Losing?"
+    ],
+    [
+     "p",
+     "One of the biggest features you will be losing is one that will change the way we report as an analyst. While you can get automated insight alerts and you can easily share any of the reports in your GA4 property by exporting them, you no longer can set them up to be regularly automated. Here at Yoodle, we use an integrated Analytics Reporting Tool called Oviond."
+    ],
+    [
+     "p",
+     "Another thing that might be considered a loss during the GA4 migration is that the data is collected and processed differently and some once-familiar metrics are now gone. The GA4 measurement model is based on events, where we have been used to tracking sessions and page views. Google has also replaced the concept of “bounce” with “engagement”. Now while all of these features will be missed it is still possible to track each of these in a different way, it will just take some getting used to and a little study."
+    ],
+    [
+     "p",
+     "3. The Plus Side. What Additions Should We Look Forward to?"
+    ],
+    [
+     "p",
+     "To start with, one of the many additions to this new update that GA4 is implementing is to combine mobile app and website data into one analytics property. I think we can all agree that this will be of great convenience to us. Along with this addition, we are also given the chance to customize the interface creating the ability to track events without changing the site or app code."
+    ],
+    [
+     "p",
+     "This brings us to one of the biggest plus side changes being the predictive metrics and audiences, In which we will delve deeper into later on in this article."
+    ],
+    [
+     "p",
+     "So with those additions, we have a plethora more to count on, including but not limited to; more privacy controls, some higher limits, more thorough debugging with DebugView, ad hoc funnels, improved path analysis etc. From the side of data analysts, it seems that the GA4 migration is more gain than loss."
+    ],
+    [
+     "p",
+     "4. Artificial Intelligence: Predictive Metrics"
+    ],
+    [
+     "p",
+     "Google Analytics Intelligence includes a base of artificial intelligence (AI) features. With this development, you can quickly find insights without digging too far. Predictive metrics filling in the gaps of data can provide you insights into user behavior, anomalies, and much more. The metrics in use here are Purchase probability, Churn probability, and Predicted revenue."
+    ],
+    [
+     "p",
+     "Another helpful way to “Yoodle-ize” this AI development is to ask it basic questions. There is a search bar provided at the top of the page and this allows you to ask things similar to “What was last month's Conversion Rate?” This new ability can make analytics a breeze even for beginners. Now, don't worry the computers are not going to “take your job”. They can simply make it easier!"
+    ],
+    [
+     "p",
+     "However, all of this can only be done with quality historical data. So get to that GA4 migration as quickly as possible!"
+    ],
+    [
+     "p",
+     "Now that we’ve gotten a little more familiar with GA4 migration, what are we waiting on? Contact us about migrating over."
+    ]
+   ]
+  },
+  {
+   "old": "celebrating-hispanic-heritage-month",
+   "slug": "celebrating-hispanic-heritage-month",
+   "title": "Celebrating Hispanic Heritage Month Year-Round",
+   "date": "2022-09-15",
+   "blocks": [
+    [
+     "p",
+     "Celebrating and honoring the heritage of Hispanic and Latinx communities."
+    ],
+    [
+     "p",
+     "Hispanic Heritage Month (also referred to as Latinx Heritage Month) spans from September 15th to October 15th. Established in 1968, first as a week-long observance, coinciding with the independence days of Central and Southern American countries including; Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua, Mexico, and Chile. In 1988, the week-long observance was expanded by President Ronald Reagan."
+    ],
+    [
+     "p",
+     "National Hispanic Heritage Month celebrates the histories, cultures, and contributions of American citizens whose ancestry is tied to Spain, Mexico, the Caribbean, and Central and South America. The blanket term \"Hispanic Heritage Month\" was assigned in 1968, but does not accurately represent all of the unique cultural identities of those celebrated and acknowledged during this period, leading many to refer to the celebration as Latine or Latinx Heritage Month."
+    ],
+    [
+     "p",
+     "We've compiled a list of ways to celebrate Latine Heritage Month this month, and year-round!"
+    ],
+    [
+     "p",
+     "Following Latinx creators on social media uplifts their platform and expands your awareness."
+    ],
+    [
+     "p",
+     "Somos - @r29somos"
+    ],
+    [
+     "p",
+     "INDÍGENA - @indigena"
+    ],
+    [
+     "p",
+     "Jazmine Rogers - @thatcurlytop"
+    ],
+    [
+     "p",
+     "Yesika Salgado - @yesikastarr"
+    ],
+    [
+     "p",
+     "Isaias Hernandez - @queerbrownvegan"
+    ],
+    [
+     "p",
+     "HuffPost Latino Voices - @latinovoices"
+    ],
+    [
+     "p",
+     "BoldLatina™️ - @boldlatina"
+    ],
+    [
+     "p",
+     "Tico Productions LLC - @ticoproductionsllc"
+    ],
+    [
+     "p",
+     "Add these Latine-centered films and stories to your watchlist this month."
+    ],
+    [
+     "p",
+     "After Maria - Available on Netflix"
+    ],
+    [
+     "p",
+     "A 3-Minute Hug - Available on Netflix"
+    ],
+    [
+     "p",
+     "Lorena, Light-Footed Woman - Available on Netflix"
+    ],
+    [
+     "h",
+     "Vida - Available on Hulu"
+    ],
+    [
+     "p",
+     "Southwest of Salem; The Story of the San Antonio Four - Available on Prime"
+    ],
+    [
+     "p",
+     "The Last Forest - Available on Netflix"
+    ],
+    [
+     "p",
+     "Finding Oscar - Available on Prime"
+    ],
+    [
+     "p",
+     "Subscribe to these Latine-hosted podcasts."
+    ],
+    [
+     "p",
+     "Las Doctoras - Available on Apple/Spotify"
+    ],
+    [
+     "p",
+     "Loud - Available on Spotify"
+    ],
+    [
+     "p",
+     "Alt.Latino - Available on Apple/Spotify"
+    ],
+    [
+     "p",
+     "Yeah No, I’m Not Ok - Available on Apple/Spotify"
+    ],
+    [
+     "p",
+     "Latino USA - Available on Apple/Spotify"
+    ],
+    [
+     "p",
+     "Nuestra America - Available on Apple/Spotify"
+    ],
+    [
+     "p",
+     "Expand your playlists with these Latine musicans."
+    ],
+    [
+     "p",
+     "Reyna Tropical"
+    ],
+    [
+     "p",
+     "Xiuhtezcatl"
+    ],
+    [
+     "p",
+     "Ambar Lucid"
+    ],
+    [
+     "p",
+     "The Marias"
+    ],
+    [
+     "p",
+     "Mia Carucci"
+    ],
+    [
+     "h",
+     "Omar Apollo"
+    ],
+    [
+     "p",
+     "Support a few of our favorite local Kansas City Latine-owned businesses."
+    ],
+    [
+     "p",
+     "Buffalo Seed Company"
+    ],
+    [
+     "p",
+     "Cafe Corazon"
+    ],
+    [
+     "p",
+     "Hecho KC"
+    ],
+    [
+     "p",
+     "The Corner Lalo’s Kitchen"
+    ],
+    [
+     "p",
+     "Teocali"
+    ],
+    [
+     "p",
+     "Midwest Barbery"
+    ],
+    [
+     "p",
+     "Estrella Azul"
+    ],
+    [
+     "p",
+     "Taco Naco"
+    ],
+    [
+     "h",
+     "ParaMi.US"
+    ],
+    [
+     "p",
+     "There are so many incredible Kansas City-based collaboratives and organizations that could use your support."
+    ],
+    [
+     "p",
+     "The Greater Kansas City Hispanic Collaborative - Latinos of Tomorrow"
+    ],
+    [
+     "p",
+     "El Centro"
+    ],
+    [
+     "p",
+     "Juntos Center for Advancing Latino Health"
+    ],
+    [
+     "p",
+     "Latinx Education Collaborative"
+    ],
+    [
+     "p",
+     "The Greater Kansas City Hispanic Development Fund"
+    ],
+    [
+     "h",
+     "Latino Arts Foundation"
+    ],
+    [
+     "p",
+     "It is embedded in our DNA here at Yoodle to uplift the unique cultural identities of those in our community and our country. We're thrilled to be celebrating the incredible work these creators and organizations are doing, this month and year-round!"
+    ],
+    [
+     "p",
+     "Let us know what you're doing to celebrate National Hispanic Heritage Month this year!"
+    ],
+    [
+     "p",
+     "Check out our 816 Day or Henry Perry Day blogs for more ways to celebrate the rich history of Kansas City."
+    ]
+   ]
+  },
+  {
+   "old": "top-traits-of-a-successful-graphic-designer",
+   "slug": "top-traits-of-a-successful-graphic-designer",
+   "title": "Top Traits of a Successful Graphic Designer",
+   "date": "2021-02-12",
+   "blocks": [
+    [
+     "h",
+     "Seriously Creative and Designing for Good"
+    ],
+    [
+     "p",
+     "Is creativity a learned trait? Or is it one that is developed over time? Perhaps a little bit of both. Creative Graphic Designers have to be tough-as-nails and excellent at adapting to all kinds of situations and feedback, and need a tough-skin when dealing with criticism. Graphic Designers have a multitude of qualities that many, simply put, lack."
+    ],
+    [
+     "p",
+     "We are excited to congratulate our beloved creative, Mollie Hanselman, for her recent promotion to Senior Graphic Designer!"
+    ],
+    [
+     "h",
+     "There's so much to learn from someone who loves doing good through design! we sat down with mollie to learn more about the top traits of a successful graphic designer, plus had some fun getting to know her even more"
+    ],
+    [
+     "h",
+     "About Mollie"
+    ],
+    [
+     "p",
+     "Q. Amy: Tell me a little bit about yourself! Where'd you go to school? Where are you from? What Graphic Designers inspire YOU?"
+    ],
+    [
+     "p",
+     "A. Mollie: I graduated from the University of Kansas. Rock Chalk Jayhawk! Where I studied Visual Communications at the nationally accredited KU School of Architecture & Design. I worked at Kansas Athletics Marketing Office as a graphic designer, served at a Breakfast Bar called Wake the Dead that had 50 different kinds of mimosas."
+    ],
+    [
+     "p",
+     "I am from Minnesota — East of St. Paul, near the Wisconsin border. I grew up spending a lot of time on the lake wakeboarding, floating down the river, swimming in waterfalls...Making the most out of the beautiful but brief MN summers."
+    ],
+    [
+     "p",
+     "Check out these Designers that inspire me on Instagram: @samlarson | @lisacongdon | @yourbuddymeg | @andrewsketch - I just love how authentic they are in their design and content."
+    ],
+    [
+     "p",
+     "Locally, I find inspiration from Carpenter Collective, Whiskey Design, Design Ranch, Andrés Rivas-Cruz ;)"
+    ],
+    [
+     "p",
+     "I’m also very inspired by my peers in the design community. I met a ton of amazing designers at KU that have become my friends and have continued to meet more young KC artists & designers who are really talented. Also KU alumni designers!!!"
+    ],
+    [
+     "h",
+     "A Successful Graphic Designer"
+    ],
+    [
+     "p",
+     "Q. What are the top traits a Graphic Designer should have (that no one tells you about)?"
+    ],
+    [
+     "p",
+     "A. 1. Open-Mindedness: I think that the ability to be open to receiving inspiration from anyone, any place, is really important. Following those random rabbit holes or crazy ideas can sometimes lead to greatness!"
+    ],
+    [
+     "p",
+     "2. Tough Skin: Definitely something we all have to work at every day but the ability to not get too attached to work is a MUST. A client may want to go a different direction, a source file can be handed off to a different designer, etc. Egos can definitely get in the way of collaboration & teamwork. At the end of the day, we are all working towards a common goal."
+    ],
+    [
+     "p",
+     "3. Multi-tasking? At least at Yoodle — where we all wear multiple hats. I need to be able to work on this brand, then that, then this social post, then write scripts, plant videos, photoshoots, drink my coffee, perfect my late-night working playlist, give my cat enough attention, keep my plants alive lol."
+    ],
+    [
+     "p",
+     "Favs & Least Favs"
+    ],
+    [
+     "p",
+     "Q. What are your favorite and least favorite things about design?"
+    ],
+    [
+     "p",
+     "A. Favorite: I get to MAKE. It doesn’t feel like a job. I love listening to people and working with them to make their visions a reality really."
+    ],
+    [
+     "p",
+     "My least favorite thing is creative blocks. It happens to the best of us, but I have learned some tricks that help me get out of those ruts. Sometimes it’s getting a new perspective, taking a walk, doing some yoga, or trying to think of what a logo/brand/menu/etc. ISN’T instead of bashing my head against a wall trying to figure out what it IS."
+    ],
+    [
+     "p",
+     "Designing for Others"
+    ],
+    [
+     "p",
+     "Q. Why did you choose Graphic Design as a profession?"
+    ],
+    [
+     "p",
+     "A. I have always loved art. I played Pictionary as a kid and beat my mom as soon as I could hold a pencil – showing her how the correct way to draw a mermaid! My grampa is an artist, I would watch him draw animals and then color them in when he was finished. I took art classes all throughout grade school and high school – photography, ceramics, watercolors, charcoal — whatever I could get my hands on. I took a Graphic Design class in high school that was really just an introductory class to Photoshop and had a knack for it right away. Graphic Design felt like a way that I could combine my love for art with my love for people & problem solving — knowing that I wanted to do good."
+    ],
+    [
+     "p",
+     "_______"
+    ],
+    [
+     "p",
+     "Q. How do you incorporate feedback into designs?"
+    ],
+    [
+     "p",
+     "A. I incorporate feedback into my designs when it makes sense. I love listening to clients & coworkers’ ideas on how to improve the look of a logo, the flow of a website, the hierarchy of a cocktail menu, etc. Anyone can bring value to a project – not just a designer. However, if I strongly believe in something I will campaign for it heavily and tell you exactly why it is the best choice in that circumstance. This seems to be a pretty good method so far!"
+    ],
+    [
+     "p",
+     "Growth & Change"
+    ],
+    [
+     "p",
+     "Q. Can you describe the ways that you’ve grown in your career?"
+    ],
+    [
+     "p",
+     "A. I’ve won various student awards on the national and local levels: National Student Show, AIGA, AAFKC, Behance Recognition. Being featured on national television on America’s Got Talent Dunkin Donuts cup design competition was pretty surreal! Ha! It is not until recently that we have submitted work and I am really excited to have won my first professional award: The American Advertising Awards Local KC chapter for The Netherland project."
+    ],
+    [
+     "p",
+     "_______"
+    ],
+    [
+     "p",
+     "Q. New skills/techniques learned?"
+    ],
+    [
+     "p",
+     "A. Oh my, since college? I have learned how to design & build websites. I’ve learned a ton about UI/UX, wireframe process. I’ve learned how to work with a team to create the story of a brand through video planning, scriptwriting, planning photoshoots. I’ve dabbled here and there in animation, I swear I learn something new about Illustrator every day. How I have really improved in my ability to work with color – something that honestly just took repetitions – which deemed me Moriah Manford’s sweet nickname: The Color Kween"
+    ],
+    [
+     "h",
+     "_______"
+    ],
+    [
+     "p",
+     "Q. What are some skills you’d like to develop/new things you’d like to learn?"
+    ],
+    [
+     "p",
+     "A. PROCREATE – iPad. I feel like this could unlock a whole new world for me since I came into this game from a fine arts/hand drawing - somewhat messy, sloppy, textured world of art."
+    ],
+    [
+     "p",
+     "_______"
+    ],
+    [
+     "p",
+     "Q. Anything else?"
+    ],
+    [
+     "p",
+     "A. Just like what it’s like to work as a designer in the real world! With clients who have opinions and skin in the game, to coworkers, to deadlines/time management, having to work in budgets and real-life parameters that just didn’t really exist in our school projects."
+    ],
+    [
+     "p",
+     "Why it All Matters"
+    ],
+    [
+     "p",
+     "Q. What brings you joy?"
+    ],
+    [
+     "p",
+     "A. The sun, my family & friends, my cat, yoga, laughs, beer – specifically Harry’s banana bread beer, street corn, scary movies, cozy blankets, running outside, jumping in a lake. Making my home feel like me, cooking elaborate foods, Honey Lavender Lattes, CAAMP (band), groovy pants!"
+    ],
+    [
+     "p",
+     "_______"
+    ],
+    [
+     "p",
+     "Q. Where do you get most of your inspiration from?"
+    ],
+    [
+     "p",
+     "A. Details in the outside world that are often overlooked, the design community, art history/movements, things that I love to do – I feel like I am the best designer version of myself when I do things that make me feel like me."
+    ],
+    [
+     "p",
+     "_______"
+    ],
+    [
+     "p",
+     "Q. How do you define your value as a graphic designer?"
+    ],
+    [
+     "p",
+     "A. I am given the unique ability to combine my love for making, my natural talent as an artist & my learned talent as a designer to help make the world better. To help people’s dreams come true, to make things work better, to make things more fun, to make things COOL. It is something I have to practice at every day – I truly love it, as stressful and exhausting as it can be sometimes."
+    ],
+    [
+     "p",
+     "The Fun Stuff"
+    ],
+    [
+     "p",
+     "Q. What are 3 random facts about you?"
+    ],
+    [
+     "p",
+     "A. 1) I have a bowling pin tattoo."
+    ],
+    [
+     "p",
+     "2) The love of my life is a 12 lb grey & black striped fluff of a Maine Coon named Bug, he’s at the office with me today 3) I have *never* gotten a speeding ticket!"
+    ],
+    [
+     "p",
+     "Listen to Mollie chat more in-depth about her growth and creative process during a pandemic here."
+    ]
+   ]
+  },
+  {
+   "old": "variety-kansas-city-and-yoodle-team-up-to-talk-inclusion-in-a-covid-19-world",
+   "slug": "variety-kansas-city-and-yoodle-team-up-to-talk-inclusion-in-a-covid-19-world",
+   "title": "We're talking all things Inclusion with Variety Kansas City",
+   "date": "2020-08-26",
+   "blocks": [
+    [
+     "h",
+     "\"Variety Kansas City x Yoodle"
+    ],
+    [
+     "p",
+     "Variety the Children's Charity of Greater Kansas City is a community-based organization that focuses on helping every child Be Active, Be Social, and Belong."
+    ],
+    [
+     "p",
+     "Listen to our newest episode as we chat with Deb Wiebrecht, Executive Director and Chief Inclusion Officer of Variety KC, and discuss powerful perspectives, challenging inclusive standards, and how the message of hope and inclusion is changing the metro area, one family, at a time."
+    ],
+    [
+     "p",
+     "During the COVID-19 pandemic, Deb has been doing a lot of forward-thinking about what we all can do in the future to make the world better for all people."
+    ],
+    [
+     "h",
+     "In this new normal covid world, the needs of families with children with disabilities continue to grow. normal activities that able-bodied people take for granted include things like"
+    ],
+    [
+     "p",
+     "Changing an adult in a restroom where changing tables are meant for babies and toddlers."
+    ],
+    [
+     "p",
+     "Parking your adaptive van and the time it takes to go inside."
+    ],
+    [
+     "p",
+     "Knowing that you can't join the crowd in a stadium's stands because your wheelchair can't go up the stairs."
+    ],
+    [
+     "p",
+     "Playing baseball on a regular field isn't possible because your wheelchair can't easily get over the dirt and bases."
+    ],
+    [
+     "p",
+     "Imagine going grocery shopping while pushing a wheelchair and a shopping cart at the same time..."
+    ],
+    [
+     "p",
+     "1/4 of our population has special needs. It costs 4x as much money to raise a child with special needs than a child without disabilities. Variety KC is raising funds to change this and make places like community playgrounds, baseball fields, and grocery stores more accessible for all."
+    ],
+    [
+     "p",
+     "Addressing the needs of more of the population is the driving force behind Variety KC's mission. Variety has started a cultural change in Kansas City, by making public places more inclusive and accessible, and by giving parents a voice to ask for what their children want and need."
+    ],
+    [
+     "p",
+     "\"We want to build a playground for all kids. Where all kids can be active, be social, and belong. If Variety KC is involved...it's for all kids.\" - Deb Wiebrecht"
+    ],
+    [
+     "p",
+     "Variety KC is the first in many ways and continues to push for that. There was a huge impact from their first-ever inclusive baseball field, in Independence, MO. Able-bodied kids were playing alongside special needs children. The impact really showed when the friendships were formed, and everyone there realized that people aren't really all that different. This is the #InclusionRevolution."
+    ],
+    [
+     "p",
+     "Variety is changing the world by helping kids and families enjoy adaptive playgrounds, sensory rooms and backpacks at local performance centers, Variety KC parking spots around town, and mobility and communication equipment. Last year, Variety KC helped over 1,000,000 KC kids last year!"
+    ],
+    [
+     "p",
+     "On August 20, 2020, Kansas City Mayor Quinton Lucas and the City Council passed a resolution announcing that Kansas City Parks & Recreation will make Kansas City the first in the USA to make all future playgrounds inclusive for all kids!"
+    ],
+    [
+     "p",
+     "When asked what's your \"why\" for doing this...Deb answered, \"That's easy...We're making a difference.\" ❤️"
+    ],
+    [
+     "p",
+     "Will you be a part of making the future for all kids more inclusive?"
+    ],
+    [
+     "p",
+     "Donate today at VarietyKC.org"
+    ],
+    [
+     "p",
+     "Don't forget to subscribe and catch the full episode below."
+    ],
+    [
+     "p",
+     "Available on Spotify, iTunes, or where ever you listen to your podcasts!"
+    ]
+   ]
+  },
+  {
+   "old": "816-day-kansas-citys-offical-holiday",
+   "slug": "816-day-kansas-citys-offical-holiday",
+   "title": "816 Day - Kansas City's Offical Holiday",
+   "date": "2020-08-14",
+   "blocks": [
+    [
+     "p",
+     "8-1-6 Day."
+    ],
+    [
+     "p",
+     "Kansas City, Celebrated."
+    ],
+    [
+     "p",
+     "Celebrate everything amazing in Kansas City on August 16th. 8-1-6 Day is an annual celebration of Kansas City culture where the community connectedness is strengthened by local businesses and resident pride."
+    ],
+    [
+     "p",
+     "In 2018 former Mayor Sly James signed a resolution recognizing 816 Day as the official holiday of Kansas City."
+    ],
+    [
+     "p",
+     "While this year's celebrations will be different from most, there are still lots of ways for local Kansas Citians to celebrate 816 Day!"
+    ],
+    [
+     "p",
+     "Ways to Celebrate"
+    ],
+    [
+     "p",
+     "Do some online shopping at a local Kansas City business"
+    ],
+    [
+     "p",
+     "Stop by The Homecoming 816 Day Celebration in 18th & Vine Jazz District"
+    ],
+    [
+     "p",
+     "Order Kansas City BBQ (I mean this is a given!)"
+    ],
+    [
+     "p",
+     "#DrinkLocalBeer - looking at you Boulevard Brewing Co."
+    ],
+    [
+     "p",
+     "Ride the KC Streetcar and take in the city life"
+    ],
+    [
+     "p",
+     "Go on a \"City of Fountains\" fountain scavenger hunt (there's over 200 fountains in KC if you didn't know)"
+    ],
+    [
+     "p",
+     "Rep your finest KC Pride apparel"
+    ],
+    [
+     "p",
+     "Then go take a picture in front of one of KC's many murals"
+    ],
+    [
+     "p",
+     "Share your favorite things about Kansas City on social and use #816Day"
+    ],
+    [
+     "p",
+     "Find businesses that are offering sweet $8.16 deals"
+    ],
+    [
+     "p",
+     "Support, like, and share local businesses, artists and musicians in KC"
+    ],
+    [
+     "p",
+     "Our Favorite Things About Kansas City"
+    ],
+    [
+     "h",
+     "Alysha -"
+    ],
+    [
+     "p",
+     "\"I chose Boulevard Brewing Co. :) I love me some BLVD!!! Also, it’s a great company! I worked there for a little over a year and they were wonderful to their staff. It’s a staple of KC and they do a lot for the community. On a personal note, since moving away from KC in 2015, whenever I find a place that has Tank 7...I am thrilled and it makes me feel like I get to enjoy a little slice of home.\""
+    ],
+    [
+     "h",
+     "Mollie -"
+    ],
+    [
+     "p",
+     "\"Officially one year in Kansas City! While I miss the days of exploring new restaurants, bars, and other hangouts, I also enjoy the small details that make Kansas City unique. Lately, I have been appreciating all of the beautiful clocks hidden throughout KC – most of which don’t display the correct time.\""
+    ],
+    [
+     "h",
+     "Shawn -"
+    ],
+    [
+     "p",
+     "\"My favorite thing about Kansas City is The West Bottoms. My first Bouldevardia experience was here and it really solidified this location for me. The architecture, industrial vibes, and utilization of space is so unique- especially on first weekends. We love getting down there on a Saturday afternoon to wander through shops and hit a few food trucks as we explore. Coffee from Blip Roasters typically keeps us cruising along - I highly recommend checking out their new space for good brew and top of the line merch.\""
+    ],
+    [
+     "h",
+     "Moriah -"
+    ],
+    [
+     "p",
+     "\"The Nelson-Atkins Museum is my favorite thing about Kansas City - the best part about it is it’s FREE! I love immersing myself and stepping into different worlds to almost every continent and every culture within its walls. With over 35,000 works of art, it’s more than just a museum, it’s a community. I’ve been missing their events like Third Thursday’s and rotating exhibitions and am looking forward to going back once it reopens as a great unlimited source of inspiration :) . . ."
+    ],
+    [
+     "p",
+     "Other things I love: Stockyards, First Fridays, Green Lady Lounge *jazzzy*, Messenger Coffee Co., the KC Streetcar, Il Lazzarone Pizzeria, Tribe’s Nachos *life-changing, Farmer’s Market, Harry’s :P, Valhalla, KC Daquiri Shop...\""
+    ],
+    [
+     "h",
+     "Amy -"
+    ],
+    [
+     "p",
+     "\"My favorite thing about Kansas City is the local food, wine, and craft beverage scene. There are so many restaurants to choose from with a variety of cultures, tastes, flavors, and options for literally everyone. When you think of Kansas City, you should think of BBQ, but there’s just so much more. I'm a Kansas City kid, born and raised. While I love traveling and exploring the great outdoors, KC always pulls me back home..."
+    ],
+    [
+     "h",
+     "Here's a mix of both my fav kc foodie spots + places i'd like to visit soon"
+    ],
+    [
+     "li",
+     "Betty Rae’s Ice Cream"
+    ],
+    [
+     "li",
+     "Made in KC"
+    ],
+    [
+     "p",
+     "Stockyards Brewing Co."
+    ],
+    [
+     "p",
+     "Ruby Jeans Juicery"
+    ],
+    [
+     "p",
+     "Blue Sushi"
+    ],
+    [
+     "p",
+     "Jones Bar-B-Q"
+    ],
+    [
+     "p",
+     "Cafe Gratitude"
+    ],
+    [
+     "p",
+     "Cake-A-Boo!"
+    ],
+    [
+     "p",
+     "Novel"
+    ],
+    [
+     "p",
+     "Q39"
+    ],
+    [
+     "p",
+     "Parlor"
+    ],
+    [
+     "p",
+     "Joe’s KC"
+    ],
+    [
+     "p",
+     "CA/VA"
+    ],
+    [
+     "p",
+     "Westport Café"
+    ],
+    [
+     "p",
+     "Town - Topic Hamburgers"
+    ],
+    [
+     "p",
+     "Harry’s Country Club"
+    ],
+    [
+     "p",
+     "Beer Kitchen"
+    ],
+    [
+     "p",
+     "All the rest of the places in KC basically.\""
+    ],
+    [
+     "p",
+     "Learn about the Father of Kansas BBQ, Henry Perry, here."
+    ],
+    [
+     "p",
+     "Wear a mask. Stay safe. Have an amazing 816 Day."
+    ]
+   ]
+  },
+  {
+   "old": "yoodle-education-services-x-umkc",
+   "slug": "yoodle-education-services-x-umkc",
+   "title": "Yoodle Education Services x UMKC",
+   "date": "2020-07-17",
+   "blocks": [
+    [
+     "p",
+     "This episode is the third and final installment of our series on YES = Yoodle Education Services. Listen as we chat with Christina Davis, Director of Continuing Education, at UMKC's School of Computing and Engineering, and learn more about the university's involvement with our current Technology and Workforce Development initiatives."
+    ],
+    [
+     "p",
+     "Available on Spotify, iTunes, or where ever you listen to your podcasts. Subscribe below!"
+    ],
+    [
+     "p",
+     "Hosted by Shawn Ortega"
+    ]
+   ]
+  },
+  {
+   "old": "welcome-breast-imaging-professional-dr-amy-patel",
+   "slug": "welcome-breast-imaging-professional-dr-amy-patel",
+   "title": "We've teamed up with Leading Breast Imaging Professional, Dr. Amy K. Patel",
+   "date": "2020-07-15",
+   "blocks": [
+    [
+     "p",
+     "Welcome to the Yoodle Content Experience - Amy Patel, MD"
+    ],
+    [
+     "p",
+     "We are both excited and honored to partner with Leading Breast Health Professional, Amy Patel, MD, to build her brand, design her website, and further curate her already strong digital presence in breast health!"
+    ],
+    [
+     "p",
+     "Dr. Amy Patel is a Board Certified, Breast Imaging Fellowship Trained Radiologist and Medical Director of the Women’s Imaging Center at Liberty Hospital. She is also a partner with Alliance Radiology and additionally serves as a Clinical Assistant Professor at the University of Missouri-Kansas City School of Medicine - Department of Radiology."
+    ],
+    [
+     "p",
+     "Hailing from Chillicothe, MO,  Dr. Amy Patel is a leading women's breast health advocate who is striving to ensure that rural area patients have access-to-care and receive the same quality standard as those patients in urban areas. As an expert in 3D Mammography and AI Breast Ultrasound, Dr. Amy Patel continuously strives to bring the best of technology and medicine to her practice."
+    ],
+    [
+     "p",
+     "Not only does she serve as a YPS Chair of the American College of Radiology but is she is also an Associate Editor Digital Media for the Journal of the American College of Radiology. Her expertise in the field of Breast Imaging has made her stand out as a distinguished public speaker and leading advocate for Women's Breast Health."
+    ],
+    [
+     "p",
+     "\"There is not enough focus on women's health - specifically, KC is in great need of an advocate for breast health.\""
+    ],
+    [
+     "h",
+     "- Amy Patel, MD"
+    ],
+    [
+     "p",
+     "When Amy isn't curating thought-leading discussions or passionately advocating for women's breast health and legislation, she enjoys cheering on the Kansas City Chiefs, spending time with her family, and being at the lake!"
+    ],
+    [
+     "p",
+     "Is there really anything she can't do? No - the answer is no!"
+    ],
+    [
+     "p",
+     "Head to her page to check out her latest innovations in Breast Imaging, AI Breast Ultrasound, and Women's Health: Twitter | Instagram | Facebook"
+    ],
+    [
+     "p",
+     "Building Brands that Speak since 2007."
+    ]
+   ]
+  },
+  {
+   "old": "the-father-of-kansas-city-bbq-henry-perry",
+   "slug": "the-father-of-kansas-city-bbq-henry-perry",
+   "title": "The Father of Kansas City BBQ - Henry Perry",
+   "date": "2020-07-02",
+   "blocks": [
+    [
+     "p",
+     "The BBQ Pitmaster that Started it All in KC"
+    ],
+    [
+     "p",
+     "Before the BBQ greats like Ollie Gates and Arthur Bryant reigned the OG pitmaster, the King of KC BBQ himself, Henry Perry. Henry Perry was an American chef and BBQ restaurateur in Kansas City, Missouri in the early 1900s. He was called the \"Father of Kansas City Barbecue\" and for good reasons too."
+    ],
+    [
+     "p",
+     "Perry was born in Tennessee, near Memphis, and worked on steamboat restaurants on the Mississippi River and Missouri River before moving to Kansas City, Missouri in 1907."
+    ],
+    [
+     "p",
+     "He started his business by selling barbecue from a pushcart. After growing in popularity he later opened “Perry’s Barbecue” restaurant in the Garment District of KC at the corner of 19th and Highland. Perry sold traditional smoked meats, wrapped in paper, but also served up a few peculiar items as well like opossum, groundhog, and coon."
+    ],
+    [
+     "p",
+     "Not only was Perry known for his amazing barbecue, but he was also known for his compassion for the less fortunate. On July 3rd, 1920 he fed 1,000 Kansas Citians for free, yes you read that right, FREE. All elderly members of the community were invited, as well as women and children, and the guests ate on the lawn outside his restaurant. The KC Sun newspaper ran an article on Perry's Free Barbecue Dinner further showcasing his generosity in the local KC community. It read, \"Tables will be spread on the lawn and all who come will be served to their heart's content.\""
+    ],
+    [
+     "p",
+     "When asked \"why?\" Perry said,"
+    ],
+    [
+     "p",
+     "God has been so good to me."
+    ],
+    [
+     "p",
+     "After Perry's death, in 1940, Charlie Bryant took over Perry's Barbecue and later sold it to his brother Arthur Bryant, curator of the famous KC BBQ restaurant Arthur Bryant's Barbecue. Ollie Gates, an old employee of Perry, later went on to create Gates Barbecue - another KC staple. It's no wonder where the KC BBQ greats learned it all from."
+    ],
+    [
+     "p",
+     "Exactly 100 years after Perry’s generous act local KC businesses, like Joe's KC and Jones BBQ, are teaming up to honor his memory. Kansas City Barbeque Society CEO, Emily Detwiler, explains that on July 3, 2020, they will be cooking up 1,000 meals and distributing them to 10 different non-profit organizations that serve under-served communities around Kansas City."
+    ],
+    [
+     "p",
+     "Mayor Quinton Lucas has also designated July 3rd as “Henry Perry Day”, in Kansas City, in honor of the Father of Kansas City Barbecue. Celebrate July 3rd by grabbing some KC BBQ and giving back to the KC community!"
+    ],
+    [
+     "p",
+     "Kansas City BBQ is a staple across the Midwest and will forever be on the map for amazing BBQ and legends like Henry Perry."
+    ]
+   ]
+  },
+  {
+   "old": "yoodle-education-services-x-fec-kc",
+   "slug": "yoodle-education-services-x-fec-kc",
+   "title": "Yoodle Education Services x FEC KC",
+   "date": "2020-06-25",
+   "blocks": [
+    [
+     "p",
+     "Let's keep the conversation going about YES (Yoodle Education Services) our new agency program that creates opportunity for the local community to invest in their own future!"
+    ],
+    [
+     "p",
+     "Special guests James Bryant, Director of Career Services, and Rohina Behrmann, Director of Employer Services, of The Full Employment Council join us as we discuss their roles in business and industry in Missouri."
+    ],
+    [
+     "p",
+     "Together they create and implement training programs that are employer centered, to support industry needs, as well as providing support to the willing and eager workforce in Missouri. Their goal is to get individuals \"skilled up\" so that they can succeed on the job."
+    ],
+    [
+     "p",
+     "Hosted by Shawn Ortega"
+    ]
+   ]
+  },
+  {
+   "old": "reset",
+   "slug": "reset",
+   "title": "RESET",
+   "date": "2020-06-17",
+   "blocks": [
+    [
+     "h",
+     "| RESET |"
+    ],
+    [
+     "p",
+     "Sweeping our path on the wood floor as we make our way out of the house, the last remaining box under one arm, counterbalanced by random belongings and keys in the opposite hand. As we pull the door shut and lock it for the final time, our three-year stay has come to an end. Symbolic in a sense; the closing of one door at this particular location and the open road providing the path to the next. The paradox is fitting. A door’s representation hinges on which side we are standing. It functions the same way every encounter, always opening in a set direction, but our physical position deems its use as an entrance or an exit."
+    ],
+    [
+     "p",
+     "Looking back, it was truly a blur. Like most things in life, time seemed to move slower when we focused on it. The experiences, the newness, the friendships; these are the things that made our move out East pass by with ease. I remember our first concert in the city - surrounded by an unfamiliar amount of concrete, strangers, sirens, and local (to us) brews. My initial reaction of regret faded in and out, harmonizing in a sense, with the whaling sounds of first responders. The un-comfort was slowly dulled by another midwest beer. It wasn’t long before the show started and Jack Garrat would set the stage for the opening act in our new home. I’ve always viewed life through song lyrics and this time was no exception. An undiscovered artist relayed a familiar message, in a new tune; surprise yourself."
+    ],
+    [
+     "p",
+     "For me, the ‘last’ always tend to overshadow the ‘first’. Usually, because the emotions feel heavier as you walk away- you’ve invested time, grown and expanded, and also got set in a routine. Even if you hadn’t realized it. Distance may make the heart grow fonder, but that 1,200-mile car ride back to Kansas City also made my appreciations run deeper."
+    ],
+    [
+     "p",
+     "Somewhere through the mountains in Pennsylvania and the arch is St. Louis, my eagerness to get home took a back seat. Pun intended. “We’re going home for good”, I thought."
+    ],
+    [
+     "p",
+     "Moving’s always an adjustment. For us, it was cathartic in a sense because we decided to purge a majority of our belongings. Part of it was out of necessity because we had just acquired too much stuff over the years. The other part was because we rented the smallest pod possible and our bed took up a quarter of its square footage. In any case, we subscribed to the belief that less was more and for the most part, that would prove to be true."
+    ],
+    [
+     "p",
+     "We’ve been back for half a year already. Less belongings, more space, and still a box or two away from being fully settled. The truth is, personally, I left a lot more than old sneakers, yard tools, and my guitar at the donation center back East. Somewhere in between the search to find a new house, annoying (and assisting) my wife, with her job search, and saying goodbye to clients I’d spend the past two years with, my daily routine was collecting dust."
+    ],
+    [
+     "p",
+     "Constant journaling, occasional reading, consistent meditation, and challenging workouts were nowhere to be found. And still aren't. I could insert a motivational quote here, something about how great the bounce-back can be, but I’ll pass on that bite. Instead, I’ll leave it at this; in a sense, what I have is nothing. But ironically, that’s exactly what I need. Nothing (minimal exercise equipment, lack of daily balance, fading habits) is the starting point. The new door. And I know with this new unfamiliarity, more memories await."
+    ],
+    [
+     "p",
+     "Written by Shawn Ortega."
+    ],
+    [
+     "p",
+     "“Speak and open up your mind/ It’s something you should do all the time."
+    ],
+    [
+     "p",
+     "Keep exploring, seek and find/ You know you might surprise yourself” - Jack Garratt"
+    ]
+   ]
+  },
+  {
+   "old": "welcome-to-our-new-website",
+   "slug": "welcome-to-our-new-website",
+   "title": "Welcome to Our New Website",
+   "date": "2020-05-20",
+   "blocks": [
+    [
+     "h",
+     "Technology x Design"
+    ],
+    [
+     "p",
+     "We are beyond excited to announce the launch of our new website! Our web developers, graphic designers, and content creators have put love, sweat, but no tears into this project. We are very proud of everyone’s contributions to this new site and invite you to explore it. This new site helps showcase the ways we’ve been able to help our clients and it’s been very humbling and rewarding. We are fortunate to have such talented creators on our team!"
+    ],
+    [
+     "p",
+     "Our goal with this new website is to provide our visitors with a visual representation of our services and solutions that we offer to both our current and prospective clients as well. Head over to our About Us page to check out our tight knit fam and read more about Yoodle culture."
+    ],
+    [
+     "p",
+     "Our pages and navigation are streamlined and easy to find. Our Work and the projects we have produced for our clients include a variety of information such as mockups, brand books, challenges, and solutions."
+    ],
+    [
+     "p",
+     "Podcasts and blogs will be shared on our Soapbox, showcasing everything from news and updates to client success stories. Make sure to subscribe to our podcast ‘Brands That Speak‘ on Spotify, iTunes, or wherever you get your podcasts!"
+    ],
+    [
+     "p",
+     "So, take a look around, and drop us a line if you have any questions!"
+    ]
+   ]
+  },
+  {
+   "old": "yoodle-education-services",
+   "slug": "yoodle-education-services",
+   "title": "Yoodle Education Services = YES",
+   "date": "2020-05-01",
+   "blocks": [
+    [
+     "h",
+     "Workforce Development x Opportunity"
+    ],
+    [
+     "p",
+     "Through a collaborative partnership with the Full Employment Council of Kansas City, MO (FEC) and The University of Missouri Kansas City (UMKC), Yoodle Education Services (YES) successfully launched the first course (Coding Academy) at the start of 2020 and is now adding two (2) new Web Developer cohorts to kick-off April 20 and 23, 2020."
+    ],
+    [
+     "p",
+     "The workforce development courses are structured to provide real-world training to members of the Kansas City community for in-demand career fields such as Web Development, Computer Science, Information Technology, and more."
+    ],
+    [
+     "p",
+     "“We have pivoted from on-campus to virtual classrooms and will continue moving forward with new classes starting right away. It is critical now more than ever that we strive to provide Kansas Citians with access to quality instruction,” said Christina Davis, Director of Continuing Education at UMKC’s School of Computing and Engineering."
+    ],
+    [
+     "p",
+     "Not only do participants receive instruction from industry-leading professionals, they are also awarded a certificate of completion issued by UMKC upon conclusion of the course."
+    ],
+    [
+     "p",
+     "This educational endeavor is completely debt-free to the student, including class materials, laptops, and access to the required software and even a campus parking-pass - when classes return to campus."
+    ],
+    [
+     "p",
+     "Even in the midst of today’s turbulent times, the future is full of rewarding career opportunities and success is just on the other side."
+    ],
+    [
+     "p",
+     "Two new courses start next month - Web Developer Fundamentals and Full Stack Web Developer Course. Capacity is limited so inquire today."
+    ],
+    [
+     "p",
+     "For more information or to enroll contact the FEC at (816) 471-2330 | Or visit: http://codingacademy.feckc.org/"
+    ]
+   ]
+  },
+  {
+   "old": "adapting-the-agency-during-the-covid-19-pandemic",
+   "slug": "adapting-the-agency-during-the-covid-19-pandemic",
+   "title": "Adapting the Agency during the COVID-19 Pandemic",
+   "date": "2020-04-03",
+   "blocks": [
+    [
+     "p",
+     "What our team has been up to during #quarantine"
+    ],
+    [
+     "p",
+     "2020 started off strong. We had recently brought on three new team members and expanded operations into Austin, Texas. The Kansas City Chiefs won the Super Bowl. Our Account Director welcomed her baby girl into the world. We kick-started our workforce development project through YES (Yoodle Education Services). We were on a roll...and then a the COVID-19 pandemic happened."
+    ],
+    [
+     "p",
+     "We certainly couldn’t have planned for it, but we knew that we needed to pivot quickly, to assist our clients during these uncertain times. With businesses moving rapidly to online services, digital marketing and having an optimal online presence is extremely important."
+    ],
+    [
+     "p",
+     "Yoodle is still open and operating, even while working from home, to serve and assist our clients with their needs and helping them to ramp up their online marketing. Our team wanted to share all of the ways that we are staying active in the agency and connected with our clients."
+    ],
+    [
+     "h",
+     "Weekly Production & Client Meetings"
+    ],
+    [
+     "p",
+     "Our team has moved to Zoom meetings to help us keep in touch. We’ve moved our weekly production and podcast planning meetings online and are keeping everything organized virtually. This time spent away from the office has challenged us to re-think the way we communicate and think outside of the box. We’ve also moved our client meetings online so that we can keep track of their evolving needs as we navigate this pandemic together. Our team has also gotten to show off our home-office setups and new quarantine roommates a.k.a. Dogs, cats, fish, and a tortoise."
+    ],
+    [
+     "h",
+     "Producing in the Office & at Home"
+    ],
+    [
+     "p",
+     "Our leaders have graciously allowed us to set up shop at home and with our work equipment so that we social distance. Also, our President has been frequently working out of our office to make sure it stays safe and sound. We have also been able to record our Podcasts, while keeping 6 feet apart, in the office and have used Zoom for our virtual guest speakers. We have, however, moved our styled photoshoots to home or in outdoor spaces! When and if we need it, our office space is open to us, as long as we are responsible and considerate of others’ space and health."
+    ],
+    [
+     "h",
+     "Virtual Happy Hours & Hangouts"
+    ],
+    [
+     "p",
+     "We LOVE food here at Yoodle, and we enjoy trying new restaurants together while we celebrate birthdays and other new achievements. We’ve implemented virtual happy hours every Friday (with adult beverage or not) to catch up with each other. Generally, we have a fun theme and take screenshots to save for future meme-making. Enjoying a drink with the Yoodle fam is a nice way to end a long week of quarantine and a job well done."
+    ],
+    [
+     "p",
+     "While we can’t wait to be back in the office, collaborating with each other in person, right now we adapt and evolve. Keeping our team and family safe is of the utmost importance to our Chief Officers and Directors. We will continue to keep our culture alive and continue to go above and beyond for our clients."
+    ],
+    [
+     "p",
+     "Stay safe and see you soon."
+    ]
+   ]
+  },
+  {
+   "old": "yoodle-puts-boots-on-the-ground-in-texas",
+   "slug": "yoodle-puts-boots-on-the-ground-in-texas",
+   "title": "Yoodle puts Boots on the Ground in Texas",
+   "date": "2020-02-14",
+   "blocks": [
+    [
+     "h",
+     "KC x ATX"
+    ],
+    [
+     "p",
+     "In November of last year, we welcomed Alysha Daicy to the team as our new Business Development Manager! Even though she’s over 700 miles away in Austin, Texas our new partnership has opened up a new chapter of opportunity for our agency."
+    ],
+    [
+     "p",
+     "Alysha has traveled around the U.S. and has extensive experience in Sales and Client Relationship building which makes her a perfect addition to our Business Development team."
+    ],
+    [
+     "p",
+     "Working Remotely in Texas, while everyone else is in Kansas City"
+    ],
+    [
+     "p",
+     "Alysha is originally from Kansas City but met our President and CXO Tim McCoy back in 2011. As Business Development Manager, she’s responsible for generating new business for the agency!"
+    ],
+    [
+     "p",
+     "Yoodle is a contract holder, and pre-approved vendor, with the DIR (Department of Information Resources) in Texas. This allows us the opportunity to provide Technical Product Development and Creative Services to Government Departments, Higher Education, and Non-profit Organizations in Texas and surrounding states. This process makes it more convenient for these organizations as they can bypass the hassles of searching and vetting and work directly with us if they choose!"
+    ],
+    [
+     "p",
+     "Alysha continues to build relationships with clients from the ground up, but it helps that the people of Austin are super friendly and welcoming!"
+    ],
+    [
+     "h",
+     "Fun Facts about Alysha"
+    ],
+    [
+     "p",
+     "She’s been a proud Pitbull mama for 17 years, and is an advocate for the breed."
+    ],
+    [
+     "p",
+     "She was in real estate for 12 years before joining Yoodle"
+    ],
+    [
+     "p",
+     "She’s lived in KC, Vegas, Scottsdale, Philly, and Austin."
+    ],
+    [
+     "p",
+     "She’s a self-taught artist and started painting in 2015"
+    ],
+    [
+     "p",
+     "She used to bartend at boulevard brewery events as a side hustle and became a total beer snob.The KC x ATX Experience"
+    ],
+    [
+     "p",
+     "We work with a diverse mix of businesses and our past projects give us the flexibility and resources to help clients with what they really need: customized solutions to their marketing, creative, and technical needs."
+    ],
+    [
+     "p",
+     "Q: What advice would you give to someone who was looking for our services in Texas, but knew we were located in Missouri?"
+    ],
+    [
+     "p",
+     "A: Connect with us! We work with different businesses across the country, and even though we’re based in KC it doesn’t limit us to offer phenomenal service!"
+    ],
+    [
+     "p",
+     "Alysha is obviously a great addition to our team! If you haven’t met her yet, be sure to drop her a line, or ask her about what services we can help your brand with. We’re super excited to have her on the team as we excel operations forward in Texas."
+    ],
+    [
+     "p",
+     "Check out Alysha's artwork | @alyshadaicyart"
+    ],
+    [
+     "p",
+     "Listen to the first full interview with Alysha Daisy on our Podcast Brands That Speak | Available on Spotify, iTunes, or where ever you get your podcasts!"
+    ]
+   ]
+  },
+  {
+   "old": "content-studio",
+   "slug": "content-studio",
+   "title": "Yoodle moves to River Market",
+   "date": "2020-01-12",
+   "blocks": [
+    [
+     "p",
+     "New Neighborhood, Who's This?"
+    ],
+    [
+     "p",
+     "Yoodle crossed state line and moved from Kansas over to Missouri into the Historic River Market early summer of 2019. We have been fortunate to have our home base in the heart of America, giving us convenient access to our customers all across the country."
+    ],
+    [
+     "p",
+     "Our team has taken on some projects to make the space extra customized and we make sure to #yoodle-ize all of the space. Including our Lead Designer Mollie’s amazing accent wall that greets you when you get to the top of the stairs!"
+    ],
+    [
+     "p",
+     "With exposed brick and natural wood, our office has an inviting feel. Its open-air floor plan leaves plenty of room for creativity to flow!"
+    ],
+    [
+     "p",
+     "Our Content Studio is adorned with three different background walls, perfect for styled shoots, and is also set up for recording podcasts and shooting video. We’ve got lots of space to brainstorm, strategize, and discover in our spacious conference space."
+    ],
+    [
+     "p",
+     "The River Market with its diverse shops and restaurants has allowed us to not only support local businesses but has also brought us closer to the access points that connect us to Downtown KC, the Northland, South Plaza, and beyond!"
+    ],
+    [
+     "p",
+     "We serve a variety of clients across a number of industries—from international companies and nonprofits to startups and government organizations —giving us unique perspectives into the technologies and solutions that can transform businesses in today’s continually evolving market."
+    ]
+   ]
+  },
+  {
+   "old": "brands-that-speak-is-now-yoodle",
+   "slug": "brands-that-speak-is-now-yoodle",
+   "title": "Brands That Speak is now Yoodle",
+   "date": "2019-12-11",
+   "blocks": [
+    [
+     "p",
+     "Allow us to reintroduce ourselves, the name is Yoodle."
+    ],
+    [
+     "p",
+     "Content experience agency, Brands That Speak has been acquired by enterprise technology firm, Yoodle."
+    ],
+    [
+     "p",
+     "Brand strategy and design firm, Brands That Speak, announced publicly on January 1st, 2020 that they have merged with Yoodle® an enterprise technology firm that provides custom digital development - everything from websites to ERP solutions, from artificial intelligence to big data solutions."
+    ],
+    [
+     "p",
+     "The merger allows Brands That Speak’s strong local presence within the small business and nonprofit community to become amplified through Yoodle’s national notoriety with Education, Nonprofit and Government."
+    ],
+    [
+     "p",
+     "This strategic partnership allows the agency to offer a comprehensive content experience to clients including, but not limited to: Website Design, Logo & Branding, Video Production, Content Management Systems, eCommerce, Search Engine Optimization, Marketing Automation, Digital Strategy, Mobile App Development, Enterprise Applications, and Content Marketing."
+    ],
+    [
+     "p",
+     "The agency remains in its downtown combined offices in the River Market area of Kansas City, MO. Brands That Speak, now Yoodle, is committed to serving their clients and customers to provide them with unparalleled customer service to make sure that they can concentrate on things that matter to them – cater to their customers’ needs."
+    ]
+   ]
+  }
+ ]
+}
