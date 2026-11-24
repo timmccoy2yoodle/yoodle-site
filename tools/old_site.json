@@ -1271,7 +1271,38 @@
      "More than a website, the Yoodle design team tackled building a brand for the Supreme Court of Kansas. This system involved a classic typeface with multiple seals to help identify the various courts and entities within the judicial system"
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/kansas-judicial-branch/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/kansas-judicial-branch/1.webp",
+     "w": 1600,
+     "h": 1067,
+     "cover": false
+    },
+    {
+     "src": "/img/work/kansas-judicial-branch/2.webp",
+     "w": 1600,
+     "h": 501,
+     "cover": false
+    },
+    {
+     "src": "/img/work/kansas-judicial-branch/3.webp",
+     "w": 1000,
+     "h": 312,
+     "cover": false
+    },
+    {
+     "src": "/img/work/kansas-judicial-branch/5.webp",
+     "w": 1000,
+     "h": 312,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "wentworth",
@@ -1294,7 +1325,32 @@
      "It's always a great experience when you get the opportunity to work with your industry peers. In this case, our client partner leads the content marketing space for companies in the financial services industry. Great content makes our design shine."
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/wentworth-financial-communications/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/wentworth-financial-communications/1.webp",
+     "w": 1000,
+     "h": 667,
+     "cover": false
+    },
+    {
+     "src": "/img/work/wentworth-financial-communications/2.webp",
+     "w": 1584,
+     "h": 396,
+     "cover": false
+    },
+    {
+     "src": "/img/work/wentworth-financial-communications/3.webp",
+     "w": 1000,
+     "h": 1000,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "scopifi",
@@ -1325,7 +1381,32 @@
      "We are proud to reintroduce VeriProcess as Scopifi. This brand has taken the same values of customer service, cost savings, and transparency and applied them to a new vision for a company driven by technology and customer experience."
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/scopifi/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/scopifi/1.webp",
+     "w": 792,
+     "h": 612,
+     "cover": false
+    },
+    {
+     "src": "/img/work/scopifi/2.webp",
+     "w": 1500,
+     "h": 500,
+     "cover": false
+    },
+    {
+     "src": "/img/work/scopifi/5.webp",
+     "w": 792,
+     "h": 472,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "comp-con",
@@ -1356,7 +1437,26 @@
      "Competitive and benchmark research tunred up a big fat goose egg, as there were no other brands to lead the charge for the new direction...except one...Comic Con. Thus the internal project name was created - Comp Con - which led to something greater...National Comp."
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/national-comp/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/national-comp/1.webp",
+     "w": 1000,
+     "h": 702,
+     "cover": false
+    },
+    {
+     "src": "/img/work/national-comp/2.webp",
+     "w": 1600,
+     "h": 848,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "iiao",
@@ -1380,7 +1480,26 @@
      "The International Association of Assessing Officers is known for the quality and dedication of the work that their members do across the world. We wanted to build a user experience that highlighted that passion as well as reward them with effortless navigation and inteteraction as members used the 1000+ page website to better themselves in their profession."
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/iaao/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/iaao/1.webp",
+     "w": 1600,
+     "h": 1068,
+     "cover": false
+    },
+    {
+     "src": "/img/work/iaao/2.webp",
+     "w": 750,
+     "h": 356,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "independence-square",
@@ -1419,7 +1538,26 @@
      "our team executed a kinetic sytem that stems from the physical structure to the inate culture, creating a brand that represents and will grow with the historic downtown area"
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/independence-square/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/independence-square/1.webp",
+     "w": 1600,
+     "h": 900,
+     "cover": false
+    },
+    {
+     "src": "/img/work/independence-square/2.webp",
+     "w": 1600,
+     "h": 509,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "kc-parks",
@@ -1451,7 +1589,26 @@
      "Throughout the years, our agency built upong the established brand equity of Parks & Recreation. As the brand of the city Kansas City grew, so did Parks."
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/kc-parks/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/kc-parks/1.webp",
+     "w": 1400,
+     "h": 760,
+     "cover": false
+    },
+    {
+     "src": "/img/work/kc-parks/2.webp",
+     "w": 1200,
+     "h": 751,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "thprd",
@@ -1483,7 +1640,26 @@
      "Digital may feel like everything these days, but a symbiotic approach to offline marketing and promotion is almost always required when building a parks and recreation department or district brand."
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/thprd/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/thprd/1.webp",
+     "w": 1600,
+     "h": 1067,
+     "cover": false
+    },
+    {
+     "src": "/img/work/thprd/3.webp",
+     "w": 1600,
+     "h": 900,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "chaz",
@@ -1502,7 +1678,26 @@
      "chaz logo refresh"
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/chaz-on-the-plaza/0.webp",
+     "w": 1600,
+     "h": 1177,
+     "cover": true
+    },
+    {
+     "src": "/img/work/chaz-on-the-plaza/1.webp",
+     "w": 1382,
+     "h": 922,
+     "cover": false
+    },
+    {
+     "src": "/img/work/chaz-on-the-plaza/5.webp",
+     "w": 784,
+     "h": 705,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "variety-kc",
@@ -1543,7 +1738,32 @@
      "Variety the Children’s Charity was founded in the entertainment industry. Each year we pay tribute to our heritage with The Variety Show. An evening featuring a variety of entertainment. Eat and drink fabulous food and drink, while Variety Kids and their stories will fill your hearts."
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/variety-kc/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/variety-kc/1.webp",
+     "w": 1000,
+     "h": 667,
+     "cover": false
+    },
+    {
+     "src": "/img/work/variety-kc/2.webp",
+     "w": 899,
+     "h": 600,
+     "cover": false
+    },
+    {
+     "src": "/img/work/variety-kc/5.webp",
+     "w": 500,
+     "h": 500,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "marc-headstart",
@@ -1587,7 +1807,26 @@
      "with a strong palette, new brands can achieve their goals"
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/marc-head-start/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/marc-head-start/1.webp",
+     "w": 1167,
+     "h": 778,
+     "cover": false
+    },
+    {
+     "src": "/img/work/marc-head-start/2.webp",
+     "w": 1600,
+     "h": 571,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "together-kc",
@@ -1650,7 +1889,26 @@
      "Endorsements"
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/together-kc/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/together-kc/1.webp",
+     "w": 1200,
+     "h": 800,
+     "cover": false
+    },
+    {
+     "src": "/img/work/together-kc/3.webp",
+     "w": 1080,
+     "h": 1080,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "kc-global-design",
@@ -1711,7 +1969,26 @@
      "Filterable and categorized project system"
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/kc-global-design/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/kc-global-design/1.webp",
+     "w": 1080,
+     "h": 1080,
+     "cover": false
+    },
+    {
+     "src": "/img/work/kc-global-design/2.webp",
+     "w": 1080,
+     "h": 1080,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "kc-rising",
@@ -1775,7 +2052,26 @@
      "Custom embedded forms"
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/kc-rising/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/kc-rising/2.webp",
+     "w": 1080,
+     "h": 1080,
+     "cover": false
+    },
+    {
+     "src": "/img/work/kc-rising/3.webp",
+     "w": 1080,
+     "h": 1080,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "cliffs-taphouse",
@@ -1807,7 +2103,26 @@
      "The primary logo for Cliff's Taphouse brand was inspired by the hand-written signatures from old photos provided to us of our client's family. Grandpa Cliff was a Chicago police officer circa 1960s, and was a frequent at the neighborhood hang. A small, quaint bar serving local food and drinks. A place that brought the community together. The velvety color palette feels modern vintage, and the yellow archway logo and pattern was inspired by the architectural details in the facade of the building. It also represents the idea that this local spot radiates out to the community and welcomes all enter their doors with fresh food & a cheers!"
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/cliffs-taphouse/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/cliffs-taphouse/1.webp",
+     "w": 1600,
+     "h": 1067,
+     "cover": false
+    },
+    {
+     "src": "/img/work/cliffs-taphouse/2.webp",
+     "w": 1600,
+     "h": 1067,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "dr-amy-k-patel",
@@ -1848,7 +2163,26 @@
      "yoodle art directed and shot a full-day photoshoot for Dr. Amy so that she could have content for her social media page and new website. We visited multiple locations throughout the KC area including the Cancer Survivor's Park & the hospital that Dr. Amy was practicing at where she displayed her white coat and professionalism; Union Station and City Hall to hint to Dr. Amy's work in writing legislature, and some other outdoor / market areas for lifestyle type photos and casual outfits. All of these photos work together on the various platforms to tell the story of who Dr. Amy K. Patel is and all of the amazing work she is doing."
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/dr-amy-k-patel/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/dr-amy-k-patel/1.webp",
+     "w": 1200,
+     "h": 628,
+     "cover": false
+    },
+    {
+     "src": "/img/work/dr-amy-k-patel/3.webp",
+     "w": 1000,
+     "h": 460,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "jwr-architecture",
@@ -1881,7 +2215,26 @@
      "The results find balance in the harmonious blend of form and function. The brand resides outside of any specific historic context, but still fits beautifully in a contemporary setting. These definitive characteristics were pulled from Joe’s personal taste in architecture and design. The brand communicates a sense of sophistication and professionalism; two important prerequisites for entrusting someone to design your living and/or working space."
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/jwr-architecture/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/jwr-architecture/1.webp",
+     "w": 851,
+     "h": 315,
+     "cover": false
+    },
+    {
+     "src": "/img/work/jwr-architecture/3.webp",
+     "w": 1000,
+     "h": 562,
+     "cover": false
+    }
+   ]
   },
   {
    "old": "the-soul-of-santa-2",
@@ -1934,7 +2287,32 @@
      "Social Media —"
     ]
    ],
-   "imgs": []
+   "imgs": [
+    {
+     "src": "/img/work/the-soul-of-santa/0.webp",
+     "w": 1000,
+     "h": 736,
+     "cover": true
+    },
+    {
+     "src": "/img/work/the-soul-of-santa/1.webp",
+     "w": 1080,
+     "h": 1080,
+     "cover": false
+    },
+    {
+     "src": "/img/work/the-soul-of-santa/2.webp",
+     "w": 1447,
+     "h": 143,
+     "cover": false
+    },
+    {
+     "src": "/img/work/the-soul-of-santa/3.webp",
+     "w": 1600,
+     "h": 1171,
+     "cover": false
+    }
+   ]
   }
  ],
  "posts": [
@@ -2072,7 +2450,12 @@
      "p",
      "Whether you want to be an SEO strategist, a digital marketing associate, a social media manager, or more, we want to help you find your place in the digital marketing industry. Whatever you decide, YES can help get you there! Sign up for our info session to learn more about what Digital marketing and Analytics can do for you. “If you're not measuring, you're not marketing!”"
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/find-your-place-in-digital-marketing.webp",
+    "w": 1600,
+    "h": 900
+   }
   },
   {
    "old": "how-to-navigate-through-the-deep-blue-sea-of-web-development",
@@ -2132,7 +2515,12 @@
      "p",
      "Looking at these different possibilities upstream in this industry can help you decide where you could be after taking a web development course.  All of these streams are flowing  because someone has learned web development. It is something that can be obtained with hard work, and dedication. Keep Swimming!"
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/how-to-navigate-through-the-deep-blue-sea-of-web-development.webp",
+    "w": 1600,
+    "h": 1067
+   }
   },
   {
    "old": "y-it-works-gail-anderson",
@@ -2176,7 +2564,12 @@
      "p",
      "Anderson has received countless awards and recognition in her storied career. Among her many awards and accolades, she was notably the first African American winner of the National Design Award for Lifetime Achievement in 2018. Read more about her recognition here."
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/y-it-works-gail-anderson.webp",
+    "w": 1600,
+    "h": 1200
+   }
   },
   {
    "old": "nikkys-pick-poster-project",
@@ -2220,7 +2613,12 @@
      "p",
      "To see the rest of the Pick Posters in the project, visit the Pick Progress Project."
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/nikkys-pick-poster-project.webp",
+    "w": 1600,
+    "h": 1200
+   }
   },
   {
    "old": "chatgpt-the-next-frontier-in-marketing",
@@ -2284,7 +2682,8 @@
      "p",
      "ChatGPT is currently a free to use and preview. Eventually, it will become a paid subscription service but right now is undergoing beta testing and user review. OpenAI offers a few other useful tools we think are noteworthy, including Whisper and DALL·E 2."
     ]
-   ]
+   ],
+   "img": null
   },
   {
    "old": "ga4-migration-gains-and-losses",
@@ -2368,7 +2767,12 @@
      "p",
      "Now that we’ve gotten a little more familiar with GA4 migration, what are we waiting on? Contact us about migrating over."
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/ga4-migration-gains-and-losses.webp",
+    "w": 1600,
+    "h": 1200
+   }
   },
   {
    "old": "celebrating-hispanic-heritage-month",
@@ -2596,7 +3000,12 @@
      "p",
      "Check out our 816 Day or Henry Perry Day blogs for more ways to celebrate the rich history of Kansas City."
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/celebrating-hispanic-heritage-month.webp",
+    "w": 1600,
+    "h": 1200
+   }
   },
   {
    "old": "top-traits-of-a-successful-graphic-designer",
@@ -2812,7 +3221,12 @@
      "p",
      "Listen to Mollie chat more in-depth about her growth and creative process during a pandemic here."
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/top-traits-of-a-successful-graphic-designer.webp",
+    "w": 1600,
+    "h": 1200
+   }
   },
   {
    "old": "variety-kansas-city-and-yoodle-team-up-to-talk-inclusion-in-a-covid-19-world",
@@ -2904,7 +3318,12 @@
      "p",
      "Available on Spotify, iTunes, or where ever you listen to your podcasts!"
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/variety-kansas-city-and-yoodle-team-up-to-talk-inclusion-in-a-covid-19-world.webp",
+    "w": 1080,
+    "h": 1080
+   }
   },
   {
    "old": "816-day-kansas-citys-offical-holiday",
@@ -3112,7 +3531,12 @@
      "p",
      "Wear a mask. Stay safe. Have an amazing 816 Day."
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/816-day-kansas-citys-offical-holiday.webp",
+    "w": 1600,
+    "h": 1600
+   }
   },
   {
    "old": "yoodle-education-services-x-umkc",
@@ -3132,7 +3556,12 @@
      "p",
      "Hosted by Shawn Ortega"
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/yoodle-education-services-x-umkc.webp",
+    "w": 1080,
+    "h": 1080
+   }
   },
   {
    "old": "welcome-breast-imaging-professional-dr-amy-patel",
@@ -3184,7 +3613,12 @@
      "p",
      "Building Brands that Speak since 2007."
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/welcome-breast-imaging-professional-dr-amy-patel.webp",
+    "w": 1600,
+    "h": 1280
+   }
   },
   {
    "old": "the-father-of-kansas-city-bbq-henry-perry",
@@ -3236,7 +3670,12 @@
      "p",
      "Kansas City BBQ is a staple across the Midwest and will forever be on the map for amazing BBQ and legends like Henry Perry."
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/the-father-of-kansas-city-bbq-henry-perry.webp",
+    "w": 1600,
+    "h": 1200
+   }
   },
   {
    "old": "yoodle-education-services-x-fec-kc",
@@ -3260,7 +3699,12 @@
      "p",
      "Hosted by Shawn Ortega"
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/yoodle-education-services-x-fec-kc.webp",
+    "w": 1350,
+    "h": 1080
+   }
   },
   {
    "old": "reset",
@@ -3312,7 +3756,38 @@
      "p",
      "Keep exploring, seek and find/ You know you might surprise yourself” - Jack Garratt"
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/reset.webp",
+    "w": 1600,
+    "h": 1280
+   }
+  },
+  {
+   "old": "png",
+   "slug": "png",
+   "title": "PNG*",
+   "date": "2020-06-12",
+   "blocks": [
+    [
+     "p",
+     "Our Designers Mollie & Moriah (m&m) are keeping it real and transparent in this episode - just like PNG*. Listen as they share stories about their growth as designers and how COVID-19 has affected their creative process."
+    ]
+   ],
+   "img": null
+  },
+  {
+   "old": "unscripted-mental-health-x-covid-19-edition",
+   "slug": "unscripted-mental-health-x-covid-19-edition",
+   "title": "Unscripted - Mental Health x COVID-19 Edition",
+   "date": "2020-06-12",
+   "blocks": [
+    [
+     "p",
+     "Sometimes the hardest thing to do is getting out of your own head. As our team reflects on all of the pain and injustices happening in the world, we recognize that mental health is so important...yet it’s not talked about enough. So, let's talk about it."
+    ]
+   ],
+   "img": null
   },
   {
    "old": "welcome-to-our-new-website",
@@ -3344,7 +3819,12 @@
      "p",
      "So, take a look around, and drop us a line if you have any questions!"
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/welcome-to-our-new-website.webp",
+    "w": 1090,
+    "h": 877
+   }
   },
   {
    "old": "yoodle-education-services",
@@ -3388,7 +3868,12 @@
      "p",
      "For more information or to enroll contact the FEC at (816) 471-2330 | Or visit: http://codingacademy.feckc.org/"
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/yoodle-education-services.webp",
+    "w": 1090,
+    "h": 877
+   }
   },
   {
    "old": "adapting-the-agency-during-the-covid-19-pandemic",
@@ -3444,7 +3929,25 @@
      "p",
      "Stay safe and see you soon."
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/adapting-the-agency-during-the-covid-19-pandemic.webp",
+    "w": 1090,
+    "h": 877
+   }
+  },
+  {
+   "old": "brands-that-speak-the-podcast",
+   "slug": "brands-that-speak-the-podcast",
+   "title": "Brands That Speak - The Podcast",
+   "date": "2020-03-13",
+   "blocks": [
+    [
+     "p",
+     "Welcome to our podcast, Brands That Speak,  where we give a little insight into our goals and objectives of utilizing this medium to help brands tell their story."
+    ]
+   ],
+   "img": null
   },
   {
    "old": "yoodle-puts-boots-on-the-ground-in-texas",
@@ -3528,7 +4031,12 @@
      "p",
      "Listen to the first full interview with Alysha Daisy on our Podcast Brands That Speak | Available on Spotify, iTunes, or where ever you get your podcasts!"
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/yoodle-puts-boots-on-the-ground-in-texas.webp",
+    "w": 1090,
+    "h": 877
+   }
   },
   {
    "old": "content-studio",
@@ -3564,7 +4072,12 @@
      "p",
      "We serve a variety of clients across a number of industries—from international companies and nonprofits to startups and government organizations —giving us unique perspectives into the technologies and solutions that can transform businesses in today’s continually evolving market."
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/content-studio.webp",
+    "w": 1090,
+    "h": 877
+   }
   },
   {
    "old": "brands-that-speak-is-now-yoodle",
@@ -3596,7 +4109,12 @@
      "p",
      "The agency remains in its downtown combined offices in the River Market area of Kansas City, MO. Brands That Speak, now Yoodle, is committed to serving their clients and customers to provide them with unparalleled customer service to make sure that they can concentrate on things that matter to them – cater to their customers’ needs."
     ]
-   ]
+   ],
+   "img": {
+    "src": "/img/soapbox/brands-that-speak-is-now-yoodle.webp",
+    "w": 1090,
+    "h": 877
+   }
   }
  ]
 }

@@ -195,7 +195,6 @@ footer h2{font-size:1rem;letter-spacing:0;color:#fff;margin-bottom:8px;font-fami
 .pick button{min-height:44px;padding:0 14px 0 10px;border:2px solid transparent;border-radius:999px;background:#fff;color:#111;font:inherit;font-weight:600;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
 .pick button[aria-pressed=true]{border-color:#111}
 .pick i{width:20px;height:20px;border-radius:50%;display:inline-block}
-body.test{padding-bottom:64px}
 .cover.ph{padding:0;background:#e9e5dc}
 .cover.ph img,.gal img{width:100%;height:100%;object-fit:cover;display:block}
 .cover.ph::after,.cover.ph::before{display:none}
@@ -389,7 +388,7 @@ def page(path, title, desc, body, schema=None, h_nopop=False, index=True):
 </main>
 {footer()}
 {'' if h_nopop else LEAD}
-{PICK if TEST_BUILD else ''}
+
 <script type="application/ld+json">{json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)}</script>
 <script src="/js/site.js" defer></script>
 </body>
@@ -498,8 +497,8 @@ def project(i, p):
     if p["url"]: facts.append(("Live site", f'<a href="{p["url"]}">{host}</a>'))
     about = f'<p class="lede">{e(p["about"])}</p>' if p["about"] else f'<p class="lede">{e(p["name"])} is a {p["kind"].lower()} produced by Yoodle.</p>'
     need = {"Website": "Yoodle's scope (strategy, design, build, migration, support), launch year, results and a client quote",
-            "Podcast": "exact show name, client, host, episode count, where to listen, cover art and Yoodle's role",
-            "Video and content": "project details from the Drive client folder and the Vimeo links",
+            "Podcast": "exact show name, link, host and cover art",
+            "Video and content": "project details from the client folder: what was produced, how many videos and pages, and when",
             "Project": "year, and whether to keep this project on the new site"}[p["kind"]]
     o = OLD.get(p["slug"])
     story = gal = ""
@@ -513,13 +512,15 @@ def project(i, p):
     if p["kind"] != "Website" and p["features"]:
         feats = feats.replace("On the site.", "What we made.")
     visit = f'<p><a class="btn" href="{p["url"]}">Visit {host}</a></p>' if p["url"] else ""
+    lk = p.get("links") or []
+    if lk: visit = '<p style="display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center">' + f'<a class="btn" href="{lk[0][1]}">{e(lk[0][0])}</a>' + "".join(f'<a class="go" href="{u}">{e(t)}</a>' for t, u in lk[1:]) + "</p>"
     body = f'''<section class="hero"><div class="wrap">{crumbs([("/", "Home"), ("/work/", "Work"), ("", e(p["name"]))])}
 <h1 class="md">{e(p["name"])}.<span class="r">{VERDICT[p["kind"]]}</span></h1>
 <div style="margin-top:clamp(28px,5vw,56px)">{cover(p, lg=True)}</div>
 {"" if cover_img(p) else '<p class="small" style="margin-top:10px">' + confirm("real screenshots of the live site replace this cover" if p["url"] else "images replace this cover once the rest of the backup is brought over") + "</p>"}
 </div></section>
 <section class="tight"><div class="wrap"><dl class="facts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts)}</dl></div></section>
-<section class="tight"><div class="wrap two"><h2>The project.</h2><div>{about}<p>{confirm(need)}</p>{visit}</div></div></section>
+<section class="tight"><div class="wrap two"><h2>The project.</h2><div>{about}{'' if (p['kind'] == 'Podcast' and p['about']) else '<p>' + confirm(need) + '</p>'}{visit}</div></div></section>
 {feats}
 {story}
 {gal}
@@ -548,7 +549,7 @@ def services():
 <li><span class="idx" aria-hidden="true">03</span><h3>Launch it.</h3><p>Tested for accessibility, speed and accuracy before it goes out under your name.</p></li>
 <li><span class="idx" aria-hidden="true">04</span><h3>Hand it over, or run it.</h3><p>We train your team to own it, or we keep running it. Your choice.</p></li></ol></div></section>
 <section class="tight"><div class="wrap two"><h2>Partner with us.</h2><div><p class="lede">Prime contractors and agencies bring Yoodle in for the brand, web, accessibility and content parts of larger public-sector contracts.</p>
-<p>We work to your process, your schedule and your reporting. {confirm("certifications and contract vehicles to list here, such as MBE or DBE status")}</p><p><a class="go" href="/contact/">Talk about teaming.</a></p></div></div></section>
+<p>We work to your process, your schedule and your reporting.</p><p><a class="go" href="/contact/">Talk about teaming.</a></p></div></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
 {closer()}'''
     items = [("/", "Home"), ("", "Services")]
@@ -594,7 +595,7 @@ def content():
 <p class="lede" style="margin-top:32px">The podcasts we produce and publish, and Soapbox, the Yoodle blog.</p></div></section>
 <section class="tight"><div class="wrap"><h2>Our shows.</h2><ul class="grid">{"".join(card(p) for p in shows)}</ul></div></section>
 <section class="dark"><div class="wrap two"><h2>Soapbox.</h2><div><p class="lede">Notes on brand, web, accessibility and AI search for people who answer to the public.</p>
-<p>{confirm("these posts came over as written, 2019 to 2023; tell me which to retire")}</p></div></div>
+</div></div>
 <div class="wrap"><ul class="plist">{"".join(f'<li><span class="small">{x["date"][:7]}</span><a href="/content/{x["slug"]}/">{e(x["title"])}</a></li>' for x in POSTS)}</ul></div></section>
 {closer(a=("Have a show in mind?", "We plan it, produce it and publish it.", "/services/content/", "See content services."))}'''
     its = [("/", "Home"), ("", "Content")]
@@ -606,7 +607,7 @@ def posts():
         dsc = first if len(first) <= 158 else first[:155].rsplit(" ", 1)[0] + "..."
         its = [("/", "Home"), ("/content/", "Content"), ("", x["title"])]
         body = f'''<section class="hero"><div class="wrap">{crumbs([("/", "Home"), ("/content/", "Content"), ("", e(x["title"]))])}
-<p class="tag">Soapbox · {x["date"]}</p><h1 class="md">{e(x["title"])}</h1></div></section>
+<p class="tag">Soapbox · {x["date"]}</p><h1 class="md">{e(x["title"])}</h1>{f'<div class="cover ph lg" style="margin-top:clamp(28px,5vw,56px)"><img src="{x["img"]["src"]}" alt="" width="{x["img"]["w"]}" height="{x["img"]["h"]}"></div>' if x.get("img") else ""}</div></section>
 <section class="tight"><div class="wrap"><article class="post">{rich(x["blocks"])}</article><p style="margin-top:32px"><a class="go" href="/content/">More from Soapbox.</a></p></div></section>
 {closer()}'''
         t = x["title"] + " | Yoodle Soapbox"
@@ -631,7 +632,7 @@ def accessibility():
 <li><span class="idx" aria-hidden="true">03</span><h3>We fix it.</h3><p>In your code and content. No overlay, no widget. {confirm("pricing")}</p></li>
 <li><span class="idx" aria-hidden="true">04</span><h3>Retest and certify.</h3><p>Manual checks, a retest and a conformance report you can show your board or counsel.</p></li></ol></div></section>
 <section class="tight"><div class="wrap two"><h2>Proof.</h2><div><p class="lede">SWIFT Education Center, University of Kansas. Audited, fixed, retested and certified in fall 2026.</p>
-<p><a class="go" href="/work/swift-education-center/">See the project.</a> {confirm("KU sign-off to name the project")}</p></div></div></section>
+<p><a class="go" href="/work/swift-education-center/">See the project.</a></p></div></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}<p class="small" style="margin-top:20px">Sources: U.S. Department of Justice interim final rule, <a href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal Register, April 20, 2026</a>. General information, not legal advice.</p></div></div></section>
 {closer(b=("See our web work.", "Live sites for colleges, courts and agencies.", "/work/", "See the work."))}'''
     its = [("/", "Home"), ("", "ADA website compliance")]

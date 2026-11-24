@@ -106,18 +106,28 @@ add("brous-law", "Brous Law", "business", "https://brouslaw.com/", "Midwest and 
 
 # ---- Podcasts and video (names from Tim, Nov 23; details to confirm)
 SHOWS = [
-    ("black-in-the-middle", "Black in the Middle", "Podcast"),
-    ("the-yoodle-podcast", "The Yoodle Podcast", "Podcast"),
-    ("the-yes-podcast", "The YES Podcast", "Podcast"),
-    ("for-the-kids", "For the Kids", "Podcast"),
-    ("courage-to-talk", "Courage to Talk", "Podcast"),
-    ("american-jazz-museum-podcast", "American Jazz Museum Podcast", "Podcast"),
-    ("the-soul-of-santa-podcast", "The Soul of Santa Podcast", "Podcast"),
+    ("black-in-the-middle", "Black in the Middle", "Podcast", "Kansas City, Missouri",
+     "Black in the Middle is a podcast by three Black friends who grew up in the suburbs. Travis Brown, Herman Watson and Tim McCoy talk through how nature and nurture shaped them, and how to handle cultural bias and differing points of view. Yoodle has produced the show since 2020.",
+     ["More than 120 episodes", "Audio on all major podcast apps", "Video episodes on YouTube", "Social clips on Instagram"],
+     [("Listen to the show", "https://pod.co/black-in-the-middle"), ("Watch on YouTube", "https://www.youtube.com/@blackinthemiddle"), ("Instagram", "https://www.instagram.com/_blackinthemiddle/")]),
+    ("the-big-break", "The Big Break", "Podcast", "American Jazz Museum, Kansas City",
+     "The Big Break is the American Jazz Museum's podcast. Host Dr. Dina Bennett, ethnomusicologist and the museum's executive director, explores jazz history through the stories behind the art: the artists, entrepreneurs and enthusiasts who made it.",
+     ["Seven episodes", "Hosted by Dr. Dina Bennett", "Created by the American Jazz Museum"],
+     [("Listen to the show", "https://pod.co/the-big-break")]),
+    ("encourage-to-talk", "Encourage to Talk", "Podcast", "Fore the Kids Foundation",
+     "Encourage to Talk is a podcast from the Fore the Kids Foundation: adult conversations around youth mental health. Host Haley Prophet talks with parents, advocates and professionals about their experiences and the resources that help.",
+     ["Five episodes", "Hosted by Haley Prophet", "Created by the Fore the Kids Foundation"],
+     [("Listen to the show", "https://pod.co/encourage-to-talk")]),
+    ("the-yoodle-podcast", "The Yoodle Podcast", "Podcast", "", "", [], []),
+    ("the-yes-podcast", "The YES Podcast", "Podcast", "", "", [], []),
+    ("the-soul-of-santa-podcast", "The Soul of Santa Podcast", "Podcast", "", "", [], []),
 ]
-for slug, name, kind in SHOWS:
-    add(slug, name, "content", "", "", "", "", [], kind)
+for slug, name, kind, place, about, feats, links in SHOWS:
+    add(slug, name, "content", "", place, "", about, feats, kind)
+    P[-1]["links"] = links
 add("rio-hondo-college-video", "Río Hondo College video and content", "higher-ed", "", "Whittier, California", "",
     "For Río Hondo College, Yoodle produced video, created content and built pages.", ["Video production", "Content creation", "Page building"], "Video and content")
+P[-1]["links"] = [("Watch the Río Hondo College reel", "https://vimeo.com/1230352325")]
 
 _v = P.pop()
 P.insert([p["slug"] for p in P].index("rio-hondo-college") + 1, _v)

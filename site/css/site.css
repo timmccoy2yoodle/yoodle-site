@@ -152,7 +152,6 @@ footer h2{font-size:1rem;letter-spacing:0;color:#fff;margin-bottom:8px;font-fami
 .pick button{min-height:44px;padding:0 14px 0 10px;border:2px solid transparent;border-radius:999px;background:#fff;color:#111;font:inherit;font-weight:600;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
 .pick button[aria-pressed=true]{border-color:#111}
 .pick i{width:20px;height:20px;border-radius:50%;display:inline-block}
-body.test{padding-bottom:64px}
 .cover.ph{padding:0;background:#e9e5dc}
 .cover.ph img,.gal img{width:100%;height:100%;object-fit:cover;display:block}
 .cover.ph::after,.cover.ph::before{display:none}
