@@ -1,0 +1,48 @@
+# Yoodle
+
+> Yoodle is the content experience agency: brand, web, growth and content for higher education, government, nonprofits and small business. Founded 2007, Kansas City, Missouri. Contact: hello@yoodle.com
+
+## Services
+- [Brand](https://yoodle.com/services/brand/): A brand is finished when your own team can use it without calling us. We get it there.
+- [Interactive](https://yoodle.com/services/interactive/): Websites for organizations that answer to the public. Designed, built, tested and launched.
+- [Growth](https://yoodle.com/services/growth/): Found by people and by AI. Paid, organic and content run as one system and measured against one number.
+- [Content](https://yoodle.com/services/content/): Podcasts, video and writing that people finish. Planned, produced and published on schedule.
+- [ADA website compliance](https://yoodle.com/accessibility/): WCAG 2.1 AA audit, fixes, retest and conformance report.
+- [Fractional marketing leadership](https://yoodle.com/experience/): six-month senior marketing leadership contracts.
+
+## Work
+- [Nevada State University](https://yoodle.com/work/nevada-state-university/): Higher education website, live at https://nevadastate.edu/
+- [San Bernardino Community College District](https://yoodle.com/work/san-bernardino-community-college-district/): Higher education website, live at https://sbccd.edu/
+- [Compton College](https://yoodle.com/work/compton-college/): Higher education website, live at https://compton.edu/
+- [Río Hondo College](https://yoodle.com/work/rio-hondo-college/): Higher education website, live at https://www.riohondo.edu/
+- [Río Hondo College video and content](https://yoodle.com/work/rio-hondo-college-video/): Higher education video and content
+- [UT Austin Extended Campus](https://yoodle.com/work/ut-austin-extended-campus/): Higher education website, live at https://extendedcampus.utexas.edu/
+- [The EARTh Center](https://yoodle.com/work/earth-center/): Higher education website, live at https://earthcntr.org/
+- [Florida State University Career Center](https://yoodle.com/work/fsu-career-center/): Higher education website, live at https://career.fsu.edu/
+- [Cochise College](https://yoodle.com/work/cochise-college/): Higher education website, live at https://www.cochise.edu/
+- [Crowder College](https://yoodle.com/work/crowder-college/): Higher education website, live at https://www.crowder.edu/
+- [Palm Beach State College](https://yoodle.com/work/palm-beach-state-college/): Higher education website, live at https://pbsc.edu/
+- [MiraCosta College](https://yoodle.com/work/miracosta-college/): Higher education website, live at https://miracosta.edu/
+- [Ci3T](https://yoodle.com/work/ci3t/): Higher education website, live at https://www.ci3t.org/
+- [SWIFT Education Center](https://yoodle.com/work/swift-education-center/): Higher education website, live at https://swiftschools.org
+- [Missouri Kinship Navigator](https://yoodle.com/work/missouri-kinship-navigator/): Higher education website, live at https://www.mokin4kid.org/
+- [Kansas Judicial Branch](https://yoodle.com/work/kansas-judicial-branch/): Government website, live at https://kscourts.gov/
+- [Multistate Tax Commission](https://yoodle.com/work/multistate-tax-commission/): Government website, live at https://mtc.gov
+- [NeighborWorks America](https://yoodle.com/work/neighborworks-america/): Government website, live at https://www.neighborworks.org/
+- [KC Streetcar](https://yoodle.com/work/kc-streetcar/): Government website, live at https://kcstreetcar.org/
+- [MARC Head Start](https://yoodle.com/work/marc-head-start/): Nonprofit website, live at https://marcheadstart.org/
+- [Music Theater Heritage](https://yoodle.com/work/music-theater-heritage/): Nonprofit website, live at https://musictheaterheritage.com/
+- [Variety of Southern California](https://yoodle.com/work/variety-socal/): Nonprofit website, live at https://varietysocal.org/
+- [Variety KC](https://yoodle.com/work/variety-kc/): Nonprofit website, live at https://varietykc.org/
+- [Wentworth Financial Communications](https://yoodle.com/work/wentworth-financial-communications/): Small business website, live at https://wentworthwriting.com/
+- [Dr. Amy K. Patel](https://yoodle.com/work/dr-amy-k-patel/): Small business website, live at https://dramykpatel.com/
+- [Savvy Bridal](https://yoodle.com/work/savvy-bridal/): Small business website, live at https://savvybridalboutique.com/
+- [Nick and Jake's](https://yoodle.com/work/nick-and-jakes/): Small business website, live at https://nickandjakes.com/
+- [Brous Law](https://yoodle.com/work/brous-law/): Small business website, live at https://brouslaw.com/
+- [Black in the Middle](https://yoodle.com/work/black-in-the-middle/): Podcasts podcast
+- [The Yoodle Podcast](https://yoodle.com/work/the-yoodle-podcast/): Podcasts podcast
+- [The YES Podcast](https://yoodle.com/work/the-yes-podcast/): Podcasts podcast
+- [For the Kids](https://yoodle.com/work/for-the-kids/): Podcasts podcast
+- [Courage to Talk](https://yoodle.com/work/courage-to-talk/): Podcasts podcast
+- [American Jazz Museum Podcast](https://yoodle.com/work/american-jazz-museum-podcast/): Podcasts podcast
+- [The Soul of Santa Podcast](https://yoodle.com/work/the-soul-of-santa-podcast/): Podcasts podcast
