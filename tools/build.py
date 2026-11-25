@@ -139,7 +139,13 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .pillar{padding:clamp(36px,5vw,72px) 0;border-top:1px solid #f7f4ee44}
 .pillar:first-of-type{border-top:0;padding-top:clamp(24px,3vw,40px)}
 .pillar .ph{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px;align-items:end}
-.pillar .tagc{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin:0 0 10px}
+.pillar .tagc,.eyebrow{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin:0 0 14px;font-weight:500}
+.sub{font-size:.95rem;letter-spacing:.02em;opacity:.72;margin:10px 0 0}
+.dark.cta{background:var(--acc);padding:clamp(64px,10vw,140px) 0}
+.cta h2{margin:0 0 22px}
+.cta .lede{max-width:34ch;margin:0 0 30px}
+.cta .acts{display:flex;gap:16px 28px;flex-wrap:wrap;align-items:center;margin:0}
+.cta .go{color:#fff}
 .pillar h3{font-size:clamp(2rem,4.4vw,3.6rem);margin:0}
 details.cap{border-top:1px solid #f7f4ee33}
 details.cap:last-of-type{border-bottom:1px solid #f7f4ee33}
@@ -354,7 +360,7 @@ if(!rm&&'IntersectionObserver' in window){
  d.querySelectorAll('.grid,.cols,.rows,.facts,.sect,.names,.ends>div').forEach(function(p){[].forEach.call(p.children,function(c,i){c.style.setProperty('--i',Math.min(i%6,5))})});
  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
  d.querySelectorAll('.rv,.rh,.rw').forEach(function(x){io.observe(x)});
- darks.forEach(function(s){if(!s.querySelector('.ends'))s.classList.add('band')});
+ darks.forEach(function(s){if(!s.classList.contains('cta'))s.classList.add('band')});
 }
 var ly=scrollY,tick=false;
 function frame(){tick=false;
@@ -373,6 +379,7 @@ addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(f
 })();
 '''
 
+YEARS = date.today().year - 2007
 NAV = [("/work/", "Work"), ("/services/", "Services"), ("/content/", "Content"), ("/experience/", "Experience")]
 
 def header(cur):
@@ -387,9 +394,9 @@ def header(cur):
 
 def footer():
     return f'''<footer><div class="wrap"><div class="fg">
-<div><p><strong style="color:#fff;font-size:1.3rem">yoodle.</strong></p><p>The content experience agency. Brand, web, growth and content for organizations that answer to the public. Since 2007.</p><p>Kansas City, Missouri<br><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
+<div><p><strong style="color:#fff;font-size:1.3rem">yoodle.</strong></p><p>Built on experience. Made for what&rsquo;s next. Brand, technology and marketing for ambitious organizations.</p><p>Kansas City, Missouri<br><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
 <div><h2>Work</h2><ul><li><a href="/work/#higher-ed">Higher education</a></li><li><a href="/work/#government">Government</a></li><li><a href="/work/#nonprofit">Nonprofit</a></li><li><a href="/work/#business">Small business</a></li><li><a href="/work/#content">Podcasts</a></li></ul></div>
-<div><h2>Services</h2><ul>{"".join(f'<li><a href="/services/{k}/">{v["name"]}</a></li>' for k, v in SERVICES.items())}<li><a href="/accessibility/">ADA compliance</a></li><li><a href="/experience/">Fractional leadership</a></li><li><a href="/bridal/">Bridal</a></li></ul></div>
+<div><h2>Services</h2><ul><li><a href="/services/brand/">Brand</a></li><li><a href="/services/technology/">Technology</a></li><li><a href="/services/#marketing">Marketing</a></li><li><a href="/experience/">Fractional CMO</a></li><li><a href="/accessibility/">ADA compliance</a></li><li><a href="/bridal/">Bridal</a></li></ul></div>
 <div><h2>Yoodle</h2><ul><li><a href="/content/">Content</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="https://www.linkedin.com/company/yoodle">LinkedIn</a></li></ul></div>
 </div><p style="margin-top:32px">&copy; {date.today().year} Yoodle LLC. Yoodle&reg; is a registered trademark.</p></div></footer>'''
 
@@ -449,7 +456,7 @@ def page(path, title, desc, body, schema=None, h_nopop=False, index=True):
     crumbs = []
     parts = [x for x in path.strip("/").split("/") if x]
     graph = [{"@type": "Organization", "@id": DOMAIN + "/#org", "name": "Yoodle", "legalName": "Yoodle LLC", "url": DOMAIN + "/", "email": EMAIL,
-              "foundingDate": "2007", "slogan": "The content experience agency",
+              "foundingDate": "2007", "slogan": "Built on experience. Made for what's next.",
               "address": {"@type": "PostalAddress", "addressLocality": "Kansas City", "addressRegion": "MO", "addressCountry": "US"},
               "sameAs": ["https://www.linkedin.com/company/yoodle"],
               "knowsAbout": ["Higher education marketing", "Website design and development", "WCAG 2.1 AA accessibility", "Brand strategy", "SEO and AI search", "Podcast production"]},
@@ -518,11 +525,12 @@ def card(p):
     if p["kind"] == "Project": sub = ", ".join(OLD[p["slug"]]["tags"]) or "Brand and web"; return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(sub)}</p></a></li>'
     return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(p["kind"])}{" · " + e(sub) if sub != p["kind"] else ""}</p></a></li>'
 
-def closer(a=("Start a project.", "Bring us the challenge. We will design the answer, and you will hear from a person within one business day.", "/contact/", "Contact us."),
-           b=("Check your site.", "Get a free WCAG 2.1 AA accessibility report.", "/accessibility/", "Get my report.")):
-    return f'''<section class="dark" style="padding:0" aria-label="Next steps"><div class="wrap ends">
-<div><h2>{a[0]}</h2><p class="lede" style="margin:20px 0">{a[1]}</p><a class="go" href="{a[2]}">{a[3]}</a></div>
-<div><h2>{b[0]}</h2><p class="lede" style="margin:20px 0">{b[1]}</p><a class="go" href="{b[2]}">{b[3]}</a></div></div></section>'''
+CTA_TEXT = "Bring the challenge. We&rsquo;ll bring the experience, the curiosity, and the people to make it happen."
+def closer(text=CTA_TEXT, button=("/contact/", "Start the conversation"), also=("/accessibility/", "Or get a free accessibility report.")):
+    return f'''<section class="dark cta" aria-label="Start a conversation"><div class="wrap">
+<p class="eyebrow">Your next chapter starts with a conversation.</p>
+<h2>What&rsquo;s next for you?</h2><p class="lede">{text}</p>
+<p class="acts"><a class="btn" href="{button[0]}">{button[1]}</a>{f' <a class="go" href="{also[0]}">{also[1]}</a>' if also else ""}</p></div></section>'''
 
 def marquee():
     half = (len(CLEAR) + 1) // 2
@@ -537,39 +545,38 @@ def marquee():
 # ------------------------------------------------------------------ pages
 def home():
     feat = [p for p in P if p["slug"] in ("nevada-state-university", "kansas-judicial-branch", "ut-austin-extended-campus", "kc-streetcar", "variety-kc", "fsu-career-center")]
-    svc = "".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3><a href="/services/#{v["key"]}">{v["name"]}. {v["verdict"]}</a></h3><p>{e(v["lede"])}</p></li>' for i, v in enumerate(PILLARS))
+    svc = "".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3><a href="/services/#{v["key"]}">{v["name"]}</a></h3><div><p>{e(v["lede"])}</p><p class="sub">{e(v["sub"])}</p></div></li>' for i, v in enumerate(PILLARS))
     body = f'''<section class="hero"><div class="wrap">
-<p class="tag">Yoodle. The content experience agency.</p>
-<h1>What your brand needs next.<span class="r">Done.</span></h1>
-<div class="herogrid"><p class="lede" style="margin:0">Whatever the sector, the pressure is the same every quarter: grow, do it with the team you have, and earn the trust of the people you serve. We design the solution, then we build it.</p>
+<h1>Built on experience.<span class="r">Made for what&rsquo;s next.</span></h1>
+<div class="herogrid"><p class="lede" style="margin:0">For {YEARS} years, we&rsquo;ve helped ambitious organizations turn complex challenges into brands, digital experiences, and marketing that move people.</p>
 <p style="margin:0"><a class="btn" href="/work/">See the work</a> &nbsp; <a class="go" href="/contact/">Start a project.</a></p></div>
 </div></section>
 {marquee()}
-<section><div class="wrap two"><h2>We get it done.</h2><div>
-<p class="lede">Most organizations do not lack ideas. They lack the hands to finish them. Yoodle is a senior team that has been finishing them since 2007.</p>
-<p>Experience is knowing which playbook fits, and when to put it down. We keep what is proven, reach for the best tool for the job, and change course the day the facts change.</p>
-<p>Give us the outcome. We write the scope, do the work and hand you something that runs: a brand your staff can use, a website that passes an accessibility audit, a campaign you can measure, a show that publishes on time. If you want to run it yourselves afterward, we train your team to do it.</p>
+<section><div class="wrap two"><h2>What your brand needs next.</h2><div>
+<p class="lede">Experience tells us which playbook fits, and when to put it down. Curiosity keeps us looking for a better way to do it.</p>
+<p>Most challenges don&rsquo;t arrive neatly labeled. Enrollment that has stalled, a launch that has to land, a website that no longer says who you are: each one touches brand, technology and marketing at once. So we think across all three, then deliver the whole answer.</p>
+<p>What you get is finished work. A brand your people can carry, a digital experience that works for everyone who uses it, marketing you can measure. And if you&rsquo;d rather run it yourselves afterward, we&rsquo;ll train your team to do it.</p>
 <p><a class="go" href="/services/">See what we do.</a></p></div></div></section>
-<section class="dark"><div class="wrap"><h2>Services.</h2><ol class="rows">{svc}
-<li><span class="idx" aria-hidden="true">04</span><h3><a href="/experience/">Fractional CMO. Led.</a></h3><p>A chief marketing officer on a six-month contract, with our team behind them, for organizations that need the leadership before they can hire it.</p></li></ol></div></section>
-<section><div class="wrap"><div class="two" style="align-items:end"><h2>Work.<span class="r">Launched.</span></h2><p class="lede">{len(P)} projects you can open and inspect, picked from a much longer list: live websites, brands and campaigns for higher education, government, nonprofits and business, plus the podcasts we produce.</p></div>
+<section class="dark"><div class="wrap"><p class="eyebrow">What we bring to the table</p><h2>Good thinking.<span class="r">Fully delivered.</span></h2><ol class="rows">{svc}
+<li><span class="idx" aria-hidden="true">04</span><h3><a href="/experience/">Fractional CMO</a></h3><div><p>Put senior leadership behind the plan, and a team behind the leader.</p><p class="sub">Leadership / Planning / Execution</p></div></li></ol></div></section>
+<section><div class="wrap"><div class="two" style="align-items:end"><h2>The work.<span class="r">Judge for yourself.</span></h2><p class="lede">{len(P)} projects, chosen from a much longer list. Most are live, so you can open them and see how they hold up.</p></div>
 <ul class="grid">{"".join(card(p) for p in feat)}</ul><p style="margin-top:28px"><a class="go" href="/work/">See all the work.</a></p></div></section>
-<section class="dark"><div class="wrap"><h2>Who we work for.</h2><div class="cols">
+<section class="dark"><div class="wrap"><h2>Who we work with.</h2><div class="cols">
 <div class="col"><h3>Higher education.</h3><p>Colleges, universities and the centers inside them. Enrollment sites, program finders, accessibility and content.</p><a class="go" href="/work/#higher-ed">Higher ed work.</a></div>
 <div class="col"><h3>Government.</h3><p>Courts, commissions, transit and regional agencies. Direct, or as a teaming partner to a prime contractor.</p><a class="go" href="/work/#government">Government work.</a></div>
 <div class="col"><h3>Nonprofit and business.</h3><p>Charities, arts organizations and owner-run companies that need a full marketing team without hiring one.</p><a class="go" href="/work/#nonprofit">Nonprofit work.</a></div>
 </div></div></section>
-<section><div class="wrap two"><h2>ADA website compliance.<span class="r">Fixed.</span></h2><div>
+<section><div class="wrap two"><h2>ADA website compliance.<span class="r">Before the deadline.</span></h2><div>
 <p class="lede">Public colleges and larger governments must meet WCAG 2.1 AA by April 26, 2027. We audit, fix the site's own code, retest and certify.</p>
 <p><a class="btn" href="/accessibility/">Get a free report</a></p></div></div></section>
 {closer()}'''
-    page("/", "Yoodle | Brand, Web and Marketing for Higher Ed and Government",
-         "Yoodle is the content experience agency. Since 2007 we have scoped, built and launched brands, websites and campaigns for colleges, agencies and nonprofits.", body,
+    page("/", "Yoodle | Brand, Technology and Marketing Agency",
+         f"Yoodle is a brand, technology and marketing agency. For {YEARS} years we've helped ambitious organizations turn complex challenges into work that moves people.", body,
          [{"@type": "WebSite", "@id": DOMAIN + "/#site", "url": DOMAIN + "/", "name": "Yoodle", "publisher": {"@id": DOMAIN + "/#org"}}])
 
 def work():
     fl = '<button class="chipb" type="button" data-f="all" aria-pressed="true">All</button>' + "".join(f'<button class="chipb" type="button" data-f="{k}" aria-pressed="false">{v[0]}</button>' for k, v in SECTORS.items())
-    body = f'''<section class="hero"><div class="wrap"><p class="tag">Work</p><h1>The work.<span class="r">Launched.</span></h1>
+    body = f'''<section class="hero"><div class="wrap"><p class="tag">Work</p><h1>The work.<span class="r">Judge for yourself.</span></h1>
 <p class="lede" style="margin-top:32px">{len(P)} projects, picked from a much longer client list. Many of the websites are live, so don't just take our word for it.</p>
 <div class="filters" role="group" aria-label="Filter work by sector">{fl}</div><p class="small" id="count" role="status" style="margin:14px 0 0">{len(P)} projects shown</p>
 <ul class="grid" id="grid">{"".join(card(p) for p in P)}</ul></div></section>
@@ -583,7 +590,7 @@ def case_html(p):
     c = p["case"]
     names = lambda L: "".join(f"<li>{e(x)}</li>" for x in L)
     return f'''<section class="dark"><div class="wrap"><h2>By the numbers.</h2><div class="cols c4">{"".join(f'<div class="col"><p class="big" style="font-size:clamp(3.2rem,7vw,6rem);margin:8px 0 14px">{n}</p><p>{e(t)}</p></div>' for n, t in c["stats"])}</div></div></section>
-<section><div class="wrap"><h2>Nine goals.<span class="r">Done.</span></h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(a)}.</h3><p>{e(t)}</p></li>' for i, (a, t) in enumerate(c["goals"]))}</ol></div></section>
+<section><div class="wrap"><h2>Nine goals.<span class="r">Fully delivered.</span></h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(a)}.</h3><p>{e(t)}</p></li>' for i, (a, t) in enumerate(c["goals"]))}</ol></div></section>
 <section class="tight"><div class="wrap"><h2>Pages we built.</h2><p class="lede" style="margin-top:24px">Fifty new pages, written and built by Yoodle, including the homepage and a page for every area of study.</p><ul class="names">{names(RH_NEW)}</ul></div></section>
 <section class="tight"><div class="wrap two"><h2>Pages we rewrote.</h2><div><p class="lede">Seventy-seven existing pages rewritten and optimized. A sample:</p><ul class="sect">{names(RH_OPT)}</ul></div></div></section>
 <section class="dark"><div class="wrap two"><h2>On camera.</h2><div><p class="lede">Ten video series and a photo library, shot on campus for the new pages, with vertical cuts for social.</p><ul class="sect">{names(RH_VIDEO)}</ul><p style="margin-top:24px"><a class="go" href="https://vimeo.com/1230352325">Watch the reel.</a></p><p>{confirm("video embeds, stills and page screenshots go here once the files are in")}</p></div></div></section>'''
@@ -636,10 +643,10 @@ def project(i, p):
 {story}
 {nums}{gal}{quote}
 <section class="tight"><div class="wrap"><nav class="pn" aria-label="More work"><a href="/work/{prev["slug"]}/"><span class="small">Previous</span><br><strong>{e(prev["name"])}</strong></a><a class="nx" href="/work/{nxt["slug"]}/"><span class="small">Next</span><br><strong>{e(nxt["name"])}</strong></a></nav></div></section>
-{closer(a=("Need one like it?", "Tell us what has to get done.", "/contact/", "Start a project."))}'''
+{closer(also=("/work/", "Or see more of the work."))}'''
     t = {"Website": f'{p["name"]} Website | {lab} Web Design by Yoodle', "Podcast": f'{p["name"]} | Podcast Production by Yoodle', "Video and content": f'{p["name"]} | Video Production by Yoodle', "Project": f'{p["name"]} | {lab} Brand and Web Work by Yoodle', "Brand and marketing": f'{p["name"]} | Rebrand and Marketing by Yoodle', "Workforce training": f'{p["name"]} | Workforce Training'}[p["kind"]]
     if len(t) > 68: t = f'{p["name"]} | {"Web Design" if p["kind"] == "Website" else "Work"} by Yoodle'
-    d = (p["about"] or f'{p["name"]}, a {p["kind"].lower()} produced by Yoodle, the content experience agency.')
+    d = (p["about"] or f'{p["name"]}, a {p["kind"].lower()} produced by Yoodle.')
     d = (f'{p["name"]}: ' if p["name"] not in d[:60] else "") + d
     d = d if len(d) <= 158 else d[:155].rsplit(" ", 1)[0] + "..."
     cw = {"@type": "CreativeWork", "name": p["name"], "creator": {"@id": DOMAIN + "/#org"}, "about": lab, "genre": p["kind"]}
@@ -647,18 +654,20 @@ def project(i, p):
     page(f'/work/{p["slug"]}/', t, d, body, [crumb_schema([("/", "Home"), ("/work/", "Work"), ("", p["name"])]), cw])
 
 def services():
-    rows = "".join(f'''<div class="pillar" id="{v["key"]}"><div class="ph"><div><p class="tagc">{v["name"]} capabilities</p><h3>{v["name"]}.<span class="r"> {v["verdict"]}</span></h3></div><p class="lede" style="margin:0">{e(v["lede"])}</p></div>
+    rows = "".join(f'''<div class="pillar" id="{v["key"]}"><div class="ph"><div><p class="tagc">{e(v["sub"])}</p><h3>{v["name"]}.</h3></div><p class="lede" style="margin:0">{e(v["lede"])}</p></div>
 <div class="caps">{"".join(f"<details class=cap><summary>{e(n)}</summary><p>{e(x)}</p></details>" for n, x in v["caps"])}</div>
 <p class="more">{"".join(f'<a class="go" href="{u}">{l}</a>' for u, l in v["links"])}</p></div>''' for v in PILLARS)
-    faq = [("What does Yoodle do?", "Yoodle is a brand, web and marketing agency. We scope, build and launch brands, websites, growth campaigns and content for higher education, government, nonprofits and small businesses."),
+    faq = [("What does Yoodle do?", f"Yoodle is a brand, technology and marketing agency. For {YEARS} years we have helped ambitious organizations turn complex challenges into brands, digital experiences and marketing that move people."),
            ("Who does Yoodle work with?", "Public colleges and universities, government agencies and commissions, nonprofits and owner-run businesses. We also work as a teaming partner or subcontractor to prime contractors."),
            ("How does a project start?", "With a scope. You tell us the outcome, we write down what will be delivered, when and for how much, and work starts once you approve it.")]
-    body = f'''<section class="hero"><div class="wrap"><p class="tag">Services</p><h1>Brand, marketing and digital products.<span class="r">One team.</span></h1>
-<p class="lede" style="margin-top:32px">Three practices under one roof. Bring us into one, or hand us the whole challenge and let them work together.</p></div></section>
-<section class="dark"><div class="wrap"><h2>What we do.</h2>{rows}</div></section>
+    body = f'''<section class="hero"><div class="wrap"><p class="tag">Services</p><h1>Brand, technology and marketing.<span class="r">One team.</span></h1>
+<p class="lede" style="margin-top:32px">Three practices and one team. Bring us in for one, or bring the whole challenge and let them work together.</p></div></section>
+<section class="dark"><div class="wrap"><p class="eyebrow">What we bring to the table</p><h2>Good thinking.<span class="r">Fully delivered.</span></h2>{rows}
+<div class="pillar" id="fractional-cmo"><div class="ph"><div><p class="tagc">Leadership / Planning / Execution</p><h3>Fractional CMO.</h3></div><div><p class="lede" style="margin:0 0 18px">Put senior leadership behind the plan, and a team behind the leader.</p><p class="more" style="margin:0"><a class="go" href="/experience/">More on fractional CMO.</a></p></div></div></div>
+</div></section>
 <section><div class="wrap"><h2>How we work.</h2><ol class="rows">
-<li><span class="idx" aria-hidden="true">01</span><h3>Scope it.</h3><p>One page: the outcome, what we deliver, the date and the price.</p></li>
-<li><span class="idx" aria-hidden="true">02</span><h3>Build it.</h3><p>A senior team does the work, fast. When the plan meets a problem, we solve it with whatever tool does it best, and a person answers for everything that ships.</p></li>
+<li><span class="idx" aria-hidden="true">01</span><h3>Think it through.</h3><p>We start with the challenge, then put the answer on one page: the outcome, what we deliver, the date and the price.</p></li>
+<li><span class="idx" aria-hidden="true">02</span><h3>Build it.</h3><p>A senior team does the work, quickly. When the plan meets something unexpected, we reach for whatever does the job best, and a person answers for everything that ships.</p></li>
 <li><span class="idx" aria-hidden="true">03</span><h3>Launch it.</h3><p>Tested for accessibility, speed and accuracy before it goes out under your name.</p></li>
 <li><span class="idx" aria-hidden="true">04</span><h3>Hand it over, or run it.</h3><p>We train your team to own it, or we keep running it. Your choice.</p></li></ol></div></section>
 <section class="tight"><div class="wrap two"><h2>Partner with us.</h2><div><p class="lede">Prime contractors and agencies bring Yoodle in for the brand, web, accessibility and content parts of larger public-sector contracts.</p>
@@ -666,12 +675,12 @@ def services():
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
 {closer()}'''
     items = [("/", "Home"), ("", "Services")]
-    page("/services/", "Services: Brand, Marketing and Digital Products | Yoodle",
-         "Yoodle's capabilities across brand, marketing and digital products: strategy, identity, campaigns, content, websites and custom applications.", body, [crumb_schema(items), faq_schema(faq)])
+    page("/services/", "Services: Brand, Technology and Marketing | Yoodle",
+         "Yoodle's capabilities across brand, technology and marketing: strategy, identity, websites, accessibility, digital experiences, campaigns and content.", body, [crumb_schema(items), faq_schema(faq)])
     for k, v in SERVICES.items():
         rel = [p for p in P if (k == "content") == (p["sector"] == "content")][:3]
         body = f'''<section class="hero"><div class="wrap">{crumbs([("/", "Home"), ("/services/", "Services"), ("", v["name"])])}
-<h1>{v["name"]}.<span class="r">{v["verdict"]}</span></h1><p class="lede" style="margin-top:32px">{e(v["lede"])}</p></div></section>
+<h1 class="md">{v["name"]}.<span class="r">{v["verdict"]}</span></h1><p class="lede" style="margin-top:32px">{e(v["lede"])}</p></div></section>
 <section class="tight"><div class="wrap two"><h2>The approach.</h2><div>{"".join(f"<p>{e(b)}</p>" for b in v["body"])}</div></div></section>
 <section class="dark"><div class="wrap"><h2>What you get.</h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3>{e(a)}.</h3><p>{e(b)}</p></li>' for i, (a, b) in enumerate(v["items"]))}</ol></div></section>
 <section><div class="wrap"><h2>Related work.</h2><ul class="grid">{"".join(card(p) for p in rel)}</ul><p style="margin-top:28px"><a class="go" href="/work/">See all the work.</a></p></div></section>
@@ -693,16 +702,16 @@ def experience():
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Experience</p><h1>Your fractional CMO.<span class="r">With a team.</span></h1>
 <div class="herogrid"><p class="lede" style="margin:0">A fractional CMO and the agency behind him, inside your organization for six months. For teams that need a chief marketing officer or marketing director before they can hire one.</p>
 <div class="timcta"><img src="/img/tim-mccoy.webp" alt="Tim McCoy, fractional CMO and president of Yoodle" width="900" height="900"><div><p style="margin:0 0 12px"><strong>Tim McCoy</strong><br><span class="small">Fractional CMO, president of Yoodle</span></p><a class="btn" href="/contact/">Talk to Tim</a></div></div></div></div></section>
-<section class="tight"><div class="wrap two"><h2>A fractional CMO who operates.</h2><div><p class="lede">Tim McCoy has led Yoodle since 2007 and is chief marketing officer of a five-store bridal retail group. The systems we bring to clients are ones we run on our own businesses first.</p>
+<section class="tight"><div class="wrap two"><h2>A fractional CMO who operates.</h2><div><p class="lede">Tim McCoy has led Yoodle for {YEARS} years and is chief marketing officer of a five-store bridal retail group. The systems we bring to clients are ones we run on our own businesses first.</p>
 <p>Most fractional CMOs bring a plan and leave the work to you. Here you get the leader and the hands. Strategy comes with a team that can build the brand, the website, the campaigns and the reporting, so the plan does not wait on hiring.</p></div></div></section>
 <section class="dark"><div class="wrap"><h2>Six months.</h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3>{a}.</h3><p>{b}</p></li>' for i, (a, b) in enumerate(steps))}</ol></div></section>
-<section><div class="wrap"><h2>Fractional CMO work.<span class="r">Done.</span></h2><div class="cols">
+<section><div class="wrap"><h2>Fractional CMO work.<span class="r">In practice.</span></h2><div class="cols">
 <div class="col"><div class="xlogo"><img src="/img/logos/w20.webp" alt="Savvy Bridal logo" width="480" height="170" loading="lazy"></div><h3>Savvy Bridal and Vow Ready.</h3><p>Five bridal stores in three states. Tim sits as chief marketing officer, an in-house team runs the day to day, and Yoodle builds what the team needs: websites, dashboards, campaigns.</p><a class="go" href="/bridal/">The bridal story.</a></div>
 <div class="col"><div class="xlogo"><img src="/img/logos/ajm.webp" alt="American Jazz Museum logo" width="311" height="220" loading="lazy" style="background:#141414;padding:6px 12px;border-radius:6px;box-sizing:content-box;max-height:52px"></div><h3>American Jazz Museum.</h3><p>A marketing framework, audience survey reporting, print, and The Big Break podcast, led in 2024 as the museum's fractional CMO, with Yoodle producing the work. {confirm("your title there and one result")}</p><a class="go" href="/work/the-big-break/">The Big Break.</a></div>
 <div class="col"><div class="xlogo"><img src="/img/logos/sos.webp" alt="The Soul of Santa logo" width="261" height="260" loading="lazy"></div><h3>The Soul of Santa.</h3><p>Brand, website, photo and video for a Kansas City nonprofit, with Tim as fractional CMO from 2025 to today, and Yoodle and the foundation's own people doing the work. {confirm("your title there and one result")}</p><a class="go" href="/work/the-soul-of-santa/">The Soul of Santa.</a></div>
 </div></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
-{closer(a=("Need a leader?", "Tell us where marketing is stuck.", "/contact/", "Talk to a fractional CMO."))}'''
+{closer(text="Need a marketing leader? Bring the challenge. We&rsquo;ll bring the experience, the curiosity, and the people to make it happen.", button=("/contact/", "Talk to a fractional CMO"), also=None)}'''
     its = [("/", "Home"), ("", "Experience")]
     page("/experience/", "Fractional CMO and Marketing Leadership | Yoodle",
          "Fractional CMO and marketing director services from Yoodle. A senior leader and a full team inside your organization on a six-month contract.", body, [crumb_schema(its), faq_schema(faq)])
@@ -729,24 +738,24 @@ def bridal():
 <li><span class="idx" aria-hidden="true">02</span><h3>An agency behind them.</h3><p>Yoodle builds what the plan calls for: brand, websites, ads, content and reporting. No hiring wait.</p></li>
 <li><span class="idx" aria-hidden="true">03</span><h3>An in-house team.</h3><p>Your own people run the day to day: social, events, follow-up, the stores. We hire with you, train them and hand over the playbook.</p></li>
 <li><span class="idx" aria-hidden="true">04</span><h3>Partners, managed.</h3><p>Ad agencies, website companies, CRM and software vendors, outside associates. We manage every one of those relationships so you don't have to.</p></li></ol></div></section>
-<section><div class="wrap"><h2>Built with AI.<span class="r">Deployed.</span></h2><p class="lede" style="margin-top:24px">We build AI-first, with a person accountable for everything that ships. These are live.</p>
+<section><div class="wrap"><h2>What we built.<span class="r">Running in our stores.</span></h2><p class="lede" style="margin-top:24px">Every tool here is live in our own stores, with a person accountable for everything that ships.</p>
 <ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{f"<a href={chr(34)}{u}{chr(34)}>{e(n)}</a>" if u else e(n)}.</h3><p>{e(t) if t else confirm("one line on what this does")}</p></li>' for i, (n, t, u) in enumerate(built))}</ol>
 <p style="margin-top:20px">{confirm("results to cite (leads, bookings, conversion)")}</p></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
-{closer(a=("Own a bridal shop?", "Tell us where marketing is stuck. We'd love to help.", "/contact/", "Start the conversation."))}'''
+{closer(text="Own a bridal shop? Tell us where marketing is stuck. We&rsquo;d love to help.", also=None)}'''
     its = [("/", "Home"), ("", "Bridal")]
     page("/bridal/", "Bridal Shop Marketing and Fractional CMO | Yoodle", "Bridal marketing from the team behind Savvy Bridal and Vow Ready: a fractional CMO, agency support and an in-house team, proven in five stores.", body,
          [crumb_schema(its), faq_schema(faq), {"@type": "Service", "name": "Bridal shop marketing and fractional CMO", "provider": {"@id": DOMAIN + "/#org"}, "areaServed": "US"}])
 
 def content():
     shows = [p for p in P if p["sector"] == "content"]
-    body = f'''<section class="hero"><div class="wrap"><p class="tag">Content</p><h1>Shows and writing.<span class="r">Published.</span></h1>
+    body = f'''<section class="hero"><div class="wrap"><p class="tag">Content</p><h1>Shows and writing.<span class="r">Worth your time.</span></h1>
 <p class="lede" style="margin-top:32px">The podcasts we produce and publish, and Soapbox, the Yoodle blog.</p></div></section>
 <section class="tight"><div class="wrap"><h2>Our shows.</h2><ul class="grid">{"".join(card(p) for p in shows)}</ul></div></section>
 <section><div class="wrap two"><h2>Soapbox.</h2><div><p class="lede">Notes on brand, web, accessibility and AI search for people who answer to the public.</p>
 </div></div>
 <div class="wrap"><ul class="posts">{"".join(f'<li><a href="/content/{x["slug"]}/">' + (f'<div class="th im"><img src="{x["img"]["src"]}" alt="" width="{x["img"]["w"]}" height="{x["img"]["h"]}" loading="lazy"></div>' if x.get("img") else '<div class="th" aria-hidden="true">Soapbox</div>') + f'<span class="small">{x["date"][:7]}</span><h3>{e(x["title"])}</h3></a></li>' for x in POSTS)}</ul></div></section>
-{closer(a=("Have a show in mind?", "We plan it, produce it and publish it.", "/services/content/", "See content services."))}'''
+{closer(also=("/services/content/", "Or see how we make content."))}'''
     its = [("/", "Home"), ("", "Content")]
     page("/content/", "Content: Podcasts and the Soapbox Blog | Yoodle", "Podcasts produced by Yoodle, plus Soapbox, the Yoodle blog on brand, web, accessibility and AI search.", body, [crumb_schema(its)])
 
@@ -769,7 +778,7 @@ def accessibility():
            ("Can an automated scan make my website compliant?", "No. A scan finds a large share of issues, but not all. Conformance needs manual testing too. Our fix includes the manual checks and a retest."),
            ("Do you use an accessibility overlay or plugin widget?", "No. We fix the site's own code, templates and content."),
            ("Which platforms do you work with?", "Any. WordPress, Drupal, Modern Campus, static HTML and hosted builders all go through the same steps.")]
-    body = f'''<section class="hero"><div class="wrap"><p class="tag">Websites that work for everyone.</p><h1>ADA website compliance.<span class="r">Fixed.</span></h1>
+    body = f'''<section class="hero"><div class="wrap"><p class="tag">Websites that work for everyone.</p><h1>ADA website compliance.<span class="r">Before the deadline.</span></h1>
 <div class="herogrid"><div><h2 style="font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:18px" id="scan">Get your free report.</h2>{form("scan-request", SCAN_FIELDS, "Send my free report")}
 <p class="small" style="margin-top:12px">Free. Any website, any platform. {confirm("instant self-serve scan replaces this form when the scanner goes live")}</p></div>
 <p class="lede" style="margin:0">Tell us your web address. We test it against WCAG 2.1 AA and send you what passes and what fails. Then we fix it in your site's own code.</p></div></div></section>
@@ -783,7 +792,7 @@ def accessibility():
 <section class="tight"><div class="wrap two"><h2>Proof.</h2><div><p class="lede">SWIFT Education Center, University of Kansas. Audited, fixed, retested and certified in fall 2026.</p>
 <p><a class="go" href="/work/swift-education-center/">See the project.</a></p></div></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}<p class="small" style="margin-top:20px">Sources: U.S. Department of Justice interim final rule, <a href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal Register, April 20, 2026</a>. General information, not legal advice.</p></div></div></section>
-{closer(b=("See our web work.", "Live sites for colleges, courts and agencies.", "/work/", "See the work."))}'''
+{closer(also=("/work/", "Or see the work first."))}'''
     its = [("/", "Home"), ("", "ADA website compliance")]
     page("/accessibility/", "ADA Website Compliance and WCAG 2.1 AA Fixes | Yoodle",
          "Free WCAG 2.1 AA website report. Yoodle audits, fixes your site's own code, retests and certifies ahead of the April 26, 2027 ADA Title II deadline.", body,
@@ -793,15 +802,15 @@ def contact():
     f = [("name", "What's your name?", "text", True, "name"), ("email", "And your email address?", "email", True, "email"),
          ("organization", "Where do you work?", "text", True, "organization"), ("role", "What's your role there?", "text", False, "organization-title"),
          ("website", "Your website", "text", False, "url"),
-         ("help", "What can we help with?", ("checks", ["Brand", "Marketing", "Digital products", "Fractional CMO", "ADA compliance", "Not sure yet"]), False, ""),
+         ("help", "What can we help with?", ("checks", ["Brand", "Marketing", "Technology", "Fractional CMO", "ADA compliance", "Not sure yet"]), False, ""),
          ("budget", "What's the budget?", ("select", ["Under $25,000", "$25,000 to $50,000", "$50,000 to $100,000", "$100,000 to $250,000", "More than $250,000", "Not set yet"]), False, ""),
          ("timeline", "When does it need to be live?", ("select", ["Within 30 days", "One to three months", "Three to six months", "Six months or more", "No fixed date"]), False, ""),
          ("message", "What's the challenge?", "textarea", True, ""),
          ("source", "How did you hear about us?", "text", False, "")]
-    body = f'''<section class="hero"><div class="wrap"><p class="tag">Contact</p><h1>What is your brand up against?<span class="r">Let&rsquo;s solve it.</span></h1>
+    body = f'''<section class="hero"><div class="wrap"><p class="eyebrow">Your next chapter starts with a conversation.</p><h1>What&rsquo;s next for you?<span class="r">Bring the challenge.</span></h1>
 <div class="herogrid" style="align-items:start">{form("contact", f, "Send")}
-<div><p class="lede">Every engagement starts with the challenge, not the deliverable. Tell us yours and you will hear from a person within one business day.</p><p>Or write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</p><p>Yoodle LLC<br>Kansas City, Missouri</p></div></div></div></section>'''
-    page("/contact/", "Contact Yoodle | Start a Brand, Web or Marketing Project", "Contact Yoodle, the content experience agency in Kansas City. Tell us what your brand is up against and we reply within one business day.", body, [crumb_schema([("/", "Home"), ("", "Contact")])], h_nopop=True)
+<div><p class="lede">We&rsquo;ll bring the experience, the curiosity, and the people to make it happen. Tell us what you&rsquo;re facing and you&rsquo;ll hear from a person within one business day.</p><p>Or write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</p><p>Yoodle LLC<br>Kansas City, Missouri</p></div></div></div></section>'''
+    page("/contact/", "Contact Yoodle | Start a Brand, Technology or Marketing Project", "Contact Yoodle, a brand, technology and marketing agency in Kansas City. Bring the challenge and hear from a person within one business day.", body, [crumb_schema([("/", "Home"), ("", "Contact")])], h_nopop=True)
     page("/thanks/", "Thank You | Yoodle", "Your message reached Yoodle. We reply within one business day.",
          '<section class="hero"><div class="wrap"><h1>Got it.<span class="r">Thank you.</span></h1><p class="lede" style="margin-top:32px">We reply within one business day.</p><p><a class="go" href="/work/">See the work while you wait.</a></p></div></section>', h_nopop=True, index=False)
     page("/privacy/", "Privacy Policy | Yoodle", "How Yoodle collects, uses and protects information submitted through yoodle.com.",
@@ -823,14 +832,14 @@ def assets():
     urls = "".join(f"<url><loc>{DOMAIN}{p}</loc><lastmod>{TODAY}</lastmod></url>" for p in PAGES)
     open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     open(os.path.join(OUT, "robots.txt"), "w").write(("User-agent: *\nDisallow: /\n" if TEST_BUILD else "User-agent: *\nAllow: /\n") + f"Sitemap: {DOMAIN}/sitemap.xml\n")
-    llms = ["# Yoodle", "", "> Yoodle is the content experience agency: brand, web, growth and content for higher education, government, nonprofits and small business. Founded 2007, Kansas City, Missouri. Contact: " + EMAIL, "",
+    llms = ["# Yoodle", "", "> Yoodle is a brand, technology and marketing agency. Built on experience, made for what's next: brands, digital experiences and marketing for ambitious organizations in higher education, government, nonprofits and business. Founded 2007, Kansas City, Missouri. Contact: " + EMAIL, "",
             "## Services"] + [f"- [{v['name']}]({DOMAIN}/services/{k}/): {v['lede']}" for k, v in SERVICES.items()] + [f"- [ADA website compliance]({DOMAIN}/accessibility/): WCAG 2.1 AA audit, fixes, retest and conformance report.", f"- [Fractional marketing leadership]({DOMAIN}/experience/): six-month senior marketing leadership contracts.", "", "## Work"] + \
            [f"- [{p['name']}]({DOMAIN}/work/{p['slug']}/): {SECTORS[p['sector']][0]} {p['kind'].lower()}" + (f", live at {p['url']}" if p['url'] else "") for p in P]
     open(os.path.join(OUT, "llms.txt"), "w").write("\n".join(llms) + "\n")
     old = ["about", "work/work-by-services", "blog", "careers", "careers/*", "vpat", "dir", "shop", "cart", "checkout", "my-account", "skill-up", "skill-up/*", "workforce-training", "workforce-training/*", "contentum", "contentum/*", "project/*"]
     dest = {"about": "/services/", "blog": "/content/", "vpat": "/accessibility/", "work/work-by-services": "/work/", "project/*": "/work/"}
     code = 302 if TEST_BUILD else 301
-    spec = f"/work/rio-hondo-college-video/  /work/rio-hondo-college/  {code}\n" + "".join(f"/project/{o['old']}/  /work/{o['slug']}/  {code}\n" for o in OLDSITE["projects"]) + "".join(f"/{x['old']}/  /content/{x['slug']}/  {code}\n" for x in POSTS)
+    spec = f"/services/interactive/  /services/technology/  {code}\n/work/rio-hondo-college-video/  /work/rio-hondo-college/  {code}\n" + "".join(f"/project/{o['old']}/  /work/{o['slug']}/  {code}\n" for o in OLDSITE["projects"]) + "".join(f"/{x['old']}/  /content/{x['slug']}/  {code}\n" for x in POSTS)
     open(os.path.join(OUT, "_redirects"), "w").write(spec + "".join(f"/{o}  {dest.get(o, '/')}  {code}\n" for o in old))
     open(os.path.join(OUT, "netlify.toml"), "w").write('[build]\n  publish = "."\n  command = ""\n')
 

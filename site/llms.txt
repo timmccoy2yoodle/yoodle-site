@@ -1,10 +1,10 @@
 # Yoodle
 
-> Yoodle is the content experience agency: brand, web, growth and content for higher education, government, nonprofits and small business. Founded 2007, Kansas City, Missouri. Contact: hello@yoodle.com
+> Yoodle is a brand, technology and marketing agency. Built on experience, made for what's next: brands, digital experiences and marketing for ambitious organizations in higher education, government, nonprofits and business. Founded 2007, Kansas City, Missouri. Contact: hello@yoodle.com
 
 ## Services
-- [Brand](https://yoodle.com/services/brand/): A brand is finished when your own team can use it without calling us. We get it there.
-- [Digital Products](https://yoodle.com/services/interactive/): Websites for organizations that answer to the public. Designed, built, tested and launched.
+- [Brand](https://yoodle.com/services/brand/): Give people a reason to care, and give your own team a brand they can carry without calling us.
+- [Technology](https://yoodle.com/services/technology/): Websites, applications and digital experiences designed around the people who use them, and built to work for every one of them.
 - [Growth](https://yoodle.com/services/growth/): Found wherever people look. Paid, organic and content run as one system and measured against one number.
 - [Content](https://yoodle.com/services/content/): Storytelling people finish, across every place your brand speaks. Planned, produced and published on schedule.
 - [ADA website compliance](https://yoodle.com/accessibility/): WCAG 2.1 AA audit, fixes, retest and conformance report.

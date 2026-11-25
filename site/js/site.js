@@ -43,7 +43,7 @@ if(!rm&&'IntersectionObserver' in window){
  d.querySelectorAll('.grid,.cols,.rows,.facts,.sect,.names,.ends>div').forEach(function(p){[].forEach.call(p.children,function(c,i){c.style.setProperty('--i',Math.min(i%6,5))})});
  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
  d.querySelectorAll('.rv,.rh,.rw').forEach(function(x){io.observe(x)});
- darks.forEach(function(s){if(!s.querySelector('.ends'))s.classList.add('band')});
+ darks.forEach(function(s){if(!s.classList.contains('cta'))s.classList.add('band')});
 }
 var ly=scrollY,tick=false;
 function frame(){tick=false;

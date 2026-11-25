@@ -145,9 +145,9 @@ CLIENTS = ["Nevada State University", "UT Austin Extended Campus", "Florida Stat
            "MARC Head Start", "American Jazz Museum"]
 
 SERVICES = {
- "brand": dict(name="Brand", verdict="Defined.", title="Brand Strategy and Identity for Colleges and Agencies",
+ "brand": dict(name="Brand", verdict="Find your voice.", title="Brand Strategy and Identity for Colleges and Agencies",
    desc="Brand strategy, naming, identity systems and brand standards from Yoodle. Built so the people who run your brand every day can actually use it.",
-   lede="A brand is finished when your own team can use it without calling us. We get it there.",
+   lede="Give people a reason to care, and give your own team a brand they can carry without calling us.",
    body=["Most brand projects end with a PDF nobody opens. Ours end with a system your staff can run: a clear position, a name and voice that hold up in a board room, an identity that works on a phone, and standards short enough to follow.",
          "We have done this for public colleges, city and regional agencies, national nonprofits and owner-run businesses since 2007. The method is the same each time. We scope it, we build it, and we hand it over working."],
    items=[("Positioning and messaging", "Who you serve, what you promise and how you say it, in language your staff will repeat."),
@@ -156,9 +156,9 @@ SERVICES = {
           ("Campaign creative", "Enrollment, awareness and fundraising campaigns that look like one organization made them.")],
    faq=[("What does a brand project include?", "Positioning, messaging, identity design and brand standards, plus the templates your team uses most. We scope each project to what you need and name a fixed outcome before we start."),
         ("Do you work with public institutions?", "Yes. Since 2007 Yoodle has worked with public colleges and universities, government agencies and nonprofits, including procurement by RFP and as a subcontractor to a prime.")]),
- "interactive": dict(name="Interactive", verdict="Launched.", title="Web Design for Higher Education and Government",
+ "technology": dict(name="Technology", verdict="Make every interaction work harder.", title="Web Design for Higher Education and Government",
    desc="Website strategy, design, development and accessibility from Yoodle. WordPress, Drupal, Modern Campus or static: we work on the platform you have.",
-   lede="Websites for organizations that answer to the public. Designed, built, tested and launched.",
+   lede="Websites, applications and digital experiences designed around the people who use them, and built to work for every one of them.",
    body=["A college, court or agency website is a public service. People arrive with a task: apply, register, pay, file, find a person. We design around those tasks, build on the platform your team can maintain, and test every page for speed and accessibility before it goes live.",
          "We are platform agnostic. Our live work runs on WordPress, Drupal, Modern Campus CMS and plain static HTML. We will tell you plainly when your platform is the problem and when it is not."],
    items=[("Strategy and information architecture", "Audience paths, navigation and content models based on what visitors come to do."),
@@ -168,7 +168,7 @@ SERVICES = {
    faq=[("Which platforms does Yoodle build on?", "WordPress, Drupal, Modern Campus CMS (OmniUpdate) and static sites. We work on the platform you already have, and recommend a change only when it will save you money or risk."),
         ("Do you make websites ADA compliant?", "Yes. We audit against WCAG 2.1 Level AA, fix the issues in the site's own code and content, retest, and deliver a conformance report. We do not use overlays or widgets."),
         ("Can you work under a prime contractor?", "Yes. We regularly deliver design, development and accessibility work as a teaming partner or subcontractor.")]),
- "growth": dict(name="Growth", verdict="Measured.", title="SEO, AI Search Optimization and Paid Media",
+ "growth": dict(name="Growth", verdict="Attention, turned into momentum.", title="SEO, AI Search Optimization and Paid Media",
    desc="SEO, AI search visibility, paid media and analytics from Yoodle. One integrated system across paid, organic and content, measured against the number you report.",
    lede="Found wherever people look. Paid, organic and content run as one system and measured against one number.",
    body=["Search changed. People now ask an AI assistant as often as they type a query, and the answer names a few sources. We build your pages, data and reputation so you are one of them, and so you still rank in classic search.",
@@ -179,7 +179,7 @@ SERVICES = {
           ("Local visibility", "Listings, reviews and location pages for multi-location organizations.")],
    faq=[("What is AI search optimization?", "It is the work of making your organization a source that AI assistants cite: clear facts on your pages, structured data, consistent listings and content that answers real questions directly."),
         ("How do you report results?", "Against one agreed number, such as applications, leads or bookings, in a dashboard built on accounts you own.")]),
- "content": dict(name="Content", verdict="Published.", title="Podcast, Video and Content Production",
+ "content": dict(name="Content", verdict="Stories people finish.", title="Podcast, Video and Content Production",
    desc="Podcast production, video, writing and content systems from Yoodle. Planned, produced and published on a schedule your team can keep.",
    lede="Storytelling people finish, across every place your brand speaks. Planned, produced and published on schedule.",
    body=["A content experience is everything someone reads, watches, hears and clicks on the way to trusting you. Most organizations produce those pieces in separate rooms: the website here, social there, the course catalog somewhere else. We treat them as one story and make each piece lead to the next.",
@@ -229,15 +229,14 @@ for _slug, _stats in {
 # ---- What each service covers, in the words buyers and search engines use
 for _k, _kw in {
     "brand": "Brand strategy, market research, positioning and messaging, naming, logo development, graphic design, visual identity, brand standards, rebrands and storytelling.",
-    "interactive": "Website design and development, UX and wireframes, WordPress, Drupal and Modern Campus, ADA and WCAG 2.1 AA compliance, accessibility audits, content migration, web apps, dashboards, hosting and support.",
+    "technology": "Website design and development, UX and wireframes, WordPress, Drupal and Modern Campus, ADA and WCAG 2.1 AA compliance, accessibility audits, content migration, web apps, dashboards, hosting and support.",
     "growth": "SEO, AI search optimization (AEO and GEO), local SEO, Google Ads and paid social, enrollment and lead generation campaigns, email marketing, analytics and reporting, conversion optimization and fractional CMO leadership.",
     "content": "Content strategy, copywriting, podcast production, video production, photography, social media content, blogs and email newsletters.",
 }.items(): SERVICES[_k]["kw"] = _kw
 
-# ---- Three practices, each with named capabilities and a plain definition (Tim, Nov 25 2026)
-SERVICES["interactive"]["name"] = "Digital Products"
+# ---- Three practices, each with named capabilities and a plain definition. Names, taglines and sub-lines are Tim's (Nov 25 2026)
 PILLARS = [
- dict(key="brand", name="Brand", verdict="Defined.", lede="Who you are, said clearly enough that your own people can carry it.",
+ dict(key="brand", name="Brand", lede="Find your voice. Give people a reason to care.", sub="Strategy / Identity / Messaging",
       links=[("/services/brand/", "More on brand.")], caps=[
   ("Brand Strategy & Architecture", "Who you are, who you serve and why it matters, plus how your programs, departments and locations sit under one name."),
   ("Naming & Verbal Identity", "Names, taglines, voice and key messages your people will actually use."),
@@ -247,7 +246,22 @@ PILLARS = [
   ("Brand Activations & Events", "Launches, anniversaries and events that put the brand in a room with the people it's for."),
   ("Audience & Market Research", "Surveys, interviews and perception studies that replace opinion with evidence before anything gets designed."),
  ]),
- dict(key="marketing", name="Marketing", verdict="Measured.", lede="The right people find you, hear a story worth their time, and act on it.",
+ dict(key="technology", name="Technology", lede="Make every interaction work harder.", sub="Websites / Accessibility / Digital experiences",
+      links=[("/services/technology/", "More on technology.")], caps=[
+  ("Content Experience Design", "The whole journey mapped across site, search, email and people, so each step leads to the next."),
+  ("Product Strategy & Roadmapping", "What to build, in what order, and what to leave out."),
+  ("UX Strategy & Information Architecture", "Sitemaps, user journeys and navigation that match how people actually look for things."),
+  ("Website Design & Development", "Designed and built by hand on the platform that suits you, or the one you already own."),
+  ("Custom Applications & Dashboards", "Internal tools, portals and reporting built for the way your organization really works."),
+  ("Learning Platforms", "Course sites and training systems for students, staff and customers."),
+  ("E-commerce Experiences", "Stores and checkout flows that make buying simple."),
+  ("Design Systems & Design-to-Code", "Reusable components that keep design and code in step as the product grows."),
+  ("Rapid Prototyping", "A working version in days, so you can react to something real before committing the budget."),
+  ("AI Strategy & Execution", "Where AI earns its place in your product or operations, then the build to put it there."),
+  ("Usability & Accessibility Testing", "Card sorts, tree tests and user sessions, plus WCAG 2.1 AA audits, fixes and certification."),
+  ("Hosting, Integrations & Support", "Launch, connect it to the systems around it, and keep it secure and current."),
+ ]),
+ dict(key="marketing", name="Marketing", lede="Turn attention into meaningful momentum.", sub="Campaigns / Content / Growth",
       links=[("/services/growth/", "More on growth."), ("/services/content/", "More on content.")], caps=[
   ("Integrated Marketing Strategy", "One plan across paid, organic and content, tied to a number your leadership already watches."),
   ("Brand Campaigns", "A single idea carried across outdoor, digital, social and print."),
@@ -261,20 +275,5 @@ PILLARS = [
   ("Audience Research & Segmentation", "Who you're really talking to, grouped by what they need to hear."),
   ("Analytics & Reporting", "Dashboards that show what's working in plain language, and what we'd change next."),
   ("Fractional CMO", "A senior marketing leader inside your organization, with our team behind them."),
- ]),
- dict(key="interactive", name="Digital Products", verdict="Launched.", lede="Websites, applications and systems designed around the people who use them.",
-      links=[("/services/interactive/", "More on digital products.")], caps=[
-  ("Content Experience Design", "The whole journey mapped across site, search, email and people, so each step leads to the next."),
-  ("Product Strategy & Roadmapping", "What to build, in what order, and what to leave out."),
-  ("UX Strategy & Information Architecture", "Sitemaps, user journeys and navigation that match how people actually look for things."),
-  ("Website Design & Development", "Designed and built by hand on the platform that suits you, or the one you already own."),
-  ("Custom Applications & Dashboards", "Internal tools, portals and reporting built for the way your organization really works."),
-  ("Learning Platforms", "Course sites and training systems for students, staff and customers."),
-  ("E-commerce Experiences", "Stores and checkout flows that make buying simple."),
-  ("Design Systems & Design-to-Code", "Reusable components that keep design and code in step as the product grows."),
-  ("Rapid Prototyping", "A working version in days, so you can react to something real before committing the budget."),
-  ("AI Strategy & Execution", "Where AI earns its place in your product or operations, then the build to put it there."),
-  ("Usability & Accessibility Testing", "Card sorts, tree tests and user sessions, plus WCAG 2.1 AA audits, fixes and certification."),
-  ("Hosting, Integrations & Support", "Launch, connect it to the systems around it, and keep it secure and current."),
  ]),
 ]
