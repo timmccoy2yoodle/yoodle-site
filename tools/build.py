@@ -464,7 +464,7 @@ def card(p):
     if p["kind"] == "Project": sub = ", ".join(OLD[p["slug"]]["tags"]) or "Brand and web"; return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(sub)}</p></a></li>'
     return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(p["kind"])}{" · " + e(sub) if sub != p["kind"] else ""}</p></a></li>'
 
-def closer(a=("Start a project.", "Tell us what needs to get done. We reply within one business day.", "/contact/", "Contact us."),
+def closer(a=("Start a project.", "Bring us the challenge. We will design the answer, and you will hear from a person within one business day.", "/contact/", "Contact us."),
            b=("Check your site.", "Get a free WCAG 2.1 AA accessibility report.", "/accessibility/", "Get my report.")):
     return f'''<section class="dark" style="padding:0" aria-label="Next steps"><div class="wrap ends">
 <div><h2>{a[0]}</h2><p class="lede" style="margin:20px 0">{a[1]}</p><a class="go" href="{a[2]}">{a[3]}</a></div>
@@ -731,11 +731,11 @@ def accessibility():
          [crumb_schema(its), faq_schema(faq), {"@type": "Service", "name": "ADA website compliance and WCAG 2.1 AA remediation", "provider": {"@id": DOMAIN + "/#org"}, "areaServed": "US"}], h_nopop=True)
 
 def contact():
-    f = [("name", "Your name", "text", True, "name"), ("email", "Email", "email", True, "email"), ("organization", "Organization", "text", False, "organization"), ("message", "What needs to get done?", "textarea", True, "")]
-    body = f'''<section class="hero"><div class="wrap"><p class="tag">Contact</p><h1>Tell us what needs<span class="r">to get done.</span></h1>
+    f = [("name", "Your name", "text", True, "name"), ("email", "Email", "email", True, "email"), ("organization", "Organization", "text", False, "organization"), ("message", "What is the challenge?", "textarea", True, "")]
+    body = f'''<section class="hero"><div class="wrap"><p class="tag">Contact</p><h1>What is your brand up against?<span class="r">Let&rsquo;s solve it.</span></h1>
 <div class="herogrid" style="align-items:start">{form("contact", f, "Send")}
-<div><p class="lede">We reply within one business day.</p><p>Or write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</p><p>Yoodle LLC<br>Kansas City, Missouri</p></div></div></div></section>'''
-    page("/contact/", "Contact Yoodle | Start a Brand, Web or Marketing Project", "Contact Yoodle, the content experience agency in Kansas City. Tell us what needs to get done and we reply within one business day.", body, [crumb_schema([("/", "Home"), ("", "Contact")])], h_nopop=True)
+<div><p class="lede">Every engagement starts with the problem, not the deliverable. Tell us yours and you will hear from a person within one business day.</p><p>Or write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</p><p>Yoodle LLC<br>Kansas City, Missouri</p></div></div></div></section>'''
+    page("/contact/", "Contact Yoodle | Start a Brand, Web or Marketing Project", "Contact Yoodle, the content experience agency in Kansas City. Tell us what your brand is up against and we reply within one business day.", body, [crumb_schema([("/", "Home"), ("", "Contact")])], h_nopop=True)
     page("/thanks/", "Thank You | Yoodle", "Your message reached Yoodle. We reply within one business day.",
          '<section class="hero"><div class="wrap"><h1>Got it.<span class="r">Thank you.</span></h1><p class="lede" style="margin-top:32px">We reply within one business day.</p><p><a class="go" href="/work/">See the work while you wait.</a></p></div></section>', h_nopop=True, index=False)
     page("/privacy/", "Privacy Policy | Yoodle", "How Yoodle collects, uses and protects information submitted through yoodle.com.",
