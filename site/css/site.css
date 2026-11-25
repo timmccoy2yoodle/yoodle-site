@@ -93,11 +93,12 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .pillar .ph{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px;align-items:end}
 .pillar .tagc,.eyebrow{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin:0 0 14px;font-weight:500}
 .sub{font-size:.95rem;letter-spacing:.02em;opacity:.72;margin:10px 0 0}
-.dark.cta{background:var(--acc);padding:clamp(64px,10vw,140px) 0}
-.cta h2{margin:0 0 22px}
-.cta .lede{max-width:34ch;margin:0 0 30px}
-.cta .acts{display:flex;gap:16px 28px;flex-wrap:wrap;align-items:center;margin:0}
+.dark.cta{background:var(--acc)}
+.cta .lede{max-width:34ch}
 .cta .go{color:#fff}
+.cta .ends>div{border-top:0}
+.cols.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:760px){.cols.c2{grid-template-columns:1fr}.cta .ends>div+div{border-top:1px solid #f7f4ee44}}
 .pillar h3{font-size:clamp(2rem,4.4vw,3.6rem);margin:0}
 details.cap{border-top:1px solid #f7f4ee33}
 details.cap:last-of-type{border-bottom:1px solid #f7f4ee33}
@@ -125,6 +126,7 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 @media (max-width:560px){.posts{grid-template-columns:1fr}}
 .timcta{display:flex;gap:22px;align-items:center}
 .timcta img{width:132px;height:132px;border-radius:50%;object-fit:cover;flex:none}
+.spots{border-top:1.5px solid currentColor;padding-top:18px;margin-top:28px}
 .xlogo{height:64px;display:flex;align-items:center;margin-bottom:18px}
 .xlogo img{max-height:100%;max-width:220px;width:auto;height:auto;object-fit:contain}
 .xlogo.dk{background:#141414;border-radius:6px;padding:10px 16px;width:max-content;height:84px;margin-bottom:-2px}

@@ -141,11 +141,12 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .pillar .ph{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px;align-items:end}
 .pillar .tagc,.eyebrow{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin:0 0 14px;font-weight:500}
 .sub{font-size:.95rem;letter-spacing:.02em;opacity:.72;margin:10px 0 0}
-.dark.cta{background:var(--acc);padding:clamp(64px,10vw,140px) 0}
-.cta h2{margin:0 0 22px}
-.cta .lede{max-width:34ch;margin:0 0 30px}
-.cta .acts{display:flex;gap:16px 28px;flex-wrap:wrap;align-items:center;margin:0}
+.dark.cta{background:var(--acc)}
+.cta .lede{max-width:34ch}
 .cta .go{color:#fff}
+.cta .ends>div{border-top:0}
+.cols.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:760px){.cols.c2{grid-template-columns:1fr}.cta .ends>div+div{border-top:1px solid #f7f4ee44}}
 .pillar h3{font-size:clamp(2rem,4.4vw,3.6rem);margin:0}
 details.cap{border-top:1px solid #f7f4ee33}
 details.cap:last-of-type{border-bottom:1px solid #f7f4ee33}
@@ -173,6 +174,7 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 @media (max-width:560px){.posts{grid-template-columns:1fr}}
 .timcta{display:flex;gap:22px;align-items:center}
 .timcta img{width:132px;height:132px;border-radius:50%;object-fit:cover;flex:none}
+.spots{border-top:1.5px solid currentColor;padding-top:18px;margin-top:28px}
 .xlogo{height:64px;display:flex;align-items:center;margin-bottom:18px}
 .xlogo img{max-height:100%;max-width:220px;width:auto;height:auto;object-fit:contain}
 .xlogo.dk{background:#141414;border-radius:6px;padding:10px 16px;width:max-content;height:84px;margin-bottom:-2px}
@@ -526,11 +528,11 @@ def card(p):
     return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(p["kind"])}{" · " + e(sub) if sub != p["kind"] else ""}</p></a></li>'
 
 CTA_TEXT = "Bring the challenge. We&rsquo;ll bring the experience, the curiosity, and the people to make it happen."
-def closer(text=CTA_TEXT, button=("/contact/", "Start the conversation"), also=("/accessibility/", "Or get a free accessibility report.")):
-    return f'''<section class="dark cta" aria-label="Start a conversation"><div class="wrap">
-<p class="eyebrow">Your next chapter starts with a conversation.</p>
-<h2>What&rsquo;s next for you?</h2><p class="lede">{text}</p>
-<p class="acts"><a class="btn" href="{button[0]}">{button[1]}</a>{f' <a class="go" href="{also[0]}">{also[1]}</a>' if also else ""}</p></div></section>'''
+ADA_END = ("Check your site.", "Get a free WCAG 2.1 AA accessibility report.", "/accessibility/", "Get my report.")
+def closer(text=CTA_TEXT, button=("/contact/", "Start the conversation"), b=ADA_END):
+    return f'''<section class="dark cta" style="padding:0" aria-label="Next steps"><div class="wrap ends">
+<div><p class="eyebrow">Your next chapter starts with a conversation.</p><h2>What&rsquo;s next for you?</h2><p class="lede" style="margin:20px 0 28px">{text}</p><a class="btn" href="{button[0]}">{button[1]}</a></div>
+<div><h2>{b[0]}</h2><p class="lede" style="margin:20px 0">{b[1]}</p><a class="go" href="{b[2]}">{b[3]}</a></div></div></section>'''
 
 def marquee():
     half = (len(CLEAR) + 1) // 2
@@ -643,7 +645,7 @@ def project(i, p):
 {story}
 {nums}{gal}{quote}
 <section class="tight"><div class="wrap"><nav class="pn" aria-label="More work"><a href="/work/{prev["slug"]}/"><span class="small">Previous</span><br><strong>{e(prev["name"])}</strong></a><a class="nx" href="/work/{nxt["slug"]}/"><span class="small">Next</span><br><strong>{e(nxt["name"])}</strong></a></nav></div></section>
-{closer(also=("/work/", "Or see more of the work."))}'''
+{closer(b=("See more work.", "Projects chosen from a much longer list.", "/work/", "See the work."))}'''
     t = {"Website": f'{p["name"]} Website | {lab} Web Design by Yoodle', "Podcast": f'{p["name"]} | Podcast Production by Yoodle', "Video and content": f'{p["name"]} | Video Production by Yoodle', "Project": f'{p["name"]} | {lab} Brand and Web Work by Yoodle', "Brand and marketing": f'{p["name"]} | Rebrand and Marketing by Yoodle', "Workforce training": f'{p["name"]} | Workforce Training'}[p["kind"]]
     if len(t) > 68: t = f'{p["name"]} | {"Web Design" if p["kind"] == "Website" else "Work"} by Yoodle'
     d = (p["about"] or f'{p["name"]}, a {p["kind"].lower()} produced by Yoodle.')
@@ -698,20 +700,22 @@ def experience():
              ("Amplify", "Scale the winners, and train your team or your first marketing hire to take over.")]
     faq = [("What is a fractional CMO?", "A fractional CMO is a senior marketing leader who works inside your organization part time on a fixed contract. You get the strategy, the plan and the management of the work without a full-time executive salary."),
            ("How long is an engagement?", "Six months. The first 90 days are a sprint to diagnose, plan and launch. The following months run and improve the system."),
-           ("Who hires a fractional CMO?", "Organizations with real revenue or a real mandate and no senior marketing lead: growing companies, multi-location businesses, nonprofits and public-sector teams between hires.")]
+           ("Who hires a fractional CMO?", "Organizations with a marketing staff and no senior marketing leader: growing companies, multi-location businesses, nonprofits and public-sector teams. We lead the team you have and build it up in house."),
+           ("How many clients does Tim take on?", "Only a few at a time. Two openings are available now.")]
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Experience</p><h1>Your fractional CMO.<span class="r">With a team.</span></h1>
-<div class="herogrid"><p class="lede" style="margin:0">A fractional CMO and the agency behind him, inside your organization for six months. For teams that need a chief marketing officer or marketing director before they can hire one.</p>
+<div class="herogrid"><p class="lede" style="margin:0">A fractional CMO and the agency behind him, inside your organization for six months. For companies with a marketing staff that needs senior leadership, and a plan to grow it.</p>
 <div class="timcta"><img src="/img/tim-mccoy.webp" alt="Tim McCoy, fractional CMO and president of Yoodle" width="900" height="900"><div><p style="margin:0 0 12px"><strong>Tim McCoy</strong><br><span class="small">Fractional CMO, president of Yoodle</span></p><a class="btn" href="/contact/">Talk to Tim</a></div></div></div></div></section>
 <section class="tight"><div class="wrap two"><h2>A fractional CMO who operates.</h2><div><p class="lede">Tim McCoy has led Yoodle for {YEARS} years and is chief marketing officer of a five-store bridal retail group. The systems we bring to clients are ones we run on our own businesses first.</p>
-<p>Most fractional CMOs bring a plan and leave the work to you. Here you get the leader and the hands. Strategy comes with a team that can build the brand, the website, the campaigns and the reporting, so the plan does not wait on hiring.</p></div></div></section>
+<p>Most fractional CMOs bring a plan and leave the work to you. Here you get the leader and the hands. Tim leads the people you already have, and Yoodle builds what they can&rsquo;t yet: the brand, the website, the campaigns, the reporting.</p>
+<p>The goal is an in-house team that no longer needs us. We coach your staff, help you make the next hire, and hand over the playbook.</p>
+<p class="spots"><strong>Two openings left.</strong> Tim works with only a few companies at a time, so each one gets a leader who is actually in the room. <a class="go" href="/contact/">Ask about a spot.</a></p></div></div></section>
 <section class="dark"><div class="wrap"><h2>Six months.</h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3>{a}.</h3><p>{b}</p></li>' for i, (a, b) in enumerate(steps))}</ol></div></section>
-<section><div class="wrap"><h2>Fractional CMO work.<span class="r">In practice.</span></h2><div class="cols">
-<div class="col"><div class="xlogo"><img src="/img/logos/w20.webp" alt="Savvy Bridal logo" width="480" height="170" loading="lazy"></div><h3>Savvy Bridal and Vow Ready.</h3><p>Five bridal stores in three states. Tim sits as chief marketing officer, an in-house team runs the day to day, and Yoodle builds what the team needs: websites, dashboards, campaigns.</p><a class="go" href="/bridal/">The bridal story.</a></div>
+<section><div class="wrap"><h2>Fractional CMO work.<span class="r">In practice.</span></h2><div class="cols c2">
+<div class="col"><div class="xlogo"><img src="/img/logos/t-w20.webp" alt="Savvy Bridal logo" width="480" height="170" loading="lazy"></div><h3>Savvy Bridal and Vow Ready.</h3><p>Five bridal stores in three states. Tim sits as chief marketing officer, an in-house team runs the day to day, and Yoodle builds what the team needs: websites, dashboards, campaigns.</p><a class="go" href="/bridal/">The bridal story.</a></div>
 <div class="col"><div class="xlogo"><img src="/img/logos/ajm.webp" alt="American Jazz Museum logo" width="311" height="220" loading="lazy" style="background:#141414;padding:6px 12px;border-radius:6px;box-sizing:content-box;max-height:52px"></div><h3>American Jazz Museum.</h3><p>A marketing framework, audience survey reporting, print, and The Big Break podcast, led in 2024 as the museum's fractional CMO, with Yoodle producing the work. {confirm("your title there and one result")}</p><a class="go" href="/work/the-big-break/">The Big Break.</a></div>
-<div class="col"><div class="xlogo"><img src="/img/logos/sos.webp" alt="The Soul of Santa logo" width="261" height="260" loading="lazy"></div><h3>The Soul of Santa.</h3><p>Brand, website, photo and video for a Kansas City nonprofit, with Tim as fractional CMO from 2025 to today, and Yoodle and the foundation's own people doing the work. {confirm("your title there and one result")}</p><a class="go" href="/work/the-soul-of-santa/">The Soul of Santa.</a></div>
 </div></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
-{closer(text="Need a marketing leader? Bring the challenge. We&rsquo;ll bring the experience, the curiosity, and the people to make it happen.", button=("/contact/", "Talk to a fractional CMO"), also=None)}'''
+{closer(text="Need a marketing leader? Bring the challenge. We&rsquo;ll bring the experience, the curiosity, and the people to make it happen.", button=("/contact/", "Talk to a fractional CMO"), b=("See the bridal story.", "The model, proven in our own five stores.", "/bridal/", "Read it."))}'''
     its = [("/", "Home"), ("", "Experience")]
     page("/experience/", "Fractional CMO and Marketing Leadership | Yoodle",
          "Fractional CMO and marketing director services from Yoodle. A senior leader and a full team inside your organization on a six-month contract.", body, [crumb_schema(its), faq_schema(faq)])
@@ -742,7 +746,7 @@ def bridal():
 <ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{f"<a href={chr(34)}{u}{chr(34)}>{e(n)}</a>" if u else e(n)}.</h3><p>{e(t) if t else confirm("one line on what this does")}</p></li>' for i, (n, t, u) in enumerate(built))}</ol>
 <p style="margin-top:20px">{confirm("results to cite (leads, bookings, conversion)")}</p></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
-{closer(text="Own a bridal shop? Tell us where marketing is stuck. We&rsquo;d love to help.", also=None)}'''
+{closer(text="Own a bridal shop? Tell us where marketing is stuck. We&rsquo;d love to help.")}'''
     its = [("/", "Home"), ("", "Bridal")]
     page("/bridal/", "Bridal Shop Marketing and Fractional CMO | Yoodle", "Bridal marketing from the team behind Savvy Bridal and Vow Ready: a fractional CMO, agency support and an in-house team, proven in five stores.", body,
          [crumb_schema(its), faq_schema(faq), {"@type": "Service", "name": "Bridal shop marketing and fractional CMO", "provider": {"@id": DOMAIN + "/#org"}, "areaServed": "US"}])
@@ -755,7 +759,7 @@ def content():
 <section><div class="wrap two"><h2>Soapbox.</h2><div><p class="lede">Notes on brand, web, accessibility and AI search for people who answer to the public.</p>
 </div></div>
 <div class="wrap"><ul class="posts">{"".join(f'<li><a href="/content/{x["slug"]}/">' + (f'<div class="th im"><img src="{x["img"]["src"]}" alt="" width="{x["img"]["w"]}" height="{x["img"]["h"]}" loading="lazy"></div>' if x.get("img") else '<div class="th" aria-hidden="true">Soapbox</div>') + f'<span class="small">{x["date"][:7]}</span><h3>{e(x["title"])}</h3></a></li>' for x in POSTS)}</ul></div></section>
-{closer(also=("/services/content/", "Or see how we make content."))}'''
+{closer(b=("Have a show in mind?", "We plan it, produce it and publish it.", "/services/content/", "See content services."))}'''
     its = [("/", "Home"), ("", "Content")]
     page("/content/", "Content: Podcasts and the Soapbox Blog | Yoodle", "Podcasts produced by Yoodle, plus Soapbox, the Yoodle blog on brand, web, accessibility and AI search.", body, [crumb_schema(its)])
 
@@ -792,7 +796,7 @@ def accessibility():
 <section class="tight"><div class="wrap two"><h2>Proof.</h2><div><p class="lede">SWIFT Education Center, University of Kansas. Audited, fixed, retested and certified in fall 2026.</p>
 <p><a class="go" href="/work/swift-education-center/">See the project.</a></p></div></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}<p class="small" style="margin-top:20px">Sources: U.S. Department of Justice interim final rule, <a href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal Register, April 20, 2026</a>. General information, not legal advice.</p></div></div></section>
-{closer(also=("/work/", "Or see the work first."))}'''
+{closer(b=("See our web work.", "Live sites for colleges, courts and agencies.", "/work/", "See the work."))}'''
     its = [("/", "Home"), ("", "ADA website compliance")]
     page("/accessibility/", "ADA Website Compliance and WCAG 2.1 AA Fixes | Yoodle",
          "Free WCAG 2.1 AA website report. Yoodle audits, fixes your site's own code, retests and certifies ahead of the April 26, 2027 ADA Title II deadline.", body,
