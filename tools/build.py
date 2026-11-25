@@ -5,6 +5,7 @@ import os, re, sys, json, shutil, html
 from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import *
+from data import PILLARS
 from logos import LOGOS, WALL, CLEAR
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -84,9 +85,16 @@ nav.main ul{display:flex;gap:2px;align-items:center;list-style:none;margin:0;pad
 nav.main a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;text-decoration:none;font-weight:500}
 nav.main a:hover,nav.main a[aria-current]{text-decoration:underline}
 nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;padding:0 20px;margin-left:8px}
-.menu{display:none;min-height:44px;padding:0 16px;border:1.5px solid var(--ink);border-radius:999px;background:none;font:inherit;font-weight:600;color:inherit;cursor:pointer}
+.menu{display:none;width:48px;height:48px;padding:0;border:0;background:none;color:inherit;cursor:pointer;position:relative}
+.menu i{position:absolute;left:9px;right:9px;height:2px;background:currentColor;border-radius:2px;transition:transform .35s cubic-bezier(.2,.7,.2,1),top .35s cubic-bezier(.2,.7,.2,1),width .3s,opacity .2s}
+.menu i:nth-child(1){top:16px}.menu i:nth-child(2){top:23px}.menu i:nth-child(3){top:30px}
+.menu:hover i:nth-child(2){transform:translateX(5px)}.menu:hover i:nth-child(3){transform:translateX(-3px)}
+.menu[aria-expanded=true] i:nth-child(1){top:23px;transform:rotate(45deg)}
+.menu[aria-expanded=true] i:nth-child(2){opacity:0;transform:none}
+.menu[aria-expanded=true] i:nth-child(3){top:23px;transform:rotate(-45deg)}
+@media (prefers-reduced-motion:reduce){.menu i{transition:none}}
 @media (max-width:760px){
- .js .menu{display:inline-flex;align-items:center}
+ .js .menu{display:block}
  .js nav.main{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 24px 20px}
  .js nav.main.open{display:block}
  nav.main ul{flex-direction:column;align-items:stretch}
@@ -127,6 +135,22 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .mq.lg .track li::after{content:none}
 .mq.lg .track img{height:auto;width:auto;max-height:100%;max-width:190px;object-fit:contain}
 @media (max-width:620px){.mq.lg .track li{height:46px}.mq.lg .track img{max-width:160px}}
+.caps{margin-top:clamp(20px,3vw,36px)}
+.pillar{padding:clamp(36px,5vw,72px) 0;border-top:1px solid #f7f4ee44}
+.pillar:first-of-type{border-top:0;padding-top:clamp(24px,3vw,40px)}
+.pillar .ph{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px;align-items:end}
+.pillar .tagc{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin:0 0 10px}
+.pillar h3{font-size:clamp(2rem,4.4vw,3.6rem);margin:0}
+details.cap{border-top:1px solid #f7f4ee33}
+details.cap:last-of-type{border-bottom:1px solid #f7f4ee33}
+details.cap summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;padding:10px 0;font-family:"Inter Tight",sans-serif;font-weight:500;font-size:clamp(1.15rem,1.9vw,1.5rem);letter-spacing:-.01em}
+details.cap summary::-webkit-details-marker{display:none}
+details.cap summary::after{content:"+";flex:none;width:34px;height:34px;border:1.5px solid #f7f4ee;color:#f7f4ee;border-radius:50%;display:grid;place-items:center;font-family:Inter,sans-serif;font-weight:300;font-size:1.5rem;line-height:1;padding-bottom:2px;transition:transform .3s,background .2s,color .2s}
+details.cap[open] summary::after{transform:rotate(45deg);background:var(--bg);color:var(--ink)}
+details.cap summary:hover{opacity:.8}
+details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
+.pillar .more{margin-top:22px;display:flex;gap:28px;flex-wrap:wrap}
+@media (max-width:760px){.pillar .ph{grid-template-columns:1fr}}
 .kw{font-size:1rem;opacity:.82;margin-top:10px!important}
 .rows>li>div>p+p{margin-top:10px}
 .posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px) clamp(16px,2.4vw,32px);list-style:none;padding:0;margin:clamp(28px,4vw,48px) 0 0}
@@ -148,7 +172,10 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .xlogo.dk{background:#141414;border-radius:6px;padding:10px 16px;width:max-content;height:84px;margin-bottom:-2px}
 @keyframes mq{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.track{animation:none;width:auto;flex-wrap:wrap}.track ul{flex-wrap:wrap}.track ul[aria-hidden]{display:none}.track li{white-space:normal}.mqbtn{display:none}}
-.mqbtn,.linkbtn{margin-top:12px;background:none;border:0;font:inherit;font-size:.95rem;text-decoration:underline;min-height:44px;cursor:pointer;color:inherit;padding:0}
+.mqbtn{margin-top:14px;width:44px;height:44px;border:1.5px solid var(--ink);border-radius:50%;background:none;color:inherit;cursor:pointer;display:grid;place-items:center;padding:0}
+.mqbtn::before{content:"";width:12px;height:14px;border-left:4px solid currentColor;border-right:4px solid currentColor;box-sizing:border-box}
+.mqbtn[aria-pressed=true]::before{width:0;height:0;border:0;border-left:13px solid currentColor;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+.linkbtn{margin-top:12px;background:none;border:0;font:inherit;font-size:.95rem;text-decoration:underline;min-height:44px;cursor:pointer;color:inherit;padding:0}
 .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);margin-top:clamp(32px,5vw,64px)}
 .cols.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media (max-width:980px){.cols.c4{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -163,7 +190,7 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .dark .idx{color:var(--acc-l)}
 .rows p{margin:0}
 .rows h3 a{text-decoration:none}.rows h3 a:hover{text-decoration:underline}
-@media (max-width:760px){.rows>li{grid-template-columns:48px minmax(0,1fr)}.rows>li p{grid-column:2}}
+@media (max-width:760px){.rows>li{grid-template-columns:48px minmax(0,1fr);row-gap:10px}.rows>li>p,.rows>li>div{grid-column:1/-1}}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin:32px 0 0}
 .chipb{min-height:46px;padding:0 18px;border:1.5px solid var(--ink);border-radius:999px;background:none;font:inherit;font-weight:600;color:var(--ink);cursor:pointer}
 .chipb[aria-pressed=true]{background:var(--ink);color:var(--bg)}
@@ -210,6 +237,12 @@ form.f{display:grid;gap:16px;max-width:640px}
 form.f label{display:block;font-weight:600;margin-bottom:6px}
 form.f input,form.f textarea{width:100%;min-height:52px;padding:12px 18px;font:inherit;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:10px}
 form.f textarea{min-height:140px}
+form.f select{width:100%;min-height:52px;padding:12px 18px;font:inherit;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:10px}
+form.f fieldset{border:0;padding:0;margin:0;min-width:0}form.f legend{font-weight:600;margin-bottom:10px;padding:0}
+form.f .checks{display:flex;flex-wrap:wrap;gap:10px}
+form.f .checks label{display:inline-flex;align-items:center;gap:8px;margin:0;font-weight:500;border:1.5px solid var(--ink);border-radius:999px;padding:0 16px;min-height:46px;cursor:pointer;background:#fff}
+form.f .checks input{width:18px;height:18px;min-height:0;padding:0;accent-color:var(--acc)}
+form.f .checks label:has(input:checked){background:var(--ink);color:var(--bg)}
 .hp{position:absolute;left:-9999px}
 .status{margin-top:4px;padding:12px 16px;background:var(--amber);color:var(--amber-t);font-weight:600;display:none;border-radius:6px}
 .status.show{display:block}
@@ -248,7 +281,7 @@ header.site{transition:transform .45s cubic-bezier(.2,.7,.2,1),background-color 
 header.site.hide{transform:translateY(-101%)}
 html[data-band=dark] header.site{background:var(--ink);color:var(--bg);border-color:#f7f4ee33}
 html[data-band=dark] header.site nav.main a.talk{background:var(--bg);color:var(--ink)}
-html[data-band=dark] header.site .menu{border-color:var(--bg)}
+html[data-band=dark] header.site .menu{color:var(--bg)}
 html[data-band=dark] header.site .brand span{color:var(--acc-l)}
 html[data-band=dark] .js nav.main,html.js[data-band=dark] nav.main{background:var(--ink)}
 .prog{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--acc);transform-origin:0 50%;transform:scaleX(0);z-index:40;pointer-events:none}
@@ -284,7 +317,7 @@ var mb=d.getElementById('menu'),nv=d.getElementById('nav');
 if(mb){mb.addEventListener('click',function(){var o=nv.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
  d.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&nv.classList.contains('open')){nv.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.focus()}})}
 var mq=d.getElementById('mq'),mqb=d.getElementById('mqbtn');
-if(mqb)mqb.addEventListener('click',function(){var p=mq.classList.toggle('paused');mqb.setAttribute('aria-pressed',p);mqb.textContent=p?'Resume scrolling logos':'Pause scrolling logos'});
+if(mqb)mqb.addEventListener('click',function(){var p=mq.classList.toggle('paused');mqb.setAttribute('aria-pressed',p);mqb.setAttribute('aria-label',p?'Play scrolling logos':'Pause scrolling logos')});
 var fb=d.querySelectorAll('[data-f]'),cards=d.querySelectorAll('[data-s]'),cnt=d.getElementById('count');
 function setF(k){var n=0;cards.forEach(function(c){var on=k==='all'||c.getAttribute('data-s')===k;c.hidden=!on;if(on)n++});fb.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-f')===k)});if(cnt)cnt.textContent=n+' projects shown';}
 fb.forEach(function(b){b.addEventListener('click',function(){setF(b.getAttribute('data-f'));if(history.replaceState)try{history.replaceState(null,'','#'+b.getAttribute('data-f'))}catch(_){}})});
@@ -348,7 +381,7 @@ def header(cur):
 {'<aside class="testbar" aria-label="Test build notice">Test build for Tim. Amber tags mark facts to confirm before launch.</aside>' if TEST_BUILD else ''}
 <header class="site"><div class="wrap">
 <a class="brand" href="/" aria-label="Yoodle home">yoodle<span>.</span></a>
-<button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+<button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><i></i><i></i><i></i></button>
 <nav class="main" id="nav" aria-label="Main"><ul>{li}<li><a class="talk" href="/contact/">Contact</a></li></ul></nav>
 </div></header>'''
 
@@ -365,6 +398,8 @@ PICK = '''<aside class="pick" aria-label="Accent color options, test build only"
 def field(id, label, type="text", req=True, ac="", pre=""):
     r = " required" if req else ""
     a = f' autocomplete="{ac}"' if ac else ""
+    if isinstance(type, tuple) and type[0] == "select": return f'<div><label for="{pre}{id}">{label}</label><select id="{pre}{id}" name="{id}"{r}><option value="">Choose one</option>{"".join(f"<option>{o}</option>" for o in type[1])}</select></div>'
+    if isinstance(type, tuple) and type[0] == "checks": return f'<fieldset><legend>{label}</legend><div class="checks">{"".join(f"<label><input type=checkbox name={chr(34)}{id}[]{chr(34)} value={chr(34)}{o}{chr(34)}> <span>{o}</span></label>" for o in type[1])}</div></fieldset>'
     if type == "textarea": return f'<div><label for="{pre}{id}">{label}</label><textarea id="{pre}{id}" name="{id}"{r}></textarea></div>'
     return f'<div><label for="{pre}{id}">{label}</label><input id="{pre}{id}" name="{id}" type="{type}"{a}{r}></div>'
 
@@ -390,7 +425,26 @@ def flat(href):
     p = p.strip("/")
     return (p.replace("/", "-") + ".html" if p else "index.html") + frag
 
+_CONTR = [("do not", "don't"), ("does not", "doesn't"), ("did not", "didn't"), ("cannot", "can't"), ("is not", "isn't"), ("are not", "aren't"),
+          ("it is", "it's"), ("that is", "that's"), ("we will", "we'll"), ("you will", "you'll"), ("we are", "we're"), ("you are", "you're"), ("they are", "they're")]
+def contract(html):
+    """House style (Tim, Nov 2026): contractions in running copy. Text nodes only; never tags, scripts or quotes from clients."""
+    out = []
+    skip = 0
+    for part in re.split(r"(<[^>]+>)", html):
+        if part.startswith("<"):
+            low = part.lower()
+            if re.match(r"<(script|style|blockquote|form|select)\b", low): skip += 1
+            elif re.match(r"</(script|style|blockquote|form|select)>", low): skip = max(0, skip - 1)
+            out.append(part); continue
+        if not skip:
+            for a, c in _CONTR:
+                part = re.sub(r"\b" + a + r"\b(?=\s+[A-Za-z])", lambda m, c=c: (c[0].upper() + c[1:]) if m.group(0)[0].isupper() else c, part, flags=re.I)
+        out.append(part)
+    return "".join(out)
+
 def page(path, title, desc, body, schema=None, h_nopop=False, index=True):
+    if not (path.startswith("/content/") and path.count("/") > 2): body = contract(body)
     canon = DOMAIN + path
     crumbs = []
     parts = [x for x in path.strip("/").split("/") if x]
@@ -473,17 +527,17 @@ def closer(a=("Start a project.", "Bring us the challenge. We will design the an
 def marquee():
     half = (len(CLEAR) + 1) // 2
     def row(items, rev):
-        lis = "".join(f'<li><img src="/img/logos/{fn}" alt="{e(n)}" width="{s[0]}" height="{s[1]}" loading="lazy"></li>' for fn, n, s in items)
+        lis = "".join(f'<li><img src="/img/logos/{fn}" alt="{e(n)}" width="{s[0]}" height="{s[1]}" decoding="async"></li>' for fn, n, s in items)
         dup = re.sub(r'alt="[^"]*"', 'alt=""', lis)
         return f'<div class="track{" rev" if rev else ""}"><ul>{lis}</ul><ul aria-hidden="true">{dup}</ul></div>'
     return f'''<div class="wrap"><p class="small" style="margin-bottom:10px">A few of the organizations that trust us with their name</p></div>
 <div class="mq lg" id="mq">{row(CLEAR[:half], False)}{row(CLEAR[half:], True)}</div>
-<div class="wrap"><button class="mqbtn" id="mqbtn" type="button" aria-pressed="false">Pause scrolling logos</button></div>'''
+<div class="wrap"><button class="mqbtn" id="mqbtn" type="button" aria-pressed="false" aria-label="Pause scrolling logos"></button></div>'''
 
 # ------------------------------------------------------------------ pages
 def home():
     feat = [p for p in P if p["slug"] in ("nevada-state-university", "kansas-judicial-branch", "ut-austin-extended-campus", "kc-streetcar", "variety-kc", "fsu-career-center")]
-    svc = "".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3><a href="/services/{k}/">{v["name"]}. {v["verdict"]}</a></h3><p>{e(v["lede"])}</p></li>' for i, (k, v) in enumerate(SERVICES.items()))
+    svc = "".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3><a href="/services/#{v["key"]}">{v["name"]}. {v["verdict"]}</a></h3><p>{e(v["lede"])}</p></li>' for i, v in enumerate(PILLARS))
     body = f'''<section class="hero"><div class="wrap">
 <p class="tag">Yoodle. The content experience agency.</p>
 <h1>What your brand needs next.<span class="r">Done.</span></h1>
@@ -497,7 +551,7 @@ def home():
 <p>Give us the outcome. We write the scope, do the work and hand you something that runs: a brand your staff can use, a website that passes an accessibility audit, a campaign you can measure, a show that publishes on time. If you want to run it yourselves afterward, we train your team to do it.</p>
 <p><a class="go" href="/services/">See what we do.</a></p></div></div></section>
 <section class="dark"><div class="wrap"><h2>Services.</h2><ol class="rows">{svc}
-<li><span class="idx" aria-hidden="true">05</span><h3><a href="/experience/">Experience. Led.</a></h3><p>Senior marketing leadership on a six-month contract, for teams that need a head of marketing before they can hire one.</p></li></ol></div></section>
+<li><span class="idx" aria-hidden="true">04</span><h3><a href="/experience/">Fractional CMO. Led.</a></h3><p>A chief marketing officer on a six-month contract, with our team behind them, for organizations that need the leadership before they can hire it.</p></li></ol></div></section>
 <section><div class="wrap"><div class="two" style="align-items:end"><h2>Work.<span class="r">Launched.</span></h2><p class="lede">{len(P)} projects you can open and inspect, picked from a much longer list: live websites, brands and campaigns for higher education, government, nonprofits and business, plus the podcasts we produce.</p></div>
 <ul class="grid">{"".join(card(p) for p in feat)}</ul><p style="margin-top:28px"><a class="go" href="/work/">See all the work.</a></p></div></section>
 <section class="dark"><div class="wrap"><h2>Who we work for.</h2><div class="cols">
@@ -516,7 +570,7 @@ def home():
 def work():
     fl = '<button class="chipb" type="button" data-f="all" aria-pressed="true">All</button>' + "".join(f'<button class="chipb" type="button" data-f="{k}" aria-pressed="false">{v[0]}</button>' for k, v in SECTORS.items())
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Work</p><h1>The work.<span class="r">Launched.</span></h1>
-<p class="lede" style="margin-top:32px">{len(P)} projects, picked from a much longer client list. Many of the websites are live, so do not take our word for it. Open them.</p>
+<p class="lede" style="margin-top:32px">{len(P)} projects, picked from a much longer client list. Many of the websites are live, so don't just take our word for it.</p>
 <div class="filters" role="group" aria-label="Filter work by sector">{fl}</div><p class="small" id="count" role="status" style="margin:14px 0 0">{len(P)} projects shown</p>
 <ul class="grid" id="grid">{"".join(card(p) for p in P)}</ul></div></section>
 {closer()}'''
@@ -593,13 +647,15 @@ def project(i, p):
     page(f'/work/{p["slug"]}/', t, d, body, [crumb_schema([("/", "Home"), ("/work/", "Work"), ("", p["name"])]), cw])
 
 def services():
-    rows = "".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3><a href="/services/{k}/">{v["name"]}. {v["verdict"]}</a></h3><div><p>{e(v["lede"])}</p><p class="kw">{e(v["kw"])}</p><p><a href="/services/{k}/">More on {v["name"].lower()}.</a></p></div></li>' for i, (k, v) in enumerate(SERVICES.items()))
+    rows = "".join(f'''<div class="pillar" id="{v["key"]}"><div class="ph"><div><p class="tagc">{v["name"]} capabilities</p><h3>{v["name"]}.<span class="r"> {v["verdict"]}</span></h3></div><p class="lede" style="margin:0">{e(v["lede"])}</p></div>
+<div class="caps">{"".join(f"<details class=cap><summary>{e(n)}</summary><p>{e(x)}</p></details>" for n, x in v["caps"])}</div>
+<p class="more">{"".join(f'<a class="go" href="{u}">{l}</a>' for u, l in v["links"])}</p></div>''' for v in PILLARS)
     faq = [("What does Yoodle do?", "Yoodle is a brand, web and marketing agency. We scope, build and launch brands, websites, growth campaigns and content for higher education, government, nonprofits and small businesses."),
            ("Who does Yoodle work with?", "Public colleges and universities, government agencies and commissions, nonprofits and owner-run businesses. We also work as a teaming partner or subcontractor to prime contractors."),
            ("How does a project start?", "With a scope. You tell us the outcome, we write down what will be delivered, when and for how much, and work starts once you approve it.")]
-    body = f'''<section class="hero"><div class="wrap"><p class="tag">Services</p><h1>Four services.<span class="r">One team.</span></h1>
-<p class="lede" style="margin-top:32px">Brand, interactive, growth and content. Buy one, or let us run all four as your marketing department. Each runs on methods we have tested against real budgets and real deadlines.</p></div></section>
-<section class="dark"><div class="wrap"><h2>What we do.</h2><ol class="rows">{rows}</ol></div></section>
+    body = f'''<section class="hero"><div class="wrap"><p class="tag">Services</p><h1>Brand, marketing and digital products.<span class="r">One team.</span></h1>
+<p class="lede" style="margin-top:32px">Three practices under one roof. Bring us into one, or hand us the whole challenge and let them work together.</p></div></section>
+<section class="dark"><div class="wrap"><h2>What we do.</h2>{rows}</div></section>
 <section><div class="wrap"><h2>How we work.</h2><ol class="rows">
 <li><span class="idx" aria-hidden="true">01</span><h3>Scope it.</h3><p>One page: the outcome, what we deliver, the date and the price.</p></li>
 <li><span class="idx" aria-hidden="true">02</span><h3>Build it.</h3><p>A senior team does the work, fast. When the plan meets a problem, we solve it with whatever tool does it best, and a person answers for everything that ships.</p></li>
@@ -610,8 +666,8 @@ def services():
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
 {closer()}'''
     items = [("/", "Home"), ("", "Services")]
-    page("/services/", "Services: Brand, Web, Growth and Content Marketing | Yoodle",
-         "Yoodle's four services: brand, interactive, growth and content. One senior team that scopes, builds and launches marketing for colleges and agencies.", body, [crumb_schema(items), faq_schema(faq)])
+    page("/services/", "Services: Brand, Marketing and Digital Products | Yoodle",
+         "Yoodle's capabilities across brand, marketing and digital products: strategy, identity, campaigns, content, websites and custom applications.", body, [crumb_schema(items), faq_schema(faq)])
     for k, v in SERVICES.items():
         rel = [p for p in P if (k == "content") == (p["sector"] == "content")][:3]
         body = f'''<section class="hero"><div class="wrap">{crumbs([("/", "Home"), ("/services/", "Services"), ("", v["name"])])}
@@ -652,12 +708,14 @@ def experience():
          "Fractional CMO and marketing director services from Yoodle. A senior leader and a full team inside your organization on a six-month contract.", body, [crumb_schema(its), faq_schema(faq)])
 
 def bridal():
-    built = [("savvybridalboutique.com", "Savvy Bridal's website: booking for three cities, designer directory and a tool that works out a bride's say-yes date. Rebuilt as a fast static site in fall 2026.", "/work/savvy-bridal/"),
-             ("vowready.com", "The site for Vow Ready, the off-the-rack sister brand with two locations.", ""),
-             ("Competitor and ad dashboard", "Savvy's marketing dashboard: our ads and spend next to what competing shops are running.", ""),
-             ("Executive growth dashboard", "One oversight view for ownership: growth across every store and site.", ""),
-             ("Timeline", "", ""), ("The Q", "", ""), ("Stylist Edit", "", ""),
-             ("Training platform", "Where new stylists and staff learn the Savvy way of selling.", "")]
+    built = [("savvybridalboutique.com", "Three cities, one front door. Rebuilt from the ground up to move faster than she can change her mind.", "/work/savvy-bridal/"),
+             ("vowready.com", "The gown she wants, ready the day she finds it.", ""),
+             ("Competitor and ad dashboard", "Our ads and theirs, side by side. Nothing in the market moves unnoticed.", ""),
+             ("Executive growth dashboard", "Every store, every site, one screen. Built for the people who own the outcome.", ""),
+             ("Timeline", "She gives us one date. We give her back every deadline that matters.", ""),
+             ("The Q", "A line nobody stands in. She waits wherever she likes, and we text her when it's her turn.", ""),
+             ("Stylist Edit", "Her stylist knows her taste before she walks through the door.", ""),
+             ("Training platform", "How the Savvy way of selling gets passed on.", "")]
     faq = [("Do you work with bridal shops you do not own?", "Yes. The system was built inside our own stores so it could be installed in others."),
            ("What does a fractional CMO do for a bridal shop?", "Sets the marketing plan, manages the budget and the agency work, and builds and trains your in-house team so the shop is not dependent on outside help."),
            ("How long is an engagement?", "Six months. The first 90 days install the system. The rest trains your team to run it.")]
@@ -665,16 +723,17 @@ def bridal():
 <div class="herogrid"><p class="lede" style="margin:0">Yoodle's founder is chief marketing officer of Savvy Bridal and Vow Ready: five stores in Kansas City, St. Louis and Fort Lauderdale. Everything we sell to bridal shops, we run there first.</p>
 <p style="margin:0"><a class="btn" href="/contact/">Talk about your shop</a></p></div></div></section>
 <section class="tight"><div class="wrap two"><h2>A true story.</h2><div><p class="lede">Savvy Bridal opened in 2013. It grew to three cities, then added Vow Ready, an off-the-rack brand, in 2026.</p>
-<p>It did not grow on an agency retainer alone, and it did not grow on an in-house team alone. It took three parts working together, and that is the model we bring to other shops.</p></div></div></section>
-<section class="dark"><div class="wrap"><h2>Three parts.</h2><ol class="rows">
+<p>It did not grow on an agency retainer alone, and it did not grow on an in-house team alone. It took four parts working together, and that's the model we bring to other shops.</p></div></div></section>
+<section class="dark"><div class="wrap"><h2>Four parts.</h2><ol class="rows">
 <li><span class="idx" aria-hidden="true">01</span><h3>A marketing leader.</h3><p>A fractional chief marketing officer who owns the plan, the budget and the numbers, and answers to the owner.</p></li>
 <li><span class="idx" aria-hidden="true">02</span><h3>An agency behind them.</h3><p>Yoodle builds what the plan calls for: brand, websites, ads, content and reporting. No hiring wait.</p></li>
-<li><span class="idx" aria-hidden="true">03</span><h3>An in-house team.</h3><p>Your own people run the day to day: social, events, follow-up, the stores. We hire with you, train them and hand over the playbook.</p></li></ol></div></section>
+<li><span class="idx" aria-hidden="true">03</span><h3>An in-house team.</h3><p>Your own people run the day to day: social, events, follow-up, the stores. We hire with you, train them and hand over the playbook.</p></li>
+<li><span class="idx" aria-hidden="true">04</span><h3>Partners, managed.</h3><p>Ad agencies, website companies, CRM and software vendors, outside associates. We manage every one of those relationships so you don't have to.</p></li></ol></div></section>
 <section><div class="wrap"><h2>Built with AI.<span class="r">Deployed.</span></h2><p class="lede" style="margin-top:24px">We build AI-first, with a person accountable for everything that ships. These are live.</p>
 <ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{f"<a href={chr(34)}{u}{chr(34)}>{e(n)}</a>" if u else e(n)}.</h3><p>{e(t) if t else confirm("one line on what this does")}</p></li>' for i, (n, t, u) in enumerate(built))}</ol>
-<p style="margin-top:20px">{confirm("check my one-line descriptions, and add results to cite (leads, bookings, conversion)")}</p></div></section>
+<p style="margin-top:20px">{confirm("results to cite (leads, bookings, conversion)")}</p></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
-{closer(a=("Own a bridal shop?", "Tell us where marketing is stuck.", "/contact/", "Start the conversation."))}'''
+{closer(a=("Own a bridal shop?", "Tell us where marketing is stuck. We'd love to help.", "/contact/", "Start the conversation."))}'''
     its = [("/", "Home"), ("", "Bridal")]
     page("/bridal/", "Bridal Shop Marketing and Fractional CMO | Yoodle", "Bridal marketing from the team behind Savvy Bridal and Vow Ready: a fractional CMO, agency support and an in-house team, proven in five stores.", body,
          [crumb_schema(its), faq_schema(faq), {"@type": "Service", "name": "Bridal shop marketing and fractional CMO", "provider": {"@id": DOMAIN + "/#org"}, "areaServed": "US"}])
@@ -731,10 +790,17 @@ def accessibility():
          [crumb_schema(its), faq_schema(faq), {"@type": "Service", "name": "ADA website compliance and WCAG 2.1 AA remediation", "provider": {"@id": DOMAIN + "/#org"}, "areaServed": "US"}], h_nopop=True)
 
 def contact():
-    f = [("name", "Your name", "text", True, "name"), ("email", "Email", "email", True, "email"), ("organization", "Organization", "text", False, "organization"), ("message", "What is the challenge?", "textarea", True, "")]
+    f = [("name", "What's your name?", "text", True, "name"), ("email", "And your email address?", "email", True, "email"),
+         ("organization", "Where do you work?", "text", True, "organization"), ("role", "What's your role there?", "text", False, "organization-title"),
+         ("website", "Your website", "text", False, "url"),
+         ("help", "What can we help with?", ("checks", ["Brand", "Marketing", "Digital products", "Fractional CMO", "ADA compliance", "Not sure yet"]), False, ""),
+         ("budget", "What's the budget?", ("select", ["Under $25,000", "$25,000 to $50,000", "$50,000 to $100,000", "$100,000 to $250,000", "More than $250,000", "Not set yet"]), False, ""),
+         ("timeline", "When does it need to be live?", ("select", ["Within 30 days", "One to three months", "Three to six months", "Six months or more", "No fixed date"]), False, ""),
+         ("message", "What's the challenge?", "textarea", True, ""),
+         ("source", "How did you hear about us?", "text", False, "")]
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Contact</p><h1>What is your brand up against?<span class="r">Let&rsquo;s solve it.</span></h1>
 <div class="herogrid" style="align-items:start">{form("contact", f, "Send")}
-<div><p class="lede">Every engagement starts with the problem, not the deliverable. Tell us yours and you will hear from a person within one business day.</p><p>Or write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</p><p>Yoodle LLC<br>Kansas City, Missouri</p></div></div></div></section>'''
+<div><p class="lede">Every engagement starts with the challenge, not the deliverable. Tell us yours and you will hear from a person within one business day.</p><p>Or write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</p><p>Yoodle LLC<br>Kansas City, Missouri</p></div></div></div></section>'''
     page("/contact/", "Contact Yoodle | Start a Brand, Web or Marketing Project", "Contact Yoodle, the content experience agency in Kansas City. Tell us what your brand is up against and we reply within one business day.", body, [crumb_schema([("/", "Home"), ("", "Contact")])], h_nopop=True)
     page("/thanks/", "Thank You | Yoodle", "Your message reached Yoodle. We reply within one business day.",
          '<section class="hero"><div class="wrap"><h1>Got it.<span class="r">Thank you.</span></h1><p class="lede" style="margin-top:32px">We reply within one business day.</p><p><a class="go" href="/work/">See the work while you wait.</a></p></div></section>', h_nopop=True, index=False)
