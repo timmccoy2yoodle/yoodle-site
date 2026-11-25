@@ -487,7 +487,7 @@ def home():
     body = f'''<section class="hero"><div class="wrap">
 <p class="tag">Yoodle. The content experience agency.</p>
 <h1>What your brand needs next.<span class="r">Done.</span></h1>
-<div class="herogrid"><p class="lede" style="margin:0">Whatever the sector, the pressure is the same every quarter: grow, do it with the team you have, and hold up to anyone who looks closely. We design the solution, then we build it.</p>
+<div class="herogrid"><p class="lede" style="margin:0">Whatever the sector, the pressure is the same every quarter: grow, do it with the team you have, and earn the trust of the people you serve. We design the solution, then we build it.</p>
 <p style="margin:0"><a class="btn" href="/work/">See the work</a> &nbsp; <a class="go" href="/contact/">Start a project.</a></p></div>
 </div></section>
 {marquee()}
