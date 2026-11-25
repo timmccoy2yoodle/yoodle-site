@@ -5,7 +5,7 @@
 ## Services
 - [Brand](https://yoodle.com/services/brand/): A brand is finished when your own team can use it without calling us. We get it there.
 - [Interactive](https://yoodle.com/services/interactive/): Websites for organizations that answer to the public. Designed, built, tested and launched.
-- [Growth](https://yoodle.com/services/growth/): Found by people and by AI. Paid, organic and content run as one system and measured against one number.
+- [Growth](https://yoodle.com/services/growth/): Found wherever people look. Paid, organic and content run as one system and measured against one number.
 - [Content](https://yoodle.com/services/content/): Podcasts, video and writing that people finish. Planned, produced and published on schedule.
 - [ADA website compliance](https://yoodle.com/accessibility/): WCAG 2.1 AA audit, fixes, retest and conformance report.
 - [Fractional marketing leadership](https://yoodle.com/experience/): six-month senior marketing leadership contracts.

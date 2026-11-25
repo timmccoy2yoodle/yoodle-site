@@ -170,7 +170,7 @@ SERVICES = {
         ("Can you work under a prime contractor?", "Yes. We regularly deliver design, development and accessibility work as a teaming partner or subcontractor.")]),
  "growth": dict(name="Growth", verdict="Measured.", title="SEO, AI Search Optimization and Paid Media",
    desc="SEO, AI search visibility, paid media and analytics from Yoodle. One integrated system across paid, organic and content, measured against the number you report.",
-   lede="Found by people and by AI. Paid, organic and content run as one system and measured against one number.",
+   lede="Found wherever people look. Paid, organic and content run as one system and measured against one number.",
    body=["Search changed. People now ask an AI assistant as often as they type a query, and the answer names a few sources. We build your pages, data and reputation so you are one of them, and so you still rank in classic search.",
          "Then we connect it to paid media and content, and report against the number your leadership cares about: applications, enrollments, leads, bookings or donations."],
    items=[("SEO and AI search", "Technical fixes, structured data, and content written to be cited by AI answers and ranked by search engines."),

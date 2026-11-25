@@ -486,8 +486,8 @@ def home():
     svc = "".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3><a href="/services/{k}/">{v["name"]}. {v["verdict"]}</a></h3><p>{e(v["lede"])}</p></li>' for i, (k, v) in enumerate(SERVICES.items()))
     body = f'''<section class="hero"><div class="wrap">
 <p class="tag">Yoodle. The content experience agency.</p>
-<h1>Brand, web and marketing.<span class="r">Done.</span></h1>
-<div class="herogrid"><p class="lede" style="margin:0">Colleges, public agencies and nonprofits bring us the work that has to get finished. We scope it, build it and launch it, on any platform.</p>
+<h1>What your brand needs next.<span class="r">Done.</span></h1>
+<div class="herogrid"><p class="lede" style="margin:0">Whatever the sector, the pressure is the same every quarter: grow, do it with the team you have, and hold up to anyone who looks closely. We design the solution, then we build it.</p>
 <p style="margin:0"><a class="btn" href="/work/">See the work</a> &nbsp; <a class="go" href="/contact/">Start a project.</a></p></div>
 </div></section>
 {marquee()}
@@ -602,7 +602,7 @@ def services():
 <section class="dark"><div class="wrap"><h2>What we do.</h2><ol class="rows">{rows}</ol></div></section>
 <section><div class="wrap"><h2>How we work.</h2><ol class="rows">
 <li><span class="idx" aria-hidden="true">01</span><h3>Scope it.</h3><p>One page: the outcome, what we deliver, the date and the price.</p></li>
-<li><span class="idx" aria-hidden="true">02</span><h3>Build it.</h3><p>A senior team does the work, fast. When the plan meets a problem, we solve it with whatever tool does it best. Today that is often AI, with a person accountable for everything that ships.</p></li>
+<li><span class="idx" aria-hidden="true">02</span><h3>Build it.</h3><p>A senior team does the work, fast. When the plan meets a problem, we solve it with whatever tool does it best, and a person answers for everything that ships.</p></li>
 <li><span class="idx" aria-hidden="true">03</span><h3>Launch it.</h3><p>Tested for accessibility, speed and accuracy before it goes out under your name.</p></li>
 <li><span class="idx" aria-hidden="true">04</span><h3>Hand it over, or run it.</h3><p>We train your team to own it, or we keep running it. Your choice.</p></li></ol></div></section>
 <section class="tight"><div class="wrap two"><h2>Partner with us.</h2><div><p class="lede">Prime contractors and agencies bring Yoodle in for the brand, web, accessibility and content parts of larger public-sector contracts.</p>
