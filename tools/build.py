@@ -95,7 +95,9 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 @media (prefers-reduced-motion:reduce){.menu i{transition:none}}
 @media (max-width:760px){
  .js .menu{display:block}
- .js nav.main{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 24px 20px}
+ .js nav.main{display:none;position:absolute;left:0;right:0;top:100%;background:var(--acc);color:#fff;padding:14px 24px 26px;box-shadow:0 24px 40px -18px #11111080}
+ .js nav.main a{color:#fff}
+ .js nav.main a.talk,html[data-band=dark] header.site .js nav.main a.talk{background:#fff;color:var(--ink)}
  .js nav.main.open{display:block}
  nav.main ul{flex-direction:column;align-items:stretch}
  nav.main a{font-size:1.3rem;min-height:52px;padding:0}
@@ -131,10 +133,11 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .mq.lg{padding:26px 0}.mq.lg .track{animation-duration:90s}
 .mq.lg .track+.track{margin-top:30px}
 .mq.lg .track.rev{animation-direction:reverse}
-.mq.lg .track li{padding:0;margin:0 clamp(22px,3vw,44px);height:60px;display:flex;align-items:center;flex:none}
+.mq.js .track{animation:none}
+.mq.lg .track li{padding:0;margin:0 clamp(20px,3vw,44px);height:70px;display:flex;align-items:center;flex:none}
 .mq.lg .track li::after{content:none}
-.mq.lg .track img{height:auto;width:auto;max-height:100%;max-width:190px;object-fit:contain}
-@media (max-width:620px){.mq.lg .track li{height:46px}.mq.lg .track img{max-width:160px}}
+.mq.lg .track img{width:var(--w);height:auto;max-width:none;display:block}
+@media (max-width:620px){.mq.lg .track li{height:54px}.mq.lg .track img{width:calc(var(--w)*.76)}.mq.lg .track+.track{margin-top:18px}}
 .caps{margin-top:clamp(20px,3vw,36px)}
 .pillar{padding:clamp(36px,5vw,72px) 0;border-top:1px solid #f7f4ee44}
 .pillar:first-of-type{border-top:0;padding-top:clamp(24px,3vw,40px)}
@@ -328,6 +331,10 @@ if(mb){mb.addEventListener('click',function(){var o=nv.classList.toggle('open');
  d.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&nv.classList.contains('open')){nv.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.focus()}})}
 var mq=d.getElementById('mq'),mqb=d.getElementById('mqbtn');
 if(mqb)mqb.addEventListener('click',function(){var p=mq.classList.toggle('paused');mqb.setAttribute('aria-pressed',p);mqb.setAttribute('aria-label',p?'Play scrolling logos':'Pause scrolling logos')});
+if(mq&&window.requestAnimationFrame&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)){mq.classList.add('js');
+ var tr=[].slice.call(mq.querySelectorAll('.track')),mw=[],mx=tr.map(function(){return 0}),ml=0;
+ var msz=function(){tr.forEach(function(el,i){mw[i]=el.firstElementChild.getBoundingClientRect().width})};msz();addEventListener('resize',msz);addEventListener('load',msz);
+ var mstep=function(t){var dt=ml?Math.min(t-ml,64):0;ml=t;if(!mq.classList.contains('paused'))tr.forEach(function(el,i){var w=mw[i];if(!w)return;mx[i]=(mx[i]+w/90000*dt)%w;el.style.transform='translateX('+(el.classList.contains('rev')?mx[i]-w:-mx[i]).toFixed(2)+'px)'});requestAnimationFrame(mstep)};requestAnimationFrame(mstep)}
 var fb=d.querySelectorAll('[data-f]'),cards=d.querySelectorAll('[data-s]'),cnt=d.getElementById('count');
 function setF(k){var n=0;cards.forEach(function(c){var on=k==='all'||c.getAttribute('data-s')===k;c.hidden=!on;if(on)n++});fb.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-f')===k)});if(cnt)cnt.textContent=n+' projects shown';}
 fb.forEach(function(b){b.addEventListener('click',function(){setF(b.getAttribute('data-f'));if(history.replaceState)try{history.replaceState(null,'','#'+b.getAttribute('data-f'))}catch(_){}})});
@@ -358,7 +365,7 @@ if(!rm&&'IntersectionObserver' in window){
  h.classList.add('mo');
  var heads=d.querySelectorAll('main h1,main section h2');
  heads.forEach(function(x){x.classList.add('rh');var s=d.createElement('span');s.className='hl';while(x.firstChild)s.appendChild(x.firstChild);x.appendChild(s)});
- var sel='.lede,.tag,.crumbs,.grid>li,.col,.facts>div,.sect>li,.names>li,details,.ends>div>*,form.f,.filters,.pn,.herogrid>*,.hero .btn,.mq,section p:not(.lede):not(.small)';
+ var sel='.lede,.tag,.crumbs,.grid>li,.col,.facts>div,.sect>li,.names>li,details,.ends>div>*,form.f,.filters,.pn,.herogrid>*,.hero .btn,section p:not(.lede):not(.small)';
  d.querySelectorAll('main '+sel).forEach(function(x){if(x.closest('.rv,dialog,.rows')||x.classList.contains('rh'))return;x.classList.add('rv')});
  d.querySelectorAll('main .rows>li').forEach(function(x){x.classList.add('rw')});
  d.querySelectorAll('.grid,.cols,.rows,.facts,.sect,.names,.ends>div').forEach(function(p){[].forEach.call(p.children,function(c,i){c.style.setProperty('--i',Math.min(i%6,5))})});
@@ -539,7 +546,10 @@ def closer(text=CTA_TEXT, button=("/contact/", "Start the conversation"), b=ADA_
 def marquee():
     half = (len(CLEAR) + 1) // 2
     def row(items, rev):
-        lis = "".join(f'<li><img src="/img/logos/{fn}" alt="{e(n)}" width="{s[0]}" height="{s[1]}" decoding="async"></li>' for fn, n, s in items)
+        def lw(s):  # equal visual weight: same area for every logo, capped so none is too wide or too tall
+            a = s[0] / s[1]
+            return round(min((9600 * a) ** .5, 210, 66 * a, s[0] * 1.2))
+        lis = "".join(f'<li><img src="/img/logos/{fn}" alt="{e(n)}" width="{s[0]}" height="{s[1]}" style="--w:{lw(s)}px"></li>' for fn, n, s in items)
         dup = re.sub(r'alt="[^"]*"', 'alt=""', lis)
         return f'<div class="track{" rev" if rev else ""}"><ul>{lis}</ul><ul aria-hidden="true">{dup}</ul></div>'
     return f'''<div class="wrap"><p class="small" style="margin-bottom:10px">A few of the organizations that trust us with their name</p></div>
