@@ -396,7 +396,7 @@ def header(cur):
 
 def footer():
     return f'''<footer><div class="wrap"><div class="fg">
-<div><p><strong style="color:#fff;font-size:1.3rem">yoodle.</strong></p><p>Built on experience. Made for what&rsquo;s next. Brand, technology and marketing for ambitious organizations.</p><p>Kansas City, Missouri<br><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
+<div><p><strong style="color:#fff;font-size:1.3rem">yoodle.</strong></p><p>The content experience agency. Brand, technology and marketing for ambitious organizations.</p><p>Built on experience. Made for what&rsquo;s next.</p><p>Kansas City, Missouri<br><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
 <div><h2>Work</h2><ul><li><a href="/work/#higher-ed">Higher education</a></li><li><a href="/work/#government">Government</a></li><li><a href="/work/#nonprofit">Nonprofit</a></li><li><a href="/work/#business">Small business</a></li><li><a href="/work/#content">Podcasts</a></li></ul></div>
 <div><h2>Services</h2><ul><li><a href="/services/brand/">Brand</a></li><li><a href="/services/technology/">Technology</a></li><li><a href="/services/#marketing">Marketing</a></li><li><a href="/experience/">Fractional CMO</a></li><li><a href="/accessibility/">ADA compliance</a></li><li><a href="/bridal/">Bridal</a></li></ul></div>
 <div><h2>Yoodle</h2><ul><li><a href="/content/">Content</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="https://www.linkedin.com/company/yoodle">LinkedIn</a></li></ul></div>
@@ -549,6 +549,7 @@ def home():
     feat = [p for p in P if p["slug"] in ("nevada-state-university", "kansas-judicial-branch", "ut-austin-extended-campus", "kc-streetcar", "variety-kc", "fsu-career-center")]
     svc = "".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3><a href="/services/#{v["key"]}">{v["name"]}</a></h3><div><p>{e(v["lede"])}</p><p class="sub">{e(v["sub"])}</p></div></li>' for i, v in enumerate(PILLARS))
     body = f'''<section class="hero"><div class="wrap">
+<p class="tag">Yoodle. The content experience agency.</p>
 <h1>Built on experience.<span class="r">Made for what&rsquo;s next.</span></h1>
 <div class="herogrid"><p class="lede" style="margin:0">For {YEARS} years, we&rsquo;ve helped ambitious organizations turn complex challenges into brands, digital experiences, and marketing that move people.</p>
 <p style="margin:0"><a class="btn" href="/work/">See the work</a> &nbsp; <a class="go" href="/contact/">Start a project.</a></p></div>
@@ -572,8 +573,8 @@ def home():
 <p class="lede">Public colleges and larger governments must meet WCAG 2.1 AA by April 26, 2027. We audit, fix the site's own code, retest and certify.</p>
 <p><a class="btn" href="/accessibility/">Get a free report</a></p></div></div></section>
 {closer()}'''
-    page("/", "Yoodle | Brand, Technology and Marketing Agency",
-         f"Yoodle is a brand, technology and marketing agency. For {YEARS} years we've helped ambitious organizations turn complex challenges into work that moves people.", body,
+    page("/", "Yoodle | The Content Experience Agency: Brand, Technology, Marketing",
+         f"Yoodle is the content experience agency. For {YEARS} years we've helped ambitious organizations turn complex challenges into brands and marketing that move people.", body,
          [{"@type": "WebSite", "@id": DOMAIN + "/#site", "url": DOMAIN + "/", "name": "Yoodle", "publisher": {"@id": DOMAIN + "/#org"}}])
 
 def work():
@@ -648,7 +649,7 @@ def project(i, p):
 {closer(b=("See more work.", "Projects chosen from a much longer list.", "/work/", "See the work."))}'''
     t = {"Website": f'{p["name"]} Website | {lab} Web Design by Yoodle', "Podcast": f'{p["name"]} | Podcast Production by Yoodle', "Video and content": f'{p["name"]} | Video Production by Yoodle', "Project": f'{p["name"]} | {lab} Brand and Web Work by Yoodle', "Brand and marketing": f'{p["name"]} | Rebrand and Marketing by Yoodle', "Workforce training": f'{p["name"]} | Workforce Training'}[p["kind"]]
     if len(t) > 68: t = f'{p["name"]} | {"Web Design" if p["kind"] == "Website" else "Work"} by Yoodle'
-    d = (p["about"] or f'{p["name"]}, a {p["kind"].lower()} produced by Yoodle.')
+    d = (p["about"] or f'{p["name"]}, a {p["kind"].lower()} produced by Yoodle, the content experience agency.')
     d = (f'{p["name"]}: ' if p["name"] not in d[:60] else "") + d
     d = d if len(d) <= 158 else d[:155].rsplit(" ", 1)[0] + "..."
     cw = {"@type": "CreativeWork", "name": p["name"], "creator": {"@id": DOMAIN + "/#org"}, "about": lab, "genre": p["kind"]}
@@ -659,7 +660,7 @@ def services():
     rows = "".join(f'''<div class="pillar" id="{v["key"]}"><div class="ph"><div><p class="tagc">{e(v["sub"])}</p><h3>{v["name"]}.</h3></div><p class="lede" style="margin:0">{e(v["lede"])}</p></div>
 <div class="caps">{"".join(f"<details class=cap><summary>{e(n)}</summary><p>{e(x)}</p></details>" for n, x in v["caps"])}</div>
 <p class="more">{"".join(f'<a class="go" href="{u}">{l}</a>' for u, l in v["links"])}</p></div>''' for v in PILLARS)
-    faq = [("What does Yoodle do?", f"Yoodle is a brand, technology and marketing agency. For {YEARS} years we have helped ambitious organizations turn complex challenges into brands, digital experiences and marketing that move people."),
+    faq = [("What does Yoodle do?", f"Yoodle is the content experience agency, working across brand, technology and marketing. For {YEARS} years we have helped ambitious organizations turn complex challenges into brands, digital experiences and marketing that move people."),
            ("Who does Yoodle work with?", "Public colleges and universities, government agencies and commissions, nonprofits and owner-run businesses. We also work as a teaming partner or subcontractor to prime contractors."),
            ("How does a project start?", "With a scope. You tell us the outcome, we write down what will be delivered, when and for how much, and work starts once you approve it.")]
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Services</p><h1>Brand, technology and marketing.<span class="r">One team.</span></h1>
@@ -814,7 +815,7 @@ def contact():
     body = f'''<section class="hero"><div class="wrap"><p class="eyebrow">Your next chapter starts with a conversation.</p><h1>What&rsquo;s next for you?<span class="r">Bring the challenge.</span></h1>
 <div class="herogrid" style="align-items:start">{form("contact", f, "Send")}
 <div><p class="lede">We&rsquo;ll bring the experience, the curiosity, and the people to make it happen. Tell us what you&rsquo;re facing and you&rsquo;ll hear from a person within one business day.</p><p>Or write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</p><p>Yoodle LLC<br>Kansas City, Missouri</p></div></div></div></section>'''
-    page("/contact/", "Contact Yoodle | Start a Brand, Technology or Marketing Project", "Contact Yoodle, a brand, technology and marketing agency in Kansas City. Bring the challenge and hear from a person within one business day.", body, [crumb_schema([("/", "Home"), ("", "Contact")])], h_nopop=True)
+    page("/contact/", "Contact Yoodle | Start a Brand, Technology or Marketing Project", "Contact Yoodle, the content experience agency in Kansas City. Bring the challenge and hear from a person within one business day.", body, [crumb_schema([("/", "Home"), ("", "Contact")])], h_nopop=True)
     page("/thanks/", "Thank You | Yoodle", "Your message reached Yoodle. We reply within one business day.",
          '<section class="hero"><div class="wrap"><h1>Got it.<span class="r">Thank you.</span></h1><p class="lede" style="margin-top:32px">We reply within one business day.</p><p><a class="go" href="/work/">See the work while you wait.</a></p></div></section>', h_nopop=True, index=False)
     page("/privacy/", "Privacy Policy | Yoodle", "How Yoodle collects, uses and protects information submitted through yoodle.com.",
@@ -836,7 +837,7 @@ def assets():
     urls = "".join(f"<url><loc>{DOMAIN}{p}</loc><lastmod>{TODAY}</lastmod></url>" for p in PAGES)
     open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     open(os.path.join(OUT, "robots.txt"), "w").write(("User-agent: *\nDisallow: /\n" if TEST_BUILD else "User-agent: *\nAllow: /\n") + f"Sitemap: {DOMAIN}/sitemap.xml\n")
-    llms = ["# Yoodle", "", "> Yoodle is a brand, technology and marketing agency. Built on experience, made for what's next: brands, digital experiences and marketing for ambitious organizations in higher education, government, nonprofits and business. Founded 2007, Kansas City, Missouri. Contact: " + EMAIL, "",
+    llms = ["# Yoodle", "", "> Yoodle is the content experience agency, working across brand, technology and marketing. Built on experience, made for what's next: brands, digital experiences and marketing for ambitious organizations in higher education, government, nonprofits and business. Founded 2007, Kansas City, Missouri. Contact: " + EMAIL, "",
             "## Services"] + [f"- [{v['name']}]({DOMAIN}/services/{k}/): {v['lede']}" for k, v in SERVICES.items()] + [f"- [ADA website compliance]({DOMAIN}/accessibility/): WCAG 2.1 AA audit, fixes, retest and conformance report.", f"- [Fractional marketing leadership]({DOMAIN}/experience/): six-month senior marketing leadership contracts.", "", "## Work"] + \
            [f"- [{p['name']}]({DOMAIN}/work/{p['slug']}/): {SECTORS[p['sector']][0]} {p['kind'].lower()}" + (f", live at {p['url']}" if p['url'] else "") for p in P]
     open(os.path.join(OUT, "llms.txt"), "w").write("\n".join(llms) + "\n")
