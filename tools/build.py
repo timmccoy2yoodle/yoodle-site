@@ -174,6 +174,8 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 @media (max-width:560px){.posts{grid-template-columns:1fr}}
 .timcta{display:flex;gap:22px;align-items:center}
 .timcta img{width:132px;height:132px;border-radius:50%;object-fit:cover;flex:none}
+.reg{font-size:.4em;font-weight:500;vertical-align:baseline;position:relative;top:-.95em;margin-left:.1em;letter-spacing:0;line-height:0;color:inherit}
+.brand .reg{color:currentColor}
 .spots{border-top:1.5px solid currentColor;padding-top:18px;margin-top:28px}
 .xlogo{height:64px;display:flex;align-items:center;margin-bottom:18px}
 .xlogo img{max-height:100%;max-width:220px;width:auto;height:auto;object-fit:contain}
@@ -389,14 +391,14 @@ def header(cur):
     return f'''<a class="skip" href="#main">Skip to main content</a>
 {'<aside class="testbar" aria-label="Test build notice">Test build for Tim. Amber tags mark facts to confirm before launch.</aside>' if TEST_BUILD else ''}
 <header class="site"><div class="wrap">
-<a class="brand" href="/" aria-label="Yoodle home">yoodle<span>.</span></a>
+<a class="brand" href="/" aria-label="Yoodle home">yoodle<span>.</span><sup class="reg" aria-hidden="true">&reg;</sup></a>
 <button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><i></i><i></i><i></i></button>
 <nav class="main" id="nav" aria-label="Main"><ul>{li}<li><a class="talk" href="/contact/">Contact</a></li></ul></nav>
 </div></header>'''
 
 def footer():
     return f'''<footer><div class="wrap"><div class="fg">
-<div><p><strong style="color:#fff;font-size:1.3rem">yoodle.</strong></p><p>The content experience agency. Brand, technology and marketing for ambitious organizations.</p><p>Built on experience. Made for what&rsquo;s next.</p><p>Kansas City, Missouri<br><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
+<div><p><strong style="color:#fff;font-size:1.3rem">yoodle.<sup class="reg">&reg;</sup></strong></p><p>The content experience agency. Brand, technology and marketing for ambitious organizations.</p><p>Built on experience. Made for what&rsquo;s next.</p><p>Kansas City, Missouri<br><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
 <div><h2>Work</h2><ul><li><a href="/work/#higher-ed">Higher education</a></li><li><a href="/work/#government">Government</a></li><li><a href="/work/#nonprofit">Nonprofit</a></li><li><a href="/work/#business">Small business</a></li><li><a href="/work/#content">Podcasts</a></li></ul></div>
 <div><h2>Services</h2><ul><li><a href="/services/brand/">Brand</a></li><li><a href="/services/technology/">Technology</a></li><li><a href="/services/#marketing">Marketing</a></li><li><a href="/experience/">Fractional CMO</a></li><li><a href="/accessibility/">ADA compliance</a></li><li><a href="/bridal/">Bridal</a></li></ul></div>
 <div><h2>Yoodle</h2><ul><li><a href="/content/">Content</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="https://www.linkedin.com/company/yoodle">LinkedIn</a></li></ul></div>

@@ -126,6 +126,8 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 @media (max-width:560px){.posts{grid-template-columns:1fr}}
 .timcta{display:flex;gap:22px;align-items:center}
 .timcta img{width:132px;height:132px;border-radius:50%;object-fit:cover;flex:none}
+.reg{font-size:.4em;font-weight:500;vertical-align:baseline;position:relative;top:-.95em;margin-left:.1em;letter-spacing:0;line-height:0;color:inherit}
+.brand .reg{color:currentColor}
 .spots{border-top:1.5px solid currentColor;padding-top:18px;margin-top:28px}
 .xlogo{height:64px;display:flex;align-items:center;margin-bottom:18px}
 .xlogo img{max-height:100%;max-width:220px;width:auto;height:auto;object-fit:contain}
