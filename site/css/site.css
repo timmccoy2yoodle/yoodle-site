@@ -182,7 +182,8 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 .facts div{border-top:1.5px solid var(--ink);padding:14px 0 22px;min-width:0}
 .facts dt{font-size:.9rem;color:var(--mute)}
 .facts dd{margin:4px 0 0;font-weight:600}
-.bleed{margin:0 0 clamp(56px,9vw,128px);padding:0}
+.bleed{margin:0 0 clamp(56px,9vw,128px);padding:0;overflow:hidden}
+.bleed.px{height:clamp(300px,52vw,820px)}.bleed.px img{height:130%;will-change:transform}
 .bleed img{display:block;width:100%;height:clamp(300px,52vw,820px);object-fit:cover;object-position:50% 35%}
 .vids,.made{display:grid;gap:clamp(10px,1.4vw,20px);margin-top:clamp(32px,5vw,64px)}
 .vids{grid-template-columns:repeat(3,minmax(0,1fr))}
