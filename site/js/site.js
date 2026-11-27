@@ -20,9 +20,9 @@ d.querySelectorAll('form[data-netlify]').forEach(function(f){f.addEventListener(
  var s=f.querySelector('.status');
  f.querySelectorAll('.err').forEach(function(x){x.remove()});f.querySelectorAll('[aria-invalid]').forEach(function(x){x.removeAttribute('aria-invalid');x.removeAttribute('aria-describedby')});
  if(!f.checkValidity()){ev.preventDefault();var bads=[].slice.call(f.querySelectorAll('input:invalid,textarea:invalid,select:invalid'));
-  bads.forEach(function(x){var m=x.validity.valueMissing?'Required. Please fill this in.':x.type==='email'?'Enter an email address like name@example.com.':'Please check this answer.';
-   var er=d.createElement('p');er.className='err';er.id=x.id+'-err';er.textContent=m;x.setAttribute('aria-invalid','true');x.setAttribute('aria-describedby',er.id);x.parentNode.appendChild(er);
-   x.addEventListener('input',function(){if(x.checkValidity()){x.removeAttribute('aria-invalid');x.removeAttribute('aria-describedby');if(er.parentNode)er.remove()}})});
+  bads.forEach(function(x){var m=x.type==='checkbox'?'Tick this box to continue.':x.validity.valueMissing?'Required. Please fill this in.':x.type==='email'?'Enter an email address like name@example.com.':'Please check this answer.';
+   var er=d.createElement('p');er.className='err';er.id=x.id+'-err';er.textContent=m;x.setAttribute('aria-invalid','true');x.setAttribute('aria-describedby',er.id);(x.closest('.agree')||x.parentNode).appendChild(er);
+   x.addEventListener(x.type==='checkbox'?'change':'input',function(){if(x.checkValidity()){x.removeAttribute('aria-invalid');x.removeAttribute('aria-describedby');if(er.parentNode)er.remove()}})});
   s.classList.add('show');s.textContent=bads.length===1?'One field needs attention. It is marked above.':bads.length+' fields need attention. They are marked above.';if(bads[0])bads[0].focus();return}
  if(!live){ev.preventDefault();s.classList.add('show');s.textContent='Test build: this form is connected when the site goes live on Netlify. Nothing was sent.'}
  ls('y-lead',String(Date.now()));

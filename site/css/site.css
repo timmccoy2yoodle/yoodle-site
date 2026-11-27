@@ -243,6 +243,10 @@ form.f .checks label{display:inline-flex;align-items:center;gap:8px;margin:0;fon
 form.f .checks input{width:18px;height:18px;min-height:0;padding:0;accent-color:var(--acc)}
 form.f .checks label:has(input:checked){background:var(--ink);color:var(--bg)}
 .hp{position:absolute;left:-9999px}
+form.f .agree label{display:flex;gap:12px;align-items:flex-start;font-weight:500;margin:0;min-height:44px;cursor:pointer}
+form.f .agree input[type=checkbox]{width:22px;height:22px;min-height:0;flex:0 0 auto;margin:3px 0 0;padding:0;accent-color:var(--acc)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.legal{max-width:46em;margin-top:32px}.legal h2{font-size:clamp(1.3rem,2.4vw,1.7rem);letter-spacing:-.02em;line-height:1.15;margin:44px 0 12px}.legal ul{padding-left:1.2em}.legal li{margin-bottom:.4em}
 form.f input:hover,form.f textarea:hover,form.f select:hover{border-color:var(--acc)}
 form.f [aria-invalid=true]{border-color:#a4161a;border-width:2.5px}
 form.f .err{margin:6px 0 0;color:#a4161a;font-weight:600;font-size:.95rem}

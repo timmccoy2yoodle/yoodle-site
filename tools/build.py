@@ -298,6 +298,10 @@ form.f .checks label{display:inline-flex;align-items:center;gap:8px;margin:0;fon
 form.f .checks input{width:18px;height:18px;min-height:0;padding:0;accent-color:var(--acc)}
 form.f .checks label:has(input:checked){background:var(--ink);color:var(--bg)}
 .hp{position:absolute;left:-9999px}
+form.f .agree label{display:flex;gap:12px;align-items:flex-start;font-weight:500;margin:0;min-height:44px;cursor:pointer}
+form.f .agree input[type=checkbox]{width:22px;height:22px;min-height:0;flex:0 0 auto;margin:3px 0 0;padding:0;accent-color:var(--acc)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.legal{max-width:46em;margin-top:32px}.legal h2{font-size:clamp(1.3rem,2.4vw,1.7rem);letter-spacing:-.02em;line-height:1.15;margin:44px 0 12px}.legal ul{padding-left:1.2em}.legal li{margin-bottom:.4em}
 form.f input:hover,form.f textarea:hover,form.f select:hover{border-color:var(--acc)}
 form.f [aria-invalid=true]{border-color:#a4161a;border-width:2.5px}
 form.f .err{margin:6px 0 0;color:#a4161a;font-weight:600;font-size:.95rem}
@@ -390,9 +394,9 @@ d.querySelectorAll('form[data-netlify]').forEach(function(f){f.addEventListener(
  var s=f.querySelector('.status');
  f.querySelectorAll('.err').forEach(function(x){x.remove()});f.querySelectorAll('[aria-invalid]').forEach(function(x){x.removeAttribute('aria-invalid');x.removeAttribute('aria-describedby')});
  if(!f.checkValidity()){ev.preventDefault();var bads=[].slice.call(f.querySelectorAll('input:invalid,textarea:invalid,select:invalid'));
-  bads.forEach(function(x){var m=x.validity.valueMissing?'Required. Please fill this in.':x.type==='email'?'Enter an email address like name@example.com.':'Please check this answer.';
-   var er=d.createElement('p');er.className='err';er.id=x.id+'-err';er.textContent=m;x.setAttribute('aria-invalid','true');x.setAttribute('aria-describedby',er.id);x.parentNode.appendChild(er);
-   x.addEventListener('input',function(){if(x.checkValidity()){x.removeAttribute('aria-invalid');x.removeAttribute('aria-describedby');if(er.parentNode)er.remove()}})});
+  bads.forEach(function(x){var m=x.type==='checkbox'?'Tick this box to continue.':x.validity.valueMissing?'Required. Please fill this in.':x.type==='email'?'Enter an email address like name@example.com.':'Please check this answer.';
+   var er=d.createElement('p');er.className='err';er.id=x.id+'-err';er.textContent=m;x.setAttribute('aria-invalid','true');x.setAttribute('aria-describedby',er.id);(x.closest('.agree')||x.parentNode).appendChild(er);
+   x.addEventListener(x.type==='checkbox'?'change':'input',function(){if(x.checkValidity()){x.removeAttribute('aria-invalid');x.removeAttribute('aria-describedby');if(er.parentNode)er.remove()}})});
   s.classList.add('show');s.textContent=bads.length===1?'One field needs attention. It is marked above.':bads.length+' fields need attention. They are marked above.';if(bads[0])bads[0].focus();return}
  if(!live){ev.preventDefault();s.classList.add('show');s.textContent='Test build: this form is connected when the site goes live on Netlify. Nothing was sent.'}
  ls('y-lead',String(Date.now()));
@@ -459,31 +463,38 @@ def footer():
 <div><p><strong style="color:#fff;font-size:1.3rem">yoodle.<sup class="reg">&reg;</sup></strong></p><p>The content experience agency. Brand, technology and marketing for ambitious organizations.</p><p>Built on experience. Made for what&rsquo;s next.</p><p>Kansas City, Missouri</p></div>
 <div><h2>Work</h2><ul><li><a href="/work/#higher-ed">Higher education</a></li><li><a href="/work/#government">Government</a></li><li><a href="/work/#nonprofit">Nonprofit</a></li><li><a href="/work/#business">Small business</a></li><li><a href="/work/#content">Podcasts</a></li></ul></div>
 <div><h2>Services</h2><ul><li><a href="/services/brand/">Brand</a></li><li><a href="/services/technology/">Technology</a></li><li><a href="/services/#marketing">Marketing</a></li><li><a href="/experience/">Fractional CMO</a></li><li><a href="/accessibility/">ADA compliance</a></li><li><a href="/bridal/">Bridal</a></li></ul></div>
-<div><h2>Yoodle</h2><ul><li><a href="/content/">Content</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="https://www.linkedin.com/company/yoodle">LinkedIn</a></li></ul></div>
+<div><h2>Yoodle</h2><ul><li><a href="/content/">Content</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/terms/">Terms</a></li><li><a href="https://www.linkedin.com/company/yoodle">LinkedIn</a></li></ul></div>
 </div><p style="margin-top:32px">&copy; {date.today().year} Yoodle LLC. Yoodle&reg; is a registered trademark.</p></div></footer>'''
 
 PICK = '''<aside class="pick" aria-label="Accent color options, test build only"><span>Accent:</span><button type="button" aria-pressed="true" data-a="#2c2a6f" data-t="#2c2a6f" data-l="#b9b6f5"><i style="background:#2c2a6f"></i>Deep purple</button><button type="button" aria-pressed="false" data-a="#783a92" data-t="#783a92" data-l="#d9b3ea"><i style="background:#783a92"></i>Plum</button><button type="button" aria-pressed="false" data-a="#953c92" data-t="#953c92" data-l="#e8b0e5"><i style="background:#953c92"></i>Magenta</button><button type="button" aria-pressed="false" data-a="#c23c7c" data-t="#c03b7b" data-l="#f4aecd"><i style="background:#c23c7c"></i>Berry</button><button type="button" aria-pressed="false" data-a="#d5466d" data-t="#cc2e59" data-l="#f8b1c2"><i style="background:#d5466d"></i>Rose</button></aside>'''
+
+BOOK = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ19B4FBJCID1vLALGmp7HljuV-Cma5K1_z87p5Yf5_WTdactEM9nSq5C4BJ1KBa7WeHK_F0_JLf?gv=true"
+TERMS_VERSION = "2026-11-27"
+def book(label="Book 30 minutes", cls="btn"):
+    return f'<a class="{cls}" href="{BOOK}" target="_blank" rel="noopener">{label}<span class="vh"> (opens Google Calendar in a new tab)</span></a>'
 
 def field(id, label, type="text", req=True, ac="", pre=""):
     r = " required" if req else ""
     a = f' autocomplete="{ac}"' if ac else ""
     if isinstance(type, tuple) and type[0] == "select": return f'<div><label for="{pre}{id}">{label}</label><select id="{pre}{id}" name="{id}"{r}><option value="">Choose one</option>{"".join(f"<option>{o}</option>" for o in type[1])}</select></div>'
     if isinstance(type, tuple) and type[0] == "checks": return f'<fieldset><legend>{label}</legend><div class="checks">{"".join(f"<label><input type=checkbox name={chr(34)}{id}[]{chr(34)} value={chr(34)}{o}{chr(34)}> <span>{o}</span></label>" for o in type[1])}</div></fieldset>'
+    if type == "consent": return f'<div class="agree"><label for="{pre}{id}"><input id="{pre}{id}" name="{id}" type="checkbox" value="yes" required> <span>{label}</span></label><input type="hidden" name="terms-version" value="{TERMS_VERSION}"></div>'
     if type == "textarea": return f'<div><label for="{pre}{id}">{label}</label><textarea id="{pre}{id}" name="{id}"{r}></textarea></div>'
     return f'<div><label for="{pre}{id}">{label}</label><input id="{pre}{id}" name="{id}" type="{type}"{a}{r}></div>'
 
-def form(name, fields, button, pre=""):
-    return f'''<form class="f" name="{name}" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company-site" novalidate>
+def form(name, fields, button, pre="", action="/thanks/", note=""):
+    return f'''<form class="f" name="{name}" method="POST" action="{action}" data-netlify="true" netlify-honeypot="company-site" novalidate>
 <input type="hidden" name="form-name" value="{name}"><p class="hp"><label>Leave this empty <input name="company-site" tabindex="-1" autocomplete="off"></label></p>
 {"".join(field(*f, pre=pre) for f in fields)}
-<div><button class="btn" type="submit">{button}</button></div><p class="status" role="status" aria-live="polite"></p></form>'''
+{note}<div><button class="btn" type="submit">{button}</button></div><p class="status" role="status" aria-live="polite"></p></form>'''
 
 SCAN_FIELDS = [("name", "Your name", "text", True, "name"), ("email", "Work email", "email", True, "email"),
-               ("organization", "Organization", "text", True, "organization"), ("url", "Website address to scan", "text", True, "url")]
+               ("organization", "Organization", "text", True, "organization"), ("url", "Website address to scan", "text", True, "url"),
+               ("agree", 'I am authorized to request a scan of this website, and I agree to Yoodle&rsquo;s <a href="/terms/">Terms</a> and <a href="/privacy/">Privacy Policy</a>.', "consent", True, "")]
 
 LEAD = f'''<dialog class="lead" id="lead" aria-labelledby="leadh"><div class="in"><button class="x" type="button" aria-label="Close">&times;</button>
 <h2 id="leadh">Is your website ADA compliant?</h2><p>Get a free WCAG 2.1 AA report on your site. We read it with you, then fix what fails.</p>
-{form("scan-request", SCAN_FIELDS, "Send my free report", pre="d-")}</div></dialog>'''
+{form("scan-request", SCAN_FIELDS, "Send my free report", pre="d-", action="/accessibility/thanks/")}</div></dialog>'''
 
 def flat(href):
     """/work/x/ -> work-x.html for the preview artifact."""
@@ -950,9 +961,11 @@ def accessibility():
            ("Does the ADA web rule apply to colleges and universities?", "Public colleges and universities are covered by ADA Title II and the WCAG 2.1 AA rule. Private institutions fall under ADA Title III and, if they take federal funds, Section 504."),
            ("Can an automated scan make my website compliant?", "No. A scan finds a large share of issues, but not all. Conformance needs manual testing too. Our fix includes the manual checks and a retest."),
            ("Do you use an accessibility overlay or plugin widget?", "No. We fix the site's own code, templates and content."),
-           ("Which platforms do you work with?", "Any. WordPress, Drupal, Modern Campus, static HTML and hosted builders all go through the same steps.")]
+           ("Which platforms do you work with?", "Any. WordPress, Drupal, Modern Campus, static HTML and hosted builders all go through the same steps."),
+           ("What does it cost?", "The scan and the report are free. The cost of fixing a site depends on its size, its platform and what the report finds. Book 30 minutes and we walk you through an estimate and a remediation plan for your site."),
+           ("Is the report a certification of ADA compliance?", "No. The report is an automated test of a sample of your pages. It is general information, not legal advice and not a certification. A conformance report comes after the fixes, the manual checks and a retest.")]
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Websites that work for everyone.</p><h1>ADA website compliance.<span class="r">Before the deadline.</span></h1>
-<div class="herogrid"><div><h2 style="font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:18px" id="scan">Get your free report.</h2>{form("scan-request", SCAN_FIELDS, "Send my free report")}
+<div class="herogrid"><div><h2 style="font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:18px" id="scan">Get your free report.</h2>{form("scan-request", SCAN_FIELDS, "Send my free report", action="/accessibility/thanks/")}
 <p class="small" style="margin-top:12px">Free. Any website, any platform. A person reviews every report before it reaches you.</p></div>
 <p class="lede" style="margin:0">Tell us your web address. We test it against WCAG 2.1 AA and send you what passes and what fails. Then we fix it in your site's own code.</p></div></div></section>
 <section class="dark" style="padding:clamp(48px,7vw,96px) 0"><div class="wrap two" style="align-items:end"><p class="big" style="font-size:clamp(3.4rem,10vw,8rem);margin:0">April 26, 2027.</p>
@@ -960,15 +973,18 @@ def accessibility():
 <section><div class="wrap"><h2>Approach.</h2><ol class="rows">
 <li><span class="idx" aria-hidden="true">01</span><h3>Send your URL.</h3><p>We read your sitemap, test your pages against WCAG 2.1 AA and note your platform and page templates.</p></li>
 <li><span class="idx" aria-hidden="true">02</span><h3>Read your report.</h3><p>What passes, what fails, where it is and who it affects, in plain language.</p></li>
-<li><span class="idx" aria-hidden="true">03</span><h3>We fix it.</h3><p>In your code and content. No overlay, no widget. Fixes start at $1,500 for a site under 100 pages. Larger sites are priced on the report, before any work begins.</p></li>
-<li><span class="idx" aria-hidden="true">04</span><h3>Retest and certify.</h3><p>Manual checks, a retest and a conformance report you can show your board or counsel.</p></li></ol></div></section>
+<li><span class="idx" aria-hidden="true">03</span><h3>Talk it through.</h3><p>Book 30 minutes with Tim McCoy. We walk through your report together, and you leave with an estimate and a remediation plan.</p></li>
+<li><span class="idx" aria-hidden="true">04</span><h3>We fix it.</h3><p>In your site&rsquo;s own code and content. No overlay, no widget.</p></li>
+<li><span class="idx" aria-hidden="true">05</span><h3>Retest and report.</h3><p>Manual checks, a retest and a conformance report you can show your board or counsel.</p></li></ol></div></section>
+<section class="dark" style="padding:clamp(48px,7vw,96px) 0"><div class="wrap two" style="align-items:end"><h2 id="book">Have your report? Let&rsquo;s talk.</h2>
+<div><p class="lede">Thirty minutes with Tim McCoy to review what the scan found. You get an estimate and a remediation plan for your site.</p><p>{book()}</p></div></div></section>
 <section class="tight"><div class="wrap two"><h2>Proof.</h2><div><p class="lede">SWIFT Education Center, University of Kansas. Audited, fixed, retested and certified in fall 2026.</p>
 <p><a class="go" href="/work/swift-education-center/">See the project.</a></p></div></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}<p class="small" style="margin-top:20px">Sources: U.S. Department of Justice interim final rule, <a href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal Register, April 20, 2026</a>. General information, not legal advice.</p></div></div></section>
 {closer(b=("See our web work.", "Live sites for colleges, courts and agencies.", "/work/", "See the work."))}'''
     its = [("/", "Home"), ("", "ADA website compliance")]
     page("/accessibility/", "ADA Website Compliance and WCAG 2.1 AA Fixes | Yoodle",
-         "Free WCAG 2.1 AA website report. Yoodle audits, fixes your site's own code, retests and certifies ahead of the April 26, 2027 ADA Title II deadline.", body,
+         "Free WCAG 2.1 AA website report. Yoodle audits, fixes your site's own code and retests ahead of the April 26, 2027 ADA Title II deadline.", body,
          [crumb_schema(its), faq_schema(faq), {"@type": "Service", "name": "ADA website compliance and WCAG 2.1 AA remediation", "provider": {"@id": DOMAIN + "/#org"}, "areaServed": "US"}], h_nopop=True)
 
 def contact():
@@ -981,13 +997,18 @@ def contact():
          ("message", "What's the challenge?", "textarea", True, ""),
          ("source", "How did you hear about us?", "text", False, "")]
     body = f'''<section class="hero"><div class="wrap"><p class="eyebrow">Your next chapter starts with a conversation.</p><h1>What&rsquo;s next for you?<span class="r">Bring the challenge.</span></h1>
-<div class="herogrid" style="align-items:start">{form("contact", f, "Send")}
+<div class="herogrid" style="align-items:start">{form("contact", f, "Send", note='<p class="small" style="margin:0">By sending this you agree to our <a href="/terms/">Terms</a> and <a href="/privacy/">Privacy Policy</a>.</p>')}
 <div><p class="lede">We&rsquo;ll bring the experience, the curiosity, and the people to make it happen. Tell us what you&rsquo;re facing and you&rsquo;ll hear from a person within one business day.</p><p>Yoodle LLC<br>Kansas City, Missouri</p></div></div></div></section>'''
     page("/contact/", "Contact Yoodle | Start a Brand, Technology or Marketing Project", "Contact Yoodle, the content experience agency in Kansas City. Bring the challenge and hear from a person within one business day.", body, [crumb_schema([("/", "Home"), ("", "Contact")])], h_nopop=True)
     page("/thanks/", "Thank You | Yoodle", "Your message reached Yoodle. We reply within one business day.",
          '<section class="hero"><div class="wrap"><h1>Got it.<span class="r">Thank you.</span></h1><p class="lede" style="margin-top:32px">We reply within one business day.</p><p><a class="go" href="/work/">See the work while you wait.</a></p></div></section>', h_nopop=True, index=False)
-    page("/privacy/", "Privacy Policy | Yoodle", "How Yoodle collects, uses and protects information submitted through yoodle.com.",
-         f'<section class="hero"><div class="wrap"><h1 class="md">Privacy.</h1><div style="max-width:44em;margin-top:32px"><p>Yoodle LLC collects the information you send through forms on this site: your name, email, organization, website address and message. We use it to reply to you and to prepare any report you asked for. We do not sell it.</p><p>Form submissions are stored by our hosting provider, Netlify. To ask what we hold about you or to have it removed, send us a note through the <a href="/contact/">contact form</a>.</p><p>We use Google Analytics to count visits and see which pages people read. It sets cookies and records information such as your approximate location, device and the pages you view. It does not tell us who you are. You can block it with your browser settings or with Google&rsquo;s opt-out add-on.</p></div></div></section>', [], h_nopop=True)
+    import legal
+    page("/privacy/", "Privacy Policy | Yoodle", "How Yoodle collects, uses, shares and protects information from yoodle.com, the free accessibility scan and booked calls.",
+         f'<section class="hero"><div class="wrap"><h1 class="md">Privacy Policy.</h1><div class="legal"><p class="small">Effective {legal.EFFECTIVE}</p>{legal.render(legal.PRIVACY)}</div></div></section>', [crumb_schema([("/", "Home"), ("", "Privacy Policy")])], h_nopop=True)
+    page("/terms/", "Terms of Use | Yoodle", "The terms that cover yoodle.com, Yoodle's free website accessibility scan and report, and calls booked through the site.",
+         f'<section class="hero"><div class="wrap"><h1 class="md">Terms.</h1><div class="legal"><p class="small">Effective {legal.EFFECTIVE}</p>{legal.render(legal.TERMS)}</div></div></section>', [crumb_schema([("/", "Home"), ("", "Terms")])], h_nopop=True)
+    page("/accessibility/thanks/", "Scan Requested | Yoodle", "Your accessibility scan request reached Yoodle. Book 30 minutes to review the report.",
+         f'<section class="hero"><div class="wrap"><h1>Got it.<span class="r">Your scan is queued.</span></h1><p class="lede" style="margin-top:32px">A person reviews every report before it reaches you. Expect yours by email within one business day.</p><p class="lede">Next, book 30 minutes with Tim McCoy to walk through it. You leave with an estimate and a remediation plan.</p><p>{book()}</p><p><a class="go" href="/work/">See the work while you wait.</a></p></div></section>', h_nopop=True, index=False)
     page("/404.html", "Page Not Found | Yoodle", "That page is not here. Find Yoodle's work, services and contact details.",
          '<section class="hero"><div class="wrap"><h1>Page not found.</h1><p class="lede" style="margin-top:32px">That page moved or never existed.</p><p><a class="go" href="/work/">See the work.</a> <a class="go" href="/">Go home.</a></p></div></section>', h_nopop=True, index=False)
 
