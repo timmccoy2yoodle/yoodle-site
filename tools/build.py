@@ -549,10 +549,23 @@ def cover(p, lg=False, n=None):
     host = re.sub(r"^https?://(www\.)?|/$", "", p["url"]) if p["url"] else p["kind"]
     return f'<div class="cover{" lg" if lg else ""}" style="background:{col}"><div class="k"><span>{lab}</span><span>{e(host)}</span></div><div class="n">{e(p["name"])}</div></div>'
 
+def related(k, n=3):
+    """Related work for a service page: Tim's ranked picks, then the projects that are most purely that service. Never untagged work."""
+    top = SVC_TOP.get(k, [])
+    pool = [(i, p) for i, p in enumerate(P) if k in SVC_TAGS.get(p["slug"], [])]
+    def key(ip):
+        i, p = ip
+        return (top.index(p["slug"]) if p["slug"] in top else len(top), p["kind"] != SVC_KIND[k], len(SVC_TAGS[p["slug"]]),
+                p["kind"] == "Project" or p["slug"] in SVC_OLDER, i)
+    return [p for _, p in sorted(pool, key=key)][:n]
+
+def svc_names(p):
+    return ", ".join(SVC_LABEL[t] for t in SVC_TAGS.get(p["slug"], []))
+
 def card(p):
     lab = SECTORS[p["sector"]][0]
     sub = p["place"] or p["kind"]
-    if p["kind"] == "Project": sub = ", ".join(OLD[p["slug"]]["tags"]) or "Brand and web"; return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(sub)}</p></a></li>'
+    if p["kind"] == "Project": sub = svc_names(p) or "Brand and web"; return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(sub)}</p></a></li>'
     return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(p["kind"])}{" · " + e(sub) if sub != p["kind"] else ""}</p></a></li>'
 
 CTA_TEXT = "Bring the challenge. We&rsquo;ll bring the experience, the curiosity, and the people to make it happen."
@@ -654,7 +667,7 @@ def project(i, p):
     o = OLD.get(p["slug"])
     story = gal = ""
     if o:
-        facts.insert(3, ("Services", e(", ".join(o["tags"]) or "Brand and web")))
+        facts.insert(3, ("Services", e(svc_names(p) or "Brand and web")))
         blk = o["blocks"] if p["kind"] != "Project" else [x for x in o["blocks"] if x[1] != p["about"]]
         if blk: story = f'<section class="tight"><div class="wrap two"><h2>{"The work." if p["kind"] == "Project" else "The story."}</h2><div>{rich(blk)}</div></div></section>'
         rest = o["imgs"][1:] if not (cover_img(p) or {"src": ""})["src"].startswith("/img/shots/") else o["imgs"]
@@ -717,7 +730,7 @@ def services():
     page("/services/", "Services: Brand, Technology and Marketing | Yoodle",
          "Yoodle's capabilities across brand, technology and marketing: strategy, identity, websites, accessibility, digital experiences, campaigns and content.", body, [crumb_schema(items), faq_schema(faq)])
     for k, v in SERVICES.items():
-        rel = [p for p in P if (k == "content") == (p["sector"] == "content")][:3]
+        rel = related(k)
         body = f'''<section class="hero"><div class="wrap">{crumbs([("/", "Home"), ("/services/", "Services"), ("", v["name"])])}
 <h1 class="md">{v["name"]}.<span class="r">{v["verdict"]}</span></h1><p class="lede" style="margin-top:32px">{e(v["lede"])}</p></div></section>
 <section class="tight"><div class="wrap two"><h2>The approach.</h2><div>{"".join(f"<p>{e(b)}</p>" for b in v["body"])}</div></div></section>

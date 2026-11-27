@@ -346,3 +346,73 @@ for _p in P:
     if _p["slug"] == "nevada-state-university":
         _p["stats"] = [("+39%", "more people reached"), ("+29%", "more visits from search"), ("+27%", "more visits overall"), ("+17%", "more engaged visits")]
         _p["stats_src"] = "Google Analytics. The site's first full year, November 24, 2023 to November 23, 2024, compared with November 24, 2025 to November 23, 2026"
+
+# ---- Nov 27 2026: service tags per project, from Tim's marked-up sheet "Yoodle related work: service tags and rankings"
+# (claude.ai/artifact/UR2wgnZhiKhVsU6DygjCts). Keys match SERVICES; "growth" is Marketing. Related work on a service page
+# only ever shows projects tagged for that service. SVC_TOP = Tim's ranked picks, shown first in order.
+SVC_TAGS = {
+    "missouri-western-state-university": ["brand", "growth"],
+    "nevada-state-university": ["technology"],
+    "san-bernardino-community-college-district": ["technology", "content"],
+    "compton-college": ["technology", "content"],
+    "rio-hondo-college": ["brand", "technology", "content"],
+    "ut-austin-extended-campus": ["technology", "content"],
+    "earth-center": ["technology", "content"],
+    "fsu-career-center": ["technology"],
+    "cochise-college": ["technology", "content"],
+    "crowder-college": ["technology", "content"],
+    "palm-beach-state-college": ["technology", "content"],
+    "miracosta-college": ["technology"],
+    "yoodle-education-services": [],
+    "ci3t": ["technology"],
+    "swift-education-center": ["technology", "content"],
+    "missouri-kinship-navigator": ["technology"],
+    "kansas-judicial-branch": ["brand", "technology"],
+    "multistate-tax-commission": ["technology"],
+    "neighborworks-america": ["brand", "technology"],
+    "kc-streetcar": ["technology"],
+    "marc-head-start": ["brand", "technology"],
+    "music-theater-heritage": ["brand", "technology", "growth"],
+    "variety-socal": ["technology"],
+    "variety-kc": ["brand", "technology", "growth", "content"],
+    "wentworth-financial-communications": ["technology", "growth"],
+    "dr-amy-k-patel": ["brand", "technology", "growth"],
+    "savvy-bridal": ["brand", "technology", "growth", "content"],
+    "nick-and-jakes": ["brand", "technology", "growth"],
+    "brous-law": ["brand", "technology", "content"],
+    "black-in-the-middle": ["brand", "technology", "growth", "content"],
+    "the-big-break": ["brand", "technology", "content"],
+    "encourage-to-talk": ["brand", "technology", "content"],
+    "the-raphael-hotel": ["brand", "growth"],
+    "the-soul-of-santa": ["brand", "technology", "growth", "content"],
+    "jaudon": ["brand"],
+    "the-netherland": ["brand"],
+    "chaz-on-the-plaza": ["brand"],
+    "kc-parks": ["brand", "technology", "growth", "content"],
+    "thprd": ["brand", "growth"],
+    "barrio": ["brand", "growth"],
+    "argyle": ["brand", "technology"],
+    "gordon-parks-elementary": ["brand", "growth"],
+    "scopifi": ["brand", "technology"],
+    "national-comp": ["brand"],
+    "independence-square": ["brand", "technology"],
+    "iaao": ["brand"],
+    "hostos-community-college": ["technology"],
+    "cliffs-taphouse": ["brand", "technology", "growth"],
+    "jwr-architecture": ["brand", "technology"],
+    "ku-endowment": ["technology"],
+    "parisi-coffee": ["growth"],
+    "cape-cod-community-college": ["technology"],
+    "together-kc": ["technology"],
+    "kc-global-design": ["technology"],
+    "kc-rising": ["technology"],
+    "epiq-systems": ["technology"],
+    "unified-government": ["technology"],
+    "lamar-state-college": ["technology"],
+    "fort-hays-state-university": ["technology"],
+    "kansas-city-international-airport": ["technology"],
+}
+SVC_TOP = {"brand": ["missouri-western-state-university"]}
+SVC_KIND = {"brand": "Brand and marketing", "growth": "Brand and marketing", "content": "Podcast", "technology": "Website"}
+SVC_OLDER = {"music-theater-heritage", "variety-socal", "variety-kc", "dr-amy-k-patel"}  # Tim marked these Archive in the sheet
+SVC_LABEL = {"brand": "Brand", "technology": "Technology", "growth": "Marketing", "content": "Content"}
