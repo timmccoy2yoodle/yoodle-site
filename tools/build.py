@@ -48,14 +48,14 @@ def confirm(t): return f'<span class="confirm">CONFIRM: {e(t)}</span>'
 
 CSS = r'''
 @font-face{font-family:"Inter";src:url("/fonts/inter.woff2") format("woff2");font-weight:100 900;font-display:swap}
-@font-face{font-family:"Inter Tight";src:url("/fonts/inter-tight.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Bricolage Grotesque";src:url("/fonts/bricolage-grotesque.woff2") format("woff2");font-weight:200 800;font-display:swap}
 :root{--bg:#F7F4EE;--ink:#111110;--mute:#55524c;--line:#11111022;--acc:#2c2a6f;--acc-t:#2c2a6f;--acc-l:#b9b6f5;--white:#fff;--amber:#ffe9a8;--amber-t:#4d3400;--max:1320px}
 *{box-sizing:border-box}
 html{scroll-padding-top:80px;scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;font-family:"Inter",system-ui,sans-serif;font-size:18px;line-height:1.5;color:var(--ink);background:var(--bg);overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
-h1,h2,h3,.big,.brand,.idx{font-family:"Inter Tight","Inter",system-ui,sans-serif;font-weight:600;letter-spacing:-.035em;line-height:.98;margin:0}
-h1{font-size:clamp(3rem,10.5vw,9.5rem);letter-spacing:-.05em;line-height:.92}
+h1,h2,h3,.big,.brand,.idx{font-family:"Bricolage Grotesque","Inter",system-ui,sans-serif;font-weight:650;letter-spacing:-.035em;line-height:.98;margin:0}
+h1{font-size:clamp(3rem,10.5vw,9.5rem);letter-spacing:-.045em;line-height:.9}
 h1.md{font-size:clamp(2.6rem,7.5vw,6.4rem)}
 h2{font-size:clamp(2.3rem,6vw,5rem)}
 h3{font-size:clamp(1.4rem,2.4vw,2rem);letter-spacing:-.025em;line-height:1.08}
@@ -127,7 +127,7 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .mq{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0}
 .track{display:flex;width:max-content;animation:mq 70s linear infinite}
 .track ul{display:flex;list-style:none;margin:0;padding:0}
-.track li{font-family:"Inter Tight",sans-serif;font-weight:600;font-size:clamp(1.3rem,2.4vw,2rem);letter-spacing:-.02em;padding:0 28px;white-space:nowrap}
+.track li{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:clamp(1.3rem,2.4vw,2rem);letter-spacing:-.02em;padding:0 28px;white-space:nowrap}
 .track li::after{content:"\00B7";margin-left:56px;color:var(--acc)}
 .mq.paused .track{animation-play-state:paused}
 .mq.lg{padding:26px 0}.mq.lg .track{animation-duration:90s}
@@ -153,7 +153,7 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .pillar h3{font-size:clamp(2rem,4.4vw,3.6rem);margin:0}
 details.cap{border-top:1px solid #f7f4ee33}
 details.cap:last-of-type{border-bottom:1px solid #f7f4ee33}
-details.cap summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;padding:10px 0;font-family:"Inter Tight",sans-serif;font-weight:500;font-size:clamp(1.15rem,1.9vw,1.5rem);letter-spacing:-.01em}
+details.cap summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;padding:10px 0;font-family:"Bricolage Grotesque",sans-serif;font-weight:500;font-size:clamp(1.15rem,1.9vw,1.5rem);letter-spacing:-.01em}
 details.cap summary::-webkit-details-marker{display:none}
 details.cap summary::after{content:"+";flex:none;width:34px;height:34px;border:1.5px solid #f7f4ee;color:#f7f4ee;border-radius:50%;display:grid;place-items:center;font-family:Inter,sans-serif;font-weight:300;font-size:1.5rem;line-height:1;padding-bottom:2px;transition:transform .3s,background .2s,color .2s}
 details.cap[open] summary::after{transform:rotate(45deg);background:var(--bg);color:var(--ink)}
@@ -166,7 +166,7 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 .posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px) clamp(16px,2.4vw,32px);list-style:none;padding:0;margin:clamp(28px,4vw,48px) 0 0}
 .posts li{min-width:0}
 .posts a{display:block;text-decoration:none;color:inherit}
-.posts .th{aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:var(--acc);display:flex;align-items:flex-end;padding:18px;color:#fff;font-family:"Inter Tight",sans-serif;font-weight:600;font-size:1.3rem;letter-spacing:-.02em}
+.posts .th{aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:var(--acc);display:flex;align-items:flex-end;padding:18px;color:#fff;font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.3rem;letter-spacing:-.02em}
 .posts .th.im{padding:0;background:#e9e5dc}
 .posts .th img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
 .posts a:hover .th img{transform:scale(1.03)}
@@ -220,7 +220,7 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 .cover.lg{aspect-ratio:16/8;border-radius:10px;padding:clamp(22px,4vw,56px)}
 @media (max-width:620px){.cover.lg{aspect-ratio:4/3}}
 .cover .k{font-size:.9rem;font-weight:600;display:flex;justify-content:space-between;gap:12px}
-.cover .n{font-family:"Inter Tight",sans-serif;font-weight:600;letter-spacing:-.04em;line-height:.95;font-size:clamp(1.7rem,3vw,2.6rem)}
+.cover .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;letter-spacing:-.04em;line-height:.95;font-size:clamp(1.7rem,3vw,2.6rem)}
 .cover.lg .n{font-size:clamp(2rem,6.4vw,5.6rem)}
 .cover::after{content:"";position:absolute;right:-12%;bottom:-38%;width:62%;aspect-ratio:1;border-radius:50%;border:1.5px solid #ffffff40}
 .cover::before{content:"";position:absolute;right:6%;bottom:-52%;width:62%;aspect-ratio:1;border-radius:50%;border:1.5px solid #ffffff26}
@@ -238,7 +238,7 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 @media (max-width:760px){.names{columns:1}}
 details{border-top:1px solid var(--line)}
 details:last-of-type{border-bottom:1px solid var(--line)}
-summary{cursor:pointer;font-family:"Inter Tight",sans-serif;font-weight:600;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.02em;padding:22px 0;min-height:44px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary{cursor:pointer;font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.02em;padding:22px 0;min-height:44px;list-style:none;display:flex;justify-content:space-between;gap:16px}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";color:var(--acc-t)}
 details[open] summary::after{content:"\2013"}
@@ -294,7 +294,7 @@ footer h2{font-size:1rem;letter-spacing:0;color:#fff;margin-bottom:8px;font-fami
 .post p{font-size:1.1rem}
 .plist{list-style:none;padding:0;margin:32px 0 0}
 .plist li{border-top:1px solid #f7f4ee44;padding:18px 0;display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:baseline}
-.plist a{font-family:"Inter Tight",sans-serif;font-weight:600;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.02em;text-decoration:none;display:inline-flex;min-height:44px;align-items:center}
+.plist a{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.02em;text-decoration:none;display:inline-flex;min-height:44px;align-items:center}
 .plist a:hover{text-decoration:underline}
 @media (max-width:620px){.plist li{grid-template-columns:1fr;gap:0}}
 
@@ -498,7 +498,7 @@ def page(path, title, desc, body, schema=None, h_nopop=False, index=True):
 <link rel="canonical" href="{canon}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:type" content="website"><meta property="og:url" content="{canon}"><meta property="og:site_name" content="Yoodle">
 <meta name="theme-color" content="#F7F4EE">{robots}
-<link rel="preload" href="/fonts/inter-tight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 </head>
 <body{' class="test"' if TEST_BUILD else ''}>
@@ -575,7 +575,6 @@ def home():
     feat = [p for p in P if p["slug"] in ("nevada-state-university", "kansas-judicial-branch", "ut-austin-extended-campus", "kc-streetcar", "variety-kc", "fsu-career-center")]
     svc = "".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3><a href="/services/#{v["key"]}">{v["name"]}</a></h3><div><p>{e(v["lede"])}</p><p class="sub">{e(v["sub"])}</p></div></li>' for i, v in enumerate(PILLARS))
     body = f'''<section class="hero"><div class="wrap">
-<p class="tag">Yoodle. The content experience agency.</p>
 <h1>Built on experience.<span class="r">Made for what&rsquo;s next.</span></h1>
 <div class="herogrid"><p class="lede" style="margin:0">For {YEARS} years, we&rsquo;ve helped ambitious organizations turn complex challenges into brands, digital experiences, and marketing that move people.</p>
 <p style="margin:0"><a class="btn" href="/work/">See the work</a> &nbsp; <a class="go" href="/contact/">Start a project.</a></p></div>
@@ -736,17 +735,17 @@ def experience():
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Experience</p><h1>Your fractional CMO.<span class="r">With a team.</span></h1>
 <div class="herogrid"><p class="lede" style="margin:0">A fractional CMO and the agency behind him, inside your organization for six months. For companies with a marketing staff that needs senior leadership, and a plan to grow it.</p>
 <div class="timcta"><img src="/img/tim-mccoy.webp" alt="Tim McCoy, fractional CMO and president of Yoodle" width="900" height="900"><div><p style="margin:0 0 12px"><strong>Tim McCoy</strong><br><span class="small">Fractional CMO, president of Yoodle</span></p><a class="btn" href="/contact/">Talk to Tim</a></div></div></div></div></section>
-<section class="tight"><div class="wrap two"><h2>A fractional CMO who operates.</h2><div><p class="lede">Tim McCoy has led Yoodle for {YEARS} years and is chief marketing officer of a five-store bridal retail group. The systems we bring to clients are ones we run on our own businesses first.</p>
+<section class="tight"><div class="wrap two"><h2>A fractional CMO who operates.</h2><div><p class="lede">Tim McCoy has led Yoodle for {YEARS} years and is the fractional CMO of Savvy Bridal and Vow Ready, a five-store bridal retail group. The systems we bring to clients are already at work there.</p>
 <p>Most fractional CMOs bring a plan and leave the work to you. Here you get the leader and the hands. Tim leads the people you already have, and Yoodle builds what they can&rsquo;t yet: the brand, the website, the campaigns, the reporting.</p>
 <p>The goal is an in-house team that no longer needs us. We coach your staff, help you make the next hire, and hand over the playbook.</p>
 <p class="spots"><strong>Two openings left.</strong> Tim works with only a few companies at a time, so each one gets a leader who is actually in the room. <a class="go" href="/contact/">Ask about a spot.</a></p></div></div></section>
 <section class="dark"><div class="wrap"><h2>Six months.</h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3>{a}.</h3><p>{b}</p></li>' for i, (a, b) in enumerate(steps))}</ol></div></section>
 <section><div class="wrap"><h2>Fractional CMO work.<span class="r">In practice.</span></h2><div class="cols c2">
-<div class="col"><div class="xlogo"><img src="/img/logos/t-w20.webp" alt="Savvy Bridal logo" width="480" height="170" loading="lazy"></div><h3>Savvy Bridal and Vow Ready.</h3><p>Five bridal stores in three states. Tim sits as chief marketing officer, an in-house team runs the day to day, and Yoodle builds what the team needs: websites, dashboards, campaigns.</p><a class="go" href="/bridal/">The bridal story.</a></div>
+<div class="col"><div class="xlogo"><img src="/img/logos/t-w20.webp" alt="Savvy Bridal logo" width="480" height="170" loading="lazy"></div><h3>Savvy Bridal and Vow Ready.</h3><p>Five bridal stores in three states. Tim serves as their fractional CMO, an in-house team runs the day to day, and Yoodle builds what the team needs: websites, dashboards, campaigns.</p><a class="go" href="/bridal/">The bridal story.</a></div>
 <div class="col"><div class="xlogo"><img src="/img/logos/t-w16.webp" alt="American Jazz Museum logo" width="311" height="220" loading="lazy"></div><h3>American Jazz Museum.</h3><p>A twelve-month fractional CMO retainer, 2023 to 2024. Tim led marketing for the museum at 18th and Vine and reported to its executive director and board, while Yoodle supplied the creative, technical and production teams.</p><p>In that year: quarterly marketing reports to the board, the annual report, the Free February campaign, online tickets and memberships, the museum newsletter, and The Big Break podcast with its own marketing plan. Tim also ran the search for a Director of Marketing and Communications, and left with two trained hires in place.</p><a class="go" href="/work/the-big-break/">The Big Break.</a></div>
 </div></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
-{closer(text="Need a marketing leader? Bring the challenge. We&rsquo;ll bring the experience, the curiosity, and the people to make it happen.", button=("/contact/", "Talk to a fractional CMO"), b=("See the bridal story.", "The model, proven in our own five stores.", "/bridal/", "Read it."))}'''
+{closer(text="Need a marketing leader? Bring the challenge. We&rsquo;ll bring the experience, the curiosity, and the people to make it happen.", button=("/contact/", "Talk to a fractional CMO"), b=("See the bridal story.", "The model, proven in five stores.", "/bridal/", "Read it."))}'''
     its = [("/", "Home"), ("", "Experience")]
     page("/experience/", "Fractional CMO and Marketing Leadership | Yoodle",
          "Fractional CMO and marketing director services from Yoodle. A senior leader and a full team inside your organization on a six-month contract.", body, [crumb_schema(its), faq_schema(faq)])
@@ -764,12 +763,12 @@ def bridal():
            ("What does a fractional CMO do for a bridal shop?", "Sets the marketing plan, manages the budget and the agency work, and builds and trains your in-house team so the shop is not dependent on outside help."),
            ("How long is an engagement?", "Six months. The first 90 days install the system. The rest trains your team to run it.")]
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Bridal</p><h1>Bridal marketing.<span class="r">Proven in five stores.</span></h1>
-<div class="herogrid"><p class="lede" style="margin:0">Savvy Bridal and Vow Ready run five stores in Kansas City, St. Louis and Fort Lauderdale. Yoodle leads their marketing, builds their tools and trains their team. It's the same model we bring to your shop.</p>
+<div class="herogrid"><p class="lede" style="margin:0">Savvy Bridal and Vow Ready run five stores in Kansas City, St. Louis and Fort Lauderdale. Tim McCoy is their fractional CMO, and Yoodle builds their tools and trains their team. It's the same model we bring to your shop.</p>
 <p style="margin:0"><a class="btn" href="/contact/">Talk about your shop</a></p></div></div></section>
 <section class="tight"><div class="wrap two"><h2>A true story.</h2><div><p class="lede">Savvy Bridal opened in 2013. It grew to three cities, then added Vow Ready, an off-the-rack brand, in 2026.</p>
 <p>It did not grow on an agency retainer alone, and it did not grow on an in-house team alone. It took four parts working together, and that's the model we bring to other shops.</p></div></div></section>
 <section class="dark"><div class="wrap"><h2>Four parts.</h2><ol class="rows">
-<li><span class="idx" aria-hidden="true">01</span><h3>A marketing leader.</h3><p>A fractional chief marketing officer who owns the plan, the budget and the numbers, and answers to the owner.</p></li>
+<li><span class="idx" aria-hidden="true">01</span><h3>A marketing leader.</h3><p>A fractional CMO who owns the plan, the budget and the numbers, and answers to the owner.</p></li>
 <li><span class="idx" aria-hidden="true">02</span><h3>An agency behind them.</h3><p>Yoodle builds what the plan calls for: brand, websites, ads, content and reporting. No hiring wait.</p></li>
 <li><span class="idx" aria-hidden="true">03</span><h3>An in-house team.</h3><p>Your own people run the day to day: social, events, follow-up, the stores. We hire with you, train them and hand over the playbook.</p></li>
 <li><span class="idx" aria-hidden="true">04</span><h3>Partners, managed.</h3><p>BridalLive, I Do Society, Yelp, TikTok, Meta, Google: a bridal shop runs on platforms, and every one needs setting up, customizing and watching. We manage them all, and the people behind them, so you don't have to.</p></li></ol></div></section>
@@ -860,7 +859,7 @@ def assets():
     open(os.path.join(OUT, "js/site.js"), "w").write(JS)
     nm = os.path.join(ROOT, "node_modules/@fontsource-variable")
     shutil.copy(f"{nm}/inter/files/inter-latin-wght-normal.woff2", os.path.join(OUT, "fonts/inter.woff2"))
-    shutil.copy(f"{nm}/inter-tight/files/inter-tight-latin-wght-normal.woff2", os.path.join(OUT, "fonts/inter-tight.woff2"))
+    shutil.copy(f"{nm}/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2", os.path.join(OUT, "fonts/bricolage-grotesque.woff2"))
     if os.path.isdir(os.path.join(ROOT, "assets/img")): shutil.copytree(os.path.join(ROOT, "assets/img"), os.path.join(OUT, "img"), dirs_exist_ok=True)
     if PREVIEW: return
     for f in ("yoodle-review.js", "yoodle-review-form.html", "yoodle-resolved.json"): shutil.copy(os.path.join(ROOT, "tools/review", f), os.path.join(OUT, f))

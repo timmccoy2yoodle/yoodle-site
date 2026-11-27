@@ -1,13 +1,13 @@
 
 @font-face{font-family:"Inter";src:url("/fonts/inter.woff2") format("woff2");font-weight:100 900;font-display:swap}
-@font-face{font-family:"Inter Tight";src:url("/fonts/inter-tight.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Bricolage Grotesque";src:url("/fonts/bricolage-grotesque.woff2") format("woff2");font-weight:200 800;font-display:swap}
 :root{--bg:#F7F4EE;--ink:#111110;--mute:#55524c;--line:#11111022;--acc:#2c2a6f;--acc-t:#2c2a6f;--acc-l:#b9b6f5;--white:#fff;--amber:#ffe9a8;--amber-t:#4d3400;--max:1320px}
 *{box-sizing:border-box}
 html{scroll-padding-top:80px;scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;font-family:"Inter",system-ui,sans-serif;font-size:18px;line-height:1.5;color:var(--ink);background:var(--bg);overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
-h1,h2,h3,.big,.brand,.idx{font-family:"Inter Tight","Inter",system-ui,sans-serif;font-weight:600;letter-spacing:-.035em;line-height:.98;margin:0}
-h1{font-size:clamp(3rem,10.5vw,9.5rem);letter-spacing:-.05em;line-height:.92}
+h1,h2,h3,.big,.brand,.idx{font-family:"Bricolage Grotesque","Inter",system-ui,sans-serif;font-weight:650;letter-spacing:-.035em;line-height:.98;margin:0}
+h1{font-size:clamp(3rem,10.5vw,9.5rem);letter-spacing:-.045em;line-height:.9}
 h1.md{font-size:clamp(2.6rem,7.5vw,6.4rem)}
 h2{font-size:clamp(2.3rem,6vw,5rem)}
 h3{font-size:clamp(1.4rem,2.4vw,2rem);letter-spacing:-.025em;line-height:1.08}
@@ -79,7 +79,7 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .mq{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0}
 .track{display:flex;width:max-content;animation:mq 70s linear infinite}
 .track ul{display:flex;list-style:none;margin:0;padding:0}
-.track li{font-family:"Inter Tight",sans-serif;font-weight:600;font-size:clamp(1.3rem,2.4vw,2rem);letter-spacing:-.02em;padding:0 28px;white-space:nowrap}
+.track li{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:clamp(1.3rem,2.4vw,2rem);letter-spacing:-.02em;padding:0 28px;white-space:nowrap}
 .track li::after{content:"\00B7";margin-left:56px;color:var(--acc)}
 .mq.paused .track{animation-play-state:paused}
 .mq.lg{padding:26px 0}.mq.lg .track{animation-duration:90s}
@@ -105,7 +105,7 @@ nav.main a.talk{background:var(--ink);color:var(--bg);border-radius:999px;paddin
 .pillar h3{font-size:clamp(2rem,4.4vw,3.6rem);margin:0}
 details.cap{border-top:1px solid #f7f4ee33}
 details.cap:last-of-type{border-bottom:1px solid #f7f4ee33}
-details.cap summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;padding:10px 0;font-family:"Inter Tight",sans-serif;font-weight:500;font-size:clamp(1.15rem,1.9vw,1.5rem);letter-spacing:-.01em}
+details.cap summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;padding:10px 0;font-family:"Bricolage Grotesque",sans-serif;font-weight:500;font-size:clamp(1.15rem,1.9vw,1.5rem);letter-spacing:-.01em}
 details.cap summary::-webkit-details-marker{display:none}
 details.cap summary::after{content:"+";flex:none;width:34px;height:34px;border:1.5px solid #f7f4ee;color:#f7f4ee;border-radius:50%;display:grid;place-items:center;font-family:Inter,sans-serif;font-weight:300;font-size:1.5rem;line-height:1;padding-bottom:2px;transition:transform .3s,background .2s,color .2s}
 details.cap[open] summary::after{transform:rotate(45deg);background:var(--bg);color:var(--ink)}
@@ -118,7 +118,7 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 .posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px) clamp(16px,2.4vw,32px);list-style:none;padding:0;margin:clamp(28px,4vw,48px) 0 0}
 .posts li{min-width:0}
 .posts a{display:block;text-decoration:none;color:inherit}
-.posts .th{aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:var(--acc);display:flex;align-items:flex-end;padding:18px;color:#fff;font-family:"Inter Tight",sans-serif;font-weight:600;font-size:1.3rem;letter-spacing:-.02em}
+.posts .th{aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:var(--acc);display:flex;align-items:flex-end;padding:18px;color:#fff;font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.3rem;letter-spacing:-.02em}
 .posts .th.im{padding:0;background:#e9e5dc}
 .posts .th img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
 .posts a:hover .th img{transform:scale(1.03)}
@@ -172,7 +172,7 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 .cover.lg{aspect-ratio:16/8;border-radius:10px;padding:clamp(22px,4vw,56px)}
 @media (max-width:620px){.cover.lg{aspect-ratio:4/3}}
 .cover .k{font-size:.9rem;font-weight:600;display:flex;justify-content:space-between;gap:12px}
-.cover .n{font-family:"Inter Tight",sans-serif;font-weight:600;letter-spacing:-.04em;line-height:.95;font-size:clamp(1.7rem,3vw,2.6rem)}
+.cover .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;letter-spacing:-.04em;line-height:.95;font-size:clamp(1.7rem,3vw,2.6rem)}
 .cover.lg .n{font-size:clamp(2rem,6.4vw,5.6rem)}
 .cover::after{content:"";position:absolute;right:-12%;bottom:-38%;width:62%;aspect-ratio:1;border-radius:50%;border:1.5px solid #ffffff40}
 .cover::before{content:"";position:absolute;right:6%;bottom:-52%;width:62%;aspect-ratio:1;border-radius:50%;border:1.5px solid #ffffff26}
@@ -190,7 +190,7 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 @media (max-width:760px){.names{columns:1}}
 details{border-top:1px solid var(--line)}
 details:last-of-type{border-bottom:1px solid var(--line)}
-summary{cursor:pointer;font-family:"Inter Tight",sans-serif;font-weight:600;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.02em;padding:22px 0;min-height:44px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary{cursor:pointer;font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.02em;padding:22px 0;min-height:44px;list-style:none;display:flex;justify-content:space-between;gap:16px}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";color:var(--acc-t)}
 details[open] summary::after{content:"\2013"}
@@ -246,7 +246,7 @@ footer h2{font-size:1rem;letter-spacing:0;color:#fff;margin-bottom:8px;font-fami
 .post p{font-size:1.1rem}
 .plist{list-style:none;padding:0;margin:32px 0 0}
 .plist li{border-top:1px solid #f7f4ee44;padding:18px 0;display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:baseline}
-.plist a{font-family:"Inter Tight",sans-serif;font-weight:600;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.02em;text-decoration:none;display:inline-flex;min-height:44px;align-items:center}
+.plist a{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.02em;text-decoration:none;display:inline-flex;min-height:44px;align-items:center}
 .plist a:hover{text-decoration:underline}
 @media (max-width:620px){.plist li{grid-template-columns:1fr;gap:0}}
 
