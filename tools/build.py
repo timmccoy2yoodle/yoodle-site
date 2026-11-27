@@ -28,7 +28,12 @@ for o in OLDSITE["projects"]:
     if o["slug"] in _have: continue
     first = next((t for k, t in o["blocks"] if k == "p"), "")
     P.append(dict(slug=o["slug"], name=o["name"], sector=_sec(o["cats"]), url="", place="", platform="", about=first, features=[], kind="Project"))
-POSTS = OLDSITE["posts"]
+# Posts Tim removed (Nov 26 2026) and where their old addresses now go.
+GONE = {"brands-that-speak-the-podcast": "/content/", "png": "/content/", "unscripted-mental-health-x-covid-19-edition": "/content/",
+        "yoodle-education-services-x-fec-kc": "/work/yoodle-education-services/", "yoodle-education-services-x-umkc": "/work/yoodle-education-services/",
+        "variety-kansas-city-and-yoodle-team-up-to-talk-inclusion-in-a-covid-19-world": "/work/variety-kc/"}
+assert not set(GONE) - {x["slug"] for x in OLDSITE["posts"]}
+POSTS = [x for x in OLDSITE["posts"] if x["slug"] not in GONE]
 def cover_img(p):
     if os.path.exists(os.path.join(ROOT, "assets/img/shots", p["slug"] + ".webp")): return dict(src=f'/img/shots/{p["slug"]}.webp', w=1600, h=1200)
     o = OLD.get(p["slug"])
@@ -873,7 +878,7 @@ def assets():
     old = ["about", "work/work-by-services", "blog", "careers", "careers/*", "vpat", "dir", "shop", "cart", "checkout", "my-account", "skill-up", "skill-up/*", "workforce-training", "workforce-training/*", "contentum", "contentum/*", "project/*"]
     dest = {"about": "/services/", "blog": "/content/", "vpat": "/accessibility/", "work/work-by-services": "/work/", "project/*": "/work/"}
     code = 302 if TEST_BUILD else 301
-    spec = f"/services/interactive/  /services/technology/  {code}\n/work/rio-hondo-college-video/  /work/rio-hondo-college/  {code}\n" + "".join(f"/project/{o['old']}/  /work/{o['slug']}/  {code}\n" for o in OLDSITE["projects"]) + "".join(f"/{x['old']}/  /content/{x['slug']}/  {code}\n" for x in POSTS)
+    spec = f"/services/interactive/  /services/technology/  {code}\n/work/rio-hondo-college-video/  /work/rio-hondo-college/  {code}\n" + "".join(f"/project/{o['old']}/  /work/{o['slug']}/  {code}\n" for o in OLDSITE["projects"]) + "".join(f"/{x['old']}/  /content/{x['slug']}/  {code}\n" for x in POSTS) + "".join(f"/content/{x['slug']}/  {GONE[x['slug']]}  {code}\n/{x['old']}/  {GONE[x['slug']]}  {code}\n" for x in OLDSITE["posts"] if x["slug"] in GONE)
     open(os.path.join(OUT, "_redirects"), "w").write(spec + "".join(f"/{o}  {dest.get(o, '/')}  {code}\n" for o in old))
     open(os.path.join(OUT, "netlify.toml"), "w").write('[build]\n  publish = "."\n  command = ""\n')
 
