@@ -321,3 +321,14 @@ YEARS_ARCHIVE = {"cape-cod-community-college": "2018", "parisi-coffee": "2019 to
 for _p in P:
     if _p["slug"] in ENG: _p["eng"] = ENG[_p["slug"]]
     if _p["slug"] == "compton-college": _p["platform"] = "Modern Campus Omni CMS"
+
+# ---- Scope and platform from Tim (Nov 26 2026)
+_RD = "Website redesign and development."
+ENG.update({"miracosta-college": ("", _RD), "fsu-career-center": ("", _RD), "ci3t": ("", _RD), "music-theater-heritage": ("", _RD),
+ "nick-and-jakes": ("2026", "Website redesign and development. Yoodle designed and built the new site as fast static pages, with no content management system to slow it down or patch."),
+ "brous-law": ("2026", "Website redesign and development. Yoodle designed and built the site as fast static pages, with no content management system to slow it down or patch.")})
+_PLAT = {"ci3t": "Drupal", "fsu-career-center": "Drupal", "music-theater-heritage": "WordPress", "kansas-judicial-branch": "Kentico",
+ "palm-beach-state-college": "Modern Campus Omni CMS", "neighborworks-america": "Kentico"}
+for _p in P:
+    if _p["slug"] in ENG: _p["eng"] = ENG[_p["slug"]]
+    if _p["slug"] in _PLAT: _p["platform"] = _PLAT[_p["slug"]]

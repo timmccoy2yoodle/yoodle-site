@@ -657,7 +657,7 @@ def project(i, p):
 {"" if cover_img(p) else '<p class="small" style="margin-top:10px">' + confirm("real screenshots of the live site replace this cover" if p["url"] else "images replace this cover once the rest of the backup is brought over") + "</p>"}
 </div></section>
 <section class="tight"><div class="wrap"><dl class="facts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts)}</dl></div></section>
-<section class="tight"><div class="wrap two"><h2>The project.</h2><div>{about}{'<p>' + e(eng[1]) + '</p>' if eng and eng[1] else ''}{'' if ((p['kind'] == 'Podcast' and p['about']) or p.get('case') or eng) else '<p>' + confirm(need) + '</p>'}{visit}</div></div></section>
+<section class="tight"><div class="wrap two"><h2>The project.</h2><div>{about}{'<p>' + e(eng[1]) + '</p>' if eng and eng[1] else ''}{'' if ((p['kind'] == 'Podcast' and p['about']) or p.get('case') or eng or p['kind'] == 'Project') else '<p>' + confirm(need) + '</p>'}{visit}</div></div></section>
 {case_html(p) if p.get("case") else feats}
 {story}
 {nums}{gal}{quote}
@@ -758,7 +758,7 @@ def bridal():
 <li><span class="idx" aria-hidden="true">01</span><h3>A marketing leader.</h3><p>A fractional chief marketing officer who owns the plan, the budget and the numbers, and answers to the owner.</p></li>
 <li><span class="idx" aria-hidden="true">02</span><h3>An agency behind them.</h3><p>Yoodle builds what the plan calls for: brand, websites, ads, content and reporting. No hiring wait.</p></li>
 <li><span class="idx" aria-hidden="true">03</span><h3>An in-house team.</h3><p>Your own people run the day to day: social, events, follow-up, the stores. We hire with you, train them and hand over the playbook.</p></li>
-<li><span class="idx" aria-hidden="true">04</span><h3>Partners, managed.</h3><p>Ad agencies, website companies, CRM and software vendors, outside associates. We manage every one of those relationships so you don't have to.</p></li></ol></div></section>
+<li><span class="idx" aria-hidden="true">04</span><h3>Partners, managed.</h3><p>BridalLive, I Do Society, Yelp, TikTok, Meta, Google: a bridal shop runs on platforms, and every one needs setting up, customizing and watching. We manage them all, and the people behind them, so you don't have to.</p></li></ol></div></section>
 <section><div class="wrap"><h2>What we built.<span class="r">Running in our stores.</span></h2><p class="lede" style="margin-top:24px">Every tool here is live in our own stores, with a person accountable for everything that ships.</p>
 <ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{f"<a href={chr(34)}{u}{chr(34)}>{e(n)}</a>" if u else e(n)}.</h3><p>{e(t) if t else confirm("one line on what this does")}</p></li>' for i, (n, t, u) in enumerate(built))}</ol>
 <p style="margin-top:20px">{confirm("results to cite (leads, bookings, conversion)")}</p></div></section>
