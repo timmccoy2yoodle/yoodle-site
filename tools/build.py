@@ -184,10 +184,14 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 .xlogo img{max-height:100%;max-width:220px;width:auto;height:auto;object-fit:contain}
 .xlogo.dk{background:#141414;border-radius:6px;padding:10px 16px;width:max-content;height:84px;margin-bottom:-2px}
 @keyframes mq{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.track{animation:none;width:auto;flex-wrap:wrap}.track ul{flex-wrap:wrap}.track ul[aria-hidden]{display:none}.track li{white-space:normal}.mqbtn{display:none}}
+@media (prefers-reduced-motion:reduce){.track{animation:none;width:auto;flex-wrap:wrap}.track ul{flex-wrap:wrap}.track ul[aria-hidden]{display:none}.track li{white-space:normal}}
 .mqbtn{margin-top:14px;width:44px;height:44px;border:1.5px solid var(--ink);border-radius:50%;background:none;color:inherit;cursor:pointer;display:grid;place-items:center;padding:0}
 .mqbtn::before{content:"";width:12px;height:14px;border-left:4px solid currentColor;border-right:4px solid currentColor;box-sizing:border-box}
 .mqbtn[aria-pressed=true]::before{width:0;height:0;border:0;border-left:13px solid currentColor;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+@media (prefers-reduced-motion:reduce){.mqbtn,.prog{display:none}header.site{transition:none}
+ .mq.lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:22px 28px;align-items:center;justify-items:center;padding:26px max(24px,calc((100% - var(--max))/2 + 24px))}
+ .mq.lg .track,.mq.lg .track ul{display:contents}.mq.lg .track ul[aria-hidden]{display:none}.mq.lg .track li{margin:0;width:100%;justify-content:center}.mq.lg .track img{max-width:100%}}
+@media (prefers-reduced-motion:reduce) and (max-width:620px){.mq.lg{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:14px 18px}}
 .linkbtn{margin-top:12px;background:none;border:0;font:inherit;font-size:.95rem;text-decoration:underline;min-height:44px;cursor:pointer;color:inherit;padding:0}
 .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);margin-top:clamp(32px,5vw,64px)}
 .cols.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -257,6 +261,11 @@ form.f .checks label{display:inline-flex;align-items:center;gap:8px;margin:0;fon
 form.f .checks input{width:18px;height:18px;min-height:0;padding:0;accent-color:var(--acc)}
 form.f .checks label:has(input:checked){background:var(--ink);color:var(--bg)}
 .hp{position:absolute;left:-9999px}
+form.f input:hover,form.f textarea:hover,form.f select:hover{border-color:var(--acc)}
+form.f [aria-invalid=true]{border-color:#a4161a;border-width:2.5px}
+form.f .err{margin:6px 0 0;color:#a4161a;font-weight:600;font-size:.95rem}
+::selection{background:var(--acc);color:#fff}
+.dark ::selection{background:var(--bg);color:var(--ink)}
 .status{margin-top:4px;padding:12px 16px;background:var(--amber);color:var(--amber-t);font-weight:600;display:none;border-radius:6px}
 .status.show{display:block}
 dialog.lead{border:0;border-radius:14px;padding:0;max-width:560px;width:calc(100% - 32px);background:var(--bg);color:var(--ink)}
@@ -342,7 +351,12 @@ if(fb.length&&location.hash){var k=location.hash.slice(1);if(d.querySelector('[d
 var live=/(^|\.)yoodle\.com$|\.netlify\.app$/.test(location.hostname);
 d.querySelectorAll('form[data-netlify]').forEach(function(f){f.addEventListener('submit',function(ev){
  var s=f.querySelector('.status');
- if(!f.checkValidity()){ev.preventDefault();s.classList.add('show');s.textContent='Please fill in every required field with a valid value.';var bad=f.querySelector(':invalid');if(bad)bad.focus();return}
+ f.querySelectorAll('.err').forEach(function(x){x.remove()});f.querySelectorAll('[aria-invalid]').forEach(function(x){x.removeAttribute('aria-invalid');x.removeAttribute('aria-describedby')});
+ if(!f.checkValidity()){ev.preventDefault();var bads=[].slice.call(f.querySelectorAll('input:invalid,textarea:invalid,select:invalid'));
+  bads.forEach(function(x){var m=x.validity.valueMissing?'Required. Please fill this in.':x.type==='email'?'Enter an email address like name@example.com.':'Please check this answer.';
+   var er=d.createElement('p');er.className='err';er.id=x.id+'-err';er.textContent=m;x.setAttribute('aria-invalid','true');x.setAttribute('aria-describedby',er.id);x.parentNode.appendChild(er);
+   x.addEventListener('input',function(){if(x.checkValidity()){x.removeAttribute('aria-invalid');x.removeAttribute('aria-describedby');if(er.parentNode)er.remove()}})});
+  s.classList.add('show');s.textContent=bads.length===1?'One field needs attention. It is marked above.':bads.length+' fields need attention. They are marked above.';if(bads[0])bads[0].focus();return}
  if(!live){ev.preventDefault();s.classList.add('show');s.textContent='Test build: this form is connected when the site goes live on Netlify. Nothing was sent.'}
  ls('y-lead',String(Date.now()));
 })});
@@ -576,15 +590,15 @@ def home():
 <li><span class="idx" aria-hidden="true">04</span><h3><a href="/experience/">Fractional CMO</a></h3><div><p>Put senior leadership behind the plan, and a team behind the leader.</p><p class="sub">Leadership / Planning / Execution</p></div></li></ol></div></section>
 <section><div class="wrap"><div class="two" style="align-items:end"><h2>The work.<span class="r">Judge for yourself.</span></h2><p class="lede">{len(P)} projects, chosen from a much longer list. Most are live, so you can open them and see how they hold up.</p></div>
 <ul class="grid">{"".join(card(p) for p in feat)}</ul><p style="margin-top:28px"><a class="go" href="/work/">See all the work.</a></p></div></section>
-<section class="dark"><div class="wrap"><h2>Who we work with.</h2><div class="cols">
-<div class="col"><h3>Higher education.</h3><p>Colleges, universities and the centers inside them. Enrollment sites, program finders, accessibility and content.</p><a class="go" href="/work/#higher-ed">Higher ed work.</a></div>
-<div class="col"><h3>Government.</h3><p>Courts, commissions, transit and regional agencies. Direct, or as a teaming partner to a prime contractor.</p><a class="go" href="/work/#government">Government work.</a></div>
-<div class="col"><h3>Nonprofit and business.</h3><p>Charities, arts organizations and owner-run companies that need a full marketing team without hiring one.</p><a class="go" href="/work/#nonprofit">Nonprofit work.</a></div>
-</div></div></section>
+<section class="dark"><div class="wrap"><div class="two" style="align-items:end"><h2>Who we work with.</h2><p class="lede">Organizations with a mission to serve, a public to answer to, and more to get done than the team on hand can carry.</p></div><div class="cols">
+<div class="col"><h3>The stakes are public.</h3><p>Your audience is a community: students, residents, donors, customers. When the brand or the website falls short, they notice first.</p></div>
+<div class="col"><h3>The team is stretched.</h3><p>Good people, too many priorities. We add senior thinking and the hands to finish, then leave your team stronger.</p></div>
+<div class="col"><h3>The challenge keeps coming back.</h3><p>Enrollment, awareness, compliance, growth: the same questions return every quarter. We design answers that hold up next year too.</p></div>
+</div><p style="margin-top:36px"><a class="go" href="/work/">See who we&rsquo;ve done it for.</a></p></div></section>
 <section><div class="wrap two"><h2>ADA website compliance.<span class="r">Before the deadline.</span></h2><div>
 <p class="lede">Public colleges and larger governments must meet WCAG 2.1 AA by April 26, 2027. We audit, fix the site's own code, retest and certify.</p>
 <p><a class="btn" href="/accessibility/">Get a free report</a></p></div></div></section>
-{closer()}'''
+{closer(b=("Fractional CMO.", "Senior marketing leadership inside your organization, with a team behind it.", "/experience/", "See how it works."))}'''
     page("/", "Yoodle | The Content Experience Agency: Brand, Technology, Marketing",
          f"Yoodle is the content experience agency. For {YEARS} years we've helped ambitious organizations turn complex challenges into brands and marketing that move people.", body,
          [{"@type": "WebSite", "@id": DOMAIN + "/#site", "url": DOMAIN + "/", "name": "Yoodle", "publisher": {"@id": DOMAIN + "/#org"}}])
@@ -746,11 +760,11 @@ def bridal():
              ("The Q", "A line nobody stands in. She waits wherever she likes, and we text her when it's her turn.", ""),
              ("Stylist Edit", "Her stylist knows her taste before she walks through the door.", ""),
              ("Training platform", "How the Savvy way of selling gets passed on.", "")]
-    faq = [("Do you work with bridal shops you do not own?", "Yes. The system was built inside our own stores so it could be installed in others."),
+    faq = [("Do you work with shops other than Savvy Bridal and Vow Ready?", "Yes. The system was built with them so it could be installed in other shops."),
            ("What does a fractional CMO do for a bridal shop?", "Sets the marketing plan, manages the budget and the agency work, and builds and trains your in-house team so the shop is not dependent on outside help."),
            ("How long is an engagement?", "Six months. The first 90 days install the system. The rest trains your team to run it.")]
-    body = f'''<section class="hero"><div class="wrap"><p class="tag">Bridal</p><h1>Bridal marketing.<span class="r">Proven in our own stores.</span></h1>
-<div class="herogrid"><p class="lede" style="margin:0">Yoodle's founder is chief marketing officer of Savvy Bridal and Vow Ready: five stores in Kansas City, St. Louis and Fort Lauderdale. Everything we sell to bridal shops, we run there first.</p>
+    body = f'''<section class="hero"><div class="wrap"><p class="tag">Bridal</p><h1>Bridal marketing.<span class="r">Proven in five stores.</span></h1>
+<div class="herogrid"><p class="lede" style="margin:0">Savvy Bridal and Vow Ready run five stores in Kansas City, St. Louis and Fort Lauderdale. Yoodle leads their marketing, builds their tools and trains their team. It's the same model we bring to your shop.</p>
 <p style="margin:0"><a class="btn" href="/contact/">Talk about your shop</a></p></div></div></section>
 <section class="tight"><div class="wrap two"><h2>A true story.</h2><div><p class="lede">Savvy Bridal opened in 2013. It grew to three cities, then added Vow Ready, an off-the-rack brand, in 2026.</p>
 <p>It did not grow on an agency retainer alone, and it did not grow on an in-house team alone. It took four parts working together, and that's the model we bring to other shops.</p></div></div></section>
@@ -759,13 +773,13 @@ def bridal():
 <li><span class="idx" aria-hidden="true">02</span><h3>An agency behind them.</h3><p>Yoodle builds what the plan calls for: brand, websites, ads, content and reporting. No hiring wait.</p></li>
 <li><span class="idx" aria-hidden="true">03</span><h3>An in-house team.</h3><p>Your own people run the day to day: social, events, follow-up, the stores. We hire with you, train them and hand over the playbook.</p></li>
 <li><span class="idx" aria-hidden="true">04</span><h3>Partners, managed.</h3><p>BridalLive, I Do Society, Yelp, TikTok, Meta, Google: a bridal shop runs on platforms, and every one needs setting up, customizing and watching. We manage them all, and the people behind them, so you don't have to.</p></li></ol></div></section>
-<section><div class="wrap"><h2>What we built.<span class="r">Running in our stores.</span></h2><p class="lede" style="margin-top:24px">Every tool here is live in our own stores, with a person accountable for everything that ships.</p>
+<section><div class="wrap"><h2>What we built.<span class="r">Live on the shop floor.</span></h2><p class="lede" style="margin-top:24px">Every tool here is live at Savvy Bridal and Vow Ready, with a person accountable for everything that ships.</p>
 <ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{f"<a href={chr(34)}{u}{chr(34)}>{e(n)}</a>" if u else e(n)}.</h3><p>{e(t) if t else confirm("one line on what this does")}</p></li>' for i, (n, t, u) in enumerate(built))}</ol>
 <p style="margin-top:20px">{confirm("results to cite (leads, bookings, conversion)")}</p></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
 {closer(text="Own a bridal shop? Tell us where marketing is stuck. We&rsquo;d love to help.")}'''
     its = [("/", "Home"), ("", "Bridal")]
-    page("/bridal/", "Bridal Shop Marketing and Fractional CMO | Yoodle", "Bridal marketing from the team behind Savvy Bridal and Vow Ready: a fractional CMO, agency support and an in-house team, proven in five stores.", body,
+    page("/bridal/", "Bridal Shop Marketing and Fractional CMO | Yoodle", "Bridal marketing from the agency behind the growth of Savvy Bridal and Vow Ready: a fractional CMO, agency support and an in-house team, proven in five stores.", body,
          [crumb_schema(its), faq_schema(faq), {"@type": "Service", "name": "Bridal shop marketing and fractional CMO", "provider": {"@id": DOMAIN + "/#org"}, "areaServed": "US"}])
 
 def content():

@@ -136,10 +136,14 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 .xlogo img{max-height:100%;max-width:220px;width:auto;height:auto;object-fit:contain}
 .xlogo.dk{background:#141414;border-radius:6px;padding:10px 16px;width:max-content;height:84px;margin-bottom:-2px}
 @keyframes mq{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.track{animation:none;width:auto;flex-wrap:wrap}.track ul{flex-wrap:wrap}.track ul[aria-hidden]{display:none}.track li{white-space:normal}.mqbtn{display:none}}
+@media (prefers-reduced-motion:reduce){.track{animation:none;width:auto;flex-wrap:wrap}.track ul{flex-wrap:wrap}.track ul[aria-hidden]{display:none}.track li{white-space:normal}}
 .mqbtn{margin-top:14px;width:44px;height:44px;border:1.5px solid var(--ink);border-radius:50%;background:none;color:inherit;cursor:pointer;display:grid;place-items:center;padding:0}
 .mqbtn::before{content:"";width:12px;height:14px;border-left:4px solid currentColor;border-right:4px solid currentColor;box-sizing:border-box}
 .mqbtn[aria-pressed=true]::before{width:0;height:0;border:0;border-left:13px solid currentColor;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+@media (prefers-reduced-motion:reduce){.mqbtn,.prog{display:none}header.site{transition:none}
+ .mq.lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:22px 28px;align-items:center;justify-items:center;padding:26px max(24px,calc((100% - var(--max))/2 + 24px))}
+ .mq.lg .track,.mq.lg .track ul{display:contents}.mq.lg .track ul[aria-hidden]{display:none}.mq.lg .track li{margin:0;width:100%;justify-content:center}.mq.lg .track img{max-width:100%}}
+@media (prefers-reduced-motion:reduce) and (max-width:620px){.mq.lg{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:14px 18px}}
 .linkbtn{margin-top:12px;background:none;border:0;font:inherit;font-size:.95rem;text-decoration:underline;min-height:44px;cursor:pointer;color:inherit;padding:0}
 .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);margin-top:clamp(32px,5vw,64px)}
 .cols.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -209,6 +213,11 @@ form.f .checks label{display:inline-flex;align-items:center;gap:8px;margin:0;fon
 form.f .checks input{width:18px;height:18px;min-height:0;padding:0;accent-color:var(--acc)}
 form.f .checks label:has(input:checked){background:var(--ink);color:var(--bg)}
 .hp{position:absolute;left:-9999px}
+form.f input:hover,form.f textarea:hover,form.f select:hover{border-color:var(--acc)}
+form.f [aria-invalid=true]{border-color:#a4161a;border-width:2.5px}
+form.f .err{margin:6px 0 0;color:#a4161a;font-weight:600;font-size:.95rem}
+::selection{background:var(--acc);color:#fff}
+.dark ::selection{background:var(--bg);color:var(--ink)}
 .status{margin-top:4px;padding:12px 16px;background:var(--amber);color:var(--amber-t);font-weight:600;display:none;border-radius:6px}
 .status.show{display:block}
 dialog.lead{border:0;border-radius:14px;padding:0;max-width:560px;width:calc(100% - 32px);background:var(--bg);color:var(--ink)}
