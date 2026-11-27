@@ -575,10 +575,23 @@ def cover(p, lg=False, n=None):
     host = re.sub(r"^https?://(www\.)?|/$", "", p["url"]) if p["url"] else p["kind"]
     return f'<div class="cover{" lg" if lg else ""}" style="background:{col}"><div class="k"><span>{lab}</span><span>{e(host)}</span></div><div class="n">{e(p["name"])}</div></div>'
 
+def related(k, n=3):
+    """Related work for a service page: Tim's ranked picks, then the projects that are most purely that service. Never untagged work."""
+    top = SVC_TOP.get(k, [])
+    pool = [(i, p) for i, p in enumerate(P) if k in SVC_TAGS.get(p["slug"], [])]
+    def key(ip):
+        i, p = ip
+        return (top.index(p["slug"]) if p["slug"] in top else len(top), p["kind"] != SVC_KIND[k], len(SVC_TAGS[p["slug"]]),
+                p["kind"] == "Project" or p["slug"] in SVC_OLDER, i)
+    return [p for _, p in sorted(pool, key=key)][:n]
+
+def svc_names(p):
+    return ", ".join(SVC_LABEL[t] for t in SVC_TAGS.get(p["slug"], []))
+
 def card(p):
     lab = SECTORS[p["sector"]][0]
     sub = p["place"] or p["kind"]
-    if p["kind"] == "Project": sub = ", ".join(OLD[p["slug"]]["tags"]) or "Brand and web"; return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(sub)}</p></a></li>'
+    if p["kind"] == "Project": sub = svc_names(p) or "Brand and web"; return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(sub)}</p></a></li>'
     return f'<li data-s="{p["sector"]}"><a class="card" href="/work/{p["slug"]}/">{cover(p)}<h3>{e(p["name"])}</h3><p class="small">{e(p["kind"])}{" · " + e(sub) if sub != p["kind"] else ""}</p></a></li>'
 
 CTA_TEXT = "Bring the challenge. We&rsquo;ll bring the experience, the curiosity, and the people to make it happen."
@@ -645,16 +658,18 @@ def work():
          f"{len(P)} selected projects by Yoodle: live websites for colleges, government agencies, nonprofits and small businesses, plus podcasts and video.", body,
          [crumb_schema(items), {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f'{DOMAIN}/work/{p["slug"]}/', "name": p["name"]} for i, p in enumerate(P)]}])
 
+RH_VID = '''<div style="position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#000"><iframe src="https://player.vimeo.com/video/1230352325?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" title="Río Hondo College reel by Yoodle" allow="fullscreen; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>'''
+RH_NEW_PICK = ['Areas of Study', 'Nursing', 'Automotive Technology', 'Fire Technology & Emergency Response', 'Computer Science', 'Animation, Games & Entertainment Art', 'Business', 'Child Development', 'Psychology', 'Welding Technology']
+RH_OPT_PICK = ['Admissions & Records Office', 'Class Registration', 'Academic Calendar', 'Counseling Center', 'Career & Technical Education', 'Automotive Technology Bachelor of Science', 'Continuing Education & Noncredit Division', 'Disabled Students Program & Services', 'Child Development Center', 'Commencement', 'Clubs & Organizations', 'Adult Re-Entry Program', 'Admissions FAQ', 'Academics', 'About']
 def case_html(p):
     c = p["case"]
     names = lambda L: "".join(f"<li>{e(x)}</li>" for x in L)
     return f'''<section class="dark"><div class="wrap"><h2>By the numbers.</h2><div class="cols c4">{"".join(f'<div class="col"><p class="big" style="font-size:clamp(3.2rem,7vw,6rem);margin:8px 0 14px">{n}</p><p>{e(t)}</p></div>' for n, t in c["stats"])}</div></div></section>
 <section><div class="wrap"><h2>Nine goals.<span class="r">Fully delivered.</span></h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(a)}.</h3><p>{e(t)}</p></li>' for i, (a, t) in enumerate(c["goals"]))}</ol></div></section>
-<section class="tight"><div class="wrap"><h2>Pages we built.</h2><p class="lede" style="margin-top:24px">Fifty new pages, written and built by Yoodle, including the homepage and a page for every area of study.</p><ul class="names">{names(RH_NEW)}</ul></div></section>
-<section class="tight"><div class="wrap two"><h2>Pages we rewrote.</h2><div><p class="lede">Seventy-seven existing pages rewritten and optimized, all approved by the college on May 13, 2024.</p><ul class="names">{names(RH_OPT)}</ul></div></div></section>
-<section class="tight"><div class="wrap two"><h2>The second round.</h2><div><p class="lede">Thirty-three area-of-study pages revised again and completed on August 11, 2024.</p><ul class="names">{names(RH_REV)}</ul></div></div></section>
+<section class="tight"><div class="wrap two"><h2>Pages we built.</h2><div><p class="lede">Fifty new pages, written and built by Yoodle: the homepage, an Areas of Study hub and a page for every area of study.</p><p>A few of them:</p><ul class="sect">{names(RH_NEW_PICK)}</ul><p>The other forty follow the same model, one for each program a student can choose. Thirty-three were revised in a second round and finished in August 2024.</p></div></div></section>
+<section class="tight"><div class="wrap two"><h2>Pages we rewrote.</h2><div><p class="lede">Seventy-seven existing pages rewritten and optimized, from admissions and registration to student services.</p><p>A few of them:</p><ul class="sect">{names(RH_OPT_PICK)}</ul><p>The rest cover the college&rsquo;s academic divisions, programs and support offices. All were approved by the college in May 2024.</p></div></div></section>
 <section class="dark"><div class="wrap two"><h2>On camera.</h2><div><p class="lede">Ten video series and a photo library, shot on campus for the new pages, with vertical cuts for social.</p><ul class="sect">{names(RH_VIDEO)}</ul><p style="margin-top:24px"><a class="go" href="https://vimeo.com/1230352325">Watch the reel on Vimeo.</a></p></div></div>
-<div class="wrap" style="margin-top:clamp(24px,4vw,48px)"><div style="position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#000"><iframe src="https://player.vimeo.com/video/1230352325?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" title="Río Hondo College reel by Yoodle" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div></div></section>'''
+</section>'''
 
 VERDICT = {"Workforce training": "Taught.", "Brand and marketing": "Delivered.", "Website": "Launched.", "Podcast": "Produced.", "Video and content": "Produced.", "Project": "Delivered."}
 def project(i, p):
@@ -678,7 +693,7 @@ def project(i, p):
     o = OLD.get(p["slug"])
     story = gal = ""
     if o:
-        facts.insert(3, ("Services", e(", ".join(o["tags"]) or "Brand and web")))
+        facts.insert(3, ("Services", e(svc_names(p) or "Brand and web")))
         blk = o["blocks"] if p["kind"] != "Project" else [x for x in o["blocks"] if x[1] != p["about"]]
         if blk: story = f'<section class="tight"><div class="wrap two"><h2>{"The work." if p["kind"] == "Project" else "The story."}</h2><div>{rich(blk)}</div></div></section>'
         rest = o["imgs"][1:] if not (cover_img(p) or {"src": ""})["src"].startswith("/img/shots/") else o["imgs"]
@@ -697,7 +712,7 @@ def project(i, p):
     if lk: visit = '<p style="display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center">' + f'<a class="btn" href="{lk[0][1]}">{e(lk[0][0])}</a>' + "".join(f'<a class="go" href="{u}">{e(t)}</a>' for t, u in lk[1:]) + "</p>"
     body = f'''<section class="hero"><div class="wrap">{crumbs([("/", "Home"), ("/work/", "Work"), ("", e(p["name"]))])}
 <h1 class="md">{e(p["name"])}.<span class="r">{VERDICT[p["kind"]]}</span></h1>
-<div style="margin-top:clamp(28px,5vw,56px)">{cover(p, lg=True)}</div>
+<div style="margin-top:clamp(28px,5vw,56px)">{RH_VID if p.get("case") else cover(p, lg=True)}</div>
 {"" if cover_img(p) else '<p class="small" style="margin-top:10px">' + confirm("real screenshots of the live site replace this cover" if p["url"] else "images replace this cover once the rest of the backup is brought over") + "</p>"}
 </div></section>
 <section class="tight"><div class="wrap"><dl class="facts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts)}</dl></div></section>
@@ -741,7 +756,7 @@ def services():
     page("/services/", "Services: Brand, Technology and Marketing | Yoodle",
          "Yoodle's capabilities across brand, technology and marketing: strategy, identity, websites, accessibility, digital experiences, campaigns and content.", body, [crumb_schema(items), faq_schema(faq)])
     for k, v in SERVICES.items():
-        rel = [p for p in P if (k == "content") == (p["sector"] == "content")][:3]
+        rel = related(k)
         body = f'''<section class="hero"><div class="wrap">{crumbs([("/", "Home"), ("/services/", "Services"), ("", v["name"])])}
 <h1 class="md">{v["name"]}.<span class="r">{v["verdict"]}</span></h1><p class="lede" style="margin-top:32px">{e(v["lede"])}</p></div></section>
 <section class="tight"><div class="wrap two"><h2>The approach.</h2><div>{"".join(f"<p>{e(b)}</p>" for b in v["body"])}</div></div></section>
