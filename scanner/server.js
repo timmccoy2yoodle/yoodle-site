@@ -4,11 +4,15 @@
 //   GET  /review/<id>?key=ADMIN_KEY             Tim's draft: report + price/note + approve
 //   POST /review/<id>?key=ADMIN_KEY             approve and email the customer, or hold
 //   GET  /r/<token>                             the customer's report (only after approval)
+//   GET  /review/<id>/plan?key=ADMIN_KEY        remediation plan and scope: Tim fills in hours (POST saves)
+//   GET  /r/<token>/plan                        the customer's copy of the plan (only when Tim turns it on)
 //   GET  /jobs?key=ADMIN_KEY                    list of every scan
 //   GET  /health
 const http = require('http'), fs = require('fs'), path = require('path'), crypto = require('crypto');
 const { scan } = require('./lib/scan'), { render } = require('./lib/report');
 const { normalizeInput } = require('./lib/discover');
+const plan = require('./lib/plan');
+const BOOK = process.env.BOOKING_URL || 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ19B4FBJCID1vLALGmp7HljuV-Cma5K1_z87p5Yf5_WTdactEM9nSq5C4BJ1KBa7WeHK_F0_JLf?gv=true';
 
 const PORT = Number(process.env.PORT) || 8080;
 const DATA = path.resolve(process.env.DATA_DIR || './data');
@@ -77,6 +81,14 @@ http.createServer(async (req, res) => {
       let url; try { url = normalizeInput(d.url).href; } catch { return send(res, 400, 'text/plain', 'url required'); }
       if (limited(email)) return send(res, 429, 'text/plain', 'too many requests');
       const job = { id: id(8), token: id(16), status: 'queued', created: new Date().toISOString(), name: String(d.name || '').slice(0, 120), email, organization: String(d.organization || '').slice(0, 160), url };
+      // The form requires a tick confirming authorization and agreement to the Terms. Keep the record; never scan without it.
+      const agreed = /^(yes|on|true|1)$/i.test(String(d.agree || ''));
+      job.consent = { agreed, termsVersion: String(d['terms-version'] || '').slice(0, 20), at: job.created, ip: String(raw.ip || d.ip || '').slice(0, 60) };
+      if (!agreed) {
+        job.status = 'held'; job.error = 'The form submission did not include the terms agreement, so the site was not scanned.'; save(job);
+        await mail(NOTIFY, `Scan NOT run (no terms agreement): ${url}`, `${job.name} at ${job.organization} <${email}> asked for a scan of ${url}, but the submission had no terms agreement. Nothing was scanned.`).catch(() => {});
+        return send(res, 202, 'application/json', JSON.stringify({ held: job.id }));
+      }
       save(job); queue.push(job.id); work();
       return send(res, 202, 'application/json', JSON.stringify({ queued: job.id }));
     }
@@ -84,7 +96,9 @@ http.createServer(async (req, res) => {
     if (parts[0] === 'r' && parts[1]) {
       const job = all().find(j => same(parts[1], j.token));
       if (!job || job.status !== 'sent') return send(res, 404, 'text/plain', 'Not found');
-      return send(res, 200, 'text/html', render(job));
+      const shared = job.plan && job.plan.shared;
+      if (parts[2] === 'plan') return shared ? send(res, 200, 'text/html', plan.render(job, 'view')) : send(res, 404, 'text/plain', 'Not found');
+      return send(res, 200, 'text/html', render(job, { planUrl: shared ? `${BASE}/r/${job.token}/plan` : null }));
     }
 
     if (!same(key, ADMIN_KEY)) return send(res, 404, 'text/plain', 'Not found');
@@ -96,14 +110,19 @@ http.createServer(async (req, res) => {
 
     if (parts[0] === 'review' && parts[1]) {
       const job = load(parts[1]); if (!job) return send(res, 404, 'text/plain', 'Not found');
+      if (parts[2] === 'plan') {
+        if (!job.result || !job.result.ok) return send(res, 200, 'text/html', page('Not ready', '<p>There is no scan to plan from yet.</p>'));
+        if (req.method === 'POST') { job.plan = plan.fromForm(new URLSearchParams(await body(req)), job.plan); save(job); res.writeHead(303, { location: `/review/${job.id}/plan?key=${encodeURIComponent(key)}` }); return res.end(); }
+        return send(res, 200, 'text/html', plan.render(job, 'edit'));
+      }
       if (parts[2] === 'draft') return send(res, 200, 'text/html', job.result ? render(job, { draft: job.status !== 'sent' }) : page('Not ready', `<p>${esc(job.error || 'This scan has not finished.')}</p>`));
       if (req.method === 'POST') {
         const f = new URLSearchParams(await body(req));
-        job.price = (f.get('price') || '').trim().slice(0, 80); job.note = (f.get('note') || '').trim().slice(0, 1200);
+        job.note = (f.get('note') || '').trim().slice(0, 1200);
         if (f.get('action') === 'send' && job.result && job.result.ok && job.status !== 'sent') {
           job.status = 'sent'; job.sent = new Date().toISOString(); save(job);
           const host = new URL(job.result.site).host;
-          job.mail = await mail(job.email, `Your accessibility report for ${host}`, `Hi ${job.name || 'there'},\n\nYour accessibility report for ${host} is ready:\n${BASE}/r/${job.token}\n\nIt shows what passed, what failed and what we can fix. A scan is the start, not a certification. Our fix includes the manual checks and a retest.\n\nReply to this email with any questions.\n\nTim McCoy\nYoodle`);
+          job.mail = await mail(job.email, `Your accessibility report for ${host}`, `Hi ${job.name || 'there'},\n\nYour accessibility report for ${host} is ready:\n${BASE}/r/${job.token}\n\nIt shows what passed and what failed on the pages we tested. A scan is the start, not a certification.\n\nNext step: book 30 minutes with me to walk through it. You will leave with an estimate and a remediation plan.\n${BOOK}\n\nReply to this email with any questions.\n\nTim McCoy\nYoodle`);
         } else if (f.get('action') === 'hold') job.status = job.status === 'sent' ? 'sent' : 'held';
         save(job);
         res.writeHead(303, { location: `/review/${job.id}?key=${encodeURIComponent(key)}` }); return res.end();
@@ -112,7 +131,9 @@ http.createServer(async (req, res) => {
       const state = { queued: 'Waiting to scan.', scanning: 'Scanning now. Refresh in a few minutes.', failed: 'Scan failed: ' + (job.error || ''), review: 'Ready for your review. Nothing has been sent.', held: 'On hold. Nothing has been sent.', sent: `Sent to ${job.email} on ${(job.sent || '').slice(0, 10)} (${job.mail || ''}).` }[job.status];
       return send(res, 200, 'text/html', page('Review: ' + job.url, `<p><a href="/jobs?key=${esc(key)}">All scans</a></p><h1>${esc(job.url)}</h1><p>${esc(job.name)} · ${esc(job.organization)} · ${esc(job.email)}</p><p><strong>${esc(state)}</strong></p>
 ${r && r.ok ? `<p>${r.tested} of ${r.discovery.total} pages tested · ${r.wcagIssues} kinds of WCAG failure · ${esc(r.profile.platform)} · size ${esc(r.profile.size)}</p>
-<form method="post"><label for="price">Fix price to show on the report (optional)</label><input id="price" name="price" value="${esc(job.price || '')}" placeholder="$1,500"><label for="note">Note to the customer (optional)</label><textarea id="note" name="note" rows="3">${esc(job.note || '')}</textarea>
+<p>Terms agreed: ${job.consent && job.consent.agreed ? 'yes, version ' + esc(job.consent.termsVersion || 'not recorded') + ' on ' + esc((job.consent.at || '').slice(0, 10)) : 'no record'}</p>
+<p><a href="/review/${job.id}/plan?key=${esc(key)}"><strong>Open the remediation plan and scope</strong></a> (${job.plan ? 'saved ' + esc((job.plan.updated || '').slice(0, 10)) + (job.plan.shared ? ', customer link on' : ', not shared') : 'hours not filled in yet'})</p>
+<form method="post"><label for="note">Note to the customer (optional)</label><textarea id="note" name="note" rows="3">${esc(job.note || '')}</textarea>
 ${job.status === 'sent' ? '' : '<button name="action" value="send">Approve and email the report</button>'}<button class="alt" name="action" value="save">Save</button>${job.status === 'sent' ? '' : '<button class="alt" name="action" value="hold">Hold, do not send</button>'}</form>
 <iframe title="Report preview" src="/review/${job.id}/draft?key=${esc(key)}"></iframe>` : r ? `<p>${esc(r.reason)}</p>` : ''}`));
     }

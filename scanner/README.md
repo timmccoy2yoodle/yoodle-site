@@ -6,8 +6,11 @@ Turns a "Get your free report" form submission on yoodle.com/accessibility/ into
 1. Visitor submits the `scan-request` form (page or popup): name, work email, organization, URL.
 2. Netlify sends the submission to `POST /hooks/scan-request?token=…`.
 3. The scanner reads robots.txt and the sitemap, counts pages, groups them into templates by URL shape, and tests up to 50 pages (at least one per template) with axe-core at 1440 and 375 pixels wide.
-4. Tim gets an email with a review link: summary, the draft report, an optional price and note.
-5. "Approve and email the report" sends the customer a private link (`/r/<token>`). Until then that link returns 404.
+4. Tim gets an email with a review link: summary, the draft report and an optional note. No prices appear on the report.
+5. "Approve and email the report" sends the customer a private link (`/r/<token>`). Until then that link returns 404. The report's next step is booking 30 minutes with Tim (`BOOKING_URL`).
+6. Each scan also produces a remediation plan and project scope at `/review/<id>/plan`: one line per fix, the full audit and manual checks, retest, project management and optional items. Hours are blank for Tim to fill in; totals are hours x `RATE` (default $125). Blank lines read "To be confirmed" on the customer copy, which is off until Tim turns it on.
+
+The form must include the terms agreement (`agree=yes`, plus `terms-version`). A submission without it is recorded and held, and the site is not scanned.
 
 ## What the report says
 Pages found vs. tested, kinds of WCAG failure (grouped by issue, with examples), which are "fix it now" vs. "needs a developer", advisories that are not WCAG failures, what the scan did not find, platform and size, and what sits outside an automated scan (PDFs, video captions, text over images, third-party embeds). Every report states that a scan is not a certification.
@@ -27,6 +30,8 @@ HOOK_TOKEN=… ADMIN_KEY=… node server.js         # the service
 | `NOTIFY_EMAIL`, `MAIL_FROM` | Default `tim@yoodle.com` and `Yoodle <hello@yoodle.com>`. |
 | `DATA_DIR` | Where jobs are stored (JSON files). Needs a persistent disk. |
 | `PAGE_CAP` | Pages tested per scan. Default 50. |
+| `RATE` | Hourly rate used in the remediation plan. Default 125. |
+| `BOOKING_URL` | Where "Book 30 minutes" goes. Defaults to Tim's Google Calendar booking page. |
 
 Netlify: Project `yoodle-site` → Forms → Form notifications → Outgoing webhook → form `scan-request` → `https://<scanner host>/hooks/scan-request?token=<HOOK_TOKEN>`.
 

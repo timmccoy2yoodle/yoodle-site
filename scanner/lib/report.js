@@ -1,5 +1,6 @@
 // Turns a scan result into the report page. Same page for Tim's draft and the customer's copy.
 const e = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const BOOK = process.env.BOOKING_URL || 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ19B4FBJCID1vLALGmp7HljuV-Cma5K1_z87p5Yf5_WTdactEM9nSq5C4BJ1KBa7WeHK_F0_JLf?gv=true';
 const plural = (n, w) => `${n.toLocaleString('en-US')} ${w}${n === 1 ? '' : 's'}`;
 const CSS = `:root{--bg:#F7F4EE;--ink:#111110;--mute:#55524c;--line:#11111022;--acc:#2c2a6f;--amber:#ffe9a8;--amber-t:#4d3400;--ok:#0b6b3a}
 *{box-sizing:border-box}body{margin:0;font:17px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);overflow-wrap:anywhere}
@@ -35,7 +36,8 @@ ${opts.draft ? '<p class="note" style="margin-top:24px">Draft. Not yet sent to t
 <h1>${e(host)}</h1>
 <p class="lede">We tested ${plural(r.tested, 'page')} of the ${r.discovery.total.toLocaleString('en-US')} we found, at least one from each of ${plural(r.templates.length, 'page template')}, against ${e(r.tool.standard)}. ${wcag.length ? `The scan found ${plural(wcag.length, 'kind')} of WCAG failure.` : 'The scan found no WCAG failures on the pages tested.'}</p>
 <ul class="stats"><li><b>${r.discovery.total.toLocaleString('en-US')}</b>pages found</li><li><b>${r.tested}</b>pages tested</li><li><b>${wcag.length}</b>kinds of WCAG failure</li><li><b>${r.fixNow}</b>we can fix now</li><li><b>${r.needsDeveloper}</b>need a developer</li></ul>
-${job.price || job.note ? `<div class="card">${job.price ? `<p style="margin:0;font-size:1.1rem"><strong>Fix price for this site: ${e(job.price)}</strong></p><p class="mute" style="margin:0">Includes the manual checks, a retest and a conformance report.</p>` : ''}${job.note ? `<p style="margin:${job.price ? '12px' : '0'} 0 0">${e(job.note)}</p>` : ''}</div>` : ''}
+${job.note ? `<div class="card"><p style="margin:0">${e(job.note)}</p></div>` : ''}
+<div class="card"><p style="margin:0 0 12px"><strong>Next: 30 minutes with Tim McCoy.</strong> We walk through this report together, and you leave with an estimate and a remediation plan.</p><a class="btn" href="${e(BOOK)}" target="_blank" rel="noopener">Book 30 minutes</a>${opts.planUrl ? ` <a href="${e(opts.planUrl)}" style="margin-left:14px">See your remediation plan</a>` : ''}</div>
 <p class="note">A scan is the start, not a certification. Automated testing finds a large share of accessibility problems but not all of them. Keyboard access, focus order, zoom, captions and whether descriptions make sense need a person. Our fix includes those checks.</p>
 
 <h2>What fails.</h2>
@@ -67,8 +69,8 @@ ${r.failedToLoad.length ? `<li>${plural(r.failedToLoad.length, 'page')} did not 
 ${r.pages.map(p => `<tr><td><a href="${e(p.url)}">${e(p.title || p.url)}</a><br><span class="mute">${e(new URL(p.url).pathname)}</span></td><td>${p.error ? 'Did not load' : p.issues}</td></tr>`).join('')}</tbody></table></details>
 
 <h2>Next step.</h2>
-<p class="lede">We fix these in your site's own code and content, do the manual checks, retest and give you a conformance report. No overlay, no widget.</p>
-<p><a class="btn" href="https://yoodle.com/contact/">Fix it</a></p>
-</main><footer><div class="w"><p>Tested with ${e(r.tool.engine)} at ${r.tool.widths.join(' and ')} pixels wide on ${e(date)}. This report is general information about the pages tested on that date. It is not legal advice and not a certification of conformance.</p><p>Yoodle LLC · Kansas City, Missouri · yoodle.com</p></div></footer></body></html>`;
+<p class="lede">Book 30 minutes with Tim McCoy to review this report. You get an estimate and a remediation plan. Fixes are made in your site's own code and content, followed by manual checks, a retest and a conformance report. No overlay, no widget.</p>
+<p><a class="btn" href="${e(BOOK)}" target="_blank" rel="noopener">Book 30 minutes</a></p>
+</main><footer><div class="w"><p>Tested with ${e(r.tool.engine)} at ${r.tool.widths.join(' and ')} pixels wide on ${e(date)}. This report is general information about the pages tested on that date. It is not legal advice and not a certification of conformance. Use of this report is covered by Yoodle's <a href="https://yoodle.com/terms/">Terms</a>.</p><p>Yoodle LLC · Kansas City, Missouri · yoodle.com</p></div></footer></body></html>`;
 }
 module.exports = { render };
