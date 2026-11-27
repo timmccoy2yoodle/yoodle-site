@@ -235,6 +235,21 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 .facts div{border-top:1.5px solid var(--ink);padding:14px 0 22px;min-width:0}
 .facts dt{font-size:.9rem;color:var(--mute)}
 .facts dd{margin:4px 0 0;font-weight:600}
+.bleed{margin:0 0 clamp(56px,9vw,128px);padding:0}
+.bleed img{display:block;width:100%;height:clamp(300px,52vw,820px);object-fit:cover;object-position:50% 35%}
+.bleed.duo{display:grid;grid-template-columns:1fr 1fr}
+.bleed.duo img{height:clamp(220px,36vw,620px);object-position:50% 50%}
+.vids,.made{display:grid;gap:clamp(10px,1.4vw,20px);margin-top:clamp(32px,5vw,64px)}
+.vids{grid-template-columns:repeat(3,minmax(0,1fr))}
+.made{grid-template-columns:minmax(0,.6fr) minmax(0,1fr) minmax(0,1fr);align-items:start}
+.vids figure,.made figure{margin:0;min-width:0}
+.vids video,.made img,.made video{display:block;width:100%;border-radius:6px;object-fit:cover;background:#e7e2d8}
+.vids video{aspect-ratio:4/3}.made video{aspect-ratio:9/16}.made img{aspect-ratio:9/9.6;height:auto}
+.vids figcaption,.made figcaption{font-size:.9rem;color:var(--mute);margin-top:8px}
+.vidbar{margin:10px 0 0}
+.vidbtn{min-height:44px;padding:0 16px;border:1.5px solid var(--ink);border-radius:999px;background:none;color:var(--ink);font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+.vidbtn:hover{background:var(--ink);color:var(--bg)}
+@media (max-width:760px){.vids{grid-template-columns:1fr}.vids video{aspect-ratio:16/10}.made{grid-template-columns:1fr 1fr}.made figure:first-child{grid-column:1/-1;max-width:320px}.bleed.duo{grid-template-columns:1fr}}
 .facts.nums div{display:flex;flex-direction:column;justify-content:space-between}
 .facts.nums dd{font-family:"Bricolage Grotesque","Inter",system-ui,sans-serif;font-weight:650;font-size:clamp(2.6rem,6vw,5rem);letter-spacing:-.04em;line-height:1;color:var(--acc-t)}
 @media (max-width:760px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -778,6 +793,7 @@ def bridal():
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Bridal</p><h1>Bridal marketing.<span class="r">Proven in five stores.</span></h1>
 <div class="herogrid"><p class="lede" style="margin:0">Savvy Bridal and Vow Ready run five stores in Kansas City, St. Louis and Fort Lauderdale. Tim McCoy is their fractional CMO, and Yoodle builds their tools and trains their team. It's the same model we bring to your shop.</p>
 <p style="margin:0"><a class="btn" href="/contact/">Talk about your shop</a></p></div></div></section>
+<figure class="bleed"><img src="/img/bridal/hero-three-brides-1600.webp" srcset="/img/bridal/hero-three-brides-960.webp 960w, /img/bridal/hero-three-brides-1600.webp 1600w" sizes="100vw" alt="Three brides in Savvy Bridal gowns posed around an arched mirror in a white studio" width="1600" height="1067"></figure>
 <section class="tight"><div class="wrap two"><h2>A true story.</h2><div><p class="lede">Savvy Bridal opened in 2013. It grew to three cities, then added Vow Ready, an off-the-rack brand, in 2026.</p>
 <p>It did not grow on an agency retainer alone, and it did not grow on an in-house team alone. It took four parts working together, and that's the model we bring to other shops. Savvy Bridal is Yoodle's second fractional CMO client, after the <a href="/experience/">American Jazz Museum</a>.</p></div></div></section>
 <section class="tight"><div class="wrap"><h2>The numbers.<span class="r">Year over year.</span></h2><p class="lede" style="margin:24px 0 clamp(28px,4vw,48px)">January to September 2026 against the same months of 2025, at the three Savvy Bridal stores.</p>
@@ -789,7 +805,13 @@ def bridal():
 <li><span class="idx" aria-hidden="true">03</span><h3>An in-house team.</h3><p>Your own people run the day to day: social, events, follow-up, the stores. We hire with you, train them and hand over the playbook.</p></li>
 <li><span class="idx" aria-hidden="true">04</span><h3>Partners, managed.</h3><p>BridalLive, I Do Society, Yelp, TikTok, Meta, Google: a bridal shop runs on platforms, and every one needs setting up, customizing and watching. We manage them all, and the people behind them, so you don't have to.</p></li></ol></div></section>
 <section><div class="wrap"><h2>A full marketing team.<span class="r">Firing on all cylinders.</span></h2><p class="lede" style="margin-top:24px">What a five-store bridal group looks like once the four parts are in place.</p>
-<ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(n)}.</h3><p>{t}</p></li>' for i, (n, t) in enumerate(team))}</ol></div></section>
+<div class="vids">{"".join(f'<figure><video src="/img/bridal/{k}.mp4" poster="/img/bridal/{k}-poster.webp" muted loop playsinline preload="metadata" aria-label="Inside Savvy Bridal {c}"></video><figcaption>{c}</figcaption></figure>' for k, c in (("kc", "Kansas City"), ("stl", "St. Louis"), ("ftl", "Fort Lauderdale")))}</div>
+<p class="vidbar"><button type="button" class="vidbtn" hidden aria-pressed="false">Pause video</button></p>
+<ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(n)}.</h3><p>{t}</p></li>' for i, (n, t) in enumerate(team))}</ol>
+<div class="made"><figure><video src="/img/bridal/hiring.mp4" poster="/img/bridal/hiring-poster.webp" controls playsinline preload="none" aria-label="Savvy Bridal St. Louis hiring event video"></video><figcaption>Made in house: the St. Louis hiring video.</figcaption></figure>
+<figure><img src="/img/bridal/stl-team-960.webp" alt="The Savvy Bridal St. Louis team standing together on the shop floor" width="960" height="720" loading="lazy"><figcaption>The St. Louis team.</figcaption></figure>
+<figure><img src="/img/bridal/ftl-team-960.webp" alt="The Savvy Bridal Fort Lauderdale team taking a mirror photo in the boutique" width="960" height="720" loading="lazy"><figcaption>The Fort Lauderdale team.</figcaption></figure></div></div></section>
+<figure class="bleed duo"><img src="/img/bridal/storefront-sunset-960.webp" alt="The Savvy Bridal Kansas City flagship at sunset, with a painted mural on its side wall" width="960" height="640" loading="lazy"><img src="/img/bridal/storefront-mural-960.webp" alt="A mural of a bride and a handwritten letter to the bride on the wall of Savvy Bridal Kansas City" width="960" height="640" loading="lazy"></figure>
 <section class="tight"><div class="wrap"><h2>Problems, solved.<span class="r">For her and for the team.</span></h2><p class="lede" style="margin-top:24px">Each of these started as a problem on the shop floor. When no software fixed it, we built the tool.</p>
 <div class="cols c2">
 <div class="col"><h3>Walk-ins had nowhere to wait.</h3><p>Vow Ready takes walk-ins, and nobody wants to spend a Saturday standing in a bridal shop waiting for a turn.</p><p>So we built the Q. She joins the line from a kiosk or her phone, leaves for coffee, and gets a text when her stylist is ready. The store sees the whole line on one screen.</p></div>
@@ -797,7 +819,9 @@ def bridal():
 </div>
 <ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(pr)}.</h3><div><p><strong>{f"<a href={chr(34)}{u}{chr(34)}>{e(n)}</a>" if u else e(n)}.</strong> {e(t)}</p></div></li>' for i, (pr, n, t, u) in enumerate(solved))}</ol>
 <p class="lede" style="margin-top:clamp(28px,4vw,48px)">How each one works, and which your shop needs first, is the conversation.</p><p><a class="btn" href="/contact/">Talk about your shop</a></p></div></section>
+<figure class="bleed"><img src="/img/bridal/hero-bride-sofa-1600.webp" srcset="/img/bridal/hero-bride-sofa-960.webp 960w, /img/bridal/hero-bride-sofa-1600.webp 1600w" sizes="100vw" alt="A bride in a strapless lace gown seated on a blush sofa, laughing" width="1600" height="1067" loading="lazy"></figure>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
+<script>(function(){{var v=[].slice.call(document.querySelectorAll('.vids video')),b=document.querySelector('.vidbtn');if(!v.length||!b||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var on=true;b.hidden=false;var io=new IntersectionObserver(function(es){{es.forEach(function(x){{x.target._in=x.isIntersecting;if(on&&x.isIntersecting){{var p=x.target.play();if(p&&p.catch)p.catch(function(){{}})}}else x.target.pause()}})}},{{threshold:.25}});v.forEach(function(x){{io.observe(x)}});b.addEventListener('click',function(){{on=!on;b.textContent=on?'Pause video':'Play video';b.setAttribute('aria-pressed',String(!on));v.forEach(function(x){{if(on&&x._in){{var p=x.play();if(p&&p.catch)p.catch(function(){{}})}}else x.pause()}})}})}})();</script>
 {closer(text="Own a bridal shop? Tell us where marketing is stuck. We&rsquo;d love to help.")}'''
     its = [("/", "Home"), ("", "Bridal")]
     page("/bridal/", "Bridal Shop Marketing and Fractional CMO | Yoodle", "Fractional CMO services for bridal shops from the team behind Savvy Bridal and Vow Ready: a leader, an agency and an in-house team, proven in five stores.", body,
