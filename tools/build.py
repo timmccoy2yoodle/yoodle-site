@@ -235,6 +235,8 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 .facts div{border-top:1.5px solid var(--ink);padding:14px 0 22px;min-width:0}
 .facts dt{font-size:.9rem;color:var(--mute)}
 .facts dd{margin:4px 0 0;font-weight:600}
+.facts.nums div{display:flex;flex-direction:column;justify-content:space-between}
+.facts.nums dd{font-family:"Bricolage Grotesque","Inter",system-ui,sans-serif;font-weight:650;font-size:clamp(2.6rem,6vw,5rem);letter-spacing:-.04em;line-height:1;color:var(--acc-t)}
 @media (max-width:760px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .sect{list-style:none;padding:0;margin:14px 0 0}
 .sect li{padding:10px 0;border-top:1px solid var(--line)}
@@ -756,34 +758,56 @@ def experience():
          "Fractional CMO and marketing director services from Yoodle. A senior leader and a full team inside your organization on a six-month contract.", body, [crumb_schema(its), faq_schema(faq)])
 
 def bridal():
-    built = [("savvybridalboutique.com", "Three cities, one front door. Rebuilt from the ground up to move faster than she can change her mind.", "/work/savvy-bridal/"),
-             ("vowready.com", "The gown she wants, ready the day she finds it.", ""),
-             ("Competitor and ad dashboard", "Our ads and theirs, side by side. Nothing in the market moves unnoticed.", ""),
-             ("Executive growth dashboard", "Every store, every site, one screen. Built for the people who own the outcome.", ""),
-             ("Timeline", "She gives us one date. We give her back every deadline that matters.", ""),
-             ("The Q", "A line nobody stands in. She waits wherever she likes, and we text her when it's her turn.", ""),
-             ("Stylist Edit", "Her stylist knows her taste before she walks through the door.", ""),
-             ("Training platform", "How the Savvy way of selling gets passed on.", "")]
+    built = [("savvybridalboutique.com", "Three cities, one front door. Rebuilt from the ground up to move faster than she can change her mind.", "/work/savvy-bridal/",
+              "395 pages with site search, and an editor the marketing team uses without a developer."),
+             ("vowready.com", "The gown she wants, ready the day she finds it.", "",
+              "39 pages with site search, updated for the St. Louis store that opened November 2, 2026."),
+             ("Competitor and ad dashboard", "Our ads and theirs, side by side. Nothing in the market moves unnoticed.", "", ""),
+             ("Executive growth dashboard", "Every store, every site, one screen. Built for the people who own the outcome.", "",
+              "Five stores and seven data sources, from BridalLive sales to Google, Meta and Yelp spend. Refreshed every Monday."),
+             ("Timeline", "She gives us one date. We give her back every deadline that matters.", "",
+              "Live since November 19, 2026. Each sign-up lands in BridalLive and in the store's inbox."),
+             ("The Q", "A line nobody stands in. She waits wherever she likes, and we text her when it's her turn.", "",
+              "Vow Ready sees about five walk-ins on a weekday and ten on a Friday or Saturday. Each one joins by kiosk or QR code and is added to BridalLive automatically."),
+             ("Stylist Edit", "Her stylist knows her taste before she walks through the door.", "",
+              "A short style quiz matched against 40 gowns, each one checked by the brand team before it went live."),
+             ("Training platform", "How the Savvy way of selling gets passed on.", "",
+              "Stylist onboarding built by shift, one to two hours at a time, done in the store.")]
+    nums = [("Revenue", "+35%"), ("Gown orders", "+35%"), ("Ad spend", "+7%"), ("Ad spend per gown order", "&minus;21%")]
+    job = [("Lead", "Tim answers to the CEO. He runs the marketing meeting every Monday and a quarterly marketing and sales meeting with the store managers, so the stores and the marketing team work from one plan."),
+           ("Build the team", f"A brand manager, a marketing coordinator and a brand assistant in Fort Lauderdale now run the day to day: social, email, the blog, store events. We hired with the owner and trained them on the job. {confirm('team roles and when each was hired')}"),
+           ("Manage the partners", "The ad agency, the paid search manager, the app developers and the BridalLive account each have one person to answer to. Tim reads their numbers every week and decides what changes."),
+           ("Decide and delegate", "Two brands, kept apart. Savvy Bridal is the private, guided appointment. Vow Ready is the off-the-rack gown she takes home that day. Every campaign, page and dollar belongs to one or the other. The CMO makes that call and the team carries it out."),
+           ("Build the systems", "The team edits the website through its own editor, and changes are reviewed on a staging site. Leads from the site land in BridalLive and in the store's inbox. Stylist onboarding is written down, shift by shift, in the training platform."),
+           ("Measure and update", "One dashboard, refreshed every Monday, shows revenue, gown orders, new brides, close rate and return on ad spend for each store. Tim reports on it to the team every week, and the plan changes when the numbers do.")]
     faq = [("Do you work with shops other than Savvy Bridal and Vow Ready?", "Yes. The system was built with them so it could be installed in other shops."),
-           ("What does a fractional CMO do for a bridal shop?", "Sets the marketing plan, manages the budget and the agency work, and builds and trains your in-house team so the shop is not dependent on outside help."),
+           ("What does a fractional CMO do for a bridal shop?", "Leads marketing as a member of your team: sets the plan, manages the budget, the agency work and your outside partners, makes the high-level calls, and builds and trains your in-house team so the shop is not dependent on outside help."),
+           ("What results has the model produced?", "From January to September 2026, against the same months of 2025, revenue at the three Savvy Bridal stores rose 35% and gown orders rose 35%, while ad spend rose 7%. Ad spend per gown order fell 21%."),
+           ("Is Savvy Bridal your only fractional CMO client?", "No. It is the second. The first was the American Jazz Museum in Kansas City, a twelve-month engagement in 2023 and 2024."),
+           ("Will you work with a shop in my city?", "Not within 60 miles of a Savvy Bridal or Vow Ready store, open or planned. Everywhere else, yes."),
            ("How long is an engagement?", "Six months. The first 90 days install the system. The rest trains your team to run it.")]
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Bridal</p><h1>Bridal marketing.<span class="r">Proven in five stores.</span></h1>
 <div class="herogrid"><p class="lede" style="margin:0">Savvy Bridal and Vow Ready run five stores in Kansas City, St. Louis and Fort Lauderdale. Tim McCoy is their fractional CMO, and Yoodle builds their tools and trains their team. It's the same model we bring to your shop.</p>
 <p style="margin:0"><a class="btn" href="/contact/">Talk about your shop</a></p></div></div></section>
 <section class="tight"><div class="wrap two"><h2>A true story.</h2><div><p class="lede">Savvy Bridal opened in 2013. It grew to three cities, then added Vow Ready, an off-the-rack brand, in 2026.</p>
+<p>Tim McCoy took over its marketing as fractional CMO {confirm("month and year Tim took over")} and built the department. The fifth store, Vow Ready St. Louis, opened on November 2, 2026. It is Yoodle's second fractional CMO engagement, after the <a href="/experience/">American Jazz Museum</a>.</p>
 <p>It did not grow on an agency retainer alone, and it did not grow on an in-house team alone. It took four parts working together, and that's the model we bring to other shops.</p></div></div></section>
+<section class="tight"><div class="wrap"><h2>The numbers.<span class="r">Year over year.</span></h2><p class="lede" style="margin:24px 0 clamp(28px,4vw,48px)">January to September 2026 against the same months of 2025, at the three Savvy Bridal stores.</p>
+<dl class="facts nums">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in nums)}</dl>
+<div class="two" style="margin-top:clamp(20px,3vw,36px)"><p style="margin:0">Sales grew five times faster than the ad budget.</p><p style="margin:0">Fort Lauderdale, in its second year, is up 128%. St. Louis is up 30% and Kansas City 16%. Savvy Bridal's November 2026 sales, through the 22nd, are running 25% ahead of last November's pace. The four stores open before this month hold more than 4,600 Google reviews.</p></div></div></section>
 <section class="dark"><div class="wrap"><h2>Four parts.</h2><ol class="rows">
 <li><span class="idx" aria-hidden="true">01</span><h3>A marketing leader.</h3><p>A fractional CMO who owns the plan, the budget and the numbers, and answers to the owner.</p></li>
 <li><span class="idx" aria-hidden="true">02</span><h3>An agency behind them.</h3><p>Yoodle builds what the plan calls for: brand, websites, ads, content and reporting. No hiring wait.</p></li>
 <li><span class="idx" aria-hidden="true">03</span><h3>An in-house team.</h3><p>Your own people run the day to day: social, events, follow-up, the stores. We hire with you, train them and hand over the playbook.</p></li>
 <li><span class="idx" aria-hidden="true">04</span><h3>Partners, managed.</h3><p>BridalLive, I Do Society, Yelp, TikTok, Meta, Google: a bridal shop runs on platforms, and every one needs setting up, customizing and watching. We manage them all, and the people behind them, so you don't have to.</p></li></ol></div></section>
-<section><div class="wrap"><h2>What we built.<span class="r">Live on the shop floor.</span></h2><p class="lede" style="margin-top:24px">Every tool here is live at Savvy Bridal and Vow Ready, with a person accountable for everything that ships.</p>
-<ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{f"<a href={chr(34)}{u}{chr(34)}>{e(n)}</a>" if u else e(n)}.</h3><p>{e(t) if t else confirm("one line on what this does")}</p></li>' for i, (n, t, u) in enumerate(built))}</ol>
-<p style="margin-top:20px">{confirm("results to cite (leads, bookings, conversion)")}</p></div></section>
+<section><div class="wrap"><h2>The job.<span class="r">At Savvy Bridal.</span></h2><p class="lede" style="margin-top:24px">A fractional CMO comes in to lead. This is what that means in a five-store bridal group, week to week.</p>
+<ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(n)}.</h3><p>{t}</p></li>' for i, (n, t) in enumerate(job))}</ol></div></section>
+<section class="tight"><div class="wrap"><h2>What we built.<span class="r">Live on the shop floor.</span></h2><p class="lede" style="margin-top:24px">Every tool here is live at Savvy Bridal and Vow Ready, with a person accountable for everything that ships.</p>
+<ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{f"<a href={chr(34)}{u}{chr(34)}>{e(n)}</a>" if u else e(n)}.</h3><div><p>{e(t)}</p>{f"<p class={chr(34)}small{chr(34)}>{e(x)}</p>" if x else ""}</div></li>' for i, (n, t, u, x) in enumerate(built))}</ol></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
 {closer(text="Own a bridal shop? Tell us where marketing is stuck. We&rsquo;d love to help.")}'''
     its = [("/", "Home"), ("", "Bridal")]
-    page("/bridal/", "Bridal Shop Marketing and Fractional CMO | Yoodle", "Bridal marketing from the agency behind the growth of Savvy Bridal and Vow Ready: a fractional CMO, agency support and an in-house team, proven in five stores.", body,
+    page("/bridal/", "Bridal Shop Marketing and Fractional CMO | Yoodle", "Fractional CMO services for bridal shops from the team behind Savvy Bridal and Vow Ready: a leader, an agency and an in-house team, proven in five stores.", body,
          [crumb_schema(its), faq_schema(faq), {"@type": "Service", "name": "Bridal shop marketing and fractional CMO", "provider": {"@id": DOMAIN + "/#org"}, "areaServed": "US"}])
 
 def content():

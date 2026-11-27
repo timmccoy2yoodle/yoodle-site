@@ -182,6 +182,8 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 .facts div{border-top:1.5px solid var(--ink);padding:14px 0 22px;min-width:0}
 .facts dt{font-size:.9rem;color:var(--mute)}
 .facts dd{margin:4px 0 0;font-weight:600}
+.facts.nums div{display:flex;flex-direction:column;justify-content:space-between}
+.facts.nums dd{font-family:"Bricolage Grotesque","Inter",system-ui,sans-serif;font-weight:650;font-size:clamp(2.6rem,6vw,5rem);letter-spacing:-.04em;line-height:1;color:var(--acc-t)}
 @media (max-width:760px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .sect{list-style:none;padding:0;margin:14px 0 0}
 .sect li{padding:10px 0;border-top:1px solid var(--line)}
