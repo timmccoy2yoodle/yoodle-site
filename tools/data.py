@@ -332,3 +332,8 @@ _PLAT = {"ci3t": "Drupal", "fsu-career-center": "Drupal", "music-theater-heritag
 for _p in P:
     if _p["slug"] in ENG: _p["eng"] = ENG[_p["slug"]]
     if _p["slug"] in _PLAT: _p["platform"] = _PLAT[_p["slug"]]
+
+# ---- Tim, Nov 26 2026: never display a client's exact analytics numbers. Raw figures stay here for reference only;
+# pages may show percentage changes between stated periods instead (key "stats", with "stats_src").
+for _p in P:
+    if _p.get("stats") and not _p.get("stats_src"): _p["ga_private"] = _p.pop("stats")
