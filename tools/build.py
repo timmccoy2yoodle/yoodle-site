@@ -852,7 +852,7 @@ def bridal():
             ("Leadership", "Your CMO answers to you and sits down with your store managers every quarter, so the floor and the marketing team work from one plan.")]
     start = [("A conversation", "Tell us where marketing is stuck. We will tell you whether we can help, and every shop is considered on its own."),
              ("The first 90 days", "We learn your numbers, set the plan and the budget, and install the system in your shop."),
-             ("The handover", "The rest of the nine months trains your team to run it. The goal is a shop that no longer needs us.")]
+             ("The handover", "The rest of the six months trains your team to run it. The goal is a shop that no longer needs us.")]
     ceo = [("Positioning", "Who you are to your market, in one line. For Imene McCoy, the founder of Savvy Bridal, it became Higher Standards: good enough was never the plan."),
            ("Brand design", "A name, a look, channel art and a thumbnail style you can pick out of a feed."),
            ("Content planning", "A weekly queue of topics drawn from your own stories. Hers are hiring, mistakes, and growing to five stores."),
@@ -863,7 +863,7 @@ def bridal():
            ("What does a fractional CMO do for a bridal shop?", "Leads marketing as a member of your team: sets the plan, manages the budget, the agency work and your outside partners, and builds and trains your in-house team so the shop is not dependent on outside help."),
            ("What results has the model produced?", "From January to September 2026, against the same months of 2025, revenue at the three Savvy Bridal stores rose 35% and gown orders rose 35%, while ad spend rose 7%."),
            ("Will you work with a shop in my city?", "Let's have a conversation. Every prospective client is evaluated individually."),
-           ("How long is an engagement?", "Nine months. The first 90 days install the system. The rest trains your team to run it.")]
+           ("How long is an engagement?", "Six months. The first 90 days install the system. The rest trains your team to run it.")]
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Bridal</p><h1>Bridal marketing.<span class="r">Proven in five stores.</span></h1>
 <div class="herogrid"><p class="lede" style="margin:0">You opened a bridal shop to dress brides, not to run a marketing department. We bring the marketing leader, the agency and the tools, and we build your team. It is the model behind the five Savvy Bridal and Vow Ready stores.</p>
 <p style="margin:0"><a class="btn" href="/contact/">Talk about your shop</a></p></div></div></section>
