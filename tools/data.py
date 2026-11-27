@@ -50,7 +50,7 @@ add("miracosta-college", "MiraCosta College", "higher-ed", "https://miracosta.ed
     "MiraCosta College serves coastal North San Diego County from campuses in Oceanside and Cardiff, and a technology career institute in Carlsbad.",
     ["Paths for new, returning, international, high school and noncredit students", "Program finder and Career Coach", "Site search", "Virtual campus tours", "News and events"])
 add("missouri-western-state-university", "Missouri Western State University", "higher-ed", "https://www.missouriwestern.edu/", "St. Joseph, Missouri", "",
-    "Everyone already called it MoWest. Students, alumni and the community had used the name for years. The university's own graphic standards said otherwise: the brand was Missouri Western, and \"Mo. West\" sat on the list of unacceptable forms. Yoodle made the case to stop correcting people and claim the name. Missouri Western State University chose Yoodle through public RFP 24-049 for market research and brand development, and the work grew into a rebrand, a new logo, a marketing campaign and advertising.",
+    "Everyone already called it MoWest. Students, alumni and the community had used the name for years. The university's own graphic standards said otherwise: the brand was Missouri Western, and \"Mo. West\" sat on the list of unacceptable forms. Yoodle made the case to stop correcting people and claim the name. Missouri Western State University chose Yoodle for market research and brand development, and the work grew into a rebrand, a new logo, a marketing campaign and advertising.",
     ["Research and discovery: on-site stakeholder sessions, group interviews with alumni, students, prospective students, faculty, staff and community leaders, a brand collateral inventory, a SWOT analysis and personas", "Brand positioning workshop and message matrices for three recruitment audiences", "Brand strategy", "Communication audit and creative concept", "The MoWest logo: a primary mark, a stacked mark and secondary MW and MoWest marks, approved by the university in November 2024", "\"More at MoWest\" campaign creative for outdoor and social", "Campaign and marketing plan", "Brand launch video, 2025", "Ongoing marketing support on retainer, 2024 to 2025"], "Brand and marketing")
 P[-1]["quote"] = ("We\u2019re good to go. President Kennedy loved everything!", "Tama Wagner, Chief Assistant for Strategic Initiatives, Office of the President, Missouri Western State University")
 P[-1]["gallery"] = [("The primary MoWest logo, in black and in white", 1448, 807), ("The stacked MoWest logo", 1448, 807), ("Secondary marks: MW with the griffon, W MoWest and MoWest", 1448, 807), ("More at MoWest campaign banners", 1448, 807), ("More at MoWest social posts", 1448, 807)]
@@ -280,22 +280,22 @@ PILLARS = [
 # ---- Engagement facts read from signed agreements, proposals and statements of work in the client folders (Nov 26 2026).
 # (when, scope). A project with an entry here shows these and drops the scope CONFIRM tag.
 ENG = {
- "nevada-state-university": ("2022 to present", "Yoodle won the university's public RFP for website redesign and maintenance in 2022. The redesign was followed by statements of work for a program finder, a policies library, a staff directory and a content migration in 2023, and a hosting and support plan from 2024."),
- "san-bernardino-community-college-district": ("Contract signed July 2020", "A ten-month redesign: sitemap, wireframes, three creative concepts, layouts for ten main templates, accessible front-end code, implementation in the district's Omni CMS, content migration and an ADA compliance report. A later statement of work covered website modifications."),
- "compton-college": ("Proposal February 2022", "A ten-month redesign: sitemap, wireframes, three creative concepts, layouts for the main templates, accessible front-end code built for Modern Campus Omni CMS, user acceptance testing, an ADA compliance report and search engine optimization at rollout."),
+ "nevada-state-university": ("2022 to present", "Yoodle redesigned the university's website in 2022 and has maintained it since. A program finder, a policies library, a staff directory and a content migration followed in 2023, and hosting and support from 2024."),
+ "san-bernardino-community-college-district": ("2020", "A ten-month redesign: sitemap, wireframes, three creative concepts, layouts for ten main templates, accessible front-end code, implementation in the district's Omni CMS, content migration and an ADA compliance report. Website modifications followed."),
+ "compton-college": ("2022", "A ten-month redesign: sitemap, wireframes, three creative concepts, layouts for the main templates, accessible front-end code built for Modern Campus Omni CMS, user acceptance testing, an ADA compliance report and search engine optimization at rollout."),
  "ut-austin-extended-campus": ("2021 to 2023", "A six-month build for the university's professional education gateway: sitemap, wireframes, two creative concepts, layouts for ten main templates, accessible front-end code and implementation in Drupal on the university's own Drupal Kit, with an ADA compliance report and search engine optimization at rollout."),
- "earth-center": ("2024 to present", "Yoodle won the public RFP run by Central Carolina Community College in 2024 and kicked off that April. Website maintenance agreements followed in December 2024 and June 2025."),
- "crowder-college": ("Contract signed October 2023, launched 2026", "Discovery with stakeholder and user interviews and an online survey, a new sitemap and navigation, wireframes and two creative concepts, six page templates coded to Section 508 and tested for ADA compliance, a WordPress build, migration of the top 100 pages, analytics, SEO guidance, editor training with a written manual, launch and post-launch support."),
- "swift-education-center": ("2022 to present", "Yoodle rebuilt and redesigned the SWIFT Education Center website under an agreement with the University of Kansas in 2022. A second agreement followed in 2023, and a WCAG 2.1 AA accessibility audit and certification in 2026."),
- "missouri-kinship-navigator": ("2024", "A website build for the University of Missouri under a professional services agreement, followed by hosting and maintenance."),
- "kansas-judicial-branch": ("Contract signed May 2018", "A website development agreement with the Office of Judicial Administration, with a statement of work covering design and build."),
- "multistate-tax-commission": ("2021 to present", "Yoodle moved the commission's website from Kentico to WordPress and brought it live in 2023, then kept it running under maintenance and support agreements from 2023 to 2025. A website refresh was signed in October 2026."),
- "kc-streetcar": ("", "A website redesign, followed by a signed website maintenance agreement."),
- "marc-head-start": ("Contract signed July 2019", "A website design and build for the Mid-America Regional Council's Head Start program."),
- "variety-socal": ("Contract signed December 2019", "A website and marketing engagement: design, build and the marketing to launch it."),
- "variety-kc": ("Client since 2017", "Website, brand and marketing work for the chapter since 2017, including signage for its inclusive spaces."),
- "wentworth-financial-communications": ("Contract signed October 2018", "Website design and development."),
- "dr-amy-k-patel": ("2020", "A brand-building engagement in early 2020, a website design and build that summer, and a maintenance agreement from December 2020."),
+ "earth-center": ("2024 to present", "A website for the center at Central Carolina Community College, kicked off in April 2024. Yoodle has maintained it since."),
+ "crowder-college": ("2023 to 2026", "Discovery with stakeholder and user interviews and an online survey, a new sitemap and navigation, wireframes and two creative concepts, six page templates coded to Section 508 and tested for ADA compliance, a WordPress build, migration of the top 100 pages, analytics, SEO guidance, editor training with a written manual, launch and post-launch support."),
+ "swift-education-center": ("2022 to present", "Yoodle rebuilt and redesigned the SWIFT Education Center website for the University of Kansas in 2022. More work followed in 2023, and a WCAG 2.1 AA accessibility audit and certification in 2026."),
+ "missouri-kinship-navigator": ("2024", "A website build for the University of Missouri, followed by hosting and maintenance."),
+ "kansas-judicial-branch": ("2018", "Website design and build for the Office of Judicial Administration."),
+ "multistate-tax-commission": ("2021 to present", "Yoodle moved the commission's website from Kentico to WordPress and brought it live in 2023, then kept it running with maintenance and support from 2023 to 2025. A website refresh followed in 2026."),
+ "kc-streetcar": ("", "A website redesign, followed by ongoing maintenance."),
+ "marc-head-start": ("2019", "A website design and build for the Mid-America Regional Council's Head Start program."),
+ "variety-socal": ("2019", "A website and marketing engagement: design, build and the marketing to launch it."),
+ "variety-kc": ("Since 2017", "Website, brand and marketing work for the chapter since 2017, including signage for its inclusive spaces."),
+ "wentworth-financial-communications": ("2018", "Website design and development."),
+ "dr-amy-k-patel": ("2020", "A brand-building engagement in early 2020, a website design and build that summer, and ongoing maintenance after launch."),
 }
 for _p in P:
     if _p["slug"] in ENG: _p["eng"] = ENG[_p["slug"]]
@@ -306,13 +306,13 @@ for _p in P:
         _p["eng"] = ("2020 to 2025", "")
         _p["stats"] = [("50", "graduates on the roster by August 2023"), ("9", "web development cohorts by late 2023"), ("5", "digital marketing cohorts by late 2023"), ("6", "graduates hired by Yoodle")]
         _p["stats_src"] = "Yoodle and UMKC graduate roster, updated August 2023, and program invoices through November 2023"
-        _p["about"] += " The first course agreements were signed in October 2020 and classes began in early 2021. A new AI digital marketing course was written in 2025."
+        _p["about"] += " Classes began in early 2021. A new AI digital marketing course was written in 2025."
 
 # ---- More engagement facts (client folder contents and file dates, Nov 26 2026)
 ENG.update({
  "cochise-college": ("2023 to 2024", "A website redesign that kicked off in March 2023, designed and coded by Yoodle to Modern Campus Omni CMS design standards and implemented with Modern Campus."),
  "palm-beach-state-college": ("2022 to 2024", "A full website redesign run to a shared project plan with the college's web teams, from discovery in 2022 through build, testing and rollout in 2024."),
- "neighborworks-america": ("Client since 2019", "Project contracts every year from 2020 to 2022 under a main agreement, then statements of work for an ADA and Section 508 accessibility report, the move to Google Analytics 4 in 2022, application monitoring, and a testing plan in 2023."),
+ "neighborworks-america": ("Since 2019", "Project work every year from 2020 to 2022, then an ADA and Section 508 accessibility report, the move to Google Analytics 4 in 2022, application monitoring, and a testing plan in 2023."),
  "savvy-bridal": ("2026", "Yoodle rebuilt savvybridalboutique.com from the ground up as a static site in 2026."),
 })
 YEARS_ARCHIVE = {"cape-cod-community-college": "2018", "parisi-coffee": "2019 to 2020", "cliffs-taphouse": "2021", "together-kc": "2020", "kc-rising": "2020 to 2022",
