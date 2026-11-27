@@ -10,8 +10,10 @@ from logos import LOGOS, WALL, CLEAR
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PREVIEW = "--preview" in sys.argv
-OUT = os.path.join(ROOT, "preview" if PREVIEW else "site")
-TEST_BUILD = False
+# --stage builds the staging copy (yoodle-stage.netlify.app): same site, not indexed, no analytics, review tool on.
+STAGE = "--stage" in sys.argv
+OUT = os.path.join(ROOT, "preview" if PREVIEW else "stage" if STAGE else "site")
+TEST_BUILD = STAGE
 # Yoodle review widget: tap-to-comment on *.netlify.app and localhost only. Not in artifact previews.
 REVIEW_TAG = "" if PREVIEW else '<script src="/yoodle-review.js" data-project="Yoodle" defer></script>'
 DOMAIN = "https://yoodle.com"
@@ -447,7 +449,7 @@ NAV = [("/work/", "Work"), ("/services/", "Services"), ("/content/", "Content"),
 def header(cur):
     li = "".join(f'<li><a href="{h}"{" aria-current=\"page\"" if cur.startswith(h) else ""}>{t}</a></li>' for h, t in NAV)
     return f'''<a class="skip" href="#main">Skip to main content</a>
-{'<aside class="testbar" aria-label="Test build notice">Test build for Tim. Amber tags mark facts to confirm before launch.</aside>' if TEST_BUILD else ''}
+{'<aside class="testbar" aria-label="Test build notice">Staging site. Changes here are not live on yoodle.com yet.</aside>' if TEST_BUILD else ''}
 <header class="site"><div class="wrap">
 <a class="brand" href="/" aria-label="Yoodle home">yoodle<span>.</span><sup class="reg" aria-hidden="true">&reg;</sup></a>
 <button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><i></i><i></i><i></i></button>
@@ -895,7 +897,6 @@ def bridal():
 <section class="dark"><div class="wrap"><h2>You, as a brand.<span class="r">CEO brand development.</span></h2><p class="lede" style="margin-top:24px">Brides, hires and the industry buy from people they trust. So we build your own platform next to your shop's. The proof is Higher Standards with Imene McCoy: 40 videos published so far.</p>
 <figure class="laptop"><div class="scr"><img src="/img/bridal/higher-standards-youtube.webp" alt="The Higher Standards with Imene McCoy YouTube channel page, showing its banner and three recent videos" width="1440" height="802" loading="lazy"></div><div class="base" aria-hidden="true"></div></figure>
 <ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(n)}.</h3><p>{e(t)}</p></li>' for i, (n, t) in enumerate(ceo))}</ol></div></section>
-<figure class="bleed" style="margin-top:clamp(56px,9vw,128px)"><img src="/img/bridal/hero-bride-sofa-1600.webp" srcset="/img/bridal/hero-bride-sofa-960.webp 960w, /img/bridal/hero-bride-sofa-1600.webp 1600w" sizes="100vw" alt="A bride in a strapless lace gown seated on a blush sofa, laughing" width="1600" height="1067" loading="lazy"></figure>
 <section class="tight"><div class="wrap"><h2>How it starts.</h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(n)}.</h3><p>{e(t)}</p></li>' for i, (n, t) in enumerate(start))}</ol><p style="margin-top:28px"><a class="btn" href="/contact/">Start the conversation</a></p></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
 <script>(function(){{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var fs=[].slice.call(document.querySelectorAll('figure.bleed'));if(!fs.length)return;fs.forEach(function(f){{f.classList.add('px')}});var t=false;function go(){{t=false;var vh=innerHeight;fs.forEach(function(f){{var r=f.getBoundingClientRect();if(r.bottom<0||r.top>vh)return;var p=Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height)));f.firstElementChild.style.transform='translate3d(0,'+(-p*r.height*.3).toFixed(1)+'px,0)'}})}}function on(){{if(!t){{t=true;requestAnimationFrame(go)}}}}addEventListener('scroll',on,{{passive:true}});addEventListener('resize',on);go()}})();</script>
@@ -1012,7 +1013,7 @@ def assets():
     old = ["about", "work/work-by-services", "blog", "careers", "careers/*", "vpat", "dir", "shop", "cart", "checkout", "my-account", "skill-up", "skill-up/*", "workforce-training", "workforce-training/*", "contentum", "contentum/*", "project/*"]
     dest = {"about": "/services/", "blog": "/content/", "vpat": "/accessibility/", "work/work-by-services": "/work/", "project/*": "/work/"}
     code = 302 if TEST_BUILD else 301
-    spec = "".join(f"/work/{k}/  {v}  {code}\n" for k, v in MOVED.items()) + f"/services/interactive/  /services/technology/  {code}\n/work/rio-hondo-college-video/  /work/rio-hondo-college/  {code}\n" + "".join(f"/project/{o['old']}/  /work/{o['slug']}/  {code}\n" for o in OLDSITE["projects"]) + "".join(f"/{x['old']}/  /content/{x['slug']}/  {code}\n" for x in POSTS) + "".join(f"/content/{x['slug']}/  {GONE[x['slug']]}  {code}\n/{x['old']}/  {GONE[x['slug']]}  {code}\n" for x in OLDSITE["posts"] if x["slug"] in GONE)
+    spec = ("" if TEST_BUILD else "https://yoodle-site.netlify.app/*  https://yoodle.com/:splat  301!\n") + "".join(f"/work/{k}/  {v}  {code}\n" for k, v in MOVED.items()) + f"/services/interactive/  /services/technology/  {code}\n/work/rio-hondo-college-video/  /work/rio-hondo-college/  {code}\n" + "".join(f"/project/{o['old']}/  /work/{o['slug']}/  {code}\n" for o in OLDSITE["projects"]) + "".join(f"/{x['old']}/  /content/{x['slug']}/  {code}\n" for x in POSTS) + "".join(f"/content/{x['slug']}/  {GONE[x['slug']]}  {code}\n/{x['old']}/  {GONE[x['slug']]}  {code}\n" for x in OLDSITE["posts"] if x["slug"] in GONE)
     open(os.path.join(OUT, "_redirects"), "w").write(spec + "".join(f"/{o}  {dest.get(o, '/')}  {code}\n" for o in old))
     open(os.path.join(OUT, "netlify.toml"), "w").write('[build]\n  publish = "."\n  command = ""\n')
 

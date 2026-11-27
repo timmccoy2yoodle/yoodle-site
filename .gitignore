@@ -2,3 +2,4 @@ node_modules/
 preview/
 qa/out/
 site/.netlify/
+stage/
