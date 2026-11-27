@@ -20,6 +20,7 @@ GA_TAG = "" if TEST_BUILD else "<script>if(location.hostname.replace(/^www\\./,'
 TODAY = date.today().isoformat()
 e = lambda s: html.escape(str(s), quote=True)
 PAGES = []
+MOVED = {"savvy-bridal": "/bridal/"}  # Tim, Nov 27 2026: the bridal landing page replaces the Savvy Bridal project page
 OLDSITE = json.load(open(os.path.join(ROOT, "tools/old_site.json")))
 OLD = {}
 _have = {p["slug"] for p in P}
@@ -39,7 +40,7 @@ def cover_img(p):
     if os.path.exists(os.path.join(ROOT, "assets/img/shots", p["slug"] + ".webp")): return dict(src=f'/img/shots/{p["slug"]}.webp', w=1600, h=1200)
     o = OLD.get(p["slug"])
     return o["imgs"][0] if o and o["imgs"] else None
-def rich(blocks):
+def rich(blocks, tag="h3"):
     out, li = [], []
     def flush():
         if li: out.append("<ul class='sect'>" + "".join(f"<li>{e(x)}</li>" for x in li) + "</ul>"); li.clear()
@@ -47,7 +48,7 @@ def rich(blocks):
     for k, t in blocks:
         if k == "li": li.append(t); continue
         flush()
-        out.append(f"<h3 style='margin:1.4em 0 .5em'>{e(t)}</h3>" if k == "h" else f"<p>{e(t)}</p>")
+        out.append(f"<{tag} style='margin:1.4em 0 .5em'>{e(t)}</{tag}>" if k == "h" else f"<p>{e(t)}</p>")
     flush(); return "".join(out)
 
 def confirm(t): return f'<span class="confirm">CONFIRM: {e(t)}</span>'
@@ -71,6 +72,7 @@ p{margin:0 0 1em}
 a{color:inherit;text-underline-offset:4px;text-decoration-thickness:1px}
 :focus-visible{outline:3px solid var(--acc-t);outline-offset:3px}
 .dark :focus-visible{outline-color:#fff}
+video:focus,video:focus-visible{outline:3px solid var(--acc-t);outline-offset:3px}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
 section{padding:clamp(56px,9vw,128px) 0}
 section.tight{padding-top:0}
@@ -185,6 +187,8 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 .timcta img{width:132px;height:132px;border-radius:50%;object-fit:cover;flex:none}
 .reg{font-size:.4em;font-weight:500;vertical-align:baseline;position:relative;top:-.95em;margin-left:.1em;letter-spacing:0;line-height:0;color:inherit}
 .brand .reg{color:currentColor}
+.vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.rg{font-size:.55em;font-weight:500;vertical-align:baseline;position:relative;top:-.62em;margin-left:.04em;line-height:0;letter-spacing:0}
 .spots{border-top:1.5px solid currentColor;padding-top:18px;margin-top:28px}
 .xlogo{height:64px;display:flex;align-items:center;margin-bottom:18px}
 .xlogo img{max-height:100%;max-width:220px;width:auto;height:auto;object-fit:contain}
@@ -508,7 +512,29 @@ def contract(html):
         out.append(part)
     return "".join(out)
 
+_REG = re.compile(r"\bYoodle\b(?!\s*(?:®|&reg;|LLC\b|Education Services\b)|\.com|-)")
+def regplain(t):
+    """Yoodle is a registered trademark (Tim, Nov 27 2026): mark the name wherever it is shown. Not the legal entity, the program name or the domain."""
+    return _REG.sub("Yoodle\u00ae", t)
+def regmark(html):
+    out, skip, parts = [], 0, re.split(r"(<[^>]+>)", html)
+    for n, part in enumerate(parts):
+        if part.startswith("<"):
+            low = part.lower()
+            if re.match(r"<(script|style|title|textarea|select)\b", low): skip += 1
+            elif re.match(r"</(script|style|title|textarea|select)>", low): skip = max(0, skip - 1)
+            out.append(part); continue
+        if not skip and "Yoodle" in part:
+            nxt = parts[n + 1] if n + 1 < len(parts) else ""
+            if nxt.startswith('<sup class="reg"') and part.rstrip().endswith("Yoodle"):
+                head = part.rstrip()[:-6]
+                part = _REG.sub('Yoodle<sup class="rg">&reg;</sup>', head) + part[len(head):]
+            else: part = _REG.sub('Yoodle<sup class="rg">&reg;</sup>', part)
+        out.append(part)
+    return "".join(out)
+
 def page(path, title, desc, body, schema=None, h_nopop=False, index=True):
+    title, desc = regplain(title), regplain(desc)
     if not (path.startswith("/content/") and path.count("/") > 2): body = contract(body)
     canon = DOMAIN + path
     crumbs = []
@@ -530,6 +556,8 @@ def page(path, title, desc, body, schema=None, h_nopop=False, index=True):
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{canon}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:type" content="website"><meta property="og:url" content="{canon}"><meta property="og:site_name" content="Yoodle">
+<meta property="og:image" content="{DOMAIN}/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Yoodle. Built on experience. Made for what's next."><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png"><link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta name="theme-color" content="#F7F4EE">{robots}
 <link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">{GA_TAG}
@@ -553,6 +581,8 @@ def page(path, title, desc, body, schema=None, h_nopop=False, index=True):
         fp = os.path.join(OUT, flat(path))
     else:
         fp = os.path.join(OUT, path.strip("/"), "index.html") if not path.endswith(".html") else os.path.join(OUT, path.strip("/"))
+    for k, v in MOVED.items(): out = out.replace(f"/work/{k}/", v)
+    out = regmark(out)
     os.makedirs(os.path.dirname(fp), exist_ok=True)
     open(fp, "w").write(out)
     if index: PAGES.append(path)
@@ -653,11 +683,12 @@ def work():
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Work</p><h1>The work.<span class="r">Judge for yourself.</span></h1>
 <p class="lede" style="margin-top:32px">{len(P)} projects, picked from a much longer client list. Many of the websites are live, so don't just take our word for it.</p>
 <div class="filters" role="group" aria-label="Filter work by sector">{fl}</div><p class="small" id="count" role="status" style="margin:14px 0 0">{len(P)} projects shown</p>
+<h2 class="vh">Projects</h2>
 <ul class="grid" id="grid">{"".join(card(p) for p in P)}</ul></div></section>
 {closer()}'''
     items = [("/", "Home"), ("", "Work")]
-    page("/work/", "Our Work: Higher Education, Government and Nonprofit Websites | Yoodle",
-         f"{len(P)} selected projects by Yoodle: live websites for colleges, government agencies, nonprofits and small businesses, plus podcasts and video.", body,
+    page("/work/", "Our Work: Higher Education, Government and Nonprofit | Yoodle",
+         f"Selected projects by Yoodle: live websites for colleges, government agencies, nonprofits and small businesses, plus podcasts and video.", body,
          [crumb_schema(items), {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f'{DOMAIN}/work/{p["slug"]}/', "name": p["name"]} for i, p in enumerate(P)]}])
 
 RH_VID = '''<div style="position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#000"><iframe src="https://player.vimeo.com/video/1230352325?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" title="Río Hondo College reel by Yoodle" allow="fullscreen; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>'''
@@ -702,7 +733,7 @@ def project(i, p):
         if rest: gal = '<section class="tight"><div class="wrap"><ul class="gal">' + "".join(f'<li><img src="{g["src"]}" alt="{e(p["name"])}: work by Yoodle, image {k + 1}" width="{g["w"]}" height="{g["h"]}" loading="lazy"></li>' for k, g in enumerate(rest)) + '</ul></div></section>'
     if not story and p.get("story"):
         src = "".join(f'<a href="{u}" rel="noopener">{e(t)}</a>' + (", " if k < len(p["story_src"]) - 1 else ".") for k, (t, u) in enumerate(p.get("story_src", [])))
-        story = f'<section class="tight"><div class="wrap two"><h2>The story.</h2><div>{"".join(f"<p>{e(x)}</p>" for x in p["story"])}{f'<p class="small" style="opacity:.7">Sources: {src}</p>' if src else ""}</div></div></section>'
+        story = f'<section class="tight"><div class="wrap two"><h2>The story.</h2><div>{"".join(f"<p>{e(x)}</p>" for x in p["story"])}{f'<p class="small">Sources: {src}</p>' if src else ""}</div></div></section>'
     quote = f'<section class="dark band"><div class="wrap"><figure style="margin:0;max-width:22ch;font-size:{"clamp(32px,5.2vw,72px)" if len(p["quote"][0]) < 90 else "clamp(22px,2.6vw,36px)"};max-width:{"22ch" if len(p["quote"][0]) < 90 else "36ch"}"><blockquote style="margin:0;font-family:var(--hd,inherit);font-weight:600;letter-spacing:-.03em;line-height:1.02">\u201c{e(p["quote"][0])}\u201d</blockquote></figure><p style="margin-top:28px;max-width:52ch;opacity:.8">{e(p["quote"][1])}</p></div></section>' if p.get("quote") else ""
     nums = f'<section class="dark"><div class="wrap"><h2>{"By the numbers." if p.get("stats_src") else "The site today."}</h2><div class="cols c4">{"".join(f'<div class="col"><p class="big" style="font-size:clamp(3.2rem,7vw,6rem);margin:8px 0 14px">{n}</p><p>{e(x)}</p></div>' for n, x in p["stats"])}</div><p style="margin-top:28px;opacity:.7;font-size:.9rem">Source: {p.get("stats_src") or GA_RANGE}.</p></div></section>' if p.get("stats") else ""
     if p.get("gallery"): gal = '<section class="tight"><div class="wrap"><ul class="gal">' + "".join(f'<li style="aspect-ratio:{g[1]}/{g[2]};background:#fff"><img src="/img/work/{p["slug"]}/{k}.webp" alt="{e(p["name"])}: {e(g[0])}" width="{g[1]}" height="{g[2]}" loading="lazy"></li>' for k, g in enumerate(p["gallery"])) + '</ul></div></section>'
@@ -727,11 +758,16 @@ def project(i, p):
 {nums}{gal}{quote}
 <section class="tight"><div class="wrap"><nav class="pn" aria-label="More work"><a href="/work/{prev["slug"]}/"><span class="small">Previous</span><br><strong>{e(prev["name"])}</strong></a><a class="nx" href="/work/{nxt["slug"]}/"><span class="small">Next</span><br><strong>{e(nxt["name"])}</strong></a></nav></div></section>
 {closer(b=("See more work.", "Projects chosen from a much longer list.", "/work/", "See the work."))}'''
-    t = {"Website": f'{p["name"]} Website | {lab} Web Design by Yoodle', "Podcast": f'{p["name"]} | Podcast Production by Yoodle', "Video and content": f'{p["name"]} | Video Production by Yoodle', "Project": f'{p["name"]} | {lab} Brand and Web Work by Yoodle', "Brand and marketing": f'{p["name"]} | Rebrand and Marketing by Yoodle', "Workforce training": f'{p["name"]} | Workforce Training'}[p["kind"]]
-    if len(t) > 68: t = f'{p["name"]} | {"Web Design" if p["kind"] == "Website" else "Work"} by Yoodle'
-    d = (p["about"] or f'{p["name"]}, a {p["kind"].lower()} produced by Yoodle, the content experience agency.')
-    d = (f'{p["name"]}: ' if p["name"] not in d[:60] else "") + d
-    d = d if len(d) <= 158 else d[:155].rsplit(" ", 1)[0] + "..."
+    nm, labt = " ".join(p["name"].split()), lab.title()
+    tags = [{"brand": "Brand", "technology": "Web", "growth": "Marketing", "content": "Content"}[x] for x in SVC_TAGS.get(p["slug"], [])]
+    svc = (", ".join(tags[:-1]) + " and " + tags[-1]) if len(tags) > 1 else (tags[0] if tags else "Brand and Web")
+    t = {"Website": f'{nm} Website | {labt} Web Design by Yoodle', "Podcast": f'{nm} | Podcast Production by Yoodle', "Video and content": f'{nm} | Video Production by Yoodle', "Project": f'{nm} | {svc} Work by Yoodle', "Brand and marketing": f'{nm} | Rebrand and Marketing by Yoodle', "Workforce training": f'{nm} | Workforce Training'}[p["kind"]]
+    if len(t) > 64: t = f'{nm} | {"Web Design" if p["kind"] == "Website" else "Rebrand" if p["kind"] == "Brand and marketing" else "Work"} by Yoodle'
+    lead = {"Website": f"{nm} website, designed and built by Yoodle. ", "Brand and marketing": f"{nm} rebrand and marketing by Yoodle. ", "Podcast": "", "Workforce training": "", "Video and content": ""}.get(p["kind"], "")
+    if p["kind"] == "Project": d = f"{nm}: {svc.lower()} work by Yoodle, the content experience agency in Kansas City, for a {lab.lower()} client."
+    else:
+        d = clip(lead + (p["about"] or f'{nm}, a {p["kind"].lower()} produced by Yoodle, the content experience agency.'), 156)
+        if p["kind"] == "Podcast" and len(d) < 136 and "Yoodle" not in d: d += " Produced by Yoodle."
     cw = {"@type": "CreativeWork", "name": p["name"], "creator": {"@id": DOMAIN + "/#org"}, "about": lab, "genre": p["kind"]}
     if p["url"]: cw["url"] = p["url"]
     page(f'/work/{p["slug"]}/', t, d, body, [crumb_schema([("/", "Home"), ("/work/", "Work"), ("", p["name"])]), cw])
@@ -805,7 +841,7 @@ def bridal():
     solved = [("Your walk-ins have nowhere to wait", "Nobody wants to spend a Saturday standing in a bridal shop waiting for a turn, and a bride who leaves may not come back.", "At Vow Ready we built the Q. She joins the line from a kiosk or her phone, goes for coffee, and gets a text when her stylist is ready. The store sees the whole line on one screen."),
               ("You can't see the whole business", "Sales live in one system, ads in several more, and every store has its own logins. You end up running the shop on a feeling.", "For Savvy Bridal we built a growth dashboard: sales, bookings and ad spend, store by store, on one screen the leadership team opens every week."),
               ("Your website waits on a developer", "When every change is a ticket, the site falls behind the shop. New designers, new hours and new events show up late or not at all.", "We rebuilt savvybridalboutique.com from the ground up. Three cities, one front door, and the marketing team edits it themselves."),
-              ("Brides order too late", "Most brides don't know how long a gown takes until the date is already tight. Then it becomes your problem.", "We found where the calendar breaks down for her, designed a fix, and built and tested it at Savvy Bridal. Brides now order with time to spare."),
+              ("Brides order too late", "Most brides don't know how long a gown takes until the date is already tight. Then it becomes your problem.", "The Timeline asks her for one date and gives her back every deadline that matters. She keeps the plan. The shop gets a lead."),
               ("Your stylist meets her cold", "The first stretch of every appointment goes to finding out what she likes, while the clock runs.", "We worked out where those minutes go, built a way to get them back, and trained every stylist to use it. Her stylist now knows her taste before she walks through the door."),
               ("You hear about a competitor's sale from a bride", "By then the week is gone. Other shops change their offers and their ads without telling you.", "We uncovered the blind spot, built the fix, and put it in front of the leadership team every week. Nothing in the market moves unnoticed."),
               ("Your best seller can't train everyone", "Great selling lives in a few heads, and it leaves when they do.", "We captured what the top sellers do, built it into a program, tested it with new hires and rolled it out to every store. New stylists now learn the Savvy Bridal way from their first shift.")]
@@ -816,7 +852,7 @@ def bridal():
             ("Leadership", "Your CMO answers to you and sits down with your store managers every quarter, so the floor and the marketing team work from one plan.")]
     start = [("A conversation", "Tell us where marketing is stuck. We will tell you whether we can help, and every shop is considered on its own."),
              ("The first 90 days", "We learn your numbers, set the plan and the budget, and install the system in your shop."),
-             ("The handover", "The rest of the six months trains your team to run it. The goal is a shop that no longer needs us.")]
+             ("The handover", "The rest of the nine months trains your team to run it. The goal is a shop that no longer needs us.")]
     ceo = [("Positioning", "Who you are to your market, in one line. For Imene McCoy, the founder of Savvy Bridal, it became Higher Standards: good enough was never the plan."),
            ("Brand design", "A name, a look, channel art and a thumbnail style you can pick out of a feed."),
            ("Content planning", "A weekly queue of topics drawn from your own stories. Hers are hiring, mistakes, and growing to five stores."),
@@ -826,9 +862,8 @@ def bridal():
     faq = [("Do you work with shops other than Savvy Bridal and Vow Ready?", "Yes. The system was built with them so it could be installed in your shop."),
            ("What does a fractional CMO do for a bridal shop?", "Leads marketing as a member of your team: sets the plan, manages the budget, the agency work and your outside partners, and builds and trains your in-house team so the shop is not dependent on outside help."),
            ("What results has the model produced?", "From January to September 2026, against the same months of 2025, revenue at the three Savvy Bridal stores rose 35% and gown orders rose 35%, while ad spend rose 7%."),
-           ("Is Savvy Bridal your only fractional CMO client?", "No. It is the second. The first was the American Jazz Museum in Kansas City, a twelve-month engagement in 2023 and 2024."),
            ("Will you work with a shop in my city?", "Let's have a conversation. Every prospective client is evaluated individually."),
-           ("How long is an engagement?", "Six months. The first 90 days install the system. The rest trains your team to run it.")]
+           ("How long is an engagement?", "Nine months. The first 90 days install the system. The rest trains your team to run it.")]
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Bridal</p><h1>Bridal marketing.<span class="r">Proven in five stores.</span></h1>
 <div class="herogrid"><p class="lede" style="margin:0">You opened a bridal shop to dress brides, not to run a marketing department. We bring the marketing leader, the agency and the tools, and we build your team. It is the model behind the five Savvy Bridal and Vow Ready stores.</p>
 <p style="margin:0"><a class="btn" href="/contact/">Talk about your shop</a></p></div></div></section>
@@ -880,17 +915,32 @@ def content():
     its = [("/", "Home"), ("", "Content")]
     page("/content/", "Content: Podcasts and the Soapbox Blog | Yoodle", "Podcasts produced by Yoodle, plus Soapbox, the Yoodle blog on brand, web, accessibility and AI search.", body, [crumb_schema(its)])
 
+def clip(text, n=156):
+    """Meta description: whole sentences that fit; if the first one is too long, cut at a word and mark it."""
+    text = " ".join(text.split())
+    if len(text) <= n: return text
+    out = ""
+    for sent in re.split(r"(?<=[.!?])\s+", text):
+        if len(out) + len(sent) + 1 > n: break
+        out = (out + " " + sent).strip()
+    return out if len(out) >= 70 else text[:n - 1].rsplit(" ", 1)[0].rstrip(",;:") + "\u2026"
+
 def posts():
     for x in POSTS:
-        first = next((t for k, t in x["blocks"] if k == "p"), x["title"])
-        dsc = first if len(first) <= 158 else first[:155].rsplit(" ", 1)[0] + "..."
+        x["title"] = x["title"].replace("Offical", "Official")
+        paras = [t for k, t in x["blocks"] if k == "p"] or [x["title"]]
+        first = paras[0]
+        for more in paras[1:]:
+            if len(first) >= 110: break
+            first = first.rstrip() + ("" if first.rstrip()[-1:] in ".!?" else ".") + " " + more
+        dsc = clip(first, 156)
         its = [("/", "Home"), ("/content/", "Content"), ("", x["title"])]
         body = f'''<section class="hero"><div class="wrap">{crumbs([("/", "Home"), ("/content/", "Content"), ("", e(x["title"]))])}
 <p class="tag">Soapbox · {x["date"]}</p><h1 class="md">{e(x["title"])}</h1>{f'<div class="cover ph lg" style="margin-top:clamp(28px,5vw,56px)"><img src="{x["img"]["src"]}" alt="" width="{x["img"]["w"]}" height="{x["img"]["h"]}"></div>' if x.get("img") else ""}</div></section>
-<section class="tight"><div class="wrap"><article class="post">{rich(x["blocks"])}</article><p style="margin-top:32px"><a class="go" href="/content/">More from Soapbox.</a></p></div></section>
+<section class="tight"><div class="wrap"><article class="post">{rich(x["blocks"], "h2")}</article><p style="margin-top:32px"><a class="go" href="/content/">More from Soapbox.</a></p></div></section>
 {closer()}'''
         t = x["title"] + " | Yoodle Soapbox"
-        if len(t) > 68: t = x["title"][:60].rsplit(" ", 1)[0] + " | Yoodle"
+        if len(t) > 64: t = (x["title"] if len(x["title"]) <= 55 else x["title"][:54].rsplit(" ", 1)[0].rstrip(",;:- ") + "\u2026") + " | Yoodle"
         page(f'/content/{x["slug"]}/', t, dsc, body, [crumb_schema(its), {"@type": "BlogPosting", "headline": x["title"], "datePublished": x["date"], "author": {"@id": DOMAIN + "/#org"}, "publisher": {"@id": DOMAIN + "/#org"}, "mainEntityOfPage": DOMAIN + f'/content/{x["slug"]}/'}])
 
 def accessibility():
@@ -925,7 +975,7 @@ def contact():
          ("website", "Your website", "text", False, "url"),
          ("help", "What can we help with?", ("checks", ["Brand", "Marketing", "Technology", "Fractional CMO", "ADA compliance", "Not sure yet"]), False, ""),
          ("budget", "What's the budget?", ("select", ["Under $25,000", "$25,000 to $50,000", "$50,000 to $100,000", "$100,000 to $250,000", "More than $250,000", "Not set yet"]), False, ""),
-         ("timeline", "When does it need to be live?", ("select", ["Within 30 days", "One to three months", "Three to six months", "Six months or more", "No fixed date"]), False, ""),
+         ("timeline", "When are you looking to make a decision by?", ("select", ["ASAP", "2 weeks", "1 to 2 months", "Just looking"]), False, ""),
          ("message", "What's the challenge?", "textarea", True, ""),
          ("source", "How did you hear about us?", "text", False, "")]
     body = f'''<section class="hero"><div class="wrap"><p class="eyebrow">Your next chapter starts with a conversation.</p><h1>What&rsquo;s next for you?<span class="r">Bring the challenge.</span></h1>
@@ -955,18 +1005,19 @@ def assets():
     open(os.path.join(OUT, "robots.txt"), "w").write(("User-agent: *\nDisallow: /\n" if TEST_BUILD else "User-agent: *\nAllow: /\n") + f"Sitemap: {DOMAIN}/sitemap.xml\n")
     llms = ["# Yoodle", "", "> Yoodle is the content experience agency, working across brand, technology and marketing. Built on experience, made for what's next: brands, digital experiences and marketing for ambitious organizations in higher education, government, nonprofits and business. Founded 2007, Kansas City, Missouri. Contact: " + DOMAIN + "/contact/", "",
             "## Services"] + [f"- [{v['name']}]({DOMAIN}/services/{k}/): {v['lede']}" for k, v in SERVICES.items()] + [f"- [ADA website compliance]({DOMAIN}/accessibility/): WCAG 2.1 AA audit, fixes, retest and conformance report.", f"- [Fractional marketing leadership]({DOMAIN}/experience/): six-month senior marketing leadership contracts.", "", "## Work"] + \
-           [f"- [{p['name']}]({DOMAIN}/work/{p['slug']}/): {SECTORS[p['sector']][0]} {p['kind'].lower()}" + (f", live at {p['url']}" if p['url'] else "") for p in P]
+           [f"- [{p['name']}]({DOMAIN}/work/{p['slug']}/): {SECTORS[p['sector']][0]} {p['kind'].lower()}" + (f", live at {p['url']}" if p['url'] else "") for p in P if p["slug"] not in MOVED]
     open(os.path.join(OUT, "llms.txt"), "w").write("\n".join(llms) + "\n")
     old = ["about", "work/work-by-services", "blog", "careers", "careers/*", "vpat", "dir", "shop", "cart", "checkout", "my-account", "skill-up", "skill-up/*", "workforce-training", "workforce-training/*", "contentum", "contentum/*", "project/*"]
     dest = {"about": "/services/", "blog": "/content/", "vpat": "/accessibility/", "work/work-by-services": "/work/", "project/*": "/work/"}
     code = 302 if TEST_BUILD else 301
-    spec = f"/services/interactive/  /services/technology/  {code}\n/work/rio-hondo-college-video/  /work/rio-hondo-college/  {code}\n" + "".join(f"/project/{o['old']}/  /work/{o['slug']}/  {code}\n" for o in OLDSITE["projects"]) + "".join(f"/{x['old']}/  /content/{x['slug']}/  {code}\n" for x in POSTS) + "".join(f"/content/{x['slug']}/  {GONE[x['slug']]}  {code}\n/{x['old']}/  {GONE[x['slug']]}  {code}\n" for x in OLDSITE["posts"] if x["slug"] in GONE)
+    spec = "".join(f"/work/{k}/  {v}  {code}\n" for k, v in MOVED.items()) + f"/services/interactive/  /services/technology/  {code}\n/work/rio-hondo-college-video/  /work/rio-hondo-college/  {code}\n" + "".join(f"/project/{o['old']}/  /work/{o['slug']}/  {code}\n" for o in OLDSITE["projects"]) + "".join(f"/{x['old']}/  /content/{x['slug']}/  {code}\n" for x in POSTS) + "".join(f"/content/{x['slug']}/  {GONE[x['slug']]}  {code}\n/{x['old']}/  {GONE[x['slug']]}  {code}\n" for x in OLDSITE["posts"] if x["slug"] in GONE)
     open(os.path.join(OUT, "_redirects"), "w").write(spec + "".join(f"/{o}  {dest.get(o, '/')}  {code}\n" for o in old))
     open(os.path.join(OUT, "netlify.toml"), "w").write('[build]\n  publish = "."\n  command = ""\n')
 
 if os.path.exists(OUT): shutil.rmtree(OUT)
 os.makedirs(OUT)
 home(); work()
-for i, p in enumerate(P): project(i, p)
+for i, p in enumerate(P):
+    if p["slug"] not in MOVED: project(i, p)
 services(); experience(); bridal(); content(); posts(); accessibility(); contact(); assets()
 print(f"{len(PAGES)} indexable pages -> {OUT}")
