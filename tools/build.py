@@ -11,11 +11,12 @@ from logos import LOGOS, WALL, CLEAR
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PREVIEW = "--preview" in sys.argv
 OUT = os.path.join(ROOT, "preview" if PREVIEW else "site")
-TEST_BUILD = True
+TEST_BUILD = False
 # Yoodle review widget: tap-to-comment on *.netlify.app and localhost only. Not in artifact previews.
 REVIEW_TAG = "" if PREVIEW else '<script src="/yoodle-review.js" data-project="Yoodle" defer></script>'
 DOMAIN = "https://yoodle.com"
-EMAIL = "hello@yoodle.com"
+GA_ID = "G-QQTL9EJPZN"  # Yoodle - GA4 property (316430908). Loads on yoodle.com only, never on the Netlify test URL or localhost.
+GA_TAG = "" if TEST_BUILD else "<script>if(location.hostname.replace(/^www\\./,'')==='yoodle.com'){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=" + GA_ID + "';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','" + GA_ID + "')}</script>"
 TODAY = date.today().isoformat()
 e = lambda s: html.escape(str(s), quote=True)
 PAGES = []
@@ -451,7 +452,7 @@ def header(cur):
 
 def footer():
     return f'''<footer><div class="wrap"><div class="fg">
-<div><p><strong style="color:#fff;font-size:1.3rem">yoodle.<sup class="reg">&reg;</sup></strong></p><p>The content experience agency. Brand, technology and marketing for ambitious organizations.</p><p>Built on experience. Made for what&rsquo;s next.</p><p>Kansas City, Missouri<br><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
+<div><p><strong style="color:#fff;font-size:1.3rem">yoodle.<sup class="reg">&reg;</sup></strong></p><p>The content experience agency. Brand, technology and marketing for ambitious organizations.</p><p>Built on experience. Made for what&rsquo;s next.</p><p>Kansas City, Missouri</p></div>
 <div><h2>Work</h2><ul><li><a href="/work/#higher-ed">Higher education</a></li><li><a href="/work/#government">Government</a></li><li><a href="/work/#nonprofit">Nonprofit</a></li><li><a href="/work/#business">Small business</a></li><li><a href="/work/#content">Podcasts</a></li></ul></div>
 <div><h2>Services</h2><ul><li><a href="/services/brand/">Brand</a></li><li><a href="/services/technology/">Technology</a></li><li><a href="/services/#marketing">Marketing</a></li><li><a href="/experience/">Fractional CMO</a></li><li><a href="/accessibility/">ADA compliance</a></li><li><a href="/bridal/">Bridal</a></li></ul></div>
 <div><h2>Yoodle</h2><ul><li><a href="/content/">Content</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="https://www.linkedin.com/company/yoodle">LinkedIn</a></li></ul></div>
@@ -512,7 +513,7 @@ def page(path, title, desc, body, schema=None, h_nopop=False, index=True):
     canon = DOMAIN + path
     crumbs = []
     parts = [x for x in path.strip("/").split("/") if x]
-    graph = [{"@type": "Organization", "@id": DOMAIN + "/#org", "name": "Yoodle", "legalName": "Yoodle LLC", "url": DOMAIN + "/", "email": EMAIL,
+    graph = [{"@type": "Organization", "@id": DOMAIN + "/#org", "name": "Yoodle", "legalName": "Yoodle LLC", "url": DOMAIN + "/",
               "foundingDate": "2007", "slogan": "Built on experience. Made for what's next.",
               "address": {"@type": "PostalAddress", "addressLocality": "Kansas City", "addressRegion": "MO", "addressCountry": "US"},
               "sameAs": ["https://www.linkedin.com/company/yoodle"],
@@ -531,7 +532,7 @@ def page(path, title, desc, body, schema=None, h_nopop=False, index=True):
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:type" content="website"><meta property="og:url" content="{canon}"><meta property="og:site_name" content="Yoodle">
 <meta name="theme-color" content="#F7F4EE">{robots}
 <link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/site.css">{GA_TAG}
 </head>
 <body{' class="test"' if TEST_BUILD else ''}>
 {header(path)}
@@ -929,12 +930,12 @@ def contact():
          ("source", "How did you hear about us?", "text", False, "")]
     body = f'''<section class="hero"><div class="wrap"><p class="eyebrow">Your next chapter starts with a conversation.</p><h1>What&rsquo;s next for you?<span class="r">Bring the challenge.</span></h1>
 <div class="herogrid" style="align-items:start">{form("contact", f, "Send")}
-<div><p class="lede">We&rsquo;ll bring the experience, the curiosity, and the people to make it happen. Tell us what you&rsquo;re facing and you&rsquo;ll hear from a person within one business day.</p><p>Or write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</p><p>Yoodle LLC<br>Kansas City, Missouri</p></div></div></div></section>'''
+<div><p class="lede">We&rsquo;ll bring the experience, the curiosity, and the people to make it happen. Tell us what you&rsquo;re facing and you&rsquo;ll hear from a person within one business day.</p><p>Yoodle LLC<br>Kansas City, Missouri</p></div></div></div></section>'''
     page("/contact/", "Contact Yoodle | Start a Brand, Technology or Marketing Project", "Contact Yoodle, the content experience agency in Kansas City. Bring the challenge and hear from a person within one business day.", body, [crumb_schema([("/", "Home"), ("", "Contact")])], h_nopop=True)
     page("/thanks/", "Thank You | Yoodle", "Your message reached Yoodle. We reply within one business day.",
          '<section class="hero"><div class="wrap"><h1>Got it.<span class="r">Thank you.</span></h1><p class="lede" style="margin-top:32px">We reply within one business day.</p><p><a class="go" href="/work/">See the work while you wait.</a></p></div></section>', h_nopop=True, index=False)
     page("/privacy/", "Privacy Policy | Yoodle", "How Yoodle collects, uses and protects information submitted through yoodle.com.",
-         f'<section class="hero"><div class="wrap"><h1 class="md">Privacy.</h1><div style="max-width:44em;margin-top:32px"><p>Yoodle LLC collects the information you send through forms on this site: your name, email, organization, website address and message. We use it to reply to you and to prepare any report you asked for. We do not sell it.</p><p>Form submissions are stored by our hosting provider, Netlify. To ask what we hold about you or to have it removed, write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</p><p>We use Google Analytics to count visits and see which pages people read. It sets cookies and records information such as your approximate location, device and the pages you view. It does not tell us who you are. You can block it with your browser settings or with Google&rsquo;s opt-out add-on.</p></div></div></section>', [], h_nopop=True)
+         f'<section class="hero"><div class="wrap"><h1 class="md">Privacy.</h1><div style="max-width:44em;margin-top:32px"><p>Yoodle LLC collects the information you send through forms on this site: your name, email, organization, website address and message. We use it to reply to you and to prepare any report you asked for. We do not sell it.</p><p>Form submissions are stored by our hosting provider, Netlify. To ask what we hold about you or to have it removed, send us a note through the <a href="/contact/">contact form</a>.</p><p>We use Google Analytics to count visits and see which pages people read. It sets cookies and records information such as your approximate location, device and the pages you view. It does not tell us who you are. You can block it with your browser settings or with Google&rsquo;s opt-out add-on.</p></div></div></section>', [], h_nopop=True)
     page("/404.html", "Page Not Found | Yoodle", "That page is not here. Find Yoodle's work, services and contact details.",
          '<section class="hero"><div class="wrap"><h1>Page not found.</h1><p class="lede" style="margin-top:32px">That page moved or never existed.</p><p><a class="go" href="/work/">See the work.</a> <a class="go" href="/">Go home.</a></p></div></section>', h_nopop=True, index=False)
 
@@ -952,7 +953,7 @@ def assets():
     urls = "".join(f"<url><loc>{DOMAIN}{p}</loc><lastmod>{TODAY}</lastmod></url>" for p in PAGES)
     open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     open(os.path.join(OUT, "robots.txt"), "w").write(("User-agent: *\nDisallow: /\n" if TEST_BUILD else "User-agent: *\nAllow: /\n") + f"Sitemap: {DOMAIN}/sitemap.xml\n")
-    llms = ["# Yoodle", "", "> Yoodle is the content experience agency, working across brand, technology and marketing. Built on experience, made for what's next: brands, digital experiences and marketing for ambitious organizations in higher education, government, nonprofits and business. Founded 2007, Kansas City, Missouri. Contact: " + EMAIL, "",
+    llms = ["# Yoodle", "", "> Yoodle is the content experience agency, working across brand, technology and marketing. Built on experience, made for what's next: brands, digital experiences and marketing for ambitious organizations in higher education, government, nonprofits and business. Founded 2007, Kansas City, Missouri. Contact: " + DOMAIN + "/contact/", "",
             "## Services"] + [f"- [{v['name']}]({DOMAIN}/services/{k}/): {v['lede']}" for k, v in SERVICES.items()] + [f"- [ADA website compliance]({DOMAIN}/accessibility/): WCAG 2.1 AA audit, fixes, retest and conformance report.", f"- [Fractional marketing leadership]({DOMAIN}/experience/): six-month senior marketing leadership contracts.", "", "## Work"] + \
            [f"- [{p['name']}]({DOMAIN}/work/{p['slug']}/): {SECTORS[p['sector']][0]} {p['kind'].lower()}" + (f", live at {p['url']}" if p['url'] else "") for p in P]
     open(os.path.join(OUT, "llms.txt"), "w").write("\n".join(llms) + "\n")
