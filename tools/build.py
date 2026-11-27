@@ -237,19 +237,28 @@ details.cap p{margin:0 0 20px;max-width:60ch;opacity:.86}
 .facts dd{margin:4px 0 0;font-weight:600}
 .bleed{margin:0 0 clamp(56px,9vw,128px);padding:0}
 .bleed img{display:block;width:100%;height:clamp(300px,52vw,820px);object-fit:cover;object-position:50% 35%}
-.bleed.duo{display:grid;grid-template-columns:1fr 1fr}
-.bleed.duo img{height:clamp(220px,36vw,620px);object-position:50% 50%}
 .vids,.made{display:grid;gap:clamp(10px,1.4vw,20px);margin-top:clamp(32px,5vw,64px)}
 .vids{grid-template-columns:repeat(3,minmax(0,1fr))}
-.made{grid-template-columns:minmax(0,.6fr) minmax(0,1fr) minmax(0,1fr);align-items:start}
+.made{grid-template-columns:minmax(0,300px) minmax(0,300px) minmax(0,1fr);align-items:center;gap:clamp(16px,3vw,48px)}
 .vids figure,.made figure{margin:0;min-width:0}
 .vids video,.made img,.made video{display:block;width:100%;border-radius:6px;object-fit:cover;background:#e7e2d8}
-.vids video{aspect-ratio:4/3}.made video{aspect-ratio:9/16}.made img{aspect-ratio:9/9.6;height:auto}
+.vids video{aspect-ratio:4/3}.made video,.yt{aspect-ratio:9/16}
+.yt{display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:22px;border-radius:6px;background:var(--ink);color:var(--bg);text-decoration:none;position:relative;overflow:hidden}
+.yt .small{color:#cfcbc2}
+.yttitle{font-family:"Bricolage Grotesque","Inter",system-ui,sans-serif;font-weight:650;font-size:1.5rem;line-height:1.05;letter-spacing:-.03em}
+.ytplay{position:absolute;left:22px;top:22px;width:56px;height:56px;border-radius:50%;background:var(--bg)}
+.ytplay::after{content:"";position:absolute;left:22px;top:17px;border-left:17px solid var(--ink);border-top:11px solid transparent;border-bottom:11px solid transparent}
+.yt:hover .ytplay{background:var(--acc-l)}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.laptop{margin:clamp(32px,5vw,64px) auto 0;max-width:1240px;padding:0 5%}
+.laptop .scr{background:#2a2a28;border-radius:16px 16px 0 0;padding:clamp(6px,1.2vw,14px);border:1px solid #f7f4ee33;border-bottom:0}
+.laptop img{display:block;width:100%;height:auto;border-radius:4px}
+.laptop .base{height:clamp(8px,1.4vw,16px);background:#c9c5bb;border-radius:0 0 14px 14px;margin:0 -5.5%}
 .vids figcaption,.made figcaption{font-size:.9rem;color:var(--mute);margin-top:8px}
 .vidbar{margin:10px 0 0}
 .vidbtn{min-height:44px;padding:0 16px;border:1.5px solid var(--ink);border-radius:999px;background:none;color:var(--ink);font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
 .vidbtn:hover{background:var(--ink);color:var(--bg)}
-@media (max-width:760px){.vids{grid-template-columns:1fr}.vids video{aspect-ratio:16/10}.made{grid-template-columns:1fr 1fr}.made figure:first-child{grid-column:1/-1;max-width:320px}.bleed.duo{grid-template-columns:1fr}}
+@media (max-width:760px){.vids{grid-template-columns:1fr}.vids video{aspect-ratio:16/10}.made{grid-template-columns:1fr 1fr}.made .lede{grid-column:1/-1}}
 .facts.nums div{display:flex;flex-direction:column;justify-content:space-between}
 .facts.nums dd{font-family:"Bricolage Grotesque","Inter",system-ui,sans-serif;font-weight:650;font-size:clamp(2.6rem,6vw,5rem);letter-spacing:-.04em;line-height:1;color:var(--acc-t)}
 @media (max-width:760px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -784,6 +793,12 @@ def bridal():
             ("A production team", f"An in-house crew shoots in the stores and publishes every day. We hired them with the owner, trained them, and built the system that moves work from idea to post without the owner chasing it. {confirm('team roles and publishing rhythm')}"),
             ("Launches", "When the fifth store opened in St. Louis on November 2, 2026, the site, the listings, the ads and the content were ready. It booked 40 new brides in its first three weeks."),
             ("Leadership", "Tim answers to the CEO and sits down with the store managers every quarter, so the stores and the marketing team work from one plan.")]
+    ceo = [("Positioning", "Who she is to her industry, in one line. For Imene McCoy, the founder of Savvy Bridal, it became Higher Standards: good enough was never the plan."),
+           ("Brand design", "A name, a look, channel art and a thumbnail style you can pick out of a feed."),
+           ("Content planning", "A weekly queue of topics drawn from her own stories: hiring, mistakes, and growing to five stores."),
+           ("Creative direction and production", "Unscripted conversations shot in the stores, then edited into a full episode and a set of shorts."),
+           ("Posting", "Each episode goes out on YouTube, as a Substack post, and as cuts for LinkedIn and Meta. One recording, four places."),
+           ("Metrics analysis", "We read what gets watched and what gets skipped, and next week's plan follows it.")]
     faq = [("Do you work with shops other than Savvy Bridal and Vow Ready?", "Yes. The system was built with them so it could be installed in other shops."),
            ("What does a fractional CMO do for a bridal shop?", "Leads marketing as a member of your team: sets the plan, manages the budget, the agency work and your outside partners, and builds and trains your in-house team so the shop is not dependent on outside help."),
            ("What results has the model produced?", "From January to September 2026, against the same months of 2025, revenue at the three Savvy Bridal stores rose 35% and gown orders rose 35%, while ad spend rose 7%."),
@@ -808,10 +823,10 @@ def bridal():
 <div class="vids">{"".join(f'<figure><video src="/img/bridal/{k}.mp4" poster="/img/bridal/{k}-poster.webp" muted loop playsinline preload="metadata" aria-label="Inside Savvy Bridal {c}"></video><figcaption>{c}</figcaption></figure>' for k, c in (("kc", "Kansas City"), ("stl", "St. Louis"), ("ftl", "Fort Lauderdale")))}</div>
 <p class="vidbar"><button type="button" class="vidbtn" hidden aria-pressed="false">Pause video</button></p>
 <ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(n)}.</h3><p>{t}</p></li>' for i, (n, t) in enumerate(team))}</ol>
-<div class="made"><figure><video src="/img/bridal/hiring.mp4" poster="/img/bridal/hiring-poster.webp" controls playsinline preload="none" aria-label="Savvy Bridal St. Louis hiring event video"></video><figcaption>Made in house: the St. Louis hiring video.</figcaption></figure>
-<figure><img src="/img/bridal/stl-team-960.webp" alt="The Savvy Bridal St. Louis team standing together on the shop floor" width="960" height="720" loading="lazy"><figcaption>The St. Louis team.</figcaption></figure>
-<figure><img src="/img/bridal/ftl-team-960.webp" alt="The Savvy Bridal Fort Lauderdale team taking a mirror photo in the boutique" width="960" height="720" loading="lazy"><figcaption>The Fort Lauderdale team.</figcaption></figure></div></div></section>
-<figure class="bleed duo"><img src="/img/bridal/storefront-sunset-960.webp" alt="The Savvy Bridal Kansas City flagship at sunset, with a painted mural on its side wall" width="960" height="640" loading="lazy"><img src="/img/bridal/storefront-mural-960.webp" alt="A mural of a bride and a handwritten letter to the bride on the wall of Savvy Bridal Kansas City" width="960" height="640" loading="lazy"></figure>
+<div class="made"><figure><video src="/img/bridal/hiring.mp4" poster="/img/bridal/hiring-poster.webp" controls playsinline preload="none" aria-label="Savvy Bridal St. Louis hiring event video"></video><figcaption>The St. Louis hiring video.</figcaption></figure>
+<figure><a class="yt" href="https://www.youtube.com/watch?v=6E99vobWrpY" data-yt="6E99vobWrpY"><span class="ytplay" aria-hidden="true"></span><span class="yttitle">What it&rsquo;s like working at Savvy Bridal</span><span class="small">Watch on YouTube</span></a><figcaption>The culture video, from the Savvy Bridal YouTube channel.</figcaption></figure>
+<p class="lede">Recruiting is marketing too. The team that sells the gown also tells the story of working here.</p></div></div></section>
+<figure class="bleed"><img src="/img/bridal/curb-appeal-1600.webp" srcset="/img/bridal/curb-appeal-960.webp 960w, /img/bridal/curb-appeal-1600.webp 1600w" sizes="100vw" alt="A Savvy Bridal storefront with flowers climbing the windows under a blue sky" width="1600" height="1067" loading="lazy"></figure>
 <section class="tight"><div class="wrap"><h2>Problems, solved.<span class="r">For her and for the team.</span></h2><p class="lede" style="margin-top:24px">Each of these started as a problem on the shop floor. When no software fixed it, we built the tool.</p>
 <div class="cols c2">
 <div class="col"><h3>Walk-ins had nowhere to wait.</h3><p>Vow Ready takes walk-ins, and nobody wants to spend a Saturday standing in a bridal shop waiting for a turn.</p><p>So we built the Q. She joins the line from a kiosk or her phone, leaves for coffee, and gets a text when her stylist is ready. The store sees the whole line on one screen.</p></div>
@@ -819,9 +834,12 @@ def bridal():
 </div>
 <ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(pr)}.</h3><div><p><strong>{f"<a href={chr(34)}{u}{chr(34)}>{e(n)}</a>" if u else e(n)}.</strong> {e(t)}</p></div></li>' for i, (pr, n, t, u) in enumerate(solved))}</ol>
 <p class="lede" style="margin-top:clamp(28px,4vw,48px)">How each one works, and which your shop needs first, is the conversation.</p><p><a class="btn" href="/contact/">Talk about your shop</a></p></div></section>
-<figure class="bleed"><img src="/img/bridal/hero-bride-sofa-1600.webp" srcset="/img/bridal/hero-bride-sofa-960.webp 960w, /img/bridal/hero-bride-sofa-1600.webp 1600w" sizes="100vw" alt="A bride in a strapless lace gown seated on a blush sofa, laughing" width="1600" height="1067" loading="lazy"></figure>
+<section class="dark"><div class="wrap"><h2>The owner, as a brand.<span class="r">CEO brand development.</span></h2><p class="lede" style="margin-top:24px">Shop owners buy from people they trust. So we build the owner's own platform next to the shop's. The proof is Higher Standards with Imene McCoy: 40 videos published so far.</p>
+<figure class="laptop"><div class="scr"><img src="/img/bridal/higher-standards-youtube.webp" alt="The Higher Standards with Imene McCoy YouTube channel page, showing its banner and three recent videos" width="1440" height="802" loading="lazy"></div><div class="base" aria-hidden="true"></div></figure>
+<ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(n)}.</h3><p>{e(t)}</p></li>' for i, (n, t) in enumerate(ceo))}</ol></div></section>
+<figure class="bleed" style="margin-top:clamp(56px,9vw,128px)"><img src="/img/bridal/hero-bride-sofa-1600.webp" srcset="/img/bridal/hero-bride-sofa-960.webp 960w, /img/bridal/hero-bride-sofa-1600.webp 1600w" sizes="100vw" alt="A bride in a strapless lace gown seated on a blush sofa, laughing" width="1600" height="1067" loading="lazy"></figure>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
-<script>(function(){{var v=[].slice.call(document.querySelectorAll('.vids video')),b=document.querySelector('.vidbtn');if(!v.length||!b||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var on=true;b.hidden=false;var io=new IntersectionObserver(function(es){{es.forEach(function(x){{x.target._in=x.isIntersecting;if(on&&x.isIntersecting){{var p=x.target.play();if(p&&p.catch)p.catch(function(){{}})}}else x.target.pause()}})}},{{threshold:.25}});v.forEach(function(x){{io.observe(x)}});b.addEventListener('click',function(){{on=!on;b.textContent=on?'Pause video':'Play video';b.setAttribute('aria-pressed',String(!on));v.forEach(function(x){{if(on&&x._in){{var p=x.play();if(p&&p.catch)p.catch(function(){{}})}}else x.pause()}})}})}})();</script>
+<script>(function(){{[].forEach.call(document.querySelectorAll('a.yt[data-yt]'),function(a){{a.addEventListener('click',function(ev){{ev.preventDefault();var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+a.getAttribute('data-yt')+'?autoplay=1&rel=0';f.title='What it is like working at Savvy Bridal';f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';a.appendChild(f)}})}});var v=[].slice.call(document.querySelectorAll('.vids video')),b=document.querySelector('.vidbtn');if(!v.length||!b||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var on=true;b.hidden=false;var io=new IntersectionObserver(function(es){{es.forEach(function(x){{x.target._in=x.isIntersecting;if(on&&x.isIntersecting){{var p=x.target.play();if(p&&p.catch)p.catch(function(){{}})}}else x.target.pause()}})}},{{threshold:.25}});v.forEach(function(x){{io.observe(x)}});b.addEventListener('click',function(){{on=!on;b.textContent=on?'Pause video':'Play video';b.setAttribute('aria-pressed',String(!on));v.forEach(function(x){{if(on&&x._in){{var p=x.play();if(p&&p.catch)p.catch(function(){{}})}}else x.pause()}})}})}})();</script>
 {closer(text="Own a bridal shop? Tell us where marketing is stuck. We&rsquo;d love to help.")}'''
     its = [("/", "Home"), ("", "Bridal")]
     page("/bridal/", "Bridal Shop Marketing and Fractional CMO | Yoodle", "Fractional CMO services for bridal shops from the team behind Savvy Bridal and Vow Ready: a leader, an agency and an in-house team, proven in five stores.", body,
