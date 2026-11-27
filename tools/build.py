@@ -648,7 +648,9 @@ def marquee():
 
 # ------------------------------------------------------------------ pages
 def home():
-    feat = [p for p in P if p["slug"] in ("nevada-state-university", "kansas-judicial-branch", "ut-austin-extended-campus", "kc-streetcar", "variety-kc", "fsu-career-center")]
+    # Tim, Nov 27 2026: home page samples are higher education and government only, alternating
+    _by = {p["slug"]: p for p in P}
+    feat = [_by[k] for k in ("missouri-western-state-university", "kansas-judicial-branch", "nevada-state-university", "kc-streetcar", "rio-hondo-college", "neighborworks-america")]
     svc = "".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3><a href="/services/#{v["key"]}">{v["name"]}</a></h3><div><p>{e(v["lede"])}</p><p class="sub">{e(v["sub"])}</p></div></li>' for i, v in enumerate(PILLARS))
     body = f'''<section class="hero"><div class="wrap">
 <h1>Built on experience.<span class="r">Made for what&rsquo;s next.</span></h1>
