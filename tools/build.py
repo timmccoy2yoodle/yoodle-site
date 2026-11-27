@@ -5,7 +5,7 @@ import os, re, sys, json, shutil, html
 from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import *
-from data import PILLARS
+from data import PILLARS, RH_REV, YEARS_ARCHIVE
 from logos import LOGOS, WALL, CLEAR
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -607,8 +607,10 @@ def case_html(p):
     return f'''<section class="dark"><div class="wrap"><h2>By the numbers.</h2><div class="cols c4">{"".join(f'<div class="col"><p class="big" style="font-size:clamp(3.2rem,7vw,6rem);margin:8px 0 14px">{n}</p><p>{e(t)}</p></div>' for n, t in c["stats"])}</div></div></section>
 <section><div class="wrap"><h2>Nine goals.<span class="r">Fully delivered.</span></h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i + 1}</span><h3>{e(a)}.</h3><p>{e(t)}</p></li>' for i, (a, t) in enumerate(c["goals"]))}</ol></div></section>
 <section class="tight"><div class="wrap"><h2>Pages we built.</h2><p class="lede" style="margin-top:24px">Fifty new pages, written and built by Yoodle, including the homepage and a page for every area of study.</p><ul class="names">{names(RH_NEW)}</ul></div></section>
-<section class="tight"><div class="wrap two"><h2>Pages we rewrote.</h2><div><p class="lede">Seventy-seven existing pages rewritten and optimized. A sample:</p><ul class="sect">{names(RH_OPT)}</ul></div></div></section>
-<section class="dark"><div class="wrap two"><h2>On camera.</h2><div><p class="lede">Ten video series and a photo library, shot on campus for the new pages, with vertical cuts for social.</p><ul class="sect">{names(RH_VIDEO)}</ul><p style="margin-top:24px"><a class="go" href="https://vimeo.com/1230352325">Watch the reel.</a></p><p>{confirm("video embeds, stills and page screenshots go here once the files are in")}</p></div></div></section>'''
+<section class="tight"><div class="wrap two"><h2>Pages we rewrote.</h2><div><p class="lede">Seventy-seven existing pages rewritten and optimized, all approved by the college on May 13, 2024.</p><ul class="names">{names(RH_OPT)}</ul></div></div></section>
+<section class="tight"><div class="wrap two"><h2>The second round.</h2><div><p class="lede">Thirty-three area-of-study pages revised again and completed on August 11, 2024.</p><ul class="names">{names(RH_REV)}</ul></div></div></section>
+<section class="dark"><div class="wrap two"><h2>On camera.</h2><div><p class="lede">Ten video series and a photo library, shot on campus for the new pages, with vertical cuts for social.</p><ul class="sect">{names(RH_VIDEO)}</ul><p style="margin-top:24px"><a class="go" href="https://vimeo.com/1230352325">Watch the reel on Vimeo.</a></p></div></div>
+<div class="wrap" style="margin-top:clamp(24px,4vw,48px)"><div style="position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#000"><iframe src="https://player.vimeo.com/video/1230352325?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" title="Río Hondo College reel by Yoodle" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div></div></section>'''
 
 VERDICT = {"Workforce training": "Taught.", "Brand and marketing": "Delivered.", "Website": "Launched.", "Podcast": "Produced.", "Video and content": "Produced.", "Project": "Delivered."}
 def project(i, p):
@@ -619,6 +621,8 @@ def project(i, p):
     if p["platform"]: facts.append(("Platform", e(p["platform"])))
     elif p["kind"] == "Website": facts.append(("Platform", confirm("platform")))
     if p["place"]: facts.append(("Location", e(p["place"])))
+    eng = p.get("eng") or ((YEARS_ARCHIVE[p["slug"]], "") if p["slug"] in YEARS_ARCHIVE else None)
+    if eng and eng[0]: facts.append(("Year" if p["kind"] == "Project" else "Engagement", e(eng[0])))
     if p["url"]: facts.append(("Live site", f'<a href="{p["url"]}">{host}</a>'))
     about = f'<p class="lede">{e(p["case"]["lede"])}</p>' if p.get("case") else f'<p class="lede">{e(p["about"])}</p>' if p["about"] else f'<p class="lede">{e(p["name"])} is a {p["kind"].lower()} produced by Yoodle.</p>'
     need = {"Website": "Yoodle's scope (strategy, design, build, migration, support), launch year, results and a client quote",
@@ -636,7 +640,7 @@ def project(i, p):
         rest = o["imgs"][1:] if not (cover_img(p) or {"src": ""})["src"].startswith("/img/shots/") else o["imgs"]
         if rest: gal = '<section class="tight"><div class="wrap"><ul class="gal">' + "".join(f'<li><img src="{g["src"]}" alt="{e(p["name"])}: work by Yoodle, image {k + 1}" width="{g["w"]}" height="{g["h"]}" loading="lazy"></li>' for k, g in enumerate(rest)) + '</ul></div></section>'
     quote = f'<section class="dark band"><div class="wrap"><figure style="margin:0;max-width:22ch;font-size:{"clamp(32px,5.2vw,72px)" if len(p["quote"][0]) < 90 else "clamp(22px,2.6vw,36px)"};max-width:{"22ch" if len(p["quote"][0]) < 90 else "36ch"}"><blockquote style="margin:0;font-family:var(--hd,inherit);font-weight:600;letter-spacing:-.03em;line-height:1.02">\u201c{e(p["quote"][0])}\u201d</blockquote></figure><p style="margin-top:28px;max-width:52ch;opacity:.8">{e(p["quote"][1])}</p></div></section>' if p.get("quote") else ""
-    nums = f'<section class="dark"><div class="wrap"><h2>The site today.</h2><div class="cols c4">{"".join(f'<div class="col"><p class="big" style="font-size:clamp(3.2rem,7vw,6rem);margin:8px 0 14px">{n}</p><p>{e(x)}</p></div>' for n, x in p["stats"])}</div><p style="margin-top:28px;opacity:.7;font-size:.9rem">Source: {GA_RANGE}.</p></div></section>' if p.get("stats") else ""
+    nums = f'<section class="dark"><div class="wrap"><h2>{"By the numbers." if p.get("stats_src") else "The site today."}</h2><div class="cols c4">{"".join(f'<div class="col"><p class="big" style="font-size:clamp(3.2rem,7vw,6rem);margin:8px 0 14px">{n}</p><p>{e(x)}</p></div>' for n, x in p["stats"])}</div><p style="margin-top:28px;opacity:.7;font-size:.9rem">Source: {p.get("stats_src") or GA_RANGE}.</p></div></section>' if p.get("stats") else ""
     if p.get("gallery"): gal = '<section class="tight"><div class="wrap"><ul class="gal">' + "".join(f'<li style="aspect-ratio:{g[1]}/{g[2]};background:#fff"><img src="/img/work/{p["slug"]}/{k}.webp" alt="{e(p["name"])}: {e(g[0])}" width="{g[1]}" height="{g[2]}" loading="lazy"></li>' for k, g in enumerate(p["gallery"])) + '</ul></div></section>'
     if os.path.exists(os.path.join(ROOT, "assets/img/process", p["slug"], "0.webp")): gal += f'<section class="tight"><div class="wrap two"><h2>Before the build.</h2><div><p>Every Yoodle site is worked out as wireframes first: the navigation, the page types and what each page has to do, agreed with the client before design starts.</p></div></div><div class="wrap" style="margin-top:clamp(20px,3vw,40px)"><div style="border-radius:8px;overflow:hidden;border:1px solid #d9d4c8"><img src="/img/process/{p["slug"]}/0.webp" alt="{e(p["name"])}: wireframes by Yoodle for the homepage and two inner pages" width="1600" height="1200" loading="lazy" style="display:block;width:100%;height:auto"></div></div></section>'
     feats = f'<section class="tight"><div class="wrap two"><h2>On the site.</h2><ul class="sect">{"".join(f"<li>{e(f)}</li>" for f in p["features"])}</ul></div></section>' if p["features"] else ""
@@ -653,7 +657,7 @@ def project(i, p):
 {"" if cover_img(p) else '<p class="small" style="margin-top:10px">' + confirm("real screenshots of the live site replace this cover" if p["url"] else "images replace this cover once the rest of the backup is brought over") + "</p>"}
 </div></section>
 <section class="tight"><div class="wrap"><dl class="facts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts)}</dl></div></section>
-<section class="tight"><div class="wrap two"><h2>The project.</h2><div>{about}{'' if ((p['kind'] == 'Podcast' and p['about']) or p.get('case')) else '<p>' + confirm(need) + '</p>'}{visit}</div></div></section>
+<section class="tight"><div class="wrap two"><h2>The project.</h2><div>{about}{'<p>' + e(eng[1]) + '</p>' if eng and eng[1] else ''}{'' if ((p['kind'] == 'Podcast' and p['about']) or p.get('case') or eng) else '<p>' + confirm(need) + '</p>'}{visit}</div></div></section>
 {case_html(p) if p.get("case") else feats}
 {story}
 {nums}{gal}{quote}
@@ -725,7 +729,7 @@ def experience():
 <section class="dark"><div class="wrap"><h2>Six months.</h2><ol class="rows">{"".join(f'<li><span class="idx" aria-hidden="true">0{i+1}</span><h3>{a}.</h3><p>{b}</p></li>' for i, (a, b) in enumerate(steps))}</ol></div></section>
 <section><div class="wrap"><h2>Fractional CMO work.<span class="r">In practice.</span></h2><div class="cols c2">
 <div class="col"><div class="xlogo"><img src="/img/logos/t-w20.webp" alt="Savvy Bridal logo" width="480" height="170" loading="lazy"></div><h3>Savvy Bridal and Vow Ready.</h3><p>Five bridal stores in three states. Tim sits as chief marketing officer, an in-house team runs the day to day, and Yoodle builds what the team needs: websites, dashboards, campaigns.</p><a class="go" href="/bridal/">The bridal story.</a></div>
-<div class="col"><div class="xlogo"><img src="/img/logos/ajm.webp" alt="American Jazz Museum logo" width="311" height="220" loading="lazy" style="background:#141414;padding:6px 12px;border-radius:6px;box-sizing:content-box;max-height:52px"></div><h3>American Jazz Museum.</h3><p>A marketing framework, audience survey reporting, print, and The Big Break podcast, led in 2024 as the museum's fractional CMO, with Yoodle producing the work. {confirm("your title there and one result")}</p><a class="go" href="/work/the-big-break/">The Big Break.</a></div>
+<div class="col"><div class="xlogo"><img src="/img/logos/t-w16.webp" alt="American Jazz Museum logo" width="311" height="220" loading="lazy"></div><h3>American Jazz Museum.</h3><p>A twelve-month fractional CMO retainer, 2023 to 2024. Tim led marketing for the museum at 18th and Vine and reported to its executive director and board, while Yoodle supplied the creative, technical and production teams.</p><p>In that year: quarterly marketing reports to the board, the annual report, the Free February campaign, online tickets and memberships, the museum newsletter, and The Big Break podcast with its own marketing plan. Tim also ran the search for a Director of Marketing and Communications, and left with two trained hires in place.</p><a class="go" href="/work/the-big-break/">The Big Break.</a></div>
 </div></div></section>
 <section class="tight"><div class="wrap two"><h2>Questions.</h2><div>{faq_block(faq)}</div></div></section>
 {closer(text="Need a marketing leader? Bring the challenge. We&rsquo;ll bring the experience, the curiosity, and the people to make it happen.", button=("/contact/", "Talk to a fractional CMO"), b=("See the bridal story.", "The model, proven in our own five stores.", "/bridal/", "Read it."))}'''
@@ -797,14 +801,14 @@ def accessibility():
            ("Which platforms do you work with?", "Any. WordPress, Drupal, Modern Campus, static HTML and hosted builders all go through the same steps.")]
     body = f'''<section class="hero"><div class="wrap"><p class="tag">Websites that work for everyone.</p><h1>ADA website compliance.<span class="r">Before the deadline.</span></h1>
 <div class="herogrid"><div><h2 style="font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:18px" id="scan">Get your free report.</h2>{form("scan-request", SCAN_FIELDS, "Send my free report")}
-<p class="small" style="margin-top:12px">Free. Any website, any platform. {confirm("instant self-serve scan replaces this form when the scanner goes live")}</p></div>
+<p class="small" style="margin-top:12px">Free. Any website, any platform. A person reviews every report before it reaches you.</p></div>
 <p class="lede" style="margin:0">Tell us your web address. We test it against WCAG 2.1 AA and send you what passes and what fails. Then we fix it in your site's own code.</p></div></div></section>
 <section class="dark" style="padding:clamp(48px,7vw,96px) 0"><div class="wrap two" style="align-items:end"><p class="big" style="font-size:clamp(3.4rem,10vw,8rem);margin:0">April 26, 2027.</p>
 <p class="lede">The ADA Title II web deadline for larger governments and most public colleges. Smaller governments and special districts have until April 26, 2028.</p></div></section>
 <section><div class="wrap"><h2>Approach.</h2><ol class="rows">
 <li><span class="idx" aria-hidden="true">01</span><h3>Send your URL.</h3><p>We read your sitemap, test your pages against WCAG 2.1 AA and note your platform and page templates.</p></li>
 <li><span class="idx" aria-hidden="true">02</span><h3>Read your report.</h3><p>What passes, what fails, where it is and who it affects, in plain language.</p></li>
-<li><span class="idx" aria-hidden="true">03</span><h3>We fix it.</h3><p>In your code and content. No overlay, no widget. {confirm("pricing")}</p></li>
+<li><span class="idx" aria-hidden="true">03</span><h3>We fix it.</h3><p>In your code and content. No overlay, no widget. Fixes start at $1,500 for a site under 100 pages. Larger sites are priced on the report, before any work begins.</p></li>
 <li><span class="idx" aria-hidden="true">04</span><h3>Retest and certify.</h3><p>Manual checks, a retest and a conformance report you can show your board or counsel.</p></li></ol></div></section>
 <section class="tight"><div class="wrap two"><h2>Proof.</h2><div><p class="lede">SWIFT Education Center, University of Kansas. Audited, fixed, retested and certified in fall 2026.</p>
 <p><a class="go" href="/work/swift-education-center/">See the project.</a></p></div></div></section>
@@ -831,7 +835,7 @@ def contact():
     page("/thanks/", "Thank You | Yoodle", "Your message reached Yoodle. We reply within one business day.",
          '<section class="hero"><div class="wrap"><h1>Got it.<span class="r">Thank you.</span></h1><p class="lede" style="margin-top:32px">We reply within one business day.</p><p><a class="go" href="/work/">See the work while you wait.</a></p></div></section>', h_nopop=True, index=False)
     page("/privacy/", "Privacy Policy | Yoodle", "How Yoodle collects, uses and protects information submitted through yoodle.com.",
-         f'<section class="hero"><div class="wrap"><h1 class="md">Privacy.</h1><div style="max-width:44em;margin-top:32px"><p>Yoodle LLC collects the information you send through forms on this site: your name, email, organization, website address and message. We use it to reply to you and to prepare any report you asked for. We do not sell it.</p><p>Form submissions are stored by our hosting provider, Netlify. To ask what we hold about you or to have it removed, write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</p><p>{confirm("analytics tools in use and legal review of this policy")}</p></div></div></section>', [], h_nopop=True)
+         f'<section class="hero"><div class="wrap"><h1 class="md">Privacy.</h1><div style="max-width:44em;margin-top:32px"><p>Yoodle LLC collects the information you send through forms on this site: your name, email, organization, website address and message. We use it to reply to you and to prepare any report you asked for. We do not sell it.</p><p>Form submissions are stored by our hosting provider, Netlify. To ask what we hold about you or to have it removed, write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</p><p>We use Google Analytics to count visits and see which pages people read. It sets cookies and records information such as your approximate location, device and the pages you view. It does not tell us who you are. You can block it with your browser settings or with Google&rsquo;s opt-out add-on.</p></div></div></section>', [], h_nopop=True)
     page("/404.html", "Page Not Found | Yoodle", "That page is not here. Find Yoodle's work, services and contact details.",
          '<section class="hero"><div class="wrap"><h1>Page not found.</h1><p class="lede" style="margin-top:32px">That page moved or never existed.</p><p><a class="go" href="/work/">See the work.</a> <a class="go" href="/">Go home.</a></p></div></section>', h_nopop=True, index=False)
 
