@@ -337,3 +337,12 @@ for _p in P:
 # pages may show percentage changes between stated periods instead (key "stats", with "stats_src").
 for _p in P:
     if _p.get("stats") and not _p.get("stats_src"): _p["ga_private"] = _p.pop("stats")
+
+# ---- Nov 27 2026: growth shown as percentage change only (Tim's rule). Pulled from the client's GA4 property
+# (nevadastate.edu, a9084605 p403568979). Raw: users 661,356 -> 921,150; sessions 1,246,065 -> 1,581,865;
+# organic search sessions 579,157 -> 746,037; engaged sessions 550,717 -> 646,001; views 2,326,093 -> 2,521,386.
+# Palm Beach State: no comparison possible. Its GA property stopped tracking the public site (now mostly portal pages).
+for _p in P:
+    if _p["slug"] == "nevada-state-university":
+        _p["stats"] = [("+39%", "more people reached"), ("+29%", "more visits from search"), ("+27%", "more visits overall"), ("+17%", "more engaged visits")]
+        _p["stats_src"] = "Google Analytics. The site's first full year, November 24, 2023 to November 23, 2024, compared with November 24, 2025 to November 23, 2026"
